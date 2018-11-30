@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
 
 export class LoginPage extends Component {
   static propTypes = {};
@@ -18,7 +19,8 @@ export class LoginPage extends Component {
   render() {
     return (
       <div>
-        LoginPage
+        <ButtonBase size="small">Text</ButtonBase>
+        <ButtonBase size="large">Text</ButtonBase>
       </div>
     );
   }
