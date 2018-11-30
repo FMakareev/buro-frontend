@@ -50,9 +50,7 @@ const Weight = [300, 500, 700];
 
 const Breakpoints = ['1024px', '1200px', '1440px'];
 
-const boxShadow = [
-  '4px 8px 16px rgba(28, 65, 84, 0.08)',  
-];
+const boxShadow = ['4px 8px 16px rgba(28, 65, 84, 0.08)'];
 
 export const StyledThemeProvider = ({ children }) => (
   <Provider
@@ -69,14 +67,12 @@ export const StyledThemeProvider = ({ children }) => (
       variant: {
         buttons: ButtonVariant,
         buttonSize: ButtonSize,
-        text: TextVariant
+        text: TextVariant,
       },
       fontFamily: {
-        primary300: 'Museo Sans 300',
-        primary500: 'Museo Sans 500',
-        primary700: 'Museo Sans 700',
-        secondary: 'Circe Regular',
-        secondaryBold: 'Circe Bold',
+        regular: 'Montserrat Regular',
+        medium: 'Montserrat Medium',
+        bold: 'Montserrat Bold',
       },
     }}>
     {children}
