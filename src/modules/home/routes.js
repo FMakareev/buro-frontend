@@ -1,36 +1,35 @@
-import { LAYOUT_APP, LAYOUT_AUTH } from "../../shared/layout";
+import { LAYOUT_AUTH } from '../../shared/layout';
 
 export const routes = [
   {
-    layout: LAYOUT_APP,
+    layout: LAYOUT_AUTH,
     exact: true,
-    name: 'Home',
-    path: '/home',
+    name: 'Term of use',
+    path: '/terms',
     order: 0,
     hidden: false,
-    load: () => import('./view/home'),
+    load: () => import(/* webpackChunkName: 'terms'  */ './view/terms'),
     resolvers: [],
   },
   {
-    layout: LAYOUT_APP,
+    layout: LAYOUT_AUTH,
     exact: true,
-    name: 'Contact',
-    path: '/contact',
+    name: 'Privacy Policy',
+    path: '/policy',
     order: 0,
     hidden: false,
-    load: () => import('./view/contacts'),
+    load: () => import(/* webpackChunkName: 'policy'  */ './view/policy'),
     resolvers: [],
   },
   {
-    layout: LAYOUT_APP,
+    layout: LAYOUT_AUTH,
     exact: true,
-    name: 'Help',
+    name: 'F.A.Q.',
     path: '/help',
     order: 0,
     hidden: false,
-    load: () => import('./view/help'),
+    load: () => import(/* webpackChunkName: 'help'  */ './view/help'),
     resolvers: [],
   },
-];
 
-export default routes;
+];

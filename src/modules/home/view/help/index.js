@@ -1,13 +1,27 @@
-import React from 'react';
-import { Banner, Heading } from 'rebass';
+import React, { Component } from 'react';
 
-export const HelpPage = () => (
-  <Banner
-    color="white"
-    bg="darken"
-    backgroundImage="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=2048&q=20">
-    <Heading f={[4, 5, 6, 7]}>HelpPage</Heading>
-  </Banner>
-);
+
+export class HelpPage extends Component {
+  static propTypes = {};
+
+  static defaultProps = {};
+
+  constructor(props) {
+    super(props);
+    this.state = this.initialState;
+  }
+
+  get initialState() {
+    return {};
+  }
+
+  render() {
+    return (
+      <div>
+        HelpPage
+      </div>
+    );
+  }
+}
 
 export default HelpPage;

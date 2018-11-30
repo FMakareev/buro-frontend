@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-export class LoginPage extends Component {
+export class RequestsBankPage extends Component {
   static propTypes = {};
 
   static defaultProps = {};
@@ -18,10 +18,10 @@ export class LoginPage extends Component {
   render() {
     return (
       <div>
-        LoginPage
+        RequestsBankPage
       </div>
     );
   }
 }
 
-export default LoginPage;
+export default RequestsBankPage;
