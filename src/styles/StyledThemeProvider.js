@@ -7,17 +7,17 @@ import { TextVariant } from './variants/textVariant';
 
 export const ColorPallet = {
   color0: '#FFFFFF',
-  color1: '#E5E5E5',
-  color2: '#DEDEDE',
-  color3: '#4F4F4F',
-  color4: '#848484',
-  color5: '#007FAF',
-  color6: '#006699',
-  color7: '#00649C',
-  color8: '#007CC4',
-  color9: '#F97E63',
-  color10: '#AEAEAE',
-  color11: '#333333',
+  color1: '#093971',
+  color2: '#EFF9FC',
+  color3: '#E7EDF8',
+  color4: '#61C3E2',
+  color5: '#A2A2A2',
+  color6: '#0F60BD',
+  color7: '#072C57',
+  color8: '#61C3E2',
+  color9: '#EB5757',
+  color10: '',
+  color11: '',
 };
 
 const Space = [
@@ -51,9 +51,7 @@ const Weight = [300, 500, 700];
 const Breakpoints = ['1024px', '1200px', '1440px'];
 
 const boxShadow = [
-  '2px 4px 8px 0px rgba(138,138,138,0.5)',
-  '2px 4px 8px 0px rgba(138,138,138,0.5)',
-  '2px 2px 4px 0px rgba(0,127,175,1)',
+  '4px 8px 16px rgba(28, 65, 84, 0.08)',  
 ];
 
 export const StyledThemeProvider = ({ children }) => (
