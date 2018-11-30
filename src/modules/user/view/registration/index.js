@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
-import FormRegistatration from '../../component/FormRegistatration/FormRegistatration';
-import ErrorCatch from '../../../../components/ErrorCatch/ErrorCatch';
-import Container from '../../../../components/Container/Container';
 
-class Login extends Component {
+export class RegistrationPage extends Component {
   static propTypes = {};
 
   static defaultProps = {};
@@ -21,13 +17,11 @@ class Login extends Component {
 
   render() {
     return (
-      <ErrorCatch>
-        <Container maxWidth={'500px'}>
-          <FormRegistatration />
-        </Container>
-      </ErrorCatch>
+      <div>
+        RegistrationPage
+      </div>
     );
   }
 }
 
-export default Login;
+export default RegistrationPage;

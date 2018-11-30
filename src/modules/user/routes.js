@@ -1,20 +1,20 @@
 import { LAYOUT_APP, LAYOUT_AUTH } from '../../shared/layout';
 
 export const routes = [
-  // {
-  //   layout: LAYOUT_AUTH,
-  //   exact: false,
-  //   name: 'Вход',
-  //   path: '/',
-  //   order: 0,
-  //   hidden: false,
-  //   load: () => import('./view/login'),
-  //   resolvers: [],
-  // },
   {
     layout: LAYOUT_AUTH,
     exact: false,
-    name: 'Вход',
+    name: 'Sign in',
+    path: '/',
+    order: 0,
+    hidden: false,
+    load: () => import(/* webpackChunkName: 'userLogin' */ './view/login'),
+    resolvers: [],
+  },
+  {
+    layout: LAYOUT_AUTH,
+    exact: true,
+    name: 'Sign in',
     path: '/login',
     order: 0,
     hidden: false,
@@ -24,7 +24,7 @@ export const routes = [
   {
     layout: LAYOUT_AUTH,
     exact: true,
-    name: 'Регистрация',
+    name: 'Sign up',
     path: '/registration',
     order: 0,
     hidden: false,
@@ -34,7 +34,7 @@ export const routes = [
   {
     layout: LAYOUT_AUTH,
     exact: true,
-    name: 'Восстановление пароля',
+    name: 'New password',
     path: '/password-recovery',
     order: 0,
     hidden: false,
@@ -42,9 +42,19 @@ export const routes = [
     resolvers: [],
   },
   {
+    layout: LAYOUT_AUTH,
+    exact: true,
+    name: 'Reset your password',
+    path: '/password-reset',
+    order: 0,
+    hidden: false,
+    load: () => import(/* webpackChunkName: 'userPasswordRecovery' */ './view/passwordReset'),
+    resolvers: [],
+  },
+  {
     layout: LAYOUT_APP,
     exact: true,
-    name: 'Личный кабинет',
+    name: 'Profile',
     path: '/profile',
     order: 0,
     hidden: false,
