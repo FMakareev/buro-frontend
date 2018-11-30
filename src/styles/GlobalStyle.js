@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import BG from '../assets/image/bg.jpg';
 
 export const GlobalStyle = createGlobalStyle`
   *{
@@ -11,6 +12,18 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
     background-color: #fff;
   }
+  #app{
+    background-color: #fff;
+    background-image: url(${BG});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
 
   @font-face {
     font-family: 'Circe Regular';

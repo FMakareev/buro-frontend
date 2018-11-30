@@ -1,3 +1,3 @@
-export const textOverflow = ({ textOverflow }) => `text-overflow: ${textOverflow}`;
+export const TextOverflow = ({textOverflow}) => textOverflow ? `text-overflow: ${textOverflow}` : null;
 
-export default textOverflow;
+export default TextOverflow;

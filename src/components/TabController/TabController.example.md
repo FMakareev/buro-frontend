@@ -1,0 +1,5 @@
+TabController  example:
+
+```js
+<TabController />
+```

@@ -1,3 +1,3 @@
-export const overflow = ({ overflow }) => `overflow: ${overflow}`;
+export const Overflow = ({ overflow }) => overflow?`overflow: ${overflow}`:null;
 
-export default overflow;
+export default Overflow;

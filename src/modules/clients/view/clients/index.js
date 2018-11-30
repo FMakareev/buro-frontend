@@ -1,0 +1,27 @@
+import React, { Component } from 'react';
+
+
+export class ClientsPage extends Component {
+  static propTypes = {};
+
+  static defaultProps = {};
+
+  constructor(props) {
+    super(props);
+    this.state = this.initialState;
+  }
+
+  get initialState() {
+    return {};
+  }
+
+  render() {
+    return (
+      <div>
+        ClientsPage
+      </div>
+    );
+  }
+}
+
+export default ClientsPage;

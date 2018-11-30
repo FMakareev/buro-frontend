@@ -1,5 +1,19 @@
 import React, {Fragment, PureComponent} from 'react';
 import {LAYOUT_ADMIN, LAYOUT_APP, LAYOUT_AUTH} from '../../shared/layout';
+import {Footer} from "../Footer/Footer";
+import styled from 'styled-components';
+import {Box} from "../Box/Box";
+
+const MainStyled = styled(Box)`
+  width: 100%;
+  min-height: 100vh;
+  
+  &:after {
+    content: '';
+    display: block;
+    height: 36px;
+  }
+`;
 
 export class LayoutBase extends PureComponent {
   static propTypes = {};
@@ -64,9 +78,12 @@ export class LayoutBase extends PureComponent {
 
   render() {
     const {Layout, routes} = this.state;
-    console.log('LayoutBase: ', this.state);
-    console.log('LayoutBase: ', this.props);
-    return <Fragment>{Layout && <Layout {...this.props} route={routes}/>}</Fragment>;
+    return <Fragment>
+      <MainStyled>
+        {Layout && <Layout {...this.props} route={routes}/>}
+      </MainStyled>
+      <Footer/>
+    </Fragment>;
   }
 }
 

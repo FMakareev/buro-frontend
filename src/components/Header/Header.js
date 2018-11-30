@@ -1,19 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {Flex} from "../Flex/Flex";
+import {SvgLogo} from "../Icons/SvgLogo";
+import {Text} from "../Text/Text";
+import {HeaderWrapper} from "./HeaderStyled";
+import {Link} from "react-router-dom";
 
-import {
-  Wrapper,
-  LineWrapper,
-  LeftLineWrapper,
-  LogoWrapper,
-  ControlsWrapper,
-  Title,
-  ProfileLink,
-  ProjectListLink,
-} from './HeaderStyled';
 
-import Logo from '../../assets/icons/monocolor/headerLogo.monocolor.svg';
-import { ProfileLogo, ProjectListLogo } from './Logos';
 
 export class Header extends Component {
   static propTypes = {
@@ -35,23 +28,29 @@ export class Header extends Component {
   }
 
   render() {
-    const { name } = this.props;
-
+    const {children} = this.props;
     return (
-      <Wrapper>
-        <LeftLineWrapper />
-        <LogoWrapper src={Logo} alt="logo" />
-        <LineWrapper />
-        <ControlsWrapper>
-          <Title>{name}</Title>
-          <ProfileLink to="/app/profile" activeClassName="active">
-            <ProfileLogo />
-          </ProfileLink>
-          <ProjectListLink to="/app/project-list" activeClassName="active">
-            <ProjectListLogo />
-          </ProjectListLink>
-        </ControlsWrapper>
-      </Wrapper>
+      <HeaderWrapper justifyContent={'space-between'} px={[5,5,7,7,7]} py={[3,3,4,4,4]} flexDirection={'row'} width={'100%'}>
+        <Link to={'/'}>
+          <Flex alignItems={'center'} flexDirection={'row'}>
+            <Text
+              mr={[5,8,8,10,12]}
+              lineHeight={5}
+              fontSize={[4,4,5,5,5]}>
+              <SvgLogo/>
+            </Text>
+            <Text textDecoration={'none'} color={'color1'} fontSize={[5,7,8,10,10]} lineHeight={[7,9,10,12,12]} fontWeight={'bold'}>
+              The Bureau
+            </Text>
+          </Flex>
+        </Link>
+        {
+          children &&
+          <Flex alignItems={'center'} flexDirection={'row'}>
+            {children}
+          </Flex>
+        }
+      </HeaderWrapper>
     );
   }
 }

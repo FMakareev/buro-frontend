@@ -1,3 +1,3 @@
-export const WhiteSpace = ({ whiteSpace }) => `white-space: ${whiteSpace}`;
+export const WhiteSpace = ({ whiteSpace }) => whiteSpace?`white-space: ${whiteSpace}`:null;
 
 export default WhiteSpace;
