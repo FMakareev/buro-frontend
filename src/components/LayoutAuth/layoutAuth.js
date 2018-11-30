@@ -8,8 +8,8 @@ export class LayoutAuth extends Component {
 
   renderRoutes = (routes, pathname) => {
     try {
-      let result = matchRoutes(routes, pathname).reverse();
-      let Component = result[0].route.component;
+      const result = matchRoutes(routes, pathname).reverse();
+      const Component = result[0].route.component;
       return (
         <Component location={this.props.location} route={result[0].route} match={result[0].match} />
       );
@@ -23,11 +23,7 @@ export class LayoutAuth extends Component {
       route: { routes },
       location,
     } = this.props;
-    return (
-      <Box backgroundColor={'color1'} height={'110vh'}>
-        {this.renderRoutes(routes, location.pathname)}
-      </Box>
-    );
+    return <Box>{this.renderRoutes(routes, location.pathname)}</Box>;
   }
 }
 
