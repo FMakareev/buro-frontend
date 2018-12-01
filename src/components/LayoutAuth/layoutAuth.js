@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { matchRoutes } from 'react-router-config';
 import PropTypes from 'prop-types';
-import Header from '../Header';
+import { Header } from '../Header/Header';
 
 export class LayoutAuth extends Component {
   static propTypes = {};

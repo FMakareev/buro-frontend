@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Provider} from 'rebass';
-import {ButtonVariant} from './variants/buttonVariant';
-import {ButtonSize} from './variants/buttonSize';
-import {TextVariant} from './variants/textVariant';
+import { Provider } from 'rebass';
+import { ButtonVariant } from './variants/buttonVariant';
+import { ButtonSize } from './variants/buttonSize';
+import { TextVariant } from './variants/textVariant';
 
 export const ColorPallet = {
   color0: '#FFFFFF',
@@ -26,6 +26,7 @@ const Space = [
   4,
   8,
   12,
+  14,
   16,
   18,
   20,
@@ -50,15 +51,9 @@ const Weight = [300, 500, 700];
 
 const Breakpoints = ['576px', '768px', '992px', '1200px'];
 
-<<<<<<< HEAD
 const boxShadow = ['4px 8px 16px rgba(28, 65, 84, 0.08)'];
-=======
-const boxShadow = [
-  '4px 8px 16px rgba(28, 65, 84, 0.08)',
-];
->>>>>>> 8dba020219521e6657159dfc5debed2f801e0047
 
-export const StyledThemeProvider = ({children}) => (
+export const StyledThemeProvider = ({ children }) => (
   <Provider
     theme={{
       space: Space,

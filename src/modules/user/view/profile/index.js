@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 
+import FormUserProfile from './components/FormUserProfile';
 
 export class ProfilePage extends Component {
   state = {};
+
   render() {
     return (
       <div>
-        ProfilePage
+        <FormUserProfile />
       </div>
     );
   }
