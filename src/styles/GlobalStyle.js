@@ -29,6 +29,11 @@ export const GlobalStyle = createGlobalStyle`
     color: inherit;
   }
   
+  button:focus, input:focus, select:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 5px #61C3E2
+  }
+  
 
   @font-face {
     font-family: 'Montserrat Regular';
