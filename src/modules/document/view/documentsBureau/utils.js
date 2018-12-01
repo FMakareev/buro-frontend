@@ -1,6 +1,7 @@
 import React from "react";
-import namor from "namor";
+import faker from "faker";
 
+// генерирует массив заданной длинны
 const range = len => {
   const arr = [];
   for (let i = 0; i < len; i++) {
@@ -9,43 +10,29 @@ const range = len => {
   return arr;
 };
 
-const newPerson = () => {
-  const statusChance = Math.random();
+// генерирует объект документа для таблицы документов
+const newDocument = () => {
   return {
-    firstName: namor.generate({ words: 1, numbers: 0 }),
-    lastName: namor.generate({ words: 1, numbers: 0 }),
-    age: Math.floor(Math.random() * 30),
-    visits: Math.floor(Math.random() * 100),
-    progress: Math.floor(Math.random() * 100),
-    status:
-      statusChance > 0.66
-        ? "relationship"
-        : statusChance > 0.33 ? "complicated" : "single"
-  };
+    id: faker.random.uuid(),
+    updateDate: faker.date.past().toUTCString(),
+    user: {
+      id: faker.random.uuid(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      sureName: faker.name.lastName(),
+    },
+    document: faker.random.number(1) ? {
+      id: faker.random.uuid(),
+      name: faker.random.word(),
+    } : null
+  }
 };
 
-export function makeData(len = 5553) {
+export function makeData(len = 100) {
+
   return range(len).map(d => {
     return {
-      ...newPerson(),
-      children: range(10).map(newPerson)
+      ...newDocument(),
     };
   });
 }
-
-export const Logo = () =>
-  <div style={{ margin: '1rem auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
-    For more examples, visit {''}
-    <br />
-    <a href="https://github.com/react-tools/react-table" target="_blank">
-      <img
-        src="https://github.com/react-tools/media/raw/master/logo-react-table.png"
-        style={{ width: `150px`, margin: ".5em auto .3em" }}
-      />
-    </a>
-  </div>;
-
-export const Tips = () =>
-  <div style={{ textAlign: "center" }}>
-    <em>Tip: Hold shift when sorting to multi-sort!</em>
-  </div>;
