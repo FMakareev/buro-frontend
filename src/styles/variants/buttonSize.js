@@ -3,7 +3,7 @@ export const ButtonSize = {
     minWidth: '140px',
     fontSize: '16px',
     lineHeight: '24px',
-    padding: '0 30px',
+    padding: '0 16px',
   },
   medium: {
     minWidth: '280px',
