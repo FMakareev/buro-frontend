@@ -30,7 +30,7 @@ export class Header extends Component {
   render() {
     const {children} = this.props;
     return (
-      <HeaderWrapper justifyContent={'space-between'} px={[5,5,7,7,7]} py={[3,3,4,4,4]} flexDirection={'row'} width={'100%'}>
+      <HeaderWrapper mb={7} justifyContent={'space-between'} px={[5,5,7,7,7]} py={[3,3,4,4,4]} flexDirection={'row'} width={'100%'}>
         <Link to={'/'}>
           <Flex alignItems={'center'} flexDirection={'row'}>
             <Text
