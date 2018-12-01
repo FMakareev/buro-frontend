@@ -11,6 +11,7 @@ import { Box } from '../../../../../components/Box/Box';
 import { Flex } from '../../../../../components/Flex/Flex';
 import { Text } from '../../../../../components/Text/Text';
 import { ButtonBase } from '../../../../../components/ButtonBase/ButtonBase';
+import { DayPickerBase } from '../../../../../components/DayPickerBase/DayPickerBase';
 
 const Header = styled(Text)`
   font-family: ${props => props.theme.fontFamily.bold};
@@ -49,7 +50,7 @@ export class FormProfileUser extends Component {
           <Box width="100%">
             <Field
               name="dateofbirth"
-              component={TextFieldWithLabel}
+              component={DayPickerBase}
               label="Date of Birth:"
               type="text"
             />
@@ -77,7 +78,13 @@ export class FormProfileUser extends Component {
           </Box>
         </Flex>
         <Flex justifyContent="center">
-          <ButtonBase size="large" disable={pristine || submitting || invalid}>
+          <ButtonBase
+            variant="primary"
+            size="medium"
+            px={122}
+            py={2}
+            fontSize="32px"
+            disable={pristine || submitting || invalid}>
             Save
           </ButtonBase>
         </Flex>
