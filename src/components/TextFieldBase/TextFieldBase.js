@@ -10,24 +10,19 @@ import LineHeightProperty from '../../styles/styleProperty/LineHeightProperty';
 
 const TextField = styled.input`
   width: 100%;
-  border: 2px solid
+  border: 1px solid
     ${props => {
       if ((props.meta && props.meta.active) || props.meta.dirty) {
         return props.theme.colors.color7;
       }
-      return props.theme.colors.color4;
+      return props.theme.colors.color5;
     }}!important;
   background-color: transparent;
   box-sizing: border-box;
-  padding: 10px 10px;
-  color: ${props => props.theme.colors.color10} !important;
-  background-color: #fff;
-  cursor: ${props => {
-    if ((props.meta && props.meta.active) || props.meta.dirty) {
-      return 'text';
-    }
-    return 'pointer';
-  }}!important;
+  padding: 6px 10px 6px 10px;
+  color: ${props => props.theme.colors.color1} !important;
+  background-color: ${props => props.theme.colors.color0};
+  cursor: 'text';
   ${FontSizeProperty};
   ${LineHeightProperty};
   ${BorderRadiusProperty};
@@ -56,15 +51,15 @@ export class TextFieldBase extends Component {
     py: PropTypes.number,
     lineHeight: PropTypes.number,
     fontSize: PropTypes.number,
-    /**input */
+    /** input */
     input: PropTypes.object,
-    /**input */
+    /** input */
     type: PropTypes.string,
-    /**class */
+    /** class */
     className: PropTypes.string,
-    /**input */
+    /** input */
     placeholder: PropTypes.string,
-    /**input */
+    /** input */
     required: PropTypes.string,
   };
 

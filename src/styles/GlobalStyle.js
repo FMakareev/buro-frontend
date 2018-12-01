@@ -10,6 +10,9 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     width: 100%;
     min-height: 100vh;
+    background-image: url('../assets/image/background_hi.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     background-color: #fff;
   }
   #app{
@@ -26,52 +29,23 @@ export const GlobalStyle = createGlobalStyle`
   
 
   @font-face {
-    font-family: 'Circe Regular';
-    src: url('../assets/fonts/Circe-Regular/Circe-Regular.eot');
-    src: url('../assets/fonts/Circe-Regular/Circe-Regular.eot?#iefix') format('embedded-opentype'),
-    url('../assets/fonts/Circe-Regular/Circe-Regular.woff') format('woff'),
-    url('../assets/fonts/Circe-Regular/Circe-Regular.ttf') format('truetype');
+    font-family: 'Montserrat Regular';
+    src: url('../assets/fonts/Montserrat-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
   }
 
   @font-face {
-  font-family: 'Circe Bold';
-  src: url('../assets/fonts/Circe-Bold/Circe-Bold.eot');
-  src: url('../assets/fonts/Circe-Bold/Circe-Bold.eot?#iefix') format('embedded-opentype'),
-  url('../assets/fonts/Circe-Bold/Circe-Bold.woff') format('woff'),
-  url('../assets/fonts/Circe-Bold/Circe-Bold.ttf') format('truetype');
-  font-weight: bold;
+  font-family: 'Montserrat Medium';
+  src: url('../assets/fonts/Montserrat-Medium.ttf') format('truetype');
+  font-weight: normal;
   font-style: normal;
   }
 
   @font-face {
-  font-family: 'Museo Sans 300';
-  src: url('../assets/fonts/Museo/MuseoSansCyrl-300.eot');
-  src: url('../assets/fonts/Museo/MuseoSansCyrl-300.eot?#iefix') format('embedded-opentype'),
-  url('../assets/fonts/Museo/MuseoSansCyrl-300.woff') format('woff'),
-  url('../assets/fonts/Museo/MuseoSansCyrl-300.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
- @font-face {
-  font-family: 'Museo Sans 500';
-  src: url('../assets/fonts/Museo/MuseoSansCyrl-500.eot');
-  src: url('../assets/fonts/Museo/MuseoSansCyrl-500.eot?#iefix') format('embedded-opentype'),
-  url('../assets/fonts/Museo/MuseoSansCyrl-500.woff') format('woff'),
-  url('../assets/fonts/Museo/MuseoSansCyrl-500.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
- @font-face {
-  font-family: 'Museo Sans 700';
-  src: url('../assets/fonts/Museo/MuseoSansCyrl-700.eot');
-  src: url('../assets/fonts/Museo/MuseoSansCyrl-700.eot?#iefix') format('embedded-opentype'),
-  url('../assets/fonts/Museo/MuseoSansCyrl-700.woff') format('woff'),
-  url('../assets/fonts/Museo/MuseoSansCyrl-700.ttf') format('truetype');
-  font-weight: normal;
+  font-family: 'Montserrat Bold';
+  src: url('../assets/fonts/Montserrat-Bold.ttf') format('truetype');
+  font-weight: bold;
   font-style: normal;
 }
 

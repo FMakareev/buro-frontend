@@ -29,7 +29,7 @@ export const ButtonBase = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
+  border-radius: 4px;
   ${buttonsVariant};
   ${buttonsSize};
   ${space};
@@ -41,6 +41,28 @@ export const ButtonBase = styled.button`
   ${FontSizeProperty};
   ${BackgroundColorProperty};
   ${BorderRadiusProperty};
+
+  background-color: ${props => props.theme.colors.color1};
+
+  &:disabled {
+    background-color: ${props => props.theme.colors.color5};
+  }
+
+  &:hover {
+    background-color: ${props => props.theme.colors.color6};
+  }
+
+  &:active {
+    background-color: ${props => props.theme.colors.color7};
+  }
+
+  &:focus {
+    background-color: ${props => props.theme.colors.color1};
+  }
+
+  &:invalid {
+    background-color: ${props => props.theme.colors.color9};
+  }
 `;
 
 ButtonBase.propTypes = {
