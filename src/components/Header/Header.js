@@ -39,7 +39,7 @@ export class Header extends Component {
               fontSize={[4,4,5,5,5]}>
               <SvgLogo/>
             </Text>
-            <Text textDecoration={'none'} color={'color1'} fontSize={[5,7,8,10,10]} lineHeight={[7,9,10,12,12]} fontWeight={'bold'}>
+            <Text fontFamily={'bold'} textDecoration={'none'} color={'color1'} fontSize={[5,7,8,10,10]} lineHeight={[7,9,10,12,12]} fontWeight={'bold'}>
               The Bureau
             </Text>
           </Flex>

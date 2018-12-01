@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { color, display, width, space, fontWeight, variant } from 'styled-system';
-// TODO review:MICHA: не забываем удолять лишние импорты
-import { BorderColorProperty } from '../../styles/styleProperty/BorderColorProperty';
 import { BackgroundColorProperty } from '../../styles/styleProperty/BackgroundColorProperty';
 import { LineHeightRemProperty } from '../../styles/styleProperty/LineHeightRemProperty';
 import { FontSizeProperty } from '../../styles/styleProperty/FontSizeProperty';
@@ -13,7 +11,6 @@ const buttonsVariant = variant({
   key: 'variant.buttons',
   prop: 'variant',
 });
-// TODO review:MICHA: в теме свойство "buttonSize" ты можешь поместить в "variant" и писать не "variants.buttonSize", а "variant.buttonSize"
 const buttonsSize = variant({
   key: 'variant.buttonSize',
   prop: 'size',
@@ -29,7 +26,8 @@ export const ButtonBase = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+  border: none;
+  transition: .115s all;
   ${buttonsVariant};
   ${buttonsSize};
   ${space};
@@ -41,28 +39,6 @@ export const ButtonBase = styled.button`
   ${FontSizeProperty};
   ${BackgroundColorProperty};
   ${BorderRadiusProperty};
-
-  background-color: ${props => props.theme.colors.color1};
-
-  &:disabled {
-    background-color: ${props => props.theme.colors.color5};
-  }
-
-  &:hover {
-    background-color: ${props => props.theme.colors.color6};
-  }
-
-  &:active {
-    background-color: ${props => props.theme.colors.color7};
-  }
-
-  &:focus {
-    background-color: ${props => props.theme.colors.color1};
-  }
-
-  &:invalid {
-    background-color: ${props => props.theme.colors.color9};
-  }
 `;
 
 ButtonBase.propTypes = {
@@ -83,6 +59,9 @@ ButtonBase.propTypes = {
   active: PropTypes.bool,
 };
 
-ButtonBase.defaultProps = {};
+ButtonBase.defaultProps = {
+  size: 'medium',
+  variant: 'primary',
+};
 
 export default ButtonBase;

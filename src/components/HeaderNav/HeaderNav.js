@@ -43,7 +43,7 @@ const NavLinkStyled = styled(NavLink)`
 `;
 
 const NavItem = ({to, children, icon}) => (<NavLinkStyled to={to} activeClassName="selected">
-  <Text fontSize={'14px'} lineHeight={'20px'} color={'color1'}>
+  <Text fontFamily={'medium'}  fontSize={'14px'} lineHeight={'20px'} color={'color1'}>
     {children}
   </Text>
   {

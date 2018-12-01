@@ -47,6 +47,7 @@ Text.propTypes = {
   mb: PropTypes.PropTypes.arrayOf(PropTypes.string),
   /** CSS : color */
   color: PropTypes.string,
+  fontFamily: PropTypes.string,
   whiteSpace: PropTypes.string,
   textOverflow: PropTypes.string,
   overflow: PropTypes.string,

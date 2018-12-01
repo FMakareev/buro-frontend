@@ -1,34 +1,55 @@
 import React, {Component} from 'react';
 import ReactTable from "react-table";
-import 'react-table/react-table.css'
+import '../../../../assets/style/react-table.css';
 import {Container} from "../../../../components/Container/Container";
 import {Text} from "../../../../components/Text/Text";
+import {data} from './mock';
+import {TablePaginationComponent} from "./TablePaginationComponent";
 
 
-const data = [{
-  name: 'Tanner Linsley',
-  age: 26,
-  friend: {
-    name: 'Jason Maurer',
-    age: 23,
+
+const columns = [
+  {
+  id: 'Client',
+  Header: 'Client',
+  accessor: props => {
+    try {
+      if (props.user) {
+        return `${props.user.firstName} ${props.user.lastName} ${props.user.sureName}`
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    return null;
+  },
+}, {
+  id: 'updateDate',
+  Header: 'Date of download',
+  accessor: props => {
+    if (props.updateDate) {
+      return props.updateDate
+    }
+    return '-';
   }
-}];
+}, {
+  id: 'Document',
+  Header: 'Document',
+  accessor: props => {
+    if (props.document) {
+      return props.document.name
+    }
+    return '-';
+  }
+}
+];
 
-const columns = [{
-  Header: 'Name',
-  accessor: 'name' // String-based value accessors!
-}, {
-  Header: 'Age',
-  accessor: 'age',
-  Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
-}, {
-  id: 'friendName', // Required because our accessor is not a string
-  Header: 'Friend Name',
-  accessor: d => d.friend.name // Custom value accessors!
-}, {
-  Header: props => <span>Friend Age</span>, // Custom header components!
-  accessor: 'friend.age'
-}]
+
+
+
+
+
+
+
 
 export class DocumentsBureauPage extends Component {
   static propTypes = {};
@@ -47,13 +68,15 @@ export class DocumentsBureauPage extends Component {
   render() {
     return (
       <Container>
-        <Text fontSize={8} lineHeight={8} mb={7}>
+        <Text fontFamily={'bold'} fontSize={8} lineHeight={8} mb={7}>
           Documents
         </Text>
         <ReactTable
           defaultPageSize={10}
           data={data}
           columns={columns}
+          PaginationComponent={TablePaginationComponent}
+
         />
       </Container>
     );

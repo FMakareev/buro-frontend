@@ -1,27 +1,21 @@
 export const ButtonSize = {
   small: {
-    width: '140px',
+    minWidth: '140px',
     fontSize: '16px',
     lineHeight: '24px',
-    fontFamily: 'Montserrat Regular',
-    color: '#FFFFFF',
-    paddingTop: '3px',
-    paddingBottom: '3px',
-    paddingLeft: '0px',
-    paddingRight: '0px',
-    border: 'solid 1px',
+    padding: '0 30px',
+  },
+  medium: {
+    minWidth: '280px',
+    fontSize: '24px',
+    lineHeight: '40px',
+    padding: '8px 32px',
   },
   large: {
-    width: '500px',
-    fontSize: ' 32px',
+    minWidth: '240px',
+    fontSize: '16px',
     lineHeight: '40px',
-    fontFamily: 'Montserrat Bold',
-    color: '#FFFFFF',
-    paddingTop: '4px',
-    paddingBottom: '4px',
-    paddingLeft: '0px',
-    paddingRight: '0px',
-    border: 'none',
+    padding: '12px 32px',
   },
 };
 

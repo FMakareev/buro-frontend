@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 import Flex from '../Flex/Flex';
 import ButtonBase from '../ButtonBase/ButtonBase';
 
 export const ButtonWithImage = ({
-  leftIcon,
-  rightIcon,
-  children,
-  variant,
-  size,
-  mr,
-  ml,
-  width,
-}) => {
+                                  iconLeft,
+                                  iconRight,
+                                  children,
+                                  variant,
+                                  size,
+                                  mr,
+                                  ml,
+                                  width,
+                                }) => {
   return (
     <ButtonBase variant={variant} size={size} width={width}>
-      <Flex justifyContent={'center'} alignItems={'space-around'} width={'100%'}>
-        {leftIcon && (
+      <Flex justifyContent={'space-around'} alignItems={'space-around'} width={'100%'}>
+        {iconLeft && (
           <Flex mr={mr} justifyContent={'center'} alignItems={'center'}>
-            {leftIcon}
+            {iconLeft}
           </Flex>
         )}
 
@@ -27,9 +27,9 @@ export const ButtonWithImage = ({
           {children}
         </Flex>
 
-        {rightIcon && (
+        {iconRight && (
           <Flex ml={ml} justifyContent={'center'} alignItems={'center'}>
-            {rightIcon}
+            {iconRight}
           </Flex>
         )}
       </Flex>
@@ -41,9 +41,9 @@ ButtonWithImage.propTypes = {
   /**name button */
   name: PropTypes.string,
   /**left icon */
-  leftIcon: PropTypes.any,
+  iconLeft: PropTypes.any,
   /**right icon */
-  rightIcon: PropTypes.any,
+  iconRight: PropTypes.any,
   /**variant button */
   variant: PropTypes.string,
   /**size button */
