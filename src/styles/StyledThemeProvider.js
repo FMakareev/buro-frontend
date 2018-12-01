@@ -16,7 +16,7 @@ export const ColorPallet = {
   color7: '#072C57',
   color8: '#61C3E2',
   color9: '#EB5757',
-  color10: '',
+  color10: '#E7EDF8',
   color11: '',
 };
 

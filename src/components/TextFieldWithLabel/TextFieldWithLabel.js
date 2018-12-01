@@ -12,12 +12,19 @@ const Wrapper = styled.div`
 `;
 
 const Label = styled(Text)`
-  color: red;
+  margin-bottom: 8px;
+  font-family: ${props => props.theme.fontFamily.regular};
+  font-size: ${props => props.theme.fontSizes[5]}px;
+  line-height: ${props => props.theme.fontSizes[8]}px;
+  color: ${props => props.theme.colors.color1};
 `;
 
 const TextField = styled(TextFieldBase)`
-  font-size: ${props => props.theme.fontSizes[5]};
+  font-family: ${props => props.theme.fontFamily.regular};
+  font-size: ${props => props.theme.fontSizes[5]}px;
+  line-height: ${props => props.theme.fontSizes[8]}px;
   box-shadow: ${props => props.theme.boxShadow[0]};
+  border-radius: ${props => props.theme.fontSizes[2]}px;
 `;
 
 /**

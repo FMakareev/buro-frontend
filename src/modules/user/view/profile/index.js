@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { Container } from '../../../../components/Container/Container';
 import FormUserProfile from './components/FormUserProfile';
 
 export class ProfilePage extends Component {
@@ -7,9 +8,9 @@ export class ProfilePage extends Component {
 
   render() {
     return (
-      <div>
+      <Container mt={100} backgroundColor="transparent">
         <FormUserProfile />
-      </div>
+      </Container>
     );
   }
 }
