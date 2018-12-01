@@ -64,17 +64,25 @@
   background: #fff;
   padding: 5px 7px;
   font-size: inherit;
-  border-radius: 3px;
+  border-radius: 4px;
   font-weight: normal;
-  outline: none
+  outline: none;
+  color: #093971;
 }
 
 .ReactTable .rt-thead.-filters .rt-th {
-  border-right: 1px solid rgba(0, 0, 0, 0.02)
+  border-right: none;
 }
 
 .ReactTable .rt-thead.-header {
-  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.15)
+  padding: 8px;
+  box-shadow: 4px 8px 16px rgba(28, 65, 84, 0.15);
+  border-radius: 4px 4px 0 0;
+  background-color: #093971;
+  color: #fff;
+  font-family: 'Montserrat Medium';
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .ReactTable .rt-thead .rt-tr {
@@ -82,7 +90,7 @@
 }
 
 .ReactTable .rt-thead .rt-th, .ReactTable .rt-thead .rt-td {
-  padding: 5px 5px;
+  padding: 8px;
   line-height: normal;
   position: relative;
   border-right: 1px solid rgba(0, 0, 0, 0.05);
@@ -171,7 +179,9 @@
 }
 
 .ReactTable .rt-tbody .rt-td {
-  border-right: 1px solid rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(162, 162, 162, 0.2);
+  margin: 0 1px;
+  text-align: center;
 }
 
 .ReactTable .rt-tbody .rt-td:last-child {

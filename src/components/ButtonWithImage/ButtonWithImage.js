@@ -8,17 +8,13 @@ export const ButtonWithImage = ({
                                   iconLeft,
                                   iconRight,
                                   children,
-                                  variant,
-                                  size,
-                                  mr,
-                                  ml,
-                                  width,
+                                  ...rest
                                 }) => {
   return (
-    <ButtonBase variant={variant} size={size} width={width}>
+    <ButtonBase {...rest}>
       <Flex justifyContent={'space-around'} alignItems={'space-around'} width={'100%'}>
         {iconLeft && (
-          <Flex mr={mr} justifyContent={'center'} alignItems={'center'}>
+          <Flex justifyContent={'center'} alignItems={'center'}>
             {iconLeft}
           </Flex>
         )}
@@ -28,7 +24,7 @@ export const ButtonWithImage = ({
         </Flex>
 
         {iconRight && (
-          <Flex ml={ml} justifyContent={'center'} alignItems={'center'}>
+          <Flex justifyContent={'center'} alignItems={'center'}>
             {iconRight}
           </Flex>
         )}
