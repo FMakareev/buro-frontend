@@ -39,7 +39,7 @@ export const Text = styled(Box)`
   ${Overflow};
   ${TextOverflow};
 `;
-// TODO review:nik-z: добавь propTypes для варианта и для шрифта, использую перечисление PropTypes.oneOf и туда передай масив доступных в теме значений
+
 Text.propTypes = {
   /**  children React element  */
   children: PropTypes.string,
