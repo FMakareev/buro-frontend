@@ -82,8 +82,6 @@ export class DayPickerBase extends Component {
   render() {
     const { placeholder, input, label, meta } = this.props;
 
-    console.log('META', meta);
-
     return (
       <Wrapper>
         <Label>
