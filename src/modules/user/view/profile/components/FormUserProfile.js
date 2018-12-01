@@ -64,9 +64,9 @@ export class FormProfileUser extends Component {
     super(props);
   }
 
-  submit(value) {
+  submit = value => {
     console.log(value);
-  }
+  };
 
   render() {
     const { handleSubmit, pristine, submitting, invalid } = this.props;
@@ -92,7 +92,6 @@ export class FormProfileUser extends Component {
               component={DayPickerBase}
               label="Date of Birth:"
               type="date"
-              validate={[required]}
             />
           </Box>
         </Flex>
@@ -120,21 +119,15 @@ export class FormProfileUser extends Component {
         <Flex width="100%" justifyContent="space-between" mb="50px">
           <Box width="100%" mr={30}>
             <Field
-              name="middlename"
+              name="patronymic"
               component={TextFieldWithLabel}
-              label="Middle Name:"
+              label="Patronymic:"
               type="text"
               validate={[required]}
             />
           </Box>
           <Box width="100%">
-            <Field
-              name="gender"
-              component={GenderToggle}
-              label="Gender:"
-              type="checkbox"
-              validate={[required]}
-            />
+            <Field name="gender" component={GenderToggle} label="Gender:" type="radio" />
           </Box>
         </Flex>
         <Flex justifyContent="center">
