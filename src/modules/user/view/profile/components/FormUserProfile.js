@@ -12,6 +12,9 @@ import { Flex } from '../../../../../components/Flex/Flex';
 import { Text } from '../../../../../components/Text/Text';
 import { ButtonBase } from '../../../../../components/ButtonBase/ButtonBase';
 import { DayPickerBase } from '../../../../../components/DayPickerBase/DayPickerBase';
+import { GenderToggle } from '../../../../../components/GenderToggle/GenderToggle';
+
+import { required } from '../../../../../utils/validation/required';
 
 const Header = styled(Text)`
   font-family: ${props => props.theme.fontFamily.bold};
@@ -45,6 +48,7 @@ export class FormProfileUser extends Component {
               component={TextFieldWithLabel}
               label="First Name:"
               type="text"
+              validate={[required]}
             />
           </Box>
           <Box width="100%">
@@ -52,16 +56,29 @@ export class FormProfileUser extends Component {
               name="dateofbirth"
               component={DayPickerBase}
               label="Date of Birth:"
-              type="text"
+              type="date"
+              validate={[required]}
             />
           </Box>
         </Flex>
         <Flex width="100%" justifyContent="space-between" mb="20px">
           <Box width="100%" mr={30}>
-            <Field name="lastname" component={TextFieldWithLabel} label="Last Name:" type="text" />
+            <Field
+              name="lastname"
+              component={TextFieldWithLabel}
+              label="Last Name:"
+              type="text"
+              validate={[required]}
+            />
           </Box>
           <Box width="100%">
-            <Field name="telephone" component={TextFieldWithLabel} label="Telephone:" type="text" />
+            <Field
+              name="telephone"
+              component={TextFieldWithLabel}
+              label="Telephone:"
+              type="text"
+              validate={[required]}
+            />
           </Box>
         </Flex>
         <Flex width="100%" justifyContent="space-between" mb="50px">
@@ -71,14 +88,22 @@ export class FormProfileUser extends Component {
               component={TextFieldWithLabel}
               label="Middle Name:"
               type="text"
+              validate={[required]}
             />
           </Box>
           <Box width="100%">
-            <Field name="gender" component={TextFieldWithLabel} label="Gender:" type="text" />
+            <Field
+              name="gender"
+              component={GenderToggle}
+              label="Gender:"
+              type="checkbox"
+              validate={[required]}
+            />
           </Box>
         </Flex>
         <Flex justifyContent="center">
           <ButtonBase
+            type="submit"
             variant="primary"
             size="medium"
             px={122}
