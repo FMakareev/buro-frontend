@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { matchRoutes } from 'react-router-config';
 import PropTypes from 'prop-types';
-import { Box } from '../Box/Box';
+import Header from '../Header';
 
 export class LayoutAuth extends Component {
   static propTypes = {};
@@ -23,7 +23,12 @@ export class LayoutAuth extends Component {
       route: { routes },
       location,
     } = this.props;
-    return <Box>{this.renderRoutes(routes, location.pathname)}</Box>;
+    return (
+      <Fragment>
+        <Header />
+        {this.renderRoutes(routes, location.pathname)}
+      </Fragment>
+    );
   }
 }
 

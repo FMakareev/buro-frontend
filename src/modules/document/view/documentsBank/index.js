@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-export class DocumentsPage extends Component {
+export class DocumentsBankPage extends Component {
   static propTypes = {};
 
   static defaultProps = {};
@@ -18,10 +18,10 @@ export class DocumentsPage extends Component {
   render() {
     return (
       <div>
-        DocumentsPage
+        DocumentsBankPage
       </div>
     );
   }
 }
 
-export default DocumentsPage;
+export default DocumentsBankPage;

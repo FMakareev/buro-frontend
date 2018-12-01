@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import { style } from 'styled-system';
 
 export const LineHeightProperty = style({
