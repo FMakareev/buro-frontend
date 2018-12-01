@@ -30,7 +30,7 @@ export class Header extends Component {
   render() {
     const {children} = this.props;
     return (
-      <HeaderWrapper justifyContent={'space-between'} px={[5,5,7,7,7]} py={[3,3,4,4,4]} flexDirection={'row'} width={'100%'}>
+      <HeaderWrapper mb={7} justifyContent={'space-between'} px={[5,5,7,7,7]} py={[3,3,4,4,4]} flexDirection={'row'} width={'100%'}>
         <Link to={'/'}>
           <Flex alignItems={'center'} flexDirection={'row'}>
             <Text
@@ -39,7 +39,7 @@ export class Header extends Component {
               fontSize={[4,4,5,5,5]}>
               <SvgLogo/>
             </Text>
-            <Text textDecoration={'none'} color={'color1'} fontSize={[5,7,8,10,10]} lineHeight={[7,9,10,12,12]} fontWeight={'bold'}>
+            <Text fontFamily={'bold'} textDecoration={'none'} color={'color1'} fontSize={[5,7,8,10,10]} lineHeight={[7,9,10,12,12]} fontWeight={'bold'}>
               The Bureau
             </Text>
           </Flex>

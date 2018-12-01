@@ -14,6 +14,8 @@ export const GlobalStyle = createGlobalStyle`
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #fff;
+    font-family: 'Montserrat Regular';
+    font-size: 16px;
   }
   #app{
     background-color: #fff;

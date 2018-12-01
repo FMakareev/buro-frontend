@@ -11,7 +11,7 @@ const Html = ({ content, client: { cache }, reduxState, asyncState, lang }) => {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>OKAH</title>
+        <title></title>
         <style />
       </head>
       <body>
