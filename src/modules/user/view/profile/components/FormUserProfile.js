@@ -15,10 +15,45 @@ import { DayPickerBase } from '../../../../../components/DayPickerBase/DayPicker
 import { GenderToggle } from '../../../../../components/GenderToggle/GenderToggle';
 
 import { required } from '../../../../../utils/validation/required';
+import { phoneNumber } from '../../../../../utils/validation/phoneNumber';
 
 const Header = styled(Text)`
   font-family: ${props => props.theme.fontFamily.bold};
 `;
+
+/**
+ * @param {string} value - вводимое пользователем значение
+ * @desc приведение вводимого значения телефона к формату "+ 7 911 111 11 11" */
+const normalizePhoneNumber = value => {
+  if (value.length > 17) {
+    return value.slice(0, 17);
+  }
+
+  if (value.length === 1) return `+ 7 ${value.replace(/[^\d]/g, '')}`;
+
+  const onlyNums = value.replace(/[^\d]/g, '');
+
+  if (onlyNums.length <= 4) {
+    return `+ 7 ${onlyNums.slice(1, 4)}`;
+  }
+
+  if (onlyNums.length <= 7) {
+    return `+ 7 ${onlyNums.slice(1, 4)} ${onlyNums.slice(4)}`;
+  }
+
+  if (onlyNums.length <= 9) {
+    return `+ 7 ${onlyNums.slice(1, 4)} ${onlyNums.slice(4, 7)} ${onlyNums.slice(7)}`;
+  }
+
+  if (onlyNums.length <= 11) {
+    return `+ 7 ${onlyNums.slice(1, 4)} ${onlyNums.slice(4, 7)} ${onlyNums.slice(
+      7,
+      9,
+    )} ${onlyNums.slice(9)}`;
+  }
+
+  return onlyNums;
+};
 
 export class FormProfileUser extends Component {
   static propTypes = {
@@ -77,7 +112,8 @@ export class FormProfileUser extends Component {
               component={TextFieldWithLabel}
               label="Telephone:"
               type="text"
-              validate={[required]}
+              validate={[required, phoneNumber]}
+              normalize={normalizePhoneNumber}
             />
           </Box>
         </Flex>
