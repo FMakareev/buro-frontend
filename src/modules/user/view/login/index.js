@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 
-import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
-import { ButtonWithImage } from '../../../../components/ButtonWithImage/ButtonWithImage';
-
 import { Wrapper } from '../../components/Wrapper';
 import { Title } from '../../components/Title';
 
