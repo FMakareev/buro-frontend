@@ -100,7 +100,7 @@ export class DocumentsBureauPage extends Component {
   get initialState() {
     return {
       // статус открытия модального окна
-      isOpen: true,
+      isOpen: false,
       // id пользователя к которому крепится окумент
       id: null,
       data: makeData(100)
@@ -117,7 +117,7 @@ export class DocumentsBureauPage extends Component {
   render() {
     const {isOpen, id} = this.state;
     return (
-      <Container>
+      <Container px={6}>
         <Text fontFamily={'bold'} fontSize={8} lineHeight={8} mb={7}>
           Documents
         </Text>
