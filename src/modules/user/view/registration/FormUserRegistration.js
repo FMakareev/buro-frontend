@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
+import { __metadata } from 'tslib';
 import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
 import { Select } from '../../../../components/Select/Select';
@@ -14,15 +15,23 @@ import { TextFieldWithIcon } from '../../../../components/TextFieldWithIcon/Text
 import { Box } from '../../../../components/Box/Box';
 import { Flex } from '../../../../components/Flex/Flex';
 import { HelpText } from '../../components/HelpText';
-import { SvgArrowRight } from '../../../../components/Icons/SvgArrowRight';
 
+import { SvgArrowRight } from '../../../../components/Icons/SvgArrowRight';
 import { EmailIcon } from '../../components/EmailIIcon';
 import { PasswordIcon } from '../../components/PasswordIcon';
+import { ReloadIcon } from '../../components/ReloadIcon';
 
 import { StyledButtonWithImage } from '../../components/StyledButtonWithImage';
 import { Text } from '../../../../components/Text/Text';
 
 import { required } from '../../../../utils/validation/required';
+
+import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
+import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
+
+const StyledForm = styled(Form)`
+  position: relative;
+`;
 
 export class FormUserRegistration extends Component {
   static propTypes = {
@@ -33,15 +42,26 @@ export class FormUserRegistration extends Component {
     super(props);
   }
 
-  submit = value => {
-    console.log(value);
-  };
+  submit(value) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject(true);
+      }, 5000);
+    });
+  }
 
   render() {
-    const { handleSubmit, pristine, submitting, invalid } = this.props;
+    const {
+      handleSubmit,
+      pristine,
+      submitting,
+      invalid,
+      submitFailed,
+      submitSucceeded,
+    } = this.props;
 
     return (
-      <Form onSubmit={handleSubmit(this.submit)}>
+      <StyledForm onSubmit={handleSubmit(this.submit)}>
         <Flex justifyContent="center" width="100%" flexDirection="column">
           <Box width="100%" mt="17px">
             <Field
@@ -93,24 +113,50 @@ export class FormUserRegistration extends Component {
               </Box>
             </Flex>
           </Box>
-
-          <Box width="100%">
-            <StyledButtonWithImage
-              type="submit"
-              variant="primary"
-              size="medium"
-              py={2}
-              iconRight={
-                <Text fontSize={12} lineHeight={0}>
-                  <SvgArrowRight />
-                </Text>
-              }
-              disabled={pristine || submitting || invalid}>
-              Get started
-            </StyledButtonWithImage>
-          </Box>
+          {!submitSucceeded && !submitFailed && (
+            <Box width="100%">
+              <StyledButtonWithImage
+                type="submit"
+                variant="primary"
+                size="medium"
+                py={2}
+                iconRight={
+                  <Text fontSize={12} lineHeight={0}>
+                    <SvgArrowRight />
+                  </Text>
+                }
+                disabled={pristine || submitting || invalid}>
+                Get started
+              </StyledButtonWithImage>
+            </Box>
+          )}
+          {submitFailed && (
+            <Box width="100%">
+              <StyledButtonWithImage
+                type="submit"
+                variant="error"
+                size="medium"
+                py={2}
+                iconRight={
+                  <Text fontSize={12} lineHeight={0}>
+                    <ReloadIcon />
+                  </Text>
+                }
+                disabled={pristine || submitting || invalid}>
+                Try again
+              </StyledButtonWithImage>
+            </Box>
+          )}
         </Flex>
-      </Form>
+
+        {submitting && (
+          <PreloaderWrapper>
+            <Text fontSize={12}>
+              <SpeedingWheel />
+            </Text>
+          </PreloaderWrapper>
+        )}
+      </StyledForm>
     );
   }
 }
