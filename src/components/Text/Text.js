@@ -44,7 +44,7 @@ Text.propTypes = {
   /**  children React element  */
   children: PropTypes.string,
   /** CSS: mb - margin - bottom */
-  mb: PropTypes.PropTypes.arrayOf(PropTypes.string),
+  mb: PropTypes.any,
   /** CSS : color */
   color: PropTypes.string,
   fontFamily: PropTypes.string,
