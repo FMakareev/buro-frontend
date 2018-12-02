@@ -127,7 +127,38 @@ export const ButtonVariant = {
       },
     },
   },
-
+  error: {
+    fontFamily: 'Montserrat Medium',
+    fontSize: '24px',
+    lineHeight: '32px',
+    borderRadius: '4px',
+    backgroundColor: '#EB5757',
+    color: '#ffffff',
+    fill: '#ffffff',
+    cursor: 'pointer',
+    ':hover': {
+      backgroundColor: '#61C3E2',
+    },
+    '&.isActive': {
+      backgroundColor: '#EB5757',
+    },
+    ':active': {
+      backgroundColor: '#EB5757',
+    },
+    ':focus': {
+      boxShadow: '0 0 0 5px #61C3E2',
+    },
+    ':disabled': {
+      backgroundColor: '#A2A2A2 !important',
+      cursor: 'default',
+      ':hover': {
+        backgroundColor: '#A2A2A2',
+      },
+      ':active': {
+        backgroundColor: '#A2A2A2',
+      },
+    },
+  },
 };
 
 export default ButtonVariant;
