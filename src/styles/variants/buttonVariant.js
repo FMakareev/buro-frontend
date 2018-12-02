@@ -20,7 +20,7 @@ export const ButtonVariant = {
     ':focus': {
       boxShadow: '0 0 0 5px #61C3E2',
     },
-    ':disable': {
+    ':disabled': {
       backgroundColor: '#A2A2A2 !important',
       cursor: 'default',
       ':hover': {
@@ -58,7 +58,7 @@ export const ButtonVariant = {
     ':focus': {
       boxShadow: '0 0 0 5px #61C3E2',
     },
-    ':disable': {
+    ':disabled': {
       backgroundColor: '#E7EDF8',
       color: '#093971',
       cursor: 'default',
@@ -106,7 +106,7 @@ export const ButtonVariant = {
     ':focus': {
       boxShadow: '0 0 0 5px #61C3E2',
     },
-    ':disable': {
+    ':disabled': {
       borderColor: '#E7EDF8',
       backgroundColor: '#E7EDF8',
       color: '#093971',
