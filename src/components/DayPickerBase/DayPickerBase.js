@@ -1,30 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import styled from 'styled-components';
-// import { ru } from 'date-fns/locale/ru';
+import '../../assets/style/react-datepicker.css';
 
-import 'react-datepicker/dist/react-datepicker.css';
+import {Text} from '../Text/Text';
+import {Flex} from "../Flex/Flex";
 
-import { Text } from '../Text/Text';
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
-  & .react-datepicker-wrapper,
-  & .react-datepicker__input-container {
-    width: 100% !important;
-  }
-
-  & .react-datepicker__header {
-    background-color: ${props => props.theme.colors.color5} !important;
-  }
-
-  ::placeholder {
-    color: ${props => props.theme.colors.color4};
-  }
-`;
 
 const Label = styled(Text)`
   margin-bottom: 8px;
@@ -34,62 +16,56 @@ const Label = styled(Text)`
   color: ${props => props.theme.colors.color1};
 `;
 
-const DatePickerStyled = styled(DatePicker)`
-  width: 100%;
-  border: 1px solid
-    ${props => {
-      if ((props.meta && props.meta.active) || props.meta.dirty) {
-        return props.theme.colors.color7;
-      }
-      return props.theme.colors.color5;
-    }}!important;
-  font-family: ${props => props.theme.fontFamily.regular};
-  font-size: ${props => props.theme.fontSizes[5]}px;
-  line-height: ${props => props.theme.fontSizes[8]}px;
-  box-shadow: ${props => props.theme.boxShadow[0]};
-  border-radius: ${props => props.theme.fontSizes[2]}px;
-  background-color: transparent;
-  box-sizing: border-box;
-  padding: 6px 10px 6px 10px;
-  color: ${props => props.theme.colors.color1} !important;
-  background-color: ${props => props.theme.colors.color0};
-  cursor: 'text';
-`;
-
 const Error = styled.span`
   margin-left: 10px;
   color: ${props => props.theme.colors.color9};
 `;
 
 export class DayPickerBase extends Component {
+
+
+  static propTypes = {
+    label: PropTypes.string,
+  };
+
+  static defaultProps = {
+    input: {
+      onChange: () => null,
+      value: null,
+    }
+  };
+
+
   constructor(props) {
     super(props);
-    this.state = { startDate: null };
+    this.state = this.initialState;
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(date) {
-    this.setState({ startDate: date });
+  get initialState() {
+    return {startDate: this.props.input.value?new Date(this.props.input.value): new Date()};
+  }
 
-    // const {
-    //   input: { onChange },
-    // } = this.props;
-    // const dateString = date && date.format('YYYY.MM.DD');
-    // console.log(dateString);
-    // onChange(dateString);
+  handleChange(date) {
+    this.setState({startDate: date});
+
+    const {
+      input: {onChange},
+    } = this.props;
+
+    onChange(date.toString());
   }
 
   render() {
-    const { placeholder, input, label, meta } = this.props;
+    const {placeholder, label, meta, ...rest} = this.props;
 
     return (
-      <Wrapper>
+      <Flex flexDirection={'column'}>
         <Label>
           {label}
           {meta.error && meta.touched && <Error>{meta.error}</Error>}
         </Label>
-        <DatePickerStyled
-          {...this.props}
+        <DatePicker
           selected={this.state.startDate}
           onChange={this.handleChange}
           peekNextMonth
@@ -98,9 +74,9 @@ export class DayPickerBase extends Component {
           dropdownMode="select"
           placeholderText={placeholder}
           dateFormat="dd/MM/yyyy"
-          input={input}
+          {...rest}
         />
-      </Wrapper>
+      </Flex>
     );
   }
 }
