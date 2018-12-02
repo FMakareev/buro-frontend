@@ -23,8 +23,8 @@ const CustomStyles = {
     paddingLeft: '13px',
   }),
 
-  menuList: styles => ({
-    ...styles,
+  menuList: provided => ({
+    ...provided,
     paddingTop: '0px',
     paddingBottom: '0px',
     borderRadius: '4px',
@@ -41,9 +41,11 @@ const CustomStyles = {
     display: 'none',
   }),
 
-  input: styles => ({
-    ...styles,
-    display: 'none',
+  input: provided => ({
+    ...provided,
+    display: 'hidden',
+    opacity: '0.0',
+    position: 'absolute',
   }),
   option: (provided, state) => ({
     paddingTop: '8px',
