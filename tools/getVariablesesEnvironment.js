@@ -15,8 +15,6 @@ export const getVariablesesEnvironment = () => {
         return null;
       });
 
-      process.env.NODE_ENV = process.env.MODE || 'development';
-
       resolve(env);
     } catch (error) {
       console.error('ERROR:', error);
