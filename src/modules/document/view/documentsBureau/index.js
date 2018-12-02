@@ -7,7 +7,8 @@ import {SvgUpload} from "../../../../components/Icons/SvgUpload";
 import {ButtonWithImage} from "../../../../components/ButtonWithImage/ButtonWithImage";
 import {makeData} from "./utils";
 import ReactTableStyled from "../../../../components/ReactTableStyled/ReactTableStyled";
-import {FormDocumentUpload} from "./FormDocumentUpload";
+import {FormDocumentUpload} from "../../documents/FormDocumentUpload/FormDocumentUpload";
+import Modal from "../../../../components/Modal/Modal";
 
 
 const columns = ({onOpenFormUpdateDoc}) => {
@@ -23,8 +24,8 @@ const columns = ({onOpenFormUpdateDoc}) => {
       },
       accessor: props => {
         try {
-          if (props.user) {
-            return `${props.user.firstName} ${props.user.lastName} ${props.user.sureName}`
+          if (props) {
+            return `${props.firstName} ${props.lastName} ${props.sureName}`
           }
         } catch (error) {
           console.log(error);
@@ -40,8 +41,8 @@ const columns = ({onOpenFormUpdateDoc}) => {
       </Text>),
 
       accessor: props => {
-        if (props.updateDate) {
-          return dayjs(props.updateDate).format('DD.MM.YYYY HH:mm:ss')
+        if (props.document) {
+          return dayjs(props.document.updateDate).format('DD.MM.YYYY HH:mm:ss')
         }
         return null;
       },
@@ -55,13 +56,13 @@ const columns = ({onOpenFormUpdateDoc}) => {
       filterable: false,
       Cell: props => {
         if (props.value) {
-          return <ButtonBase onClick={() => onOpenFormUpdateDoc(props.original.user.id)} display={'inline-block'}
+          return <ButtonBase onClick={() => onOpenFormUpdateDoc(props.original.id)} display={'inline-block'}
                              size={'xsmall'} variant={'transparent'}>
             Update
           </ButtonBase>
         } else {
           return (<ButtonWithImage
-            onClick={() => onOpenFormUpdateDoc(props.original.user.id)}
+            onClick={() => onOpenFormUpdateDoc(props.original.id)}
             display={'inline-block'}
             iconRight={<Text
               fontSize={5}
@@ -77,7 +78,7 @@ const columns = ({onOpenFormUpdateDoc}) => {
       },
       accessor: props => {
         if (props.document) {
-          return props.document.name
+          return props.document.id
         }
         return null;
       }
@@ -99,13 +100,19 @@ export class DocumentsBureauPage extends Component {
   get initialState() {
     return {
       // статус открытия модального окна
-      isOpen: false,
+      isOpen: true,
       // id пользователя к которому крепится окумент
       id: null,
+      data: makeData(100)
     };
   }
 
   onOpenFormUpdateDoc = (id) => this.setState(() => ({id, isOpen: true}))
+
+  toggleModal = () => {
+    console.log('toggleModal');
+    this.setState(state => ({isOpen: !state.isOpen}));
+  };
 
   render() {
     const {isOpen, id} = this.state;
@@ -117,14 +124,17 @@ export class DocumentsBureauPage extends Component {
         <ReactTableStyled
           defaultFilterMethod={(filter, row) =>
             String(row[filter.id]).indexOf(filter.value) >= 0}
-          data={makeData(100)}
+          data={this.state.data}
           filterable
           columns={columns({
             onOpenFormUpdateDoc: this.onOpenFormUpdateDoc,
           })}
         />
         {
-          isOpen && <FormDocumentUpload id={id}/>
+          isOpen &&
+          <Modal toggleModal={this.toggleModal}>
+            <FormDocumentUpload toggleModal={this.toggleModal} id={id}/>
+          </Modal>
         }
       </Container>
     );
