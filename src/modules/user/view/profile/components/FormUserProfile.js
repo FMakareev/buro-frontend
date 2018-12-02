@@ -12,7 +12,7 @@ import { Flex } from '../../../../../components/Flex/Flex';
 import { Text } from '../../../../../components/Text/Text';
 import { ButtonBase } from '../../../../../components/ButtonBase/ButtonBase';
 import { DayPickerBase } from '../../../../../components/DayPickerBase/DayPickerBase';
-import { GenderToggle } from '../../../../../components/GenderToggle/GenderToggle';
+import { ButtonTriggerGroup } from '../../../../../components/ButtonTriggerGroup/ButtonTriggerGroup';
 
 import { required } from '../../../../../utils/validation/required';
 import { phoneNumber } from '../../../../../utils/validation/phoneNumber';
@@ -76,58 +76,71 @@ export class FormProfileUser extends Component {
         <Header as="h2" fontSize="24px" lineHeight="32px" mb="24px">
           Main data:
         </Header>
-        <Flex width="100%" justifyContent="space-between" mb="20px">
-          <Box width="100%" mr={30}>
-            <Field
-              name="firstname"
-              component={TextFieldWithLabel}
-              label="First Name:"
-              type="text"
-              validate={[required]}
-            />
-          </Box>
-          <Box width="100%">
-            <Field
-              name="dateofbirth"
-              component={DayPickerBase}
-              label="Date of Birth:"
-              type="date"
-            />
-          </Box>
+        <Flex mx={-6} justifyContent="space-between" >
         </Flex>
-        <Flex width="100%" justifyContent="space-between" mb="20px">
-          <Box width="100%" mr={30}>
+        <Flex mx={-6} justifyContent="space-between" flexWrap={'wrap'} mb={'30px'}>
+          <Box width={['100%','100%','50%']} px={6} mb={7}>
             <Field
-              name="lastname"
+              name={"firstname"}
               component={TextFieldWithLabel}
-              label="Last Name:"
-              type="text"
+              label={"First Name:"}
+              type={"text"}
               validate={[required]}
             />
           </Box>
-          <Box width="100%">
+          <Box width={['100%','100%','50%']} px={6} mb={7}>
             <Field
-              name="telephone"
+              name={"dateofbirth"}
+              component={DayPickerBase}
+              label={"Date of Birth:"}
+              type={"date"}
+            />
+          </Box>
+          <Box width={['100%','100%','50%']} px={6} mb={7}>
+            <Field
+              name={"lastname"}
               component={TextFieldWithLabel}
-              label="Telephone:"
-              type="text"
+              label={"Last Name:"}
+              type={"text"}
+              validate={[required]}
+            />
+          </Box>
+          <Box width={['100%','100%','50%']} px={6} mb={7}>
+            <Field
+              name={"telephone"}
+              component={TextFieldWithLabel}
+              label={"Telephone:"}
+              type={"text"}
               validate={[required, phoneNumber]}
               normalize={normalizePhoneNumber}
             />
           </Box>
-        </Flex>
-        <Flex width="100%" justifyContent="space-between" mb="50px">
-          <Box width="100%" mr={30}>
+          <Box width={['100%','100%','50%']} px={6} mb={7}>
             <Field
-              name="patronymic"
+              name={"patronymic"}
               component={TextFieldWithLabel}
-              label="Patronymic:"
-              type="text"
+              label={"Patronymic:"}
+              type={"text"}
               validate={[required]}
             />
           </Box>
-          <Box width="100%">
-            <Field name="gender" component={GenderToggle} label="Gender:" type="radio" />
+          <Box width={['100%','100%','50%']} px={6} mb={7}>
+            <Field
+              name={"gender"}
+              component={ButtonTriggerGroup}
+              label={"Gender:"}
+              type={"text"}
+              options={[
+                {
+                  label: 'Male',
+                  value: 'male',
+                },
+                {
+                  label: 'Female',
+                  value: 'female',
+                },
+              ]}
+            />
           </Box>
         </Flex>
         <Flex justifyContent="center">
@@ -137,7 +150,6 @@ export class FormProfileUser extends Component {
             size="medium"
             px={122}
             py={2}
-            fontSize="32px"
             disable={pristine || submitting || invalid}>
             Save
           </ButtonBase>
