@@ -14,16 +14,12 @@ const range = len => {
 const newDocument = () => {
   return {
     id: faker.random.uuid(),
-    updateDate: faker.date.past().toUTCString(),
-    user: {
-      id: faker.random.uuid(),
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      sureName: faker.name.lastName(),
-    },
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    sureName: faker.name.lastName(),
     document: faker.random.number(1) ? {
       id: faker.random.uuid(),
-      name: faker.random.word(),
+      updateDate: faker.date.past().toUTCString(),
     } : null
   }
 };
