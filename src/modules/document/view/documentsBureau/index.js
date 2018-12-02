@@ -56,7 +56,7 @@ const columns = ({onOpenFormUpdateDoc}) => {
       Cell: props => {
         if (props.value) {
           return <ButtonBase onClick={() => onOpenFormUpdateDoc(props.original.user.id)} display={'inline-block'}
-                             size={'small'} variant={'transparent'}>
+                             size={'xsmall'} variant={'transparent'}>
             Update
           </ButtonBase>
         } else {
@@ -69,7 +69,7 @@ const columns = ({onOpenFormUpdateDoc}) => {
               fill={'inherit'}>
               <SvgUpload/>
             </Text>}
-            size={'small'}
+            size={'xsmall'}
             variant={'transparent'}>
             Upload
           </ButtonWithImage>)

@@ -62,6 +62,7 @@ ButtonBase.propTypes = {
 ButtonBase.defaultProps = {
   size: 'medium',
   variant: 'primary',
+  type: 'button',
 };
 
 export default ButtonBase;

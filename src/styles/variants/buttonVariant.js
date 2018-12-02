@@ -11,6 +11,9 @@ export const ButtonVariant = {
     ':hover': {
       backgroundColor: '#61C3E2',
     },
+    '&.isActive': {
+      backgroundColor: '#072C57',
+    },
     ':active': {
       backgroundColor: '#072C57',
     },
@@ -39,6 +42,11 @@ export const ButtonVariant = {
     cursor: 'pointer',
     ':hover': {
       backgroundColor: '#0F60BD',
+      color: '#ffffff',
+      fill: '#ffffff',
+    },
+    '&.isActive': {
+      backgroundColor: '#072C57',
       color: '#ffffff',
       fill: '#ffffff',
     },
@@ -89,6 +97,12 @@ export const ButtonVariant = {
       color: '#ffffff',
       fill: '#ffffff',
     },
+    '&.isActive': {
+      borderColor: '#072C57',
+      backgroundColor: '#072C57',
+      color: '#ffffff',
+      fill: '#ffffff',
+    },
     ':focus': {
       boxShadow: '0 0 0 5px #61C3E2',
     },
@@ -113,6 +127,7 @@ export const ButtonVariant = {
       },
     },
   },
+
 };
 
 export default ButtonVariant;

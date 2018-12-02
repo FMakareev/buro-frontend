@@ -4,20 +4,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { TextFieldBase } from '../TextFieldBase/TextFieldBase';
-import { Text } from '../Text/Text';
+import {Label} from "../Label/Label";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const Label = styled(Text)`
-  margin-bottom: 8px;
-  font-family: ${props => props.theme.fontFamily.regular};
-  font-size: ${props => props.theme.fontSizes[5]}px;
-  line-height: ${props => props.theme.fontSizes[8]}px;
-  color: ${props => props.theme.colors.color1};
-`;
+
 
 const TextField = styled(TextFieldBase)`
   font-family: ${props => props.theme.fontFamily.regular};
