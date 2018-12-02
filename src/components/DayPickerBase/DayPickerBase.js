@@ -56,6 +56,11 @@ const DatePickerStyled = styled(DatePicker)`
   cursor: 'text';
 `;
 
+const Error = styled.span`
+  margin-left: 10px;
+  color: ${props => props.theme.colors.color9};
+`;
+
 export class DayPickerBase extends Component {
   constructor(props) {
     super(props);
@@ -75,11 +80,14 @@ export class DayPickerBase extends Component {
   }
 
   render() {
-    const { placeholder, input, label } = this.props;
+    const { placeholder, input, label, meta } = this.props;
 
     return (
       <Wrapper>
-        <Label>{label}</Label>
+        <Label>
+          {label}
+          {meta.error && meta.touched && <Error>{meta.error}</Error>}
+        </Label>
         <DatePickerStyled
           {...this.props}
           selected={this.state.startDate}

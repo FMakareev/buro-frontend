@@ -64,7 +64,7 @@ const Toggle = styled.div`
   & > input:checked + label {
     background-color: ${props => props.theme.colors.color10};
     color: ${props => props.theme.colors.color1};
-    z-index: 1;
+    z-index: 0;
   }
   & > input:focus + label {
     outline: dotted 1px #ccc;

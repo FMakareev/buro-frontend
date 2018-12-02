@@ -27,6 +27,11 @@ const TextField = styled(TextFieldBase)`
   border-radius: ${props => props.theme.fontSizes[2]}px;
 `;
 
+const Error = styled.span`
+  margin-left: 10px;
+  color: ${props => props.theme.colors.color9};
+`;
+
 /**
  * Компонент инпута с лейблом (Text Field With Label)
  * @example ./TextFieldWithLabel.example.md
@@ -66,7 +71,11 @@ export class TextFieldWithLabel extends PureComponent {
 
     return (
       <Wrapper>
-        <Label>{label}</Label>
+        <Label>
+          {label}
+          {meta.error && meta.touched && <Error>{meta.error}</Error>}
+        </Label>
+
         <TextField
           required={required}
           type={type}
