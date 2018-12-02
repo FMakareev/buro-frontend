@@ -16,8 +16,7 @@ const DropzoneStyled = styled(Dropzone)`
   position: relative;
   border-radius: 4px;
   background-color: #ffffff;
-  max-width: 650px;
-  width: 100%;
+  width: 650px;
   height: 396px;    
   padding: 3%;
   box-shadow: 4px 8px 16px rgba(28, 65, 84, 0.08);
@@ -44,6 +43,7 @@ const DropzoneStyled = styled(Dropzone)`
     left: 50%;
     transform: translate(-50%,-50%);
     z-index: 2;
+    display: block;
     border-radius: 4px;
     max-width: 590px;
     width: 94%;
