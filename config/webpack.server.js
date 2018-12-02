@@ -14,7 +14,7 @@ export const serverConfigGenerator = () => {
     name: 'server',
     mode: process.env.NODE_ENV || 'development',
     watch: process.env.WATCH === 'true' || true,
-    entry: [process.env.SERVER_ENTRY || './src/server/index.js'],
+    entry: ['@babel/polyfill',process.env.SERVER_ENTRY || './src/server/index.js'],
     target: 'node',
     externals: [nodeExternals()],
     node: {
