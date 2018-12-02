@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SpeedingWheel = styled.div`
-  width: 24px;
-  height: 24px;
+export const SpeedingWheel = styled.div`
+  width: 1em;
+  height: 1em;
   margin: 0 auto;
-  border: 2px solid #aeaeae;
+  border: 2px solid #093971;
   border-radius: 50%;
   border-left-color: transparent;
   border-right-color: transparent;
