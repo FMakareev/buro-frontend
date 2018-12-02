@@ -21,13 +21,14 @@ const buttonsSize = variant({
  * @example ./ButtonDefault.example.md
  */
 export const ButtonBase = styled.button`
+  position: relative;
   outline: none !important;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
-  transition: .115s all;
+  transition: 0.115s all;
   ${buttonsVariant};
   ${buttonsSize};
   ${space};
