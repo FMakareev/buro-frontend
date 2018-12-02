@@ -15,7 +15,7 @@ export const browserConfigGenerator = () => {
     mode: process.env.NODE_ENV || 'development',
     watch: process.env.WATCH === 'true',
     name: 'client',
-    entry: [process.env.CLIENT_ENTRY || './src/client/index.js'],
+    entry: ['@babel/polyfill',process.env.CLIENT_ENTRY || './src/client/index.js'],
     output: {
       path: path.resolve(__dirname, process.env.PUBLIC_URL || '../public'),
       publicPath: '/',

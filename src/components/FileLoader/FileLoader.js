@@ -4,6 +4,8 @@ import Dropzone, {DropzoneProps} from 'react-dropzone';
 import styled from 'styled-components';
 import Text from "../Text/Text";
 import SvgDragNDrop from "../Icons/SvgDragNDrop";
+import {PreloaderWrapper} from "../PreloaderWrapper/PreloaderWrapper";
+import {SpeedingWheel} from "../SmallPreloader/SmallPreloader";
 
 const WrapperStyled = styled.div`
   position: absolute;
@@ -58,20 +60,7 @@ const DropzoneStyled = styled(Dropzone)`
   }
 `;
 
-const PreloaderWrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  z-index: 3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%; 
-  background-color: rgba(255, 255, 255, 0.6); 
-  transition: .225s all;
-`;
+
 
 
 const Preloader = styled.div`
@@ -154,7 +143,9 @@ export class FileLoader extends Component {
       {
         isLoading &&
         <PreloaderWrapper>
-          <Preloader/>
+          <Text fontSize={12}>
+            <SpeedingWheel/>
+          </Text>
         </PreloaderWrapper>
       }
     </DropzoneStyled>

@@ -3,14 +3,14 @@ import renderer from 'react-test-renderer';
 import { BrowserRouter } from 'react-router-dom';
 
 import { StyledThemeProvider } from '../../styles/StyledThemeProvider';
-import Header from './Header';
+import HeaderNav from './HeaderNav';
 
-test('Header: Рендерится без ошибок', () => {
+test('HeaderNav: Рендерится без ошибок', () => {
   renderer
     .create(
       <StyledThemeProvider>
         <BrowserRouter>
-          <Header />
+          <HeaderNav />
         </BrowserRouter>
       </StyledThemeProvider>,
     )
