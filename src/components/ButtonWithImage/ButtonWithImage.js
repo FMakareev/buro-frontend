@@ -12,7 +12,7 @@ export const ButtonWithImage = ({
                                 }) => {
   return (
     <ButtonBase {...rest}>
-      <Flex justifyContent={'space-around'} alignItems={'space-around'} width={'100%'}>
+      <Flex justifyContent={'space-between'} alignItems={'space-around'} width={'100%'}>
         {iconLeft && (
           <Flex justifyContent={'center'} alignItems={'center'}>
             {iconLeft}
