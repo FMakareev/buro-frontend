@@ -23,10 +23,8 @@ import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloa
 import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
 
 import { required } from '../../../../utils/validation/required';
-
-const StyledForm = styled(Form)`
-  position: relative;
-`;
+import isEmail from '../../../../utils/validation/isEmail';
+import { ReloadIcon } from '../../components/ReloadIcon';
 
 export class FormUserLogin extends Component {
   static propTypes = {
@@ -41,11 +39,11 @@ export class FormUserLogin extends Component {
     new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(true);
-      }, 5000);
+      }, 1000);
     }).then(() => {
-      throw new SubmissionError({
-        _error: 'Connection error!',
-      });
+      // throw new SubmissionError({
+      //   _error: 'Connection error!',
+      // });
     });
 
   render() {
@@ -56,27 +54,23 @@ export class FormUserLogin extends Component {
       invalid,
       submitFailed,
       submitSucceeded,
-      meta,
       error,
     } = this.props;
 
-    console.log(meta);
-    console.log(error);
-
     return (
-      <StyledForm onSubmit={handleSubmit(this.submit)}>
+      <Form onSubmit={handleSubmit(this.submit)}>
         <Flex justifyContent="center" width="100%" flexDirection="column">
-          <Box width="100%" mb="17px">
+          <Box width="100%" mb={6}>
             <Field
               name="email"
               component={TextFieldWithIcon}
               placeholder="Email address"
               type="email"
               icon={<EmailIcon />}
-              validate={[required]}
+              validate={[required, isEmail]}
             />
           </Box>
-          <Box width="100%" mb="11px">
+          <Box width="100%" mb={4}>
             <Field
               name="password"
               component={TextFieldWithIcon}
@@ -86,7 +80,7 @@ export class FormUserLogin extends Component {
               validate={[required]}
             />
           </Box>
-          <Box width="100%" mb="20px">
+          <Box width="100%" mb={8}>
             <Flex width="100%" justifyContent="space-between">
               <HelpText>
                 Forgot your <Link to="/password-reset">password</Link>?
@@ -97,23 +91,39 @@ export class FormUserLogin extends Component {
             </Flex>
           </Box>
 
-          <Box width="100%">
-            <ButtonWithImageError
-              type="submit"
-              variant="primary"
-              size="medium"
-              py={2}
-              error={error}
-              // fontSize="32px"
-              iconRight={
-                <Text fontSize={12} lineHeight={0}>
-                  <SvgArrowRight />
-                </Text>
-              }
-              disabled={pristine || submitting || invalid}>
-              Sigh in
-            </ButtonWithImageError>
-          </Box>
+          {!submitFailed && (
+            <Box width="100%">
+              <ButtonWithImageError
+                type="submit"
+                variant="primary"
+                size="medium"
+                error={error}
+                iconRight={
+                  <Text fontSize={12} lineHeight={0}>
+                    <SvgArrowRight />
+                  </Text>
+                }
+                disabled={pristine || submitting || invalid}>
+                Sign in
+              </ButtonWithImageError>
+            </Box>
+          )}
+          {submitFailed && (
+            <Box width="100%">
+              <ButtonWithImageError
+                type="submit"
+                variant="error"
+                size="medium"
+                error={error}
+                iconRight={
+                  <Text fontSize={12} lineHeight={0}>
+                    <ReloadIcon />
+                  </Text>
+                }>
+                Try again
+              </ButtonWithImageError>
+            </Box>
+          )}
         </Flex>
 
         {submitting && (
@@ -123,7 +133,7 @@ export class FormUserLogin extends Component {
             </Text>
           </PreloaderWrapper>
         )}
-      </StyledForm>
+      </Form>
     );
   }
 }
