@@ -45,8 +45,8 @@ export class Checkbox extends Component {
     return (
       <Box>
         <Flex alignItems={'center'}>
-          {label && <Text mr={5}>{label}</Text>}
           <CheckboxBase input={input} />
+          {label && <Text ml={3}>{label}</Text>}
         </Flex>
         {meta && <Message meta={meta} />}
       </Box>
