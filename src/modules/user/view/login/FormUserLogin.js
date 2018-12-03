@@ -41,9 +41,9 @@ export class FormUserLogin extends Component {
         resolve(true);
       }, 1000);
     }).then(() => {
-      // throw new SubmissionError({
-      //   _error: 'Connection error!',
-      // });
+      throw new SubmissionError({
+        _error: 'Connection error!',
+      });
     });
 
   render() {

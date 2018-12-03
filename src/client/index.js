@@ -4,6 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 import { Provider as ProviderRedux } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
+import { MockedProvider } from 'react-apollo/test-utils';
 
 import { AsyncComponentProvider } from 'react-async-component';
 import asyncBootstrapper from 'react-async-bootstrapper';
