@@ -19,12 +19,19 @@ import { PasswordIcon } from '../../components/PasswordIcon';
 
 import { Text } from '../../../../components/Text/Text';
 
+import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
+import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
+
 import { required } from '../../../../utils/validation/required';
 
 const StyledButtonWithImage = styled(ButtonWithImage)`
   width: 100%;
   padding-left: 88px;
   padding-right: 12px;
+`;
+
+const StyledForm = styled(Form)`
+  position: relative;
 `;
 
 export class FormUserLogin extends Component {
@@ -36,65 +43,86 @@ export class FormUserLogin extends Component {
     super(props);
   }
 
-  submit = value => {
-    console.log(value);
-  };
+  submit(value) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        throw new SubmissionError({ _error: 'сообщение о ошибке' });
+      }, 5000);
+    });
+  }
 
   render() {
-    const { handleSubmit, pristine, submitting, invalid } = this.props;
+    const {
+      handleSubmit,
+      pristine,
+      submitting,
+      invalid,
+      submitFailed,
+      submitSucceeded,
+    } = this.props;
 
     return (
-      <Form onSubmit={handleSubmit(this.submit)}>
-        <Flex justifyContent="center" width="100%" flexDirection="column">
-          <Box width="100%" mt="17px">
-            <Field
-              name="email"
-              component={TextFieldWithIcon}
-              placeholder="Email address"
-              type="email"
-              icon={<EmailIcon />}
-              validate={[required]}
-            />
-          </Box>
-          <Box width="100%" mt="17px" mb="11px">
-            <Field
-              name="password"
-              component={TextFieldWithIcon}
-              placeholder="Password"
-              type="password"
-              icon={<PasswordIcon />}
-              validate={[required]}
-            />
-          </Box>
-          <Box width="100%" mb="20px">
-            <Flex width="100%" justifyContent="space-between">
-              <HelpText>
-                Forgot your <Link to="/password-reset">password</Link>?
-              </HelpText>
-              <HelpText>
-                <Link to="registration">Create at account</Link>
-              </HelpText>
-            </Flex>
-          </Box>
+      <StyledForm onSubmit={handleSubmit(this.submit)}>
+        {!submitSucceeded && !submitFailed && (
+          <Flex justifyContent="center" width="100%" flexDirection="column">
+            <Box width="100%" mt="17px">
+              <Field
+                name="email"
+                component={TextFieldWithIcon}
+                placeholder="Email address"
+                type="email"
+                icon={<EmailIcon />}
+                validate={[required]}
+              />
+            </Box>
+            <Box width="100%" mt="17px" mb="11px">
+              <Field
+                name="password"
+                component={TextFieldWithIcon}
+                placeholder="Password"
+                type="password"
+                icon={<PasswordIcon />}
+                validate={[required]}
+              />
+            </Box>
+            <Box width="100%" mb="20px">
+              <Flex width="100%" justifyContent="space-between">
+                <HelpText>
+                  Forgot your <Link to="/password-reset">password</Link>?
+                </HelpText>
+                <HelpText>
+                  <Link to="registration">Create at account</Link>
+                </HelpText>
+              </Flex>
+            </Box>
 
-          <Box width="100%">
-            <StyledButtonWithImage
-              type="submit"
-              variant="primary"
-              size="medium"
-              py={2}
-              // fontSize="32px"
-              iconRight={
-                <Text fontSize={12} lineHeight={0}>
-                  <SvgArrowRight />
-                </Text>
-              }
-              disabled={pristine || submitting || invalid}>
-              Sigh in
-            </StyledButtonWithImage>
-          </Box>
-        </Flex>
-      </Form>
+            <Box width="100%">
+              <StyledButtonWithImage
+                type="submit"
+                variant="primary"
+                size="medium"
+                py={2}
+                // fontSize="32px"
+                iconRight={
+                  <Text fontSize={12} lineHeight={0}>
+                    <SvgArrowRight />
+                  </Text>
+                }
+                disabled={pristine || submitting || invalid}>
+                Sigh in
+              </StyledButtonWithImage>
+            </Box>
+          </Flex>
+        )}
+
+        {submitting && (
+          <PreloaderWrapper>
+            <Text fontSize={12}>
+              <SpeedingWheel />
+            </Text>
+          </PreloaderWrapper>
+        )}
+      </StyledForm>
     );
   }
 }
