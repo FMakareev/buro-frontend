@@ -1,9 +1,20 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Select from 'react-select';
-import SmallPreloader from '../SmallPreloader/SmallPreloader';
-import { Relative } from '../Relative/Relative';
-import { Absolute } from '../Absolute/Absolute';
+import Select, {components} from 'react-select';
+import {Relative} from '../Relative/Relative';
+import {Text} from "../Text/Text";
+import {SvgDropdownIndicator} from "../Icons/SvgDropdownIndicator";
+
+const DropdownIndicator = (props) => {
+
+  return components.DropdownIndicator && (
+    <components.DropdownIndicator {...props}>
+      <Text fill={'color5'} lineHeight={0} fontSize={11}>
+        <SvgDropdownIndicator/>
+      </Text>
+    </components.DropdownIndicator>
+  );
+};
 
 /**
  * Компонент селекта (SelectBase)
@@ -57,6 +68,7 @@ export class SelectBase extends Component {
     }
     return false;
   }
+
   // componentDidMount() {
   //   const {
   //     input: { onChange },
@@ -68,7 +80,7 @@ export class SelectBase extends Component {
   // }
 
   onChange = event => {
-    const { input, valueKey } = this.props;
+    const {input, valueKey} = this.props;
     input.onChange(event ? event[valueKey] : null);
 
     console.log(event[valueKey]);
@@ -86,6 +98,7 @@ export class SelectBase extends Component {
       defaultOptions,
       placeholder,
       styles,
+      meta
     } = this.props;
     return (
       <Relative>
@@ -93,7 +106,10 @@ export class SelectBase extends Component {
           defaultOptions={defaultOptions}
           selectValue={selectValue}
           name={input.name}
-          // value={input.value ? input.value : selectValue || ''}
+          meta={meta}
+          components={{ DropdownIndicator }}
+          onBlur={(event) => input.onBlur(event[valueKey])}
+          onFocus={input.onFocus}
           options={options}
           labelKey={labelKey}
           valueKey={valueKey}
@@ -102,11 +118,6 @@ export class SelectBase extends Component {
           placeholder={placeholder}
           styles={styles}
         />
-        {loading && (
-          <Absolute right={0} top={0}>
-            <SmallPreloader />
-          </Absolute>
-        )}
       </Relative>
     );
   }
