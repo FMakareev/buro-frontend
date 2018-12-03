@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, reduxForm, Form } from 'redux-form';
+import {Field, reduxForm, Form, SubmissionError} from 'redux-form';
 
 import styled from 'styled-components';
 
@@ -16,6 +16,8 @@ import { ButtonTriggerGroup } from '../../../../components/ButtonTriggerGroup/Bu
 
 import { required } from '../../../../utils/validation/required';
 import { phoneNumber } from '../../../../utils/validation/phoneNumber';
+import {graphql} from "react-apollo/index";
+import UpdateUserMutation from './UpdateUserMutation.graphql';
 
 const Header = styled(Text)`
   font-family: ${props => props.theme.fontFamily.bold};
@@ -55,6 +57,12 @@ const normalizePhoneNumber = value => {
   return onlyNums;
 };
 
+@graphql(UpdateUserMutation, {
+  name: '@apollo/update',
+})
+@reduxForm({
+  form: 'FormProfileUser',
+})
 export class FormProfileUser extends Component {
   static propTypes = {
     ...formPropTypes,
@@ -66,6 +74,17 @@ export class FormProfileUser extends Component {
 
   submit = value => {
     console.log(value);
+    return this.props['@apollo/update']({
+      variables: Object.assign({}, value),
+    })
+      .then((response) => {
+        console.log(response);
+      }).catch(error => {
+        console.log(error);
+        throw new SubmissionError({
+          _error: 'Connection error!',
+        });
+      })
   };
 
   render() {
@@ -80,7 +99,7 @@ export class FormProfileUser extends Component {
         <Flex mx={-6} justifyContent="space-between" flexWrap="wrap" mb="30px">
           <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[1, 0]}>
             <Field
-              name="firstname"
+              name="firstName"
               component={TextFieldWithLabel}
               label="First Name:"
               type="text"
@@ -89,7 +108,7 @@ export class FormProfileUser extends Component {
           </Box>
           <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[4, 0]}>
             <Field
-              name="dateofbirth"
+              name="birthdate"
               component={DayPickerBase}
               label="Date of Birth:"
               type="date"
@@ -97,7 +116,7 @@ export class FormProfileUser extends Component {
           </Box>
           <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[2, 0]}>
             <Field
-              name="lastname"
+              name="lastName"
               component={TextFieldWithLabel}
               label="Last Name:"
               type="text"
@@ -106,7 +125,7 @@ export class FormProfileUser extends Component {
           </Box>
           <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[5, 0]}>
             <Field
-              name="telephone"
+              name="phone"
               component={TextFieldWithLabel}
               label="Telephone:"
               type="text"
@@ -158,8 +177,5 @@ export class FormProfileUser extends Component {
   }
 }
 
-FormProfileUser = reduxForm({
-  form: 'FormProfileUser',
-})(FormProfileUser);
 
 export default FormProfileUser;
