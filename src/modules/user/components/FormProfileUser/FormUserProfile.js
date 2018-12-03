@@ -3,19 +3,19 @@ import { Field, reduxForm, Form } from 'redux-form';
 
 import styled from 'styled-components';
 
-import { formPropTypes } from '../../../../../propTypes/Forms/FormPropTypes';
+import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
-import { TextFieldWithLabel } from '../../../../../components/TextFieldWithLabel/TextFieldWithLabel';
+import { TextFieldWithLabel } from '../../../../components/TextFieldWithLabel/TextFieldWithLabel';
 
-import { Box } from '../../../../../components/Box/Box';
-import { Flex } from '../../../../../components/Flex/Flex';
-import { Text } from '../../../../../components/Text/Text';
-import { ButtonBase } from '../../../../../components/ButtonBase/ButtonBase';
-import { DayPickerBase } from '../../../../../components/DayPickerBase/DayPickerBase';
-import { ButtonTriggerGroup } from '../../../../../components/ButtonTriggerGroup/ButtonTriggerGroup';
+import { Box } from '../../../../components/Box/Box';
+import { Flex } from '../../../../components/Flex/Flex';
+import { Text } from '../../../../components/Text/Text';
+import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
+import { DayPickerBase } from '../../../../components/DayPickerBase/DayPickerBase';
+import { ButtonTriggerGroup } from '../../../../components/ButtonTriggerGroup/ButtonTriggerGroup';
 
-import { required } from '../../../../../utils/validation/required';
-import { phoneNumber } from '../../../../../utils/validation/phoneNumber';
+import { required } from '../../../../utils/validation/required';
+import { phoneNumber } from '../../../../utils/validation/phoneNumber';
 
 const Header = styled(Text)`
   font-family: ${props => props.theme.fontFamily.bold};

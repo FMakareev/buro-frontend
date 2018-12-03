@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 import { Box } from '../../../../components/Box/Box';
 
-import { Wrapper } from '../../components/Wrapper';
-import { Title } from '../../components/Title';
-import { HelpText } from '../../components/HelpText';
+import { Wrapper } from '../../components/Wrapper/Wrapper';
+import { Title } from '../../components/Title/Title';
+import { HelpText } from '../../components/HelpText/HelpText';
 
-import { FormUserRegistration } from './FormUserRegistration';
+import { FormUserRegistration } from '../../components/FormUserRegistration/FormUserRegistration';
 
 export class RegistrationPage extends Component {
   static propTypes = {};

@@ -9,12 +9,12 @@ import {TextFieldWithIcon} from '../../../../components/TextFieldWithIcon/TextFi
 
 import {Box} from '../../../../components/Box/Box';
 import {Flex} from '../../../../components/Flex/Flex';
-import {HelpText} from '../../components/HelpText';
-import {ButtonWithImageError} from '../../components/ButtonWithImageError';
+import {HelpText} from '../HelpText/HelpText';
+import {ButtonWithImageError} from '../ButtonWithImageError/ButtonWithImageError';
 import {SvgArrowRight} from '../../../../components/Icons/SvgArrowRight';
 
-import {EmailIcon} from '../../components/EmailIIcon';
-import {PasswordIcon} from '../../components/PasswordIcon';
+import {SvgEmailIcon} from '../../../../components/Icons/SVGEmailIcon';
+import {SvgPasswordIcon} from '../../../../components/Icons/SvgPasswordIcon';
 
 import {Text} from '../../../../components/Text/Text';
 
@@ -23,7 +23,7 @@ import {PreloaderWrapper} from '../../../../components/PreloaderWrapper/Preloade
 
 import {required} from '../../../../utils/validation/required';
 import isEmail from "../../../../utils/validation/isEmail";
-import {ReloadIcon} from "../../components/ReloadIcon";
+import {SvgReloadIcon} from "../../../../components/Icons/SvgReloadIcon";
 
 
 export class FormUserLogin extends Component {
@@ -66,7 +66,7 @@ export class FormUserLogin extends Component {
               component={TextFieldWithIcon}
               placeholder="Email address"
               type="email"
-              icon={<EmailIcon/>}
+              icon={<SvgEmailIcon/>}
               validate={[required, isEmail]}
             />
           </Box>
@@ -76,7 +76,7 @@ export class FormUserLogin extends Component {
               component={TextFieldWithIcon}
               placeholder="Password"
               type="password"
-              icon={<PasswordIcon/>}
+              icon={<SvgPasswordIcon/>}
               validate={[required]}
             />
           </Box>
@@ -117,7 +117,7 @@ export class FormUserLogin extends Component {
                 error={error}
                 iconRight={
                   <Text fontSize={12} lineHeight={0}>
-                    <ReloadIcon/>
+                    <SvgReloadIcon/>
                   </Text>
                 }
               >

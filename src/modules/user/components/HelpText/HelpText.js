@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Text } from '../../../components/Text/Text';
+import { Text } from '../../../../components/Text/Text';
 
 const StyledText = styled(Text)`
   font-family: ${props => props.theme.fontFamily.regular};

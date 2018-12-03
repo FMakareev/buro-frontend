@@ -1,35 +1,35 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
-
+import { Link } from 'react-router-dom';
 import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
+
+import { Select } from '../../../../components/Select/Select';
+import { Checkbox } from '../../../../components/Checkbox/Checkbox';
 
 import { TextFieldWithIcon } from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
 
 import { Box } from '../../../../components/Box/Box';
 import { Flex } from '../../../../components/Flex/Flex';
+import { HelpText } from '../HelpText/HelpText';
+
 import { SvgArrowRight } from '../../../../components/Icons/SvgArrowRight';
+import { SvgEmailIcon } from '../../../../components/Icons/SVGEmailIcon';
+import { SvgPasswordIcon } from '../../../../components/Icons/SvgPasswordIcon';
+import { SvgReloadIcon } from '../../../../components/Icons/SvgReloadIcon';
 
-import { PasswordIcon } from '../../components/PasswordIcon';
-
-import { ButtonWithImageError } from '../../components/ButtonWithImageError';
+import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
 import { Text } from '../../../../components/Text/Text';
 
 import { required } from '../../../../utils/validation/required';
 
 import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
 import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
-import {ReloadIcon} from "../../components/ReloadIcon";
+import isEmail from "../../../../utils/validation/isEmail";
+import minLength from "../../../../utils/validation/minLength";
 
+const minLength8 = minLength(8);
 
-const validate = values => {
-  const error = {};
-  if (values.password1 !== values.password2) {
-    error.password2 = 'Fields does not match!';
-  }
-  return error;
-};
-
-export class FormUserPasswordRecovery extends Component {
+export class FormUserRegistration extends Component {
   static propTypes = {
     ...formPropTypes,
   };
@@ -42,7 +42,7 @@ export class FormUserPasswordRecovery extends Component {
     new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(true);
-      }, 1000);
+      }, 10000);
     }).then(() => {
       throw new SubmissionError({
         _error: 'Connection error!',
@@ -63,56 +63,79 @@ export class FormUserPasswordRecovery extends Component {
     return (
       <Form onSubmit={handleSubmit(this.submit)}>
         <Flex justifyContent="center" width="100%" flexDirection="column">
-          <Box width="100%" mb="16px">
+          <Box width={"100%"} mb={6}>
             <Field
-              name={"password1"}
-              component={TextFieldWithIcon}
-              placeholder={"Password"}
-              type={"password"}
-              icon={<PasswordIcon />}
+              name="role"
+              component={Select}
+              placeholder="Role"
+              labelKey="label"
+              valueKey="value"
+              options={[{ value: 'bank', label: 'Bank' }, { value: 'client', label: 'Client' }]}
               validate={[required]}
             />
           </Box>
-          <Box width="100%" mb="16px">
+          <Box width={"100%"} mb={6}>
             <Field
-              name={"password2"}
+              name="email"
               component={TextFieldWithIcon}
-              placeholder={"Password"}
-              type={"password"}
-              icon={<PasswordIcon />}
+              placeholder="Email address"
+              type="email"
+              icon={<SvgEmailIcon />}
+              validate={[required, isEmail]}
+            />
+          </Box>
+          <Box width={"100%"} mb={6}>
+            <Field
+              name="password"
+              component={TextFieldWithIcon}
+              placeholder="Password"
+              type="password"
+              icon={<SvgPasswordIcon />}
+              validate={[required, minLength8]}
+            />
+          </Box>
+          <Box width={"100%"} mb={8}>
+            <Field
+              name={"privacy"}
+              checked={false}
+              label={<HelpText width={"90%"}>
+                I accept the <Link to="/">terms of service</Link> and
+                <Link to="/"> privacy policy</Link>.
+              </HelpText>}
+              component={Checkbox}
+              type="text"
               validate={[required]}
             />
           </Box>
-          {
-            !submitFailed &&
-            <Box width={'100%'}>
+          {!submitSucceeded && !submitFailed && (
+            <Box width="100%">
               <ButtonWithImageError
-                type={'submit'}
-                variant={'primary'}
-                size={'medium'}
-                fontSize={6}
+                type="submit"
+                variant="primary"
+                size="medium"
+                py={2}
                 error={error}
-                width={'100%'}
                 iconRight={
                   <Text fontSize={12} lineHeight={0}>
                     <SvgArrowRight />
                   </Text>
                 }
                 disabled={pristine || submitting || invalid}>
-                Create new password
+                Get started
               </ButtonWithImageError>
             </Box>
-          }
+          )}
           {submitFailed && (
-            <Box width={"100%"}>
+            <Box width="100%">
               <ButtonWithImageError
                 type={"submit"}
                 variant={"error"}
                 size={"medium"}
+                py={2}
                 error={error}
                 iconRight={
                   <Text fontSize={12} lineHeight={0}>
-                    <ReloadIcon/>
+                    <SvgReloadIcon />
                   </Text>
                 }
               >
@@ -120,10 +143,8 @@ export class FormUserPasswordRecovery extends Component {
               </ButtonWithImageError>
             </Box>
           )}
-
-
-
         </Flex>
+
         {submitting && (
           <PreloaderWrapper>
             <Text fontSize={12}>
@@ -136,9 +157,8 @@ export class FormUserPasswordRecovery extends Component {
   }
 }
 
-FormUserPasswordRecovery = reduxForm({
-  form: 'FormUserPasswordRecovery',
-  validate,
-})(FormUserPasswordRecovery);
+FormUserRegistration = reduxForm({
+  form: 'FormUserRegistration',
+})(FormUserRegistration);
 
-export default FormUserPasswordRecovery;
+export default FormUserRegistration;

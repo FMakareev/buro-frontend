@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Container } from '../../../components/Container/Container';
+import { Container } from '../../../../components/Container/Container';
 
 export const Wrapper = styled(Container)`
   max-width: 360px;

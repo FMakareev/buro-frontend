@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 import { Box } from '../../../../components/Box/Box';
 
-import { Wrapper } from '../../components/Wrapper';
-import { Title } from '../../components/Title';
+import { Wrapper } from '../../components/Wrapper/Wrapper';
+import { Title } from '../../components/Title/Title';
 
-import { FormUserPasswordRecovery } from './FormUserPasswordRecovery';
+import { FormUserPasswordRecovery } from '../../components/FormUserPasswordRecovery/FormUserPasswordRecovery';
 
 export class PasswordRecovery extends Component {
   static propTypes = {};

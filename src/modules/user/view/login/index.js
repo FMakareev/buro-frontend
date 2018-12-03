@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import { Wrapper } from '../../components/Wrapper';
-import { Title } from '../../components/Title';
+import { Wrapper } from '../../components/Wrapper/Wrapper';
+import { Title } from '../../components/Title/Title';
 
-import { FormUserLogin } from './FormUserLogin';
+import { FormUserLogin } from '../../components/FormUserLogin/FormUserLogin';
 import {Box} from "../../../../components/Box/Box";
 
 export class LoginPage extends Component {

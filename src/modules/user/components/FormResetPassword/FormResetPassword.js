@@ -6,16 +6,16 @@ import styled from 'styled-components';
 import { required } from '../../../../utils/validation/required';
 import { TextFieldWithIcon } from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
 import { Flex } from '../../../../components/Flex/Flex';
-import { EmailIcon } from '../../components/EmailIIcon';
+import { SvgEmailIcon } from '../../../../components/Icons/SVGEmailIcon';
 import { Box } from '../../../../components/Box/Box';
-import { ButtonWithImageError } from '../../components/ButtonWithImageError';
+import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
 import { SvgArrowRight } from '../../../../components/Icons/SvgArrowRight';
 import { Text } from '../../../../components/Text/Text';
 import { SvgArrowLeft } from '../../../../components/Icons/SvgArrowLeft';
 import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
 import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
 import isEmail from "../../../../utils/validation/isEmail";
-import {ReloadIcon} from "../../components/ReloadIcon";
+import {SvgReloadIcon} from "../../../../components/Icons/SvgReloadIcon";
 
 const FormStyled = styled(Form)`
   position: relative;
@@ -64,7 +64,7 @@ export class FormResetPassword extends Component {
                 placeholder={'Email address'}
                 type={'email'}
                 validate={[required,isEmail]}
-                icon={<EmailIcon />}
+                icon={<SvgEmailIcon />}
               />
             </Box>
             {
@@ -98,7 +98,7 @@ export class FormResetPassword extends Component {
                   error={error}
                   iconRight={
                     <Text fontSize={12} lineHeight={0}>
-                      <ReloadIcon/>
+                      <SvgReloadIcon/>
                     </Text>
                   }
                 >
