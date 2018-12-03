@@ -30,9 +30,6 @@ export class Message extends Component {
   };
 
   static defaultProps = {
-    px: 0,
-    py: 0,
-    mt: 2,
     fontSize: 4,
     lineHeight: 5,
   };
@@ -52,13 +49,13 @@ export class Message extends Component {
         {description && <Text {...this.props}>{description}</Text>}
         {meta && meta.touched &&
         meta.error && (
-          <Text color={'line.color23'} {...this.props}>
+          <Text color={'color9'} {...this.props}>
             {meta.error}
           </Text>
         )}
         {meta && meta.touched &&
         meta.warning && (
-          <Text color={'status.color10'} {...this.props}>
+          <Text color={'color9'} {...this.props}>
             {meta.warning}
           </Text>
         )}
