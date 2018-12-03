@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Dropzone, {DropzoneProps} from 'react-dropzone';
+import Dropzone from 'react-dropzone';
 import styled from 'styled-components';
 import Text from "../Text/Text";
 import SvgDragNDrop from "../Icons/SvgDragNDrop";
@@ -115,7 +115,6 @@ const Preloader = styled.div`
 
 export class FileLoader extends Component {
   static propTypes = {
-    ...DropzoneProps,
     /** Показывает что в форме есть ошибка */
     reject: PropTypes.bool,
     /** Показывает загрузку */
