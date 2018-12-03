@@ -22,12 +22,15 @@ export class PasswordRecovery extends Component {
   }
 
   render() {
+    const{match:{params}} = this.props;
     return (
       <Wrapper position={'relative'} ml={['auto', 20, 100]} mt={[10, 120]} maxWidth={360}>
         <Box mb={6}>
           <Title>New password</Title>
         </Box>
-        <FormUserPasswordRecovery />
+        <FormUserPasswordRecovery initialValues={{
+          token: params.token,
+        }}/>
       </Wrapper>
     );
   }
