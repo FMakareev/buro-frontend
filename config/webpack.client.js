@@ -9,6 +9,8 @@ import { graphqlLoaderConfig } from './graphqlLoaderConfig';
 import { styleLoaderConfig } from './styleLoaderConfig';
 import { scriptsLoaderConfig } from './scriptsLoaderConfig';
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 
 export const browserConfigGenerator = () => {
   return {
@@ -54,9 +56,7 @@ export const browserConfigGenerator = () => {
     },
     plugins: [
       new WriteFileWebpackPlugin(),
-      // new BundleAnalyzerPlugin({
-      // 	openAnalyzer: false
-      // }),
+
       new webpack.DefinePlugin({
         isBrowser: 'true',
         DEV: process.env.NODE_ENV === 'development',
@@ -66,10 +66,20 @@ export const browserConfigGenerator = () => {
         ENDPOINT_SERVER: process.env.ENDPOINT_SERVER || "'http://localhost:5001'",
       }),
       // new CleanWebpackPlugin([ process.env.PUBLIC_URL || '../../public']),
-      new webpack.HotModuleReplacementPlugin(),
+
+      ...(process.env.NODE_ENV === 'development' ?
+        [new HotModuleReplacementPlugin()] :
+        []),
+
+      ...(process.env.NODE_ENV === 'development' &&
+      process.env.ANALYSE ?
+        [] :
+        [new BundleAnalyzerPlugin()]),
+
       new ManifestPlugin({
         fileName: 'asset-manifest.json',
       }),
+
       new webpack.ProvidePlugin({
         $: "jquery",
         jQuery: "jquery"

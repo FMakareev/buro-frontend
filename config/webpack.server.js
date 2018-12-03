@@ -3,9 +3,11 @@ import path from 'path';
 import webpack from 'webpack';
 import nodeExternals from 'webpack-node-externals';
 import WriteFileWebpackPlugin from 'write-file-webpack-plugin';
-import { fileLoaderConfig } from './fileLoaderConfig';
-import { graphqlLoaderConfig } from './graphqlLoaderConfig';
-import { scriptsLoaderConfig } from './scriptsLoaderConfig';
+import {fileLoaderConfig} from './fileLoaderConfig';
+import {graphqlLoaderConfig} from './graphqlLoaderConfig';
+import {scriptsLoaderConfig} from './scriptsLoaderConfig';
+
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 export const serverConfigGenerator = () => {
   const reStyle = /\.(css|less|styl|scss|sass|sss|svg)$/;
@@ -14,12 +16,13 @@ export const serverConfigGenerator = () => {
     name: 'server',
     mode: process.env.NODE_ENV || 'development',
     watch: process.env.WATCH === 'true' || true,
-    entry: ['@babel/polyfill',process.env.SERVER_ENTRY || './src/server/index.js'],
+    entry: ['@babel/polyfill', process.env.SERVER_ENTRY || './src/server/index.js'],
     target: 'node',
     externals: [nodeExternals()],
     node: {
       __dirname: true,
     },
+    devtool: 'inline-source-map',
     output: {
       path: path.resolve(__dirname, process.env.PUBLIC_URL || '../public'),
       filename: 'server.js',
@@ -56,7 +59,14 @@ export const serverConfigGenerator = () => {
         ENDPOINT_SERVER: process.env.ENDPOINT_SERVER || "'http://localhost:5001'",
       }),
 
-      new webpack.HotModuleReplacementPlugin(),
+      ...(process.env.NODE_ENV === 'development' ?
+        [new HotModuleReplacementPlugin()] :
+        []),
+
+      ...(process.env.NODE_ENV === 'development' && process.env.ANALYSE ?
+        [] :
+        [new BundleAnalyzerPlugin(),]),
+
     ],
   };
 };
