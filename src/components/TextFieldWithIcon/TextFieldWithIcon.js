@@ -1,12 +1,12 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
 
-import { TextFieldBase } from '../TextFieldBase/TextFieldBase';
-import { Text } from '../Text/Text';
-import { Flex } from '../Flex/Flex';
-import { Box } from '../Box/Box';
+import {TextFieldBase} from '../TextFieldBase/TextFieldBase';
+import {Text} from '../Text/Text';
+import {Flex} from '../Flex/Flex';
+import {Box} from '../Box/Box';
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,23 +26,23 @@ const TextField = styled(TextFieldBase)`
   font-family: ${props => props.theme.fontFamily.medium};
   font-size: ${props => props.theme.fontSizes[6]}px;
   line-height: ${props => props.theme.fontSizes[11]}px;
-  box-shadow: ${props => props.theme.boxShadow[0]};
   border-radius: ${props => props.theme.fontSizes[2]}px;
   border-color: ${props => {
-    if (props.meta.dirty) {
-      return props.theme.colors.color1;
-    }
     if (props.meta.touched && props.meta.error) {
       return props.theme.colors.color9;
+    }
+  
+    if (props.meta.dirty) {
+      return props.theme.colors.color1;
     }
     return props.theme.colors.color5;
   }} !important;
   color: ${props => {
-    if (props.meta.dirty) {
-      return props.theme.colors.color1;
-    }
     if (props.meta.touched && props.meta.error) {
       return props.theme.colors.color9;
+    }
+    if (props.meta.dirty) {
+      return props.theme.colors.color1;
     }
     return props.theme.colors.color5;
   }} !important;
@@ -57,11 +57,11 @@ const TextField = styled(TextFieldBase)`
     right: 10px;
 
     fill: ${props => {
-      if (props.meta.dirty) {
-        return props.theme.colors.color1;
-      }
       if (props.meta.touched && props.meta.error) {
         return props.theme.colors.color9;
+      }
+      if (props.meta.dirty) {
+        return props.theme.colors.color1;
       }
       return props.theme.colors.color5;
     }} !important;
@@ -148,4 +148,5 @@ export class TextFieldWithIcon extends PureComponent {
     );
   }
 }
+
 export default TextFieldWithIcon;
