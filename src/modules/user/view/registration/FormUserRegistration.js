@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Field, reduxForm, Form } from 'redux-form';
+import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
 import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import { __metadata } from 'tslib';
 import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
 import { Select } from '../../../../components/Select/Select';
@@ -21,7 +20,7 @@ import { EmailIcon } from '../../components/EmailIIcon';
 import { PasswordIcon } from '../../components/PasswordIcon';
 import { ReloadIcon } from '../../components/ReloadIcon';
 
-import { StyledButtonWithImage } from '../../components/StyledButtonWithImage';
+import { ButtonWithImageError } from '../../components/ButtonWithImageError';
 import { Text } from '../../../../components/Text/Text';
 
 import { required } from '../../../../utils/validation/required';
@@ -42,13 +41,16 @@ export class FormUserRegistration extends Component {
     super(props);
   }
 
-  submit(value) {
-    return new Promise((resolve, reject) => {
+  submit = value =>
+    new Promise((resolve, reject) => {
       setTimeout(() => {
-        reject(true);
+        resolve(true);
       }, 5000);
+    }).then(() => {
+      throw new SubmissionError({
+        _error: 'Connection error!',
+      });
     });
-  }
 
   render() {
     const {
@@ -58,6 +60,7 @@ export class FormUserRegistration extends Component {
       invalid,
       submitFailed,
       submitSucceeded,
+      error,
     } = this.props;
 
     return (
@@ -115,11 +118,12 @@ export class FormUserRegistration extends Component {
           </Box>
           {!submitSucceeded && !submitFailed && (
             <Box width="100%">
-              <StyledButtonWithImage
+              <ButtonWithImageError
                 type="submit"
                 variant="primary"
                 size="medium"
                 py={2}
+                error={error}
                 iconRight={
                   <Text fontSize={12} lineHeight={0}>
                     <SvgArrowRight />
@@ -127,16 +131,17 @@ export class FormUserRegistration extends Component {
                 }
                 disabled={pristine || submitting || invalid}>
                 Get started
-              </StyledButtonWithImage>
+              </ButtonWithImageError>
             </Box>
           )}
           {submitFailed && (
             <Box width="100%">
-              <StyledButtonWithImage
+              <ButtonWithImageError
                 type="submit"
                 variant="error"
                 size="medium"
                 py={2}
+                error={error}
                 iconRight={
                   <Text fontSize={12} lineHeight={0}>
                     <ReloadIcon />
@@ -144,7 +149,7 @@ export class FormUserRegistration extends Component {
                 }
                 disabled={pristine || submitting || invalid}>
                 Try again
-              </StyledButtonWithImage>
+              </ButtonWithImageError>
             </Box>
           )}
         </Flex>
