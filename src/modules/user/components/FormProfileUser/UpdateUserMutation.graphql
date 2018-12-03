@@ -1,0 +1,39 @@
+mutation(
+  $id: String,
+$firstName: String,
+$lastName: String,
+$patronymic: String,
+$birthdate: String,
+$gender: String,
+$email: String,
+$phone: String,
+$password: String,
+$retype_password: String,
+$role: String,
+) {
+  updateUser(
+    id: $id,
+    firstName:$firstName,
+    lastName:$lastName,
+    patronymic:$patronymic,
+    birthdate:$birthdate,
+    gender:$gender,
+    email :$email ,
+    phone:$phone,
+    password:$password,
+    retype_password :$retype_password ,
+    role :$role ,
+  ){
+    id
+    firstName
+    lastName
+    patronymic
+    birthdate
+    gender
+    email
+    phone
+    password
+    retype_password
+    role
+  }
+}
