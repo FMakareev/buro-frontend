@@ -21,10 +21,7 @@ export class PasswordResetPage extends Component {
   render() {
     return (
       <Wrapper ml={['auto', 20, 100]} mt={[10, 120]} maxWidth={360}>
-        <Box mb={6}>
-          <Title>Reset your password</Title>
-        </Box>
-
+        <Title mb={6}>Reset your password</Title>
         <FormResetPassword />
       </Wrapper>
     );

@@ -13,8 +13,8 @@ const StyledBox = styled(Box)`
   color: ${props => props.theme.colors.color1};
 `;
 
-export const Title = ({ children }) => (
-  <Flex>
+export const Title = ({ children, mb }) => (
+  <Flex mb={mb}>
     <Box>
       <SvgLogo />
     </Box>

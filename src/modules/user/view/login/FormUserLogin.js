@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Field, reduxForm, Form, SubmissionError} from 'redux-form';
 import {Link} from 'react-router-dom';
 
-import styled from 'styled-components';
 
 import {formPropTypes} from '../../../../propTypes/Forms/FormPropTypes';
 

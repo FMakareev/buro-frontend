@@ -63,7 +63,7 @@ export class FormUserPasswordRecovery extends Component {
     return (
       <Form onSubmit={handleSubmit(this.submit)}>
         <Flex justifyContent="center" width="100%" flexDirection="column">
-          <Box width="100%" mt="16px" mb="16px">
+          <Box width="100%" mb="16px">
             <Field
               name={"password1"}
               component={TextFieldWithIcon}
