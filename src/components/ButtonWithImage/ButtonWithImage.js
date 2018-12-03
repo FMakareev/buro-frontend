@@ -12,6 +12,7 @@ export const ButtonWithImage = ({ iconLeft, iconRight, children, ...rest }) => (
           {iconLeft}
         </Flex>
       )}
+      {!iconLeft && <div />}
       <Flex justifyContent="center" alignItems="center">
         {children}
       </Flex>
@@ -20,6 +21,7 @@ export const ButtonWithImage = ({ iconLeft, iconRight, children, ...rest }) => (
           {iconRight}
         </Flex>
       )}
+      {!iconRight && <div />}
     </Flex>
   </ButtonBase>
 );
