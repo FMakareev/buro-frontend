@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
 
-import styled from 'styled-components';
-
 import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
 import { TextFieldWithIcon } from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
@@ -20,10 +18,8 @@ import { required } from '../../../../utils/validation/required';
 
 import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
 import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
+import {ReloadIcon} from "../../components/ReloadIcon";
 
-const StyledForm = styled(Form)`
-  position: relative;
-`;
 
 const validate = values => {
   const error = {};
@@ -46,7 +42,7 @@ export class FormUserPasswordRecovery extends Component {
     new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(true);
-      }, 5000);
+      }, 1000);
     }).then(() => {
       throw new SubmissionError({
         _error: 'Connection error!',
@@ -65,45 +61,68 @@ export class FormUserPasswordRecovery extends Component {
     } = this.props;
 
     return (
-      <StyledForm onSubmit={handleSubmit(this.submit)}>
+      <Form onSubmit={handleSubmit(this.submit)}>
         <Flex justifyContent="center" width="100%" flexDirection="column">
           <Box width="100%" mt="16px" mb="16px">
             <Field
-              name="password1"
+              name={"password1"}
               component={TextFieldWithIcon}
-              placeholder="Password"
-              type="password"
+              placeholder={"Password"}
+              type={"password"}
               icon={<PasswordIcon />}
               validate={[required]}
             />
           </Box>
           <Box width="100%" mb="16px">
             <Field
-              name="password2"
+              name={"password2"}
               component={TextFieldWithIcon}
-              placeholder="Password"
-              type="password"
+              placeholder={"Password"}
+              type={"password"}
               icon={<PasswordIcon />}
               validate={[required]}
             />
           </Box>
+          {
+            !submitFailed &&
+            <Box width={'100%'}>
+              <ButtonWithImageError
+                type={'submit'}
+                variant={'primary'}
+                size={'medium'}
+                fontSize={6}
+                error={error}
+                width={'100%'}
+                iconRight={
+                  <Text fontSize={12} lineHeight={0}>
+                    <SvgArrowRight />
+                  </Text>
+                }
+                disabled={pristine || submitting || invalid}>
+                Create new password
+              </ButtonWithImageError>
+            </Box>
+          }
+          {submitFailed && (
+            <Box width={"100%"}>
+              <ButtonWithImageError
+                type={"submit"}
+                variant={"error"}
+                size={"medium"}
+                error={error}
+                iconRight={
+                  <Text fontSize={12} lineHeight={0}>
+                    <ReloadIcon/>
+                  </Text>
+                }
+              >
+                Try again
+              </ButtonWithImageError>
+            </Box>
+          )}
 
-          <Box width="100%">
-            <ButtonWithImageError
-              type="submit"
-              variant="primary"
-              size="medium"
-              py={2}
-              error={error}
-              iconRight={
-                <Text fontSize={12} lineHeight={0}>
-                  <SvgArrowRight />
-                </Text>
-              }
-              disabled={pristine || submitting || invalid}>
-              Sign in
-            </ButtonWithImageError>
-          </Box>
+
+
         </Flex>
         {submitting && (
           <PreloaderWrapper>
@@ -112,7 +131,7 @@ export class FormUserPasswordRecovery extends Component {
             </Text>
           </PreloaderWrapper>
         )}
-      </StyledForm>
+      </Form>
     );
   }
 }
