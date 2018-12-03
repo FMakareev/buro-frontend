@@ -66,7 +66,7 @@ export class FormUserLogin extends Component {
     return (
       <StyledForm onSubmit={handleSubmit(this.submit)}>
         <Flex justifyContent="center" width="100%" flexDirection="column">
-          <Box width="100%" mt="17px">
+          <Box width="100%" mb="17px">
             <Field
               name="email"
               component={TextFieldWithIcon}
@@ -76,7 +76,7 @@ export class FormUserLogin extends Component {
               validate={[required]}
             />
           </Box>
-          <Box width="100%" mt="17px" mb="11px">
+          <Box width="100%" mb="11px">
             <Field
               name="password"
               component={TextFieldWithIcon}

@@ -24,7 +24,7 @@ export class PasswordRecovery extends Component {
   render() {
     return (
       <Wrapper ml={['auto', 20, 100]} mt={[10, 120]} maxWidth={360}>
-        <Title>New password</Title>
+        <Title mb="16px">New password</Title>
         <FormUserPasswordRecovery />
       </Wrapper>
     );

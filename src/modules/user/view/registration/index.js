@@ -25,12 +25,10 @@ export class RegistrationPage extends Component {
 
   render() {
     return (
-      <Wrapper position={'relative'}  ml={['auto', 20, 100]} mt={[10, 120]} maxWidth={360}>
+      <Wrapper position="relative" ml={['auto', 20, 100]} mt={[10, 120]} maxWidth={360}>
+        <Title mb={6}>Sign up</Title>
         <Box mb={6}>
-          <Title>Sign up</Title>
-        </Box>
-        <Box mb={6}>
-          <FormUserRegistration/>
+          <FormUserRegistration />
         </Box>
         <Box>
           <HelpText>

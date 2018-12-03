@@ -22,7 +22,7 @@ export class LoginPage extends Component {
   render() {
     return (
       <Wrapper ml={['auto', 20, 100]} mt={[10, 120]} maxWidth={360}>
-        <Title>Sign in</Title>
+        <Title mb="17px">Sign in</Title>
         <FormUserLogin />
       </Wrapper>
     );
