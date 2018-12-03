@@ -1,26 +1,22 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { space } from 'styled-system';
 
-import { SelectBase } from '../SelectBase/SelectBase';
+import {SelectBase} from '../SelectBase/SelectBase';
 import Label from '../Label/Label';
 import Message from '../Message/Message';
 
 const CustomStyles = {
   dropdownIndicator: (provided, state) => ({
-    ...provided,
     height: '32px',
     width: '32px',
-    border: state.hasValue ? '1px solid #093971' : '1px solid #A2A2A2',
-    borderRadius: '100%',
-    marginRight: '10px',
+    marginRight: '9px',
   }),
 
   valueContainer: () => ({
     paddingTop: '8px',
     paddingBottom: '8px',
-    paddingLeft: '13px',
+    paddingLeft: '7px',
   }),
 
   menuList: provided => ({
@@ -31,10 +27,30 @@ const CustomStyles = {
     overflow: 'hidden',
   }),
 
-  control: (provided, state) => ({
-    ...provided,
-    border: state.hasValue ? '1px solid #093971' : '1px solid #A2A2A2',
-  }),
+  control: (provided, state) => {
+
+    return ({
+      ...provided,
+      border: state.hasValue ? '1px solid inherit' : '1px solid inherit',
+      borderColor: 'inherit',
+      boxShadow: 'none',
+      ':hover': {
+        borderColor: 'initial',
+        outline: 'none !important',
+        boxShadow: '0 0 0 5px #E7EDF8',
+      },
+      ':focus': {
+        borderColor: 'initial',
+        outline: 'none !important',
+        boxShadow: '0 0 0 5px #E7EDF8',
+      },
+      ':active': {
+        borderColor: 'initial',
+        outline: 'none !important',
+        boxShadow: '0 0 0 5px #E7EDF8',
+      }
+    })
+  },
 
   indicatorSeparator: (provided, state) => ({
     ...provided,
@@ -53,7 +69,7 @@ const CustomStyles = {
     paddingLeft: '22px',
     backgroundColor: state.isFocused ? '#E7EDF8' : '#FFFFFF',
   }),
-  singleValue: () => ({ paddingLeft: '13px' }),
+  singleValue: () => ({paddingLeft: '13px'}),
 
   placeholder: () => ({
     paddingLeft: '13px',
@@ -61,45 +77,45 @@ const CustomStyles = {
 };
 
 const Wrapper = styled.div`
+  position: relative;
   text-align: left;
   font-family: ${props => props.theme.fontFamily.medium};
   font-size: ${props => props.theme.fontSizes[6]}px;
   line-height: ${props => props.theme.fontSizes[11]}px;
-  box-shadow: ${props => props.theme.boxShadow[0]};
   border-radius: ${props => props.theme.fontSizes[2]}px;
   border-color: ${props => {
-    if (props.meta.dirty) {
-      return props.theme.colors.color1;
-    }
-    if (props.meta.touched && props.meta.error) {
-      return props.theme.colors.color9;
-    }
-    return props.theme.colors.color5;
-  }} !important;
+  if (props.meta.dirty) {
+    return props.theme.colors.color1;
+  }
+  if (props.meta.touched && props.meta.error) {
+    return props.theme.colors.color9;
+  }
+  return props.theme.colors.color5;
+}} !important;
   color: ${props => {
-    if (props.meta.dirty) {
-      return props.theme.colors.color1;
-    }
-    if (props.meta.touched && props.meta.error) {
-      return props.theme.colors.color9;
-    }
-    return props.theme.colors.color5;
-  }} !important;
+  if (props.meta.dirty) {
+    return props.theme.colors.color1;
+  }
+  if (props.meta.touched && props.meta.error) {
+    return props.theme.colors.color9;
+  }
+  return props.theme.colors.color5;
+}} !important;
 
-  & + svg {
+  & svg {
     position: absolute;
     top: 10px;
     right: 10px;
 
     fill: ${props => {
-      if (props.meta.dirty) {
-        return props.theme.colors.color1;
-      }
-      if (props.meta.touched && props.meta.error) {
-        return props.theme.colors.color9;
-      }
-      return props.theme.colors.color5;
-    }} !important;
+  if (props.meta.dirty) {
+    return props.theme.colors.color1;
+  }
+  if (props.meta.touched && props.meta.error) {
+    return props.theme.colors.color9;
+  }
+  return props.theme.colors.color5;
+}} !important;
   }
 
   :focus {
@@ -116,6 +132,7 @@ const StyledLabel = styled(Label)`
   padding-top: 2px;
   color: blue;
 `;
+
 
 /**
  * Component Select
@@ -180,12 +197,20 @@ export class Select extends Component {
       placeholder,
     } = this.props;
 
+    console.log(this.props);
     return (
       <Wrapper mb={mb} className={className} meta={meta}>
-        <StyledLabel mb={3}>{label}</StyledLabel>
+        {
+          label && <StyledLabel mb={3}>{label}</StyledLabel>
+        }
+        {meta && <Message fontSize={'10px'} lineHeight={'12px'} fontFamily={'medium'} style={{
+          position: 'absolute',
+          top: '-12px',
+        }} meta={meta}/>}
 
         <SelectBase
           input={input}
+          meta={meta}
           selectValue={selectValue}
           loading={loading}
           disabled={disabled}
@@ -197,7 +222,6 @@ export class Select extends Component {
           onChange={onChange}
           styles={CustomStyles}
         />
-        {meta && <Message meta={meta} />}
       </Wrapper>
     );
   }
