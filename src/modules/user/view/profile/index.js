@@ -8,7 +8,7 @@ export class ProfilePage extends Component {
 
   render() {
     return (
-      <Container px={6} mt={100} backgroundColor="transparent">
+      <Container px={6} mt={[10, 100]} backgroundColor="transparent">
         <FormUserProfile />
       </Container>
     );

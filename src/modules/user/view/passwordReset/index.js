@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Wrapper from "../../components/Wrapper";
-import {Title} from "../../components/Title";
-import {FormResetPassword} from "./FormResetPassword";
-import {Box} from "../../../../components/Box/Box";
-
+import Wrapper from '../../components/Wrapper';
+import { Title } from '../../components/Title';
+import { FormResetPassword } from './FormResetPassword';
+import { Box } from '../../../../components/Box/Box';
 
 export class PasswordResetPage extends Component {
   static propTypes = {};
@@ -21,12 +20,12 @@ export class PasswordResetPage extends Component {
 
   render() {
     return (
-      <Wrapper ml={100} mt={120} maxWidth={360}>
+      <Wrapper ml={['auto', 20, 100]} mt={[10, 120]} maxWidth={360}>
         <Box mb={6}>
-          <Title >Reset your password</Title>
+          <Title>Reset your password</Title>
         </Box>
 
-        <FormResetPassword/>
+        <FormResetPassword />
       </Wrapper>
     );
   }

@@ -76,60 +76,59 @@ export class FormProfileUser extends Component {
         <Header as="h2" fontSize="24px" lineHeight="32px" mb="24px">
           Main data:
         </Header>
-        <Flex mx={-6} justifyContent="space-between" >
-        </Flex>
-        <Flex mx={-6} justifyContent="space-between" flexWrap={'wrap'} mb={'30px'}>
-          <Box width={['100%','100%','50%']} px={6} mb={7}>
+        <Flex mx={-6} justifyContent="space-between" />
+        <Flex mx={-6} justifyContent="space-between" flexWrap="wrap" mb="30px">
+          <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[1, 0]}>
             <Field
-              name={"firstname"}
+              name="firstname"
               component={TextFieldWithLabel}
-              label={"First Name:"}
-              type={"text"}
+              label="First Name:"
+              type="text"
               validate={[required]}
             />
           </Box>
-          <Box width={['100%','100%','50%']} px={6} mb={7}>
+          <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[4, 0]}>
             <Field
-              name={"dateofbirth"}
+              name="dateofbirth"
               component={DayPickerBase}
-              label={"Date of Birth:"}
-              type={"date"}
+              label="Date of Birth:"
+              type="date"
             />
           </Box>
-          <Box width={['100%','100%','50%']} px={6} mb={7}>
+          <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[2, 0]}>
             <Field
-              name={"lastname"}
+              name="lastname"
               component={TextFieldWithLabel}
-              label={"Last Name:"}
-              type={"text"}
+              label="Last Name:"
+              type="text"
               validate={[required]}
             />
           </Box>
-          <Box width={['100%','100%','50%']} px={6} mb={7}>
+          <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[5, 0]}>
             <Field
-              name={"telephone"}
+              name="telephone"
               component={TextFieldWithLabel}
-              label={"Telephone:"}
-              type={"text"}
+              label="Telephone:"
+              type="text"
               validate={[required, phoneNumber]}
               normalize={normalizePhoneNumber}
             />
           </Box>
-          <Box width={['100%','100%','50%']} px={6} mb={7}>
+          <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[3, 0]}>
             <Field
-              name={"patronymic"}
+              name="patronymic"
               component={TextFieldWithLabel}
-              label={"Patronymic:"}
-              type={"text"}
+              label="Patronymic:"
+              type="text"
               validate={[required]}
             />
           </Box>
-          <Box width={['100%','100%','50%']} px={6} mb={7}>
+          <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[6, 0]}>
             <Field
-              name={"gender"}
+              name="gender"
               component={ButtonTriggerGroup}
-              label={"Gender:"}
-              type={"text"}
+              label="Gender:"
+              type="text"
               options={[
                 {
                   label: 'Male',
