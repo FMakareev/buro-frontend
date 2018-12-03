@@ -105,7 +105,7 @@ export class FormUserLogin extends Component {
                   </Text>
                 }
                 disabled={pristine || submitting || invalid}>
-                Sigh in
+                Sign in
               </ButtonWithImageError>
             </Box>
           )}
