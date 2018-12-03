@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import {graphql} from "react-apollo";
 
 import { required } from '../../../../utils/validation/required';
 import { TextFieldWithIcon } from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
@@ -16,11 +16,14 @@ import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloa
 import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
 import isEmail from "../../../../utils/validation/isEmail";
 import {SvgReloadIcon} from "../../../../components/Icons/SvgReloadIcon";
+import ResetPasswordMutation from './ResetPasswordMutation.graphql'
 
-const FormStyled = styled(Form)`
-  position: relative;
-`;
 
+
+
+@graphql(ResetPasswordMutation, {
+  name: '@apollo/update',
+})
 @reduxForm({
   form: 'FormResetPassword',
 })
@@ -32,16 +35,20 @@ export class FormResetPassword extends Component {
     };
   }
 
-  submit = value =>
-    new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(true);
-      }, 1000);
-    }).then(() => {
-      throw new SubmissionError({
-        _error: 'Connection error!',
-      });
-    });
+  submit = value => {
+    console.log(value);
+    return this.props['@apollo/update']({
+      variables: Object.assign({}, value),
+    })
+      .then((response) => {
+        console.log(response);
+      }).catch(error => {
+        console.log(error);
+        throw new SubmissionError({
+          _error: 'Connection error!',
+        });
+      })
+  };
 
   render() {
     const {
@@ -54,7 +61,7 @@ export class FormResetPassword extends Component {
       error,
     } = this.props;
     return (
-      <FormStyled onSubmit={handleSubmit(this.submit)}>
+      <Form onSubmit={handleSubmit(this.submit)}>
         {(submitFailed || (!submitSucceeded && !submitFailed)) && (
           <Flex justifyContent={'center'} width={'100%'} flexDirection={'column'}>
             <Box width={'100%'} mb={6}>
@@ -144,7 +151,7 @@ export class FormResetPassword extends Component {
           </PreloaderWrapper>
         )}
 
-      </FormStyled>
+      </Form>
     );
   }
 }
