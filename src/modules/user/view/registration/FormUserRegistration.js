@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
 import { Link } from 'react-router-dom';
-
-import styled from 'styled-components';
-
 import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
 import { Select } from '../../../../components/Select/Select';
@@ -27,10 +24,10 @@ import { required } from '../../../../utils/validation/required';
 
 import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
 import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
+import isEmail from "../../../../utils/validation/isEmail";
+import minLength from "../../../../utils/validation/minLength";
 
-const StyledForm = styled(Form)`
-  position: relative;
-`;
+const minLength8 = minLength(8);
 
 export class FormUserRegistration extends Component {
   static propTypes = {
@@ -45,7 +42,7 @@ export class FormUserRegistration extends Component {
     new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(true);
-      }, 5000);
+      }, 10000);
     }).then(() => {
       throw new SubmissionError({
         _error: 'Connection error!',
@@ -64,9 +61,9 @@ export class FormUserRegistration extends Component {
     } = this.props;
 
     return (
-      <StyledForm onSubmit={handleSubmit(this.submit)}>
+      <Form onSubmit={handleSubmit(this.submit)}>
         <Flex justifyContent="center" width="100%" flexDirection="column">
-          <Box width="100%" mt="17px">
+          <Box width={"100%"} mb={6}>
             <Field
               name="role"
               component={Select}
@@ -77,44 +74,38 @@ export class FormUserRegistration extends Component {
               validate={[required]}
             />
           </Box>
-          <Box width="100%" mt="17px">
+          <Box width={"100%"} mb={6}>
             <Field
               name="email"
               component={TextFieldWithIcon}
               placeholder="Email address"
               type="email"
               icon={<EmailIcon />}
-              validate={[required]}
+              validate={[required, isEmail]}
             />
           </Box>
-          <Box width="100%" mt="17px" mb="11px">
+          <Box width={"100%"} mb={6}>
             <Field
               name="password"
               component={TextFieldWithIcon}
               placeholder="Password"
               type="password"
               icon={<PasswordIcon />}
-              validate={[required]}
+              validate={[required, minLength8]}
             />
           </Box>
-          <Box width="100%" mt="15px" mb="20px">
-            <Flex>
-              <Box mr="10px">
-                <Field
-                  name="privacy"
-                  checked={false}
-                  component={Checkbox}
-                  type="text"
-                  validate={[required]}
-                />
-              </Box>
-              <Box>
-                <HelpText width="90%">
-                  I accept the <Link to="/">terms of service</Link> and
-                  <Link to="/"> privacy policy</Link>.
-                </HelpText>
-              </Box>
-            </Flex>
+          <Box width={"100%"} mb={8}>
+            <Field
+              name={"privacy"}
+              checked={false}
+              label={<HelpText width={"90%"}>
+                I accept the <Link to="/">terms of service</Link> and
+                <Link to="/"> privacy policy</Link>.
+              </HelpText>}
+              component={Checkbox}
+              type="text"
+              validate={[required]}
+            />
           </Box>
           {!submitSucceeded && !submitFailed && (
             <Box width="100%">
@@ -137,9 +128,9 @@ export class FormUserRegistration extends Component {
           {submitFailed && (
             <Box width="100%">
               <ButtonWithImageError
-                type="submit"
-                variant="error"
-                size="medium"
+                type={"submit"}
+                variant={"error"}
+                size={"medium"}
                 py={2}
                 error={error}
                 iconRight={
@@ -147,7 +138,7 @@ export class FormUserRegistration extends Component {
                     <ReloadIcon />
                   </Text>
                 }
-                disabled={pristine || submitting || invalid}>
+              >
                 Try again
               </ButtonWithImageError>
             </Box>
@@ -161,7 +152,7 @@ export class FormUserRegistration extends Component {
             </Text>
           </PreloaderWrapper>
         )}
-      </StyledForm>
+      </Form>
     );
   }
 }
