@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { space } from 'styled-system';
-import onCheckbox from '../../assets/icons/monocolor/onCheckbox.monocolor.svg';
+import { __metadata } from 'tslib';
+import checkboxOn from '../../assets/icons/multicolor/checkboxOn.multicolor.svg';
+import checkboxOff from '../../assets/icons/multicolor/checkboxOff.multicolor.svg';
 // import onCheckbox from '../../assets/image/onCheckbox.png';
 
 const Wrapper = styled.div`
@@ -23,11 +25,14 @@ const Input = styled.input`
     content: '';
     display: inline-block;
     vertical-align: text-top;
-    width: ${props => props.theme.space[9] - 2}px;
-    height: ${props => props.theme.space[9] - 2}px;
+    width: 28px;
+    height: 28px;
     background-color: ${props => props.theme.colors.color0};
-    border: ${props => props.theme.space[1]}px solid ${props => props.theme.colors.color6};
+    /* border: 1px solid ${props => props.theme.colors.color1}; */
+    /* border-radius: ${props => props.theme.fontSizes[3]}px;  */
     box-sizing: border-box;
+    background: url(${checkboxOff});
+    background-repeat: no-repeat;
   }
 
   /* // Box hover
@@ -42,7 +47,9 @@ const Input = styled.input`
 
    // Box checked
   &:checked + label:before {
-   display:none;
+   display: hidden;
+   border: none;
+   opacity: 0.0;
   }
 
   // Disabled state label.
@@ -62,10 +69,10 @@ const Input = styled.input`
     content: '';
     position: absolute;
     left: 0px;
-    top: -2px;
-    width: ${props => props.theme.space[9]}px;
-    height: ${props => props.theme.space[9]}px;
-    background-image: url(${onCheckbox}) !important;
+    top: -1px;
+    width: 28px;
+    height: 28px;
+    background-image: url(${checkboxOn}) !important;
     background-repeat: no-repeat;
   }
 `;
@@ -100,7 +107,7 @@ export class CheckboxBase extends Component {
   static defaultProps = {};
 
   render() {
-    const { children, input, index, mb, py, px, checked, disabled } = this.props;
+    const { children, input, index, mb, py, px, checked, disabled, meta } = this.props;
 
     return (
       <Wrapper mb={mb} px={px} py={py}>

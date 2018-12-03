@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 
+import { Box } from '../../../../components/Box/Box';
 
-export class PasswordRecoveryPage extends Component {
+import { Wrapper } from '../../components/Wrapper';
+import { Title } from '../../components/Title';
+
+import { FormUserPasswordRecovery } from './FormUserPasswordRecovery';
+
+export class PasswordRecovery extends Component {
   static propTypes = {};
 
   static defaultProps = {};
@@ -17,11 +23,12 @@ export class PasswordRecoveryPage extends Component {
 
   render() {
     return (
-      <div>
-        PasswordRecoveryPage
-      </div>
+      <Wrapper ml={100} mt={120} maxWidth={360}>
+        <Title>New password</Title>
+        <FormUserPasswordRecovery />
+      </Wrapper>
     );
   }
 }
 
-export default PasswordRecoveryPage;
+export default PasswordRecovery;

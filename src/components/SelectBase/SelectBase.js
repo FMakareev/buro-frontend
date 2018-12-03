@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import SmallPreloader from '../SmallPreloader/SmallPreloader';
-import { Relative } from "../Relative/Relative";
-import { Absolute } from "../Absolute/Absolute";
-
+import { Relative } from '../Relative/Relative';
+import { Absolute } from '../Absolute/Absolute';
 
 /**
  * Компонент селекта (SelectBase)
@@ -45,7 +44,8 @@ export class SelectBase extends Component {
   get initialState() {
     return {};
   }
-  shouldComponentUpdate(nextProps) {
+
+  shouldComponentUpdate(nextProps, nextState) {
     // console.log('shouldComponentUpdate nextProps', nextProps);
     // console.log('shouldComponentUpdate this.props', this.props);
     if (
@@ -70,6 +70,8 @@ export class SelectBase extends Component {
   onChange = event => {
     const { input, valueKey } = this.props;
     input.onChange(event ? event[valueKey] : null);
+
+    console.log(event[valueKey]);
   };
 
   render() {
@@ -83,6 +85,7 @@ export class SelectBase extends Component {
       loading,
       defaultOptions,
       placeholder,
+      styles,
     } = this.props;
     return (
       <Relative>
@@ -90,13 +93,14 @@ export class SelectBase extends Component {
           defaultOptions={defaultOptions}
           selectValue={selectValue}
           name={input.name}
-          value={input.value ? input.value : selectValue || ''}
+          // value={input.value ? input.value : selectValue || ''}
           options={options}
           labelKey={labelKey}
           valueKey={valueKey}
           onChange={this.onChange}
           disabled={disabled}
           placeholder={placeholder}
+          styles={styles}
         />
         {loading && (
           <Absolute right={0} top={0}>

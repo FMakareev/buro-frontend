@@ -17,7 +17,15 @@ import { SvgArrowRight } from '../../../../components/Icons/SvgArrowRight';
 import { EmailIcon } from '../../components/EmailIIcon';
 import { PasswordIcon } from '../../components/PasswordIcon';
 
+import { Text } from '../../../../components/Text/Text';
+
 import { required } from '../../../../utils/validation/required';
+
+const StyledButtonWithImage = styled(ButtonWithImage)`
+  width: 100%;
+  padding-left: 88px;
+  padding-right: 12px;
+`;
 
 export class FormUserLogin extends Component {
   static propTypes = {
@@ -70,17 +78,20 @@ export class FormUserLogin extends Component {
           </Box>
 
           <Box width="100%">
-            <ButtonWithImage
+            <StyledButtonWithImage
               type="submit"
               variant="primary"
               size="medium"
-              px={88}
               py={2}
-              fontSize="32px"
-              iconRight={<SvgArrowRight />}
+              // fontSize="32px"
+              iconRight={
+                <Text fontSize={12} lineHeight={0}>
+                  <SvgArrowRight />
+                </Text>
+              }
               disabled={pristine || submitting || invalid}>
               Sigh in
-            </ButtonWithImage>
+            </StyledButtonWithImage>
           </Box>
         </Flex>
       </Form>
