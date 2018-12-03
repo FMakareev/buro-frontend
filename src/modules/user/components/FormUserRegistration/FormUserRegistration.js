@@ -1,34 +1,44 @@
-import React, { Component } from 'react';
-import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
-import { Link } from 'react-router-dom';
-import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
+import React, {Component} from 'react';
+import {Field, reduxForm, Form, SubmissionError} from 'redux-form';
+import {Link} from 'react-router-dom';
+import {graphql} from 'react-apollo';
 
-import { Select } from '../../../../components/Select/Select';
-import { Checkbox } from '../../../../components/Checkbox/Checkbox';
+import {formPropTypes} from '../../../../propTypes/Forms/FormPropTypes';
 
-import { TextFieldWithIcon } from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
+import {Select} from '../../../../components/Select/Select';
+import {Checkbox} from '../../../../components/Checkbox/Checkbox';
 
-import { Box } from '../../../../components/Box/Box';
-import { Flex } from '../../../../components/Flex/Flex';
-import { HelpText } from '../HelpText/HelpText';
+import {TextFieldWithIcon} from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
 
-import { SvgArrowRight } from '../../../../components/Icons/SvgArrowRight';
-import { SvgEmailIcon } from '../../../../components/Icons/SVGEmailIcon';
-import { SvgPasswordIcon } from '../../../../components/Icons/SvgPasswordIcon';
-import { SvgReloadIcon } from '../../../../components/Icons/SvgReloadIcon';
+import {Box} from '../../../../components/Box/Box';
+import {Flex} from '../../../../components/Flex/Flex';
+import {HelpText} from '../HelpText/HelpText';
 
-import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
-import { Text } from '../../../../components/Text/Text';
+import {SvgArrowRight} from '../../../../components/Icons/SvgArrowRight';
+import {SvgEmailIcon} from '../../../../components/Icons/SVGEmailIcon';
+import {SvgPasswordIcon} from '../../../../components/Icons/SvgPasswordIcon';
+import {SvgReloadIcon} from '../../../../components/Icons/SvgReloadIcon';
 
-import { required } from '../../../../utils/validation/required';
+import {ButtonWithImageError} from '../ButtonWithImageError/ButtonWithImageError';
+import {Text} from '../../../../components/Text/Text';
 
-import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
-import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
+import {required} from '../../../../utils/validation/required';
+
+import {SpeedingWheel} from '../../../../components/SmallPreloader/SmallPreloader';
+import {PreloaderWrapper} from '../../../../components/PreloaderWrapper/PreloaderWrapper';
 import isEmail from "../../../../utils/validation/isEmail";
 import minLength from "../../../../utils/validation/minLength";
 
+import CreateUserMutation from './CreateUserMutation.graphql';
+
 const minLength8 = minLength(8);
 
+@graphql(CreateUserMutation, {
+  name: '@apollo/create',
+})
+@reduxForm({
+  form: 'FormUserRegistration',
+})
 export class FormUserRegistration extends Component {
   static propTypes = {
     ...formPropTypes,
@@ -38,16 +48,20 @@ export class FormUserRegistration extends Component {
     super(props);
   }
 
-  submit = value =>
-    new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(true);
-      }, 10000);
-    }).then(() => {
-      throw new SubmissionError({
-        _error: 'Connection error!',
-      });
-    });
+  submit = value => {
+    return this.props['@apollo/create']({
+      variables: Object.assign({}, value, {retype_password: value.password}),
+    })
+      .then((response) => {
+        console.log(response);
+      }).catch(error => {
+        console.log(error);
+        throw new SubmissionError({
+          _error: 'Connection error!',
+        });
+      })
+  };
+
 
   render() {
     const {
@@ -70,7 +84,7 @@ export class FormUserRegistration extends Component {
               placeholder="Role"
               labelKey="label"
               valueKey="value"
-              options={[{ value: 'bank', label: 'Bank' }, { value: 'client', label: 'Client' }]}
+              options={[{value: 'bank', label: 'Bank'}, {value: 'client', label: 'Client'}]}
               validate={[required]}
             />
           </Box>
@@ -80,7 +94,7 @@ export class FormUserRegistration extends Component {
               component={TextFieldWithIcon}
               placeholder="Email address"
               type="email"
-              icon={<SvgEmailIcon />}
+              icon={<SvgEmailIcon/>}
               validate={[required, isEmail]}
             />
           </Box>
@@ -90,7 +104,7 @@ export class FormUserRegistration extends Component {
               component={TextFieldWithIcon}
               placeholder="Password"
               type="password"
-              icon={<SvgPasswordIcon />}
+              icon={<SvgPasswordIcon/>}
               validate={[required, minLength8]}
             />
           </Box>
@@ -117,7 +131,7 @@ export class FormUserRegistration extends Component {
                 error={error}
                 iconRight={
                   <Text fontSize={12} lineHeight={0}>
-                    <SvgArrowRight />
+                    <SvgArrowRight/>
                   </Text>
                 }
                 disabled={pristine || submitting || invalid}>
@@ -135,7 +149,7 @@ export class FormUserRegistration extends Component {
                 error={error}
                 iconRight={
                   <Text fontSize={12} lineHeight={0}>
-                    <SvgReloadIcon />
+                    <SvgReloadIcon/>
                   </Text>
                 }
               >
@@ -148,7 +162,7 @@ export class FormUserRegistration extends Component {
         {submitting && (
           <PreloaderWrapper>
             <Text fontSize={12}>
-              <SpeedingWheel />
+              <SpeedingWheel/>
             </Text>
           </PreloaderWrapper>
         )}
@@ -157,8 +171,5 @@ export class FormUserRegistration extends Component {
   }
 }
 
-FormUserRegistration = reduxForm({
-  form: 'FormUserRegistration',
-})(FormUserRegistration);
 
 export default FormUserRegistration;
