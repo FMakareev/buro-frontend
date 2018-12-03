@@ -4,10 +4,10 @@ import path from 'path';
 import webpack from 'webpack';
 import ManifestPlugin from 'webpack-manifest-plugin';
 import WriteFileWebpackPlugin from 'write-file-webpack-plugin';
-import { fileLoaderConfig } from './fileLoaderConfig';
-import { graphqlLoaderConfig } from './graphqlLoaderConfig';
-import { styleLoaderConfig } from './styleLoaderConfig';
-import { scriptsLoaderConfig } from './scriptsLoaderConfig';
+import {fileLoaderConfig} from './fileLoaderConfig';
+import {graphqlLoaderConfig} from './graphqlLoaderConfig';
+import {styleLoaderConfig} from './styleLoaderConfig';
+import {scriptsLoaderConfig} from './scriptsLoaderConfig';
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -17,7 +17,7 @@ export const browserConfigGenerator = () => {
     mode: process.env.NODE_ENV || 'development',
     watch: process.env.WATCH === 'true',
     name: 'client',
-    entry: ['@babel/polyfill',process.env.CLIENT_ENTRY || './src/client/index.js'],
+    entry: ['@babel/polyfill', process.env.CLIENT_ENTRY || './src/client/index.js'],
     output: {
       path: path.resolve(__dirname, process.env.PUBLIC_URL || '../public'),
       publicPath: '/',
@@ -67,14 +67,9 @@ export const browserConfigGenerator = () => {
       }),
       // new CleanWebpackPlugin([ process.env.PUBLIC_URL || '../../public']),
 
-      ...(process.env.NODE_ENV === 'development' ?
-        [new HotModuleReplacementPlugin()] :
-        []),
+      new webpack.HotModuleReplacementPlugin(),
 
-      ...(process.env.NODE_ENV === 'development' &&
-      process.env.ANALYSE ?
-        [] :
-        [new BundleAnalyzerPlugin()]),
+      // ...(process.env.NODE_ENV === 'development' &&  process.env.ANALYSE ? [] : [new BundleAnalyzerPlugin()]),
 
       new ManifestPlugin({
         fileName: 'asset-manifest.json',

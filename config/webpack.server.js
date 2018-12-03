@@ -59,13 +59,9 @@ export const serverConfigGenerator = () => {
         ENDPOINT_SERVER: process.env.ENDPOINT_SERVER || "'http://localhost:5001'",
       }),
 
-      ...(process.env.NODE_ENV === 'development' ?
-        [new HotModuleReplacementPlugin()] :
-        []),
+      new webpack.HotModuleReplacementPlugin(),
 
-      ...(process.env.NODE_ENV === 'development' && process.env.ANALYSE ?
-        [] :
-        [new BundleAnalyzerPlugin(),]),
+      // ...(process.env.NODE_ENV === 'development' &&  process.env.ANALYSE ? [] : [new BundleAnalyzerPlugin()]),
 
     ],
   };
