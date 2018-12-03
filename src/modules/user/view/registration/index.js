@@ -25,7 +25,7 @@ export class RegistrationPage extends Component {
 
   render() {
     return (
-      <Wrapper ml={100} mt={120} maxWidth={360}>
+      <Wrapper ml={['auto', 20, 100]} mt={[10, 120]} maxWidth={360}>
         <Title>Sign up</Title>
         <FormUserRegistration />
         <Box mt="16px">
