@@ -10,9 +10,6 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     width: 100%;
     min-height: 100vh;
-    background-image: url('../assets/image/background_hi.png');
-    background-repeat: no-repeat;
-    background-size: cover;
     background-color: #fff;
     font-family: 'Montserrat Regular';
     font-size: 16px;

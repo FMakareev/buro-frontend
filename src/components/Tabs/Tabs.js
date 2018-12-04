@@ -54,6 +54,7 @@ export class Tabs extends Component {
    */
   render() {
     const { children, activeTab, toggleTab, Wrapper = TabsStyled } = this.props;
+
     if (!children) {
       return null;
     }

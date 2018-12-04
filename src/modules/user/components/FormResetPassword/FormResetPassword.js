@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
 import { Link } from 'react-router-dom';
-import {graphql} from "react-apollo";
+import { graphql } from 'react-apollo';
 
-import { required } from '../../../../utils/validation/required';
 import { TextFieldWithIcon } from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
-import { Flex } from '../../../../components/Flex/Flex';
-import { SvgEmailIcon } from '../../../../components/Icons/SVGEmailIcon';
-import { Box } from '../../../../components/Box/Box';
-import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
+
+import { SvgEmailIcon } from '../../../../components/Icons/SvgEmailIcon';
 import { SvgArrowRight } from '../../../../components/Icons/SvgArrowRight';
-import { Text } from '../../../../components/Text/Text';
 import { SvgArrowLeft } from '../../../../components/Icons/SvgArrowLeft';
+import { SvgReloadIcon } from '../../../../components/Icons/SvgReloadIcon';
+
+import { Text } from '../../../../components/Text/Text';
+import { Box } from '../../../../components/Box/Box';
+import { Flex } from '../../../../components/Flex/Flex';
+
+import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
+
 import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
 import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
-import isEmail from "../../../../utils/validation/isEmail";
-import {SvgReloadIcon} from "../../../../components/Icons/SvgReloadIcon";
-import ResetPasswordMutation from './ResetPasswordMutation.graphql'
 
+import isEmail from '../../../../utils/validation/isEmail';
+import { required } from '../../../../utils/validation/required';
 
-
+import ResetPasswordMutation from './ResetPasswordMutation.graphql';
 
 @graphql(ResetPasswordMutation, {
   name: '@apollo/update',
@@ -40,14 +43,15 @@ export class FormResetPassword extends Component {
     return this.props['@apollo/update']({
       variables: Object.assign({}, value),
     })
-      .then((response) => {
+      .then(response => {
         console.log(response);
-      }).catch(error => {
+      })
+      .catch(error => {
         console.log(error);
         throw new SubmissionError({
           _error: 'Connection error!',
         });
-      })
+      });
   };
 
   render() {
@@ -70,12 +74,11 @@ export class FormResetPassword extends Component {
                 component={TextFieldWithIcon}
                 placeholder={'Email address'}
                 type={'email'}
-                validate={[required,isEmail]}
+                validate={[required, isEmail]}
                 icon={<SvgEmailIcon />}
               />
             </Box>
-            {
-              !submitFailed &&
+            {!submitFailed && (
               <Box width={'100%'}>
                 <ButtonWithImageError
                   type={'submit'}
@@ -93,22 +96,20 @@ export class FormResetPassword extends Component {
                   Send password reset mail
                 </ButtonWithImageError>
               </Box>
-            }
+            )}
 
             {submitFailed && (
-              <Box width={"100%"}>
+              <Box width={'100%'}>
                 <ButtonWithImageError
-                  type={"submit"}
-                  variant={"error"}
-                  size={"medium"}
-
+                  type={'submit'}
+                  variant={'error'}
+                  size={'medium'}
                   error={error}
                   iconRight={
                     <Text fontSize={12} lineHeight={0}>
-                      <SvgReloadIcon/>
+                      <SvgReloadIcon />
                     </Text>
-                  }
-                >
+                  }>
                   Try again
                 </ButtonWithImageError>
               </Box>
@@ -150,7 +151,6 @@ export class FormResetPassword extends Component {
             </Text>
           </PreloaderWrapper>
         )}
-
       </Form>
     );
   }

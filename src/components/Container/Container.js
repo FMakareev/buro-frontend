@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Box } from '../Box/Box';
 import { MaxWidthProperty } from '../../styles/styleProperty/MaxWidthProperty';
-import BackgroundColorProperty from "../../styles/styleProperty/BackgroundColorProperty";
+import BackgroundColorProperty from '../../styles/styleProperty/BackgroundColorProperty';
 
 export const Container = styled(Box)`
   ${MaxWidthProperty};
