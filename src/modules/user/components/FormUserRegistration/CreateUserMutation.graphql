@@ -1,0 +1,17 @@
+mutation(
+$email: String,
+$password: String,
+$retype_password: String,
+$role: String,
+) {
+  createUser(
+    email :$email ,
+    password:$password,
+    retype_password :$retype_password ,
+    role :$role ,
+  ){
+    id
+    email
+    role
+  }
+}

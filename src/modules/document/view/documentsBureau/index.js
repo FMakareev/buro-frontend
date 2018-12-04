@@ -5,9 +5,9 @@ import {Text} from "../../../../components/Text/Text";
 import {ButtonBase} from "../../../../components/ButtonBase/ButtonBase";
 import {SvgUpload} from "../../../../components/Icons/SvgUpload";
 import {ButtonWithImage} from "../../../../components/ButtonWithImage/ButtonWithImage";
-import {makeData} from "./utils";
+import {makeData} from "../../helpers/utils";
 import ReactTableStyled from "../../../../components/ReactTableStyled/ReactTableStyled";
-import {FormDocumentUpload} from "../../documents/FormDocumentUpload/FormDocumentUpload";
+import {FormDocumentUpload} from "../../components/FormDocumentUpload/FormDocumentUpload";
 import Modal from "../../../../components/Modal/Modal";
 
 

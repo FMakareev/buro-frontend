@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Container } from '../../../../components/Container/Container';
-import FormUserProfile from './components/FormUserProfile';
+import FormUserProfile from '../../components/FormProfileUser/FormUserProfile';
 
 export class ProfilePage extends Component {
   state = {};

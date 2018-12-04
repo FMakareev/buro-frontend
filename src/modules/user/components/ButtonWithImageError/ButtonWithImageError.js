@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ButtonWithImage } from '../../../components/ButtonWithImage/ButtonWithImage';
+import { ButtonWithImage } from '../../../../components/ButtonWithImage/ButtonWithImage';
 
 const ButtonWithImageStyled = styled(ButtonWithImage)`
   width: 100%;

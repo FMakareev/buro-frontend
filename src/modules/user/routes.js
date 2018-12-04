@@ -33,6 +33,16 @@ export const routes = [
   },
   {
     layout: LAYOUT_AUTH,
+    exact: false,
+    name: 'New password',
+    path: '/password-recovery/:token',
+    order: 0,
+    hidden: false,
+    load: () => import(/* webpackChunkName: 'userPasswordRecovery' */ './view/passwordRecovery'),
+    resolvers: [],
+  },
+  {
+    layout: LAYOUT_AUTH,
     exact: true,
     name: 'New password',
     path: '/password-recovery',

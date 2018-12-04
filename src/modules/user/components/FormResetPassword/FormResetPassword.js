@@ -1,26 +1,29 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import {graphql} from "react-apollo";
 
 import { required } from '../../../../utils/validation/required';
 import { TextFieldWithIcon } from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
 import { Flex } from '../../../../components/Flex/Flex';
-import { EmailIcon } from '../../components/EmailIIcon';
+import { SvgEmailIcon } from '../../../../components/Icons/SVGEmailIcon';
 import { Box } from '../../../../components/Box/Box';
-import { ButtonWithImageError } from '../../components/ButtonWithImageError';
+import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
 import { SvgArrowRight } from '../../../../components/Icons/SvgArrowRight';
 import { Text } from '../../../../components/Text/Text';
 import { SvgArrowLeft } from '../../../../components/Icons/SvgArrowLeft';
 import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
 import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
 import isEmail from "../../../../utils/validation/isEmail";
-import {ReloadIcon} from "../../components/ReloadIcon";
+import {SvgReloadIcon} from "../../../../components/Icons/SvgReloadIcon";
+import ResetPasswordMutation from './ResetPasswordMutation.graphql'
 
-const FormStyled = styled(Form)`
-  position: relative;
-`;
 
+
+
+@graphql(ResetPasswordMutation, {
+  name: '@apollo/update',
+})
 @reduxForm({
   form: 'FormResetPassword',
 })
@@ -32,16 +35,20 @@ export class FormResetPassword extends Component {
     };
   }
 
-  submit = value =>
-    new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(true);
-      }, 1000);
-    }).then(() => {
-      throw new SubmissionError({
-        _error: 'Connection error!',
-      });
-    });
+  submit = value => {
+    console.log(value);
+    return this.props['@apollo/update']({
+      variables: Object.assign({}, value),
+    })
+      .then((response) => {
+        console.log(response);
+      }).catch(error => {
+        console.log(error);
+        throw new SubmissionError({
+          _error: 'Connection error!',
+        });
+      })
+  };
 
   render() {
     const {
@@ -54,7 +61,7 @@ export class FormResetPassword extends Component {
       error,
     } = this.props;
     return (
-      <FormStyled onSubmit={handleSubmit(this.submit)}>
+      <Form onSubmit={handleSubmit(this.submit)}>
         {(submitFailed || (!submitSucceeded && !submitFailed)) && (
           <Flex justifyContent={'center'} width={'100%'} flexDirection={'column'}>
             <Box width={'100%'} mb={6}>
@@ -64,7 +71,7 @@ export class FormResetPassword extends Component {
                 placeholder={'Email address'}
                 type={'email'}
                 validate={[required,isEmail]}
-                icon={<EmailIcon />}
+                icon={<SvgEmailIcon />}
               />
             </Box>
             {
@@ -98,7 +105,7 @@ export class FormResetPassword extends Component {
                   error={error}
                   iconRight={
                     <Text fontSize={12} lineHeight={0}>
-                      <ReloadIcon/>
+                      <SvgReloadIcon/>
                     </Text>
                   }
                 >
@@ -144,7 +151,7 @@ export class FormResetPassword extends Component {
           </PreloaderWrapper>
         )}
 
-      </FormStyled>
+      </Form>
     );
   }
 }

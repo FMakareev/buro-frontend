@@ -36,6 +36,8 @@ export class Tabs extends Component {
     activeTab: PropTypes.number,
     /**  children React element  */
     children: PropTypes.any,
+    /**  реакт элемент обертка для табов  */
+    Wrapper: PropTypes.any,
     /** CSS : border-bottom */
     borderBottom: PropTypes.number,
     /** CSS : border-color */
@@ -51,7 +53,7 @@ export class Tabs extends Component {
    * @memberof Tabs
    */
   render() {
-    const { children, activeTab, toggleTab } = this.props;
+    const { children, activeTab, toggleTab, Wrapper = TabsStyled } = this.props;
     if (!children) {
       return null;
     }
@@ -65,7 +67,7 @@ export class Tabs extends Component {
       }),
     );
 
-    return <TabsStyled>{childrenWithProps}</TabsStyled>;
+    return <Wrapper>{childrenWithProps}</Wrapper>;
   }
 }
 

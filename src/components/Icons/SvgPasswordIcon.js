@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const PasswordIcon = () => (
+export const SvgPasswordIcon = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
@@ -33,4 +33,4 @@ export const PasswordIcon = () => (
   </svg>
 );
 
-export default PasswordIcon;
+export default SvgPasswordIcon;

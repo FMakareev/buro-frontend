@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import { Wrapper } from '../../components/Wrapper';
-import { Title } from '../../components/Title';
+import { Wrapper } from '../../components/Wrapper/Wrapper';
+import { Title } from '../../components/Title/Title';
 
-import { FormUserLogin } from './FormUserLogin';
+import { FormUserLogin } from '../../components/FormUserLogin/FormUserLogin';
 import { Box } from '../../../../components/Box/Box';
 
 export class LoginPage extends Component {
@@ -22,8 +22,10 @@ export class LoginPage extends Component {
 
   render() {
     return (
-      <Wrapper ml={['auto', 20, 100]} mt={[10, 120]} maxWidth={360}>
-        <Title mb="17px">Sign in</Title>
+      <Wrapper position="relative" ml={['auto', 20, 100]} mt={[10, 120]} maxWidth={360}>
+        <Box mb={6}>
+          <Title>Sign in</Title>
+        </Box>
         <FormUserLogin />
       </Wrapper>
     );

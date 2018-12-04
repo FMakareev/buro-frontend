@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Flex } from '../../../components/Flex/Flex';
-import { Box } from '../../../components/Box/Box';
+import { Flex } from '../../../../components/Flex/Flex';
+import { Box } from '../../../../components/Box/Box';
 
-import { SvgLogo } from '../../../components/Icons/SvgLogo';
+import { SvgLogo } from '../../../../components/Icons/SvgLogo';
 
 const StyledBox = styled(Box)`
   margin: auto;
