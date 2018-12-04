@@ -1,0 +1,82 @@
+type User {
+  id: String
+  bankName: String
+  firstName: String
+  lastName: String
+  patronymic: String
+  birthdate: String
+  gender: String
+  email: String
+  phone: String
+  master_password: String
+  password: String
+  retype_password: String
+  role: String
+  token: String
+}
+
+type Document {
+  id: String,
+  status: String,
+  date: String,
+  file: String,
+}
+
+type UserDocument {
+  id: ID!
+  user: User
+  document: [Document]
+}
+
+type Notification {
+  id: String,
+  date: String,
+  status: String,
+  bank: User,
+  client: User,
+}
+
+type Query {
+  userList: [User],
+  userItem(id: String): User,
+  userEmailItem(email: String): User,
+  userDocumentList(id: String!): [UserDocument],
+  notificationList(clientid: String, bankid: String): [Notification]
+}
+type Mutation {
+
+  createUser(
+    bankName: String,
+    firstName: String,
+    lastName: String,
+    patronymic: String,
+    birthdate: String,
+    gender: String,
+    email: String!,
+    phone: String,
+    master_password: String,
+    password: String!,
+    retype_password: String!,
+    role: String!
+  ): User,
+
+  updateUser(
+    id: String,
+    bankName: String,
+    firstName: String,
+    lastName: String,
+    patronymic: String,
+    birthdate: String,
+    gender: String,
+    email: String,
+    phone: String,
+    password: String,
+    retype_password: String,
+    role: String
+  ): User,
+
+  userResetPassword(email: String!): User,
+  userPasswordRecovery(token: String!,password: String!, retype_password: String): User,
+  createNotification(userid: String): Notification,
+  updateNotification(id: String, status: String): Notification,
+}
