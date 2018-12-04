@@ -1,6 +1,5 @@
-import {typeDefs} from './typeDefs'
 import setupClient from './helpers/apolloClientMock'
-
+import schema from './schema.graphqls';
 const defaultMocks = {
   Query: () => ({
     userList: () => [],
@@ -28,6 +27,6 @@ const defaultMocks = {
   })
 }
 
-export const mocksClient = setupClient(defaultMocks, typeDefs);
+export const mocksClient = setupClient(defaultMocks, schema);
 
 export default mocksClient
