@@ -32,6 +32,7 @@ import minLength from '../../../../utils/validation/minLength';
 import CreateUserMutation from './CreateUserMutation.graphql';
 
 const minLength8 = minLength(8);
+const minLength12 = minLength(12);
 
 @graphql(CreateUserMutation, {
   name: '@apollo/create',
@@ -106,6 +107,16 @@ export class FormUserRegistration extends Component {
               type="password"
               icon={<SvgPasswordIcon />}
               validate={[required, minLength8]}
+            />
+          </Box>
+          <Box width={'100%'} mb={6}>
+            <Field
+              name="masterpassword"
+              component={TextFieldWithIcon}
+              placeholder="Master Password"
+              type="password"
+              icon={<SvgPasswordIcon />}
+              validate={[required, minLength12]}
             />
           </Box>
           <Box width={'100%'} mb={8}>
