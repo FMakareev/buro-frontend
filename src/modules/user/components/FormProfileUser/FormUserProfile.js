@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {Field, reduxForm, Form, SubmissionError} from 'redux-form';
 
-import styled from 'styled-components';
-
 import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
 import { TextFieldWithLabel } from '../../../../components/TextFieldWithLabel/TextFieldWithLabel';
@@ -18,10 +16,6 @@ import { required } from '../../../../utils/validation/required';
 import { phoneNumber } from '../../../../utils/validation/phoneNumber';
 import {graphql} from "react-apollo/index";
 import UpdateUserMutation from './UpdateUserMutation.graphql';
-
-const Header = styled(Text)`
-  font-family: ${props => props.theme.fontFamily.bold};
-`;
 
 /**
  * @param {string} value - вводимое пользователем значение
@@ -92,9 +86,9 @@ export class FormProfileUser extends Component {
 
     return (
       <Form onSubmit={handleSubmit(this.submit)}>
-        <Header as="h2" fontSize="24px" lineHeight="32px" mb="24px">
+        <Text fontFamily={'bold'} as="h2" fontSize={9} lineHeight={11} mb={9}>
           Main data:
-        </Header>
+        </Text>
         <Flex mx={-6} justifyContent="space-between" />
         <Flex mx={-6} justifyContent="space-between" flexWrap="wrap" mb="30px">
           <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[1, 0]}>
