@@ -22,6 +22,16 @@ export const routes = [
     resolvers: [],
   },
   {
+    layout: 0,
+    order: 0,
+    exact: true,
+    hidden: true,
+    title: 'Logout',
+    path: '/logout',
+    load: () => import(/* webpackChunkName: 'userLogout' */ './view/logout'),
+    resolvers: [],
+  },
+  {
     layout: LAYOUT_AUTH,
     exact: true,
     name: 'Sign up',
@@ -63,9 +73,9 @@ export const routes = [
   },
   {
     layout: LAYOUT_APP,
-    exact: true,
+    exact: false,
     name: 'Profile',
-    path: '/profile',
+    path: '/profile/:email',
     order: 0,
     hidden: false,
     load: () => import(/* webpackChunkName: 'userProfile'  */ './view/profile'),
