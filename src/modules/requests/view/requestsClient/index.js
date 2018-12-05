@@ -103,8 +103,8 @@ export class ClientsPage extends Component {
     const { isOpen, id } = this.state;
     return (
       <Container px={6}>
-        <Text fontFamily="bold" fontSize={8} lineHeight={8} mb={7}>
-          Clients
+        <Text fontFamily="bold" fontSize={9} lineHeight={9} mb={7}>
+          Requests
         </Text>
         <ReactTableStyled
           defaultFilterMethod={(filter, row) => String(row[filter.id]).indexOf(filter.value) >= 0}
