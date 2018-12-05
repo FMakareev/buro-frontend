@@ -23,7 +23,7 @@ type Document {
 }
 
 type UserDocument {
-  id: ID!
+  id: String
   user: User
   document: [Document]
 }
@@ -40,7 +40,7 @@ type Query {
   userList: [User],
   userItem(id: String): User,
   userEmailItem(email: String): User,
-  userDocumentList(id: String!): [UserDocument],
+  userDocumentList(id: String): [UserDocument],
   notificationList(clientid: String, bankid: String): [Notification]
 }
 type Mutation {
