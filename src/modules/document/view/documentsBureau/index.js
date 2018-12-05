@@ -26,7 +26,7 @@ const columns = ({onOpenFormUpdateDoc}) => {
       accessor: props => {
         try {
           if (props.user) {
-            return `${props.user.firstName} ${props.user.lastName} ${props.user.sureName}`
+            return `${props.user.firstName} ${props.user.lastName} ${props.user.patronymic}`
           }
         } catch (error) {
           console.log(error);
