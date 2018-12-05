@@ -16,16 +16,19 @@ const newDocument = () => ({
   lastName: faker.name.lastName(),
   sureName: faker.name.lastName(),
   dateBirth: faker.date.past(50, 2000).toUTCString(),
-  reqStatus: faker.random.number(2),
   document: faker.random.number(1)
     ? {
         id: faker.random.uuid(),
         updateDate: faker.date.past().toUTCString(),
       }
     : null,
+  reqStatus: faker.random.number(2),
+  reqDate: faker.date.past().toUTCString(),
+  bank: faker.company.companyName(),
 });
 
 export function makeData(len = 100) {
+  console.log(faker);
   return range(len).map(d => ({
     ...newDocument(),
   }));
