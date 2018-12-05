@@ -1,9 +1,15 @@
 import setupClient from './helpers/apolloClientMock'
 import schema from './schema.graphqls';
+import {userDocumentList} from "./graphql/query/userDocumentList";
+import {userList} from "./graphql/query/userList";
+import {userItem} from "./graphql/query/userItem";
+
 const defaultMocks = {
   Query: () => ({
-    userList: () => [],
-    userItem: () => {},
+    userList: userList,
+    userItem: userItem,
+    userEmailItem: userItem,
+    userDocumentList: userDocumentList,
   }),
   Mutation: () => ({
     /**

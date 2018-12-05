@@ -9,7 +9,8 @@ import {makeData} from "../../helpers/utils";
 import ReactTableStyled from "../../../../components/ReactTableStyled/ReactTableStyled";
 import {FormDocumentUpload} from "../../components/FormDocumentUpload/FormDocumentUpload";
 import Modal from "../../../../components/Modal/Modal";
-
+import UserDocumentListQuery from './UserDocumentListQuery.graphql';
+import {Query} from "react-apollo";
 
 const columns = ({onOpenFormUpdateDoc}) => {
 
@@ -24,8 +25,8 @@ const columns = ({onOpenFormUpdateDoc}) => {
       },
       accessor: props => {
         try {
-          if (props) {
-            return `${props.firstName} ${props.lastName} ${props.sureName}`
+          if (props.user) {
+            return `${props.user.firstName} ${props.user.lastName} ${props.user.sureName}`
           }
         } catch (error) {
           console.log(error);
@@ -39,10 +40,9 @@ const columns = ({onOpenFormUpdateDoc}) => {
       Cell: props => (<Text fontFamily={'medium'} fontSize={6} lineHeight={9} color={'color1'}>
         {props.value}
       </Text>),
-
       accessor: props => {
-        if (props.document) {
-          return dayjs(props.document.updateDate).format('DD.MM.YYYY HH:mm:ss')
+        if (Array.isArray(props.document) && props.document.length) {
+          return dayjs(props.document[props.document.length - 1].date).format('DD.MM.YYYY HH:mm:ss')
         }
         return null;
       },
@@ -77,8 +77,8 @@ const columns = ({onOpenFormUpdateDoc}) => {
         }
       },
       accessor: props => {
-        if (props.document) {
-          return props.document.id
+        if (props.document && props.document.length) {
+          return props.document
         }
         return null;
       }
@@ -121,15 +121,25 @@ export class DocumentsBureauPage extends Component {
         <Text fontFamily={'bold'} fontSize={8} lineHeight={8} mb={7}>
           Documents
         </Text>
-        <ReactTableStyled
-          defaultFilterMethod={(filter, row) =>
-            String(row[filter.id]).indexOf(filter.value) >= 0}
-          data={this.state.data}
-          filterable
-          columns={columns({
-            onOpenFormUpdateDoc: this.onOpenFormUpdateDoc,
-          })}
-        />
+
+        <Query query={UserDocumentListQuery}>
+          {
+            ({error, data, loading}) => {
+              console.log(error, data, loading);
+              return (
+                <ReactTableStyled
+                  defaultFilterMethod={(filter, row) =>
+                    String(row[filter.id]).indexOf(filter.value) >= 0}
+                  data={loading?[]:data.userDocumentList}
+                  filterable
+                  loading={loading}
+                  columns={columns({
+                    onOpenFormUpdateDoc: this.onOpenFormUpdateDoc,
+                  })}
+                />)
+            }
+          }
+        </Query>
         {
           isOpen &&
           <Modal toggleModal={this.toggleModal}>
