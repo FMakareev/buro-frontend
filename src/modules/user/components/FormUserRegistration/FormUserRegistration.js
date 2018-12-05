@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
+import {Field, reduxForm, Form, SubmissionError, getFormValues} from 'redux-form';
 import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
-
+import {connect} from 'react-redux';
 import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
 import { Select } from '../../../../components/Select/Select';
@@ -30,6 +30,7 @@ import isEmail from '../../../../utils/validation/isEmail';
 import minLength from '../../../../utils/validation/minLength';
 
 import CreateUserMutation from './CreateUserMutation.graphql';
+import {ROLE_BANK, ROLE_CLIENT} from "../../../../shared/roles";
 
 const minLength8 = minLength(8);
 const minLength12 = minLength(12);
@@ -40,6 +41,9 @@ const minLength12 = minLength(12);
 @reduxForm({
   form: 'FormUserRegistration',
 })
+@connect(state => ({
+  values: getFormValues('FormUserRegistration')(state),
+}))
 export class FormUserRegistration extends Component {
   static propTypes = {
     ...formPropTypes,
@@ -73,6 +77,7 @@ export class FormUserRegistration extends Component {
       submitFailed,
       submitSucceeded,
       error,
+      values,
     } = this.props;
 
     return (
@@ -85,10 +90,24 @@ export class FormUserRegistration extends Component {
               placeholder="Role"
               labelKey="label"
               valueKey="value"
-              options={[{ value: 'bank', label: 'Bank' }, { value: 'client', label: 'Client' }]}
+              options={[{ value: ROLE_BANK, label: 'Bank' }, { value: ROLE_CLIENT, label: 'Client' }]}
               validate={[required]}
             />
           </Box>
+          {
+            (values && values.role === ROLE_BANK) &&
+            <Box width={'100%'} mb={6}>
+              <Field
+                name={'bankName'}
+                component={TextFieldWithIcon}
+                placeholder="Bank name"
+                type={'text'}
+                icon={<SvgEmailIcon />}
+                validate={[required]}
+              />
+            </Box>
+          }
+
           <Box width={'100%'} mb={6}>
             <Field
               name="email"
@@ -109,16 +128,19 @@ export class FormUserRegistration extends Component {
               validate={[required, minLength8]}
             />
           </Box>
-          <Box width={'100%'} mb={6}>
-            <Field
-              name="masterpassword"
-              component={TextFieldWithIcon}
-              placeholder="Master Password"
-              type="password"
-              icon={<SvgPasswordIcon />}
-              validate={[required, minLength12]}
-            />
-          </Box>
+          {
+            (values && values.role === ROLE_CLIENT) &&
+            <Box width={'100%'} mb={6}>
+              <Field
+                name="masterpassword"
+                component={TextFieldWithIcon}
+                placeholder="Master Password"
+                type="password"
+                icon={<SvgPasswordIcon/>}
+                validate={[required, minLength12]}
+              />
+            </Box>
+          }
           <Box width={'100%'} mb={8}>
             <Field
               name={'privacy'}
