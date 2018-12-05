@@ -1,0 +1,16 @@
+query{
+  userDocumentList{
+    id
+    user{
+      id
+      firstName
+      lastName
+      patronymic
+      birthdate
+    }
+    document{
+      id
+      status
+    }
+  }
+}
