@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import dayjs from 'dayjs';
+import { Query } from 'react-apollo';
 import { Container } from '../../../../components/Container/Container';
 import { Text } from '../../../../components/Text/Text';
 import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
@@ -9,6 +10,8 @@ import { makeData } from '../../../buro/helpers/utils';
 import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactTableStyled';
 import { FormDocumentUpload } from '../../../buro/components/FormDocumentUpload/FormDocumentUpload';
 import { Modal } from '../../../../components/Modal/Modal';
+
+import NotificationListQuery from './NotificationListQuery.graphql';
 
 const columns = ({ onOpenFormUpdateDoc }) => [
   {
@@ -99,6 +102,14 @@ export class ClientsPage extends Component {
             onOpenFormUpdateDoc: this.onOpenFormUpdateDoc,
           })}
         />
+
+        <Query query={NotificationListQuery} variables={{ id }}>
+          {({ error, data, loading }) => {
+            console.log(error, data, loading);
+            return <div />;
+          }}
+        </Query>
+
         {isOpen && (
           <Modal toggleModal={this.toggleModal}>
             <FormDocumentUpload toggleModal={this.toggleModal} id={id} />
