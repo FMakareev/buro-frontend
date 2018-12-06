@@ -87,7 +87,7 @@ export class FormUserPasswordRecovery extends Component {
             </Box>
             <Box width="100%" mb="16px">
               <Field
-                name={"retype_password"}
+                name={"retypePassword"}
                 component={TextFieldWithIcon}
                 placeholder={"Retype password"}
                 type={"password"}
