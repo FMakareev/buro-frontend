@@ -9,6 +9,9 @@ import { Store } from '../store';
 import { LayoutAuth } from '../components/LayoutAuth/layoutAuth';
 import { GetPageTitle } from '../components/GetPageTitle/GetPageTitle';
 import { LAYOUT_ADMIN, LAYOUT_APP, LAYOUT_AUTH } from '../shared/layout';
+import {SpeedingWheel} from "../components/SmallPreloader/SmallPreloader";
+import {Text} from "../components/Text/Text";
+import {PreloaderWrapper} from "../components/PreloaderWrapper/PreloaderWrapper";
 
 const has = Object.prototype.hasOwnProperty;
 
@@ -42,7 +45,11 @@ const createRoutes = (modulesRoutes, newRoutes, moduleName) => {
         component: GetPageTitle({ Store })(
           asyncComponent({
             resolve: modulesRoutes[i].load,
-            LoadingComponent: () => <div>Loading...</div>,
+            LoadingComponent: () => (<PreloaderWrapper>
+              <Text fontSize={12}>
+                <SpeedingWheel/>
+              </Text>
+            </PreloaderWrapper>),
             ErrorComponent: ({ error }) => <ErrorCatch>{error.message}</ErrorCatch>,
           }),
         ),
@@ -115,7 +122,11 @@ const Page404 = {
   name: 'Page not found',
   component: asyncComponent({
     resolve: () => import('./errors/404'),
-    LoadingComponent: () => <div>Loading...</div>,
+    LoadingComponent: () => <PreloaderWrapper>
+      <Text fontSize={12}>
+        <SpeedingWheel/>
+      </Text>
+    </PreloaderWrapper>,
     ErrorComponent: ({ error }) => <ErrorCatch>{error.message}</ErrorCatch>,
   }),
 };
