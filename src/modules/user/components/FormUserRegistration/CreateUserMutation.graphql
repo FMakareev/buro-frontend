@@ -1,13 +1,13 @@
 mutation(
 $email: String,
 $password: String,
-$retype_password: String,
+$retypePassword: String,
 $role: String,
 ) {
   createUser(
     email :$email ,
     password:$password,
-    retype_password :$retype_password ,
+    retypePassword :$retypePassword ,
     role :$role ,
   ){
     id
