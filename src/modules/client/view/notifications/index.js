@@ -10,6 +10,7 @@ import { ROLE_CLIENT } from "../../../../shared/roles";
 
 import { STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL } from '../../../../shared/statuses';
 import NotificationListQuery from './NotificationListQuery.graphql';
+import {getUserFromStore} from "../../../../store/reducers/user/selectors";
 
 const columns = ({ onOpenFormUpdateDoc }) => [
   {
@@ -75,6 +76,9 @@ const columns = ({ onOpenFormUpdateDoc }) => [
   },
 ];
 
+@connect((state)=>({
+  user: getUserFromStore(state),
+}))
 @CheckAuthorization([ROLE_CLIENT])
 export class ClientsPage extends Component {
   static propTypes = {};
