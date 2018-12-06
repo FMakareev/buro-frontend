@@ -51,28 +51,9 @@ const TextField = styled(TextFieldBase)`
     color: ${props => props.theme.colors.color5};
   }
 
-  & + svg {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-
-  fill: ${props => {
-  if (props.meta.touched && props.meta.error) {
-    return props.theme.colors.color9;
-  }
-  if (props.meta.dirty) {
-    return props.theme.colors.color1;
-  }
-  return props.theme.colors.color5;
-}} !important;
-  }
-
   :focus {
     border-color: ${props => props.theme.colors.color1};
-    box-shadow: 0 0 0 5px ${props => props.theme.colors.color10};
-    & + svg {
-      fill: ${props => props.theme.colors.color1};
-    }
+    box-shadow: 0 0 0 5px ${props => props.theme.colors.color10};  
   }
 `;
 const IconWrapper = styled.div`
@@ -89,7 +70,16 @@ const IconWrapper = styled.div`
   }
   return props.theme.colors.color5;
 }} !important;
-`
+  stroke: ${props => {
+  if (props.meta.touched && props.meta.error) {
+    return props.theme.colors.color9;
+  }
+  if (props.meta.dirty) {
+    return props.theme.colors.color1;
+  }
+  return props.theme.colors.color5;
+}} !important;
+`;
 const Error = styled.span`
   position: absolute;
   top: -12px;
@@ -136,7 +126,7 @@ export class TextFieldWithIcon extends PureComponent {
       loading,
       icon,
     } = this.props;
-
+    console.log(meta);
     return (
       <Wrapper>
         <Flex alignItems="left" flexDirection="column" position="relative">
@@ -153,7 +143,9 @@ export class TextFieldWithIcon extends PureComponent {
               meta={meta}
               label={label}
             />
-            {icon}
+            <IconWrapper meta={meta}>
+              {icon}
+            </IconWrapper>
           </FieldIconWrapper>
 
           {/* <Text fill={meta.touched && meta.error ? 'red' : 'black'} fontSize={6} /> */}
