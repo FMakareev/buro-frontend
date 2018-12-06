@@ -125,7 +125,9 @@ export class FormUserRegistration extends Component {
               component={TextFieldWithIcon}
               placeholder="Password"
               type="password"
-              icon={<Text fontSize={11} lineHeight={0} fill={'inherit'}><SvgPasswordIcon /></Text>}
+              icon={<Text fontSize={11} lineHeight={0} fill={'inherit'}>
+                <SvgPasswordIcon />
+              </Text>}
               validate={[required, minLength8]}
             />
           </Box>
