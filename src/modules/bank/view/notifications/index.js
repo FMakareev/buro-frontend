@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import dayjs from 'dayjs';
 import { Container } from '../../../../components/Container/Container';
 import { Text } from '../../../../components/Text/Text';
-import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
-import { SvgCancelRequest } from '../../../../components/Icons/SvgCancelRequest';
 import { ButtonWithImage } from '../../../../components/ButtonWithImage/ButtonWithImage';
-import { makeData } from '../../../buro/helpers/utils';
+import { makeData } from '../../../bureau/helpers/utils';
 import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactTableStyled';
-import { FormDocumentUpload } from '../../../buro/components/FormDocumentUpload/FormDocumentUpload';
-import { Modal } from '../../../../components/Modal/Modal';
+import {ROLE_BANK} from "../../../../shared/roles";
+import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
 
-const columns = ({ onOpenFormUpdateDoc }) => [
+const columns = () => [
   {
     id: 'Client',
     Header: 'Client',
@@ -57,6 +55,7 @@ const columns = ({ onOpenFormUpdateDoc }) => [
   },
 ];
 
+@CheckAuthorization([ROLE_BANK])
 export class ClientsPage extends Component {
   static propTypes = {};
 
@@ -95,15 +94,8 @@ export class ClientsPage extends Component {
           defaultFilterMethod={(filter, row) => String(row[filter.id]).indexOf(filter.value) >= 0}
           data={this.state.data}
           filterable
-          columns={columns({
-            onOpenFormUpdateDoc: this.onOpenFormUpdateDoc,
-          })}
+          columns={columns()}
         />
-        {isOpen && (
-          <Modal toggleModal={this.toggleModal}>
-            <FormDocumentUpload toggleModal={this.toggleModal} id={id} />
-          </Modal>
-        )}
       </Container>
     );
   }
