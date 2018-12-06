@@ -12,6 +12,7 @@ import {LineHeightProperty} from "../../styles/styleProperty/LineHeightProperty"
 import {TextOverflow} from "../../styles/styleProperty/TextOverflowProperty";
 import {Overflow} from "../../styles/styleProperty/OverflowProperty";
 import {WhiteSpace} from "../../styles/styleProperty/WhiteSpaceProperty";
+import {StrokeSvgProperty} from "../../styles/styleProperty/StrokeSvgProperty";
 
 const textVariant = variant({
   key: 'variant.text',
@@ -34,6 +35,7 @@ export const Text = styled(Box)`
   ${FontFamilyProperty};
   ${fontWeight};
   ${BackgroundColorProperty};
+  ${StrokeSvgProperty};
   ${FillSvgProperty};
   ${WhiteSpace};
   ${Overflow};
