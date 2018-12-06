@@ -31,6 +31,7 @@ import minLength from '../../../../utils/validation/minLength';
 
 import CreateUserMutation from './CreateUserMutation.graphql';
 import {ROLE_BANK, ROLE_CLIENT} from "../../../../shared/roles";
+import {SvgBank} from "../../../../components/Icons/SvgBank";
 
 const minLength8 = minLength(8);
 const minLength12 = minLength(12);
@@ -102,7 +103,7 @@ export class FormUserRegistration extends Component {
                 component={TextFieldWithIcon}
                 placeholder="Bank name"
                 type={'text'}
-                icon={<SvgEmailIcon />}
+                icon={<Text fontSize={12}><SvgBank /></Text>}
                 validate={[required]}
               />
             </Box>
