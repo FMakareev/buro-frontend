@@ -103,7 +103,7 @@ export class FormUserRegistration extends Component {
                 component={TextFieldWithIcon}
                 placeholder="Bank name"
                 type={'text'}
-                icon={<Text fontSize={12}><SvgBank /></Text>}
+                icon={<Text fontSize={11} lineHeight={0} stroke={'inherit'} fill={'inherit'}><SvgBank /></Text>}
                 validate={[required]}
               />
             </Box>
@@ -115,7 +115,7 @@ export class FormUserRegistration extends Component {
               component={TextFieldWithIcon}
               placeholder="Email address"
               type="email"
-              icon={<SvgEmailIcon />}
+              icon={<Text fontSize={11} lineHeight={0} fill={'inherit'}><SvgEmailIcon /></Text>}
               validate={[required, isEmail]}
             />
           </Box>
@@ -125,7 +125,7 @@ export class FormUserRegistration extends Component {
               component={TextFieldWithIcon}
               placeholder="Password"
               type="password"
-              icon={<SvgPasswordIcon />}
+              icon={<Text fontSize={11} lineHeight={0} fill={'inherit'}><SvgPasswordIcon /></Text>}
               validate={[required, minLength8]}
             />
           </Box>
@@ -137,7 +137,7 @@ export class FormUserRegistration extends Component {
                 component={TextFieldWithIcon}
                 placeholder="Master Password"
                 type="password"
-                icon={<SvgPasswordIcon/>}
+                icon={<Text fontSize={11} lineHeight={0} fill={'inherit'}><SvgPasswordIcon/></Text>}
                 validate={[required, minLength12]}
               />
             </Box>
@@ -166,7 +166,7 @@ export class FormUserRegistration extends Component {
                 py={2}
                 error={error}
                 iconRight={
-                  <Text fontSize={12} lineHeight={0}>
+                  <Text fontSize={11} lineHeight={0}>
                     <SvgArrowRight />
                   </Text>
                 }
@@ -184,7 +184,7 @@ export class FormUserRegistration extends Component {
                 py={2}
                 error={error}
                 iconRight={
-                  <Text fontSize={12} lineHeight={0}>
+                  <Text fontSize={11} lineHeight={0}>
                     <SvgReloadIcon />
                   </Text>
                 }>
@@ -196,7 +196,7 @@ export class FormUserRegistration extends Component {
 
         {submitting && (
           <PreloaderWrapper>
-            <Text fontSize={12}>
+            <Text fontSize={13}>
               <SpeedingWheel />
             </Text>
           </PreloaderWrapper>
