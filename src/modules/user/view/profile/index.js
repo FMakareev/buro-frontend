@@ -1,23 +1,40 @@
 import React, {Component} from 'react';
-
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import {Query} from "react-apollo";
+import {Redirect} from 'react-router-dom';
 import {Container} from '../../../../components/Container/Container';
 import FormUserProfile from '../../components/FormProfileUser/FormUserProfile';
-import UserEmailItemQuery from './UserEmailItemQuery.graphql';
-import {Query} from "react-apollo";
 import ErrorCatch from "../../../../components/ErrorCatch/ErrorCatch";
+import {getUserFromStore} from "../../../../store/reducers/user/selectors";
+import UserEmailItemQuery from './UserEmailItemQuery.graphql';
+import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
 
 
+
+
+@connect((state) => ({
+  user: getUserFromStore(state),
+}))
+@CheckAuthorization()
 export class ProfilePage extends Component {
-  state = {};
+  static propTypes = {
+    user: PropTypes.object,
+  };
+
+  static defaultProps = {
+    user: null,
+  };
 
   render() {
     const {
-      match: {params},
+      user
     } = this.props;
+    console.log('ProfilePage: ',this.props);
     return (
       <ErrorCatch>
         <Container px={6} mt={[10, 100]} backgroundColor="transparent">
-          <Query query={UserEmailItemQuery} variables={{email: params.email}}>
+          <Query query={UserEmailItemQuery} variables={{email: user.email}}>
             {
               ({data, loading, error}) => {
                 console.log(data, loading, error);
