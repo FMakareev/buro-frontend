@@ -35,11 +35,11 @@ export class Header extends Component {
           <Flex alignItems={'center'} flexDirection={'row'}>
             <Text
               mr={[5,8,8,10,12]}
-              lineHeight={5}
-              fontSize={[4,4,5,5,5]}>
+              lineHeight={0}
+              fontSize={[6]}>
               <SvgLogo/>
             </Text>
-            <Text fontFamily={'bold'} textDecoration={'none'} color={'color1'} fontSize={[5,7,8,10,10]} lineHeight={[7,9,10,12,12]} fontWeight={'bold'}>
+            <Text fontFamily={'bold'} textDecoration={'none'} color={'color1'} fontSize={[7,7,8,10,10]} lineHeight={[9,9,10,12,12]} fontWeight={'bold'}>
               The Bureau
             </Text>
           </Flex>
