@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import dayjs from 'dayjs';
 import { Container } from '../../../../components/Container/Container';
 import { Text } from '../../../../components/Text/Text';
-import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
-import { SvgCancelRequest } from '../../../../components/Icons/SvgCancelRequest';
 import { ButtonWithImage } from '../../../../components/ButtonWithImage/ButtonWithImage';
-import { makeData } from '../../../buro/helpers/utils';
+import { makeData } from '../../../bureau/helpers/utils';
 import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactTableStyled';
-import { FormDocumentUpload } from '../../../buro/components/FormDocumentUpload/FormDocumentUpload';
-import { Modal } from '../../../../components/Modal/Modal';
+import { ROLE_CLIENT } from "../../../../shared/roles";
+import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
 
-const columns = ({ onOpenFormUpdateDoc }) => [
+const columns = () => [
   {
     id: 'Bank',
     Header: 'Bank',
@@ -41,6 +39,7 @@ const columns = ({ onOpenFormUpdateDoc }) => [
       if (props.original.reqStatus !== 0) {
         return <Text>{props.original.reqStatus === 1 ? 'Approved' : 'Not approved'}</Text>;
       }
+      console.log(props);
       return (
         <>
           <ButtonWithImage
@@ -72,6 +71,7 @@ const columns = ({ onOpenFormUpdateDoc }) => [
   },
 ];
 
+@CheckAuthorization([ROLE_CLIENT])
 export class ClientsPage extends Component {
   static propTypes = {};
 
@@ -84,10 +84,6 @@ export class ClientsPage extends Component {
 
   get initialState() {
     return {
-      // статус открытия модального окна
-      isOpen: false,
-      // id пользователя к которому крепится окумент
-      id: null,
       data: makeData(25),
     };
   }
@@ -110,15 +106,9 @@ export class ClientsPage extends Component {
           defaultFilterMethod={(filter, row) => String(row[filter.id]).indexOf(filter.value) >= 0}
           data={this.state.data}
           filterable
-          columns={columns({
-            onOpenFormUpdateDoc: this.onOpenFormUpdateDoc,
-          })}
+          columns={columns()}
         />
-        {isOpen && (
-          <Modal toggleModal={this.toggleModal}>
-            <FormDocumentUpload toggleModal={this.toggleModal} id={id} />
-          </Modal>
-        )}
+
       </Container>
     );
   }
