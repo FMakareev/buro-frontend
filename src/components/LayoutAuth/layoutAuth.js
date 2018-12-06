@@ -1,7 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { matchRoutes } from 'react-router-config';
 import PropTypes from 'prop-types';
-import { Header } from '../Header/Header';
 
 export class LayoutAuth extends Component {
   static propTypes = {};
@@ -23,12 +22,7 @@ export class LayoutAuth extends Component {
       route: { routes },
       location,
     } = this.props;
-    return (
-      <Fragment>
-        <Header />
-        {this.renderRoutes(routes, location.pathname)}
-      </Fragment>
-    );
+    return this.renderRoutes(routes, location.pathname)
   }
 }
 
