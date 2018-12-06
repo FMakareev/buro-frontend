@@ -58,7 +58,7 @@ export const userInit = () => dispatch => {
                 });
                 reject(error)
               })
-          }, 5000)
+          }, 500)
         } else {
           localStorage.clear();
           dispatch({
@@ -140,7 +140,7 @@ export const userUpdate = () => dispatch => {
                });
                reject(error)
              })
-         }, 5000)
+         }, 500)
         } else {
           localStorage.clear();
           dispatch({
