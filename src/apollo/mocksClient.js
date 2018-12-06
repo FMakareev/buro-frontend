@@ -33,6 +33,6 @@ const defaultMocks = {
   })
 }
 
-export const mocksClient = setupClient(defaultMocks, schema);
+export const mocksClient = setupClient(defaultMocks, schema)();
 
 export default mocksClient
