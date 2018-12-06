@@ -6,9 +6,9 @@ import { Text } from '../../../../components/Text/Text';
 import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
 import { SvgCancelRequest } from '../../../../components/Icons/SvgCancelRequest';
 import { ButtonWithImage } from '../../../../components/ButtonWithImage/ButtonWithImage';
-import { makeData } from '../../../document/helpers/utils';
+import { makeData } from '../../../buro/helpers/utils';
 import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactTableStyled';
-import { FormDocumentUpload } from '../../../document/components/FormDocumentUpload/FormDocumentUpload';
+import { FormDocumentUpload } from '../../../buro/components/FormDocumentUpload/FormDocumentUpload';
 import { Modal } from '../../../../components/Modal/Modal';
 
 import UserListQuery from './UserListQuery.graphql';
@@ -63,6 +63,9 @@ const columns = ({ onOpenFormUpdateDoc }) => [
     // filterable: true,
     Cell: props => {
       try {
+        if (!props.original.document || !props.original.document.length) {
+          return <Text>Not provide document</Text>;
+        }
         if (props.original.document) {
           if (props.original.document[0].status === STATUS_PENDING) {
             return (

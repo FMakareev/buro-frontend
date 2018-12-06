@@ -4,12 +4,11 @@ export const routes = [
   {
     layout: LAYOUT_APP,
     exact: true,
-    name: 'Documents',
-    path: '/documents',
+    name: 'Notifications: client',
+    path: '/client/notifications',
     order: 0,
     hidden: false,
-    load: () => import(/* webpackChunkName: 'documentsDocumentsBureau'  */ './view/documentsBureau'),
+    load: () => import(/* webpackChunkName: 'notificationsClient'  */ './view/notifications'),
     resolvers: [],
   },
-
 ];

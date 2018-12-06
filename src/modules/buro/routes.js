@@ -5,11 +5,10 @@ export const routes = [
     layout: LAYOUT_APP,
     exact: true,
     name: 'Clients',
-    path: '/clients',
+    path: '/buro/clients',
     order: 0,
     hidden: false,
-    load: () => import(/* webpackChunkName: 'clientClientsPage'  */ './view/clients'),
+    load: () => import(/* webpackChunkName: 'clientsBureau'  */ './view/clients'),
     resolvers: [],
   },
-
 ];

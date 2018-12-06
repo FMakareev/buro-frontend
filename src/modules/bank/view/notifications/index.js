@@ -5,21 +5,21 @@ import { Text } from '../../../../components/Text/Text';
 import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
 import { SvgCancelRequest } from '../../../../components/Icons/SvgCancelRequest';
 import { ButtonWithImage } from '../../../../components/ButtonWithImage/ButtonWithImage';
-import { makeData } from '../../../document/helpers/utils';
+import { makeData } from '../../../buro/helpers/utils';
 import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactTableStyled';
-import { FormDocumentUpload } from '../../../document/components/FormDocumentUpload/FormDocumentUpload';
+import { FormDocumentUpload } from '../../../buro/components/FormDocumentUpload/FormDocumentUpload';
 import { Modal } from '../../../../components/Modal/Modal';
 
 const columns = ({ onOpenFormUpdateDoc }) => [
   {
-    id: 'Bank',
-    Header: 'Bank',
+    id: 'Client',
+    Header: 'Client',
     Cell: props => (
       <Text fontFamily="medium" fontSize={6} lineHeight={9} color="color1">
         {props.value}
       </Text>
     ),
-    accessor: props => props.bank,
+    accessor: props => `${props.firstName} ${props.lastName} ${props.sureName}`,
   },
   {
     id: 'reqDate',
@@ -39,33 +39,18 @@ const columns = ({ onOpenFormUpdateDoc }) => [
     // filterable: true,
     Cell: props => {
       if (props.original.reqStatus !== 0) {
-        return <Text>{props.original.reqStatus === 1 ? 'Approved' : 'Not approved'}</Text>;
+        return <Text>{props.original.reqStatus === 1 ? 'Not approved yet' : 'Not approved'}</Text>;
       }
       return (
-        <>
-          <ButtonWithImage
-            // onClick={() => onOpenFormUpdateDoc(props.original.id)}
-            display="inline-block"
-            size="xsmall"
-            variant="transparent"
-            mr="5px"
-            ml="5px"
-            pl="3px"
-            pr="5px">
-            Approve
-          </ButtonWithImage>
-          <ButtonWithImage
-            // onClick={() => onOpenFormUpdateDoc(props.original.id)}
-            display="inline-block"
-            size="xsmall"
-            variant="transparent"
-            mr="5px"
-            ml="5px"
-            pl="3px"
-            pr="5px">
-            Not approve
-          </ButtonWithImage>
-        </>
+        <ButtonWithImage
+          // onClick={() => onOpenFormUpdateDoc(props.original.id)}
+          display="inline-block"
+          size="xsmall"
+          variant="transparent"
+          pl="3px"
+          pr="5px">
+          Download
+        </ButtonWithImage>
       );
     },
     accessor: props => props.reqStatus,
@@ -88,7 +73,7 @@ export class ClientsPage extends Component {
       isOpen: false,
       // id пользователя к которому крепится окумент
       id: null,
-      data: makeData(25),
+      data: makeData(100),
     };
   }
 
