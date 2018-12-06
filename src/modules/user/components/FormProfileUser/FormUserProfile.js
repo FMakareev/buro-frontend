@@ -65,7 +65,7 @@ export class FormProfileUser extends Component {
   constructor(props) {
     super(props);
   }
-
+  // TODO: добавить вызов метода обновления данных пользователя в редаке, это экшен userUpdate
   submit = value => {
     console.log(value);
     return this.props['@apollo/update']({
