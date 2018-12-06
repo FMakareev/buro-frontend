@@ -7,10 +7,12 @@ import {SvgRequests} from "../Icons/SvgRequests";
 import SvgProfile from "../Icons/SvgProfile";
 import {SvgUsers} from "../Icons/SvgUsers";
 import {ButtonStyled, HeaderNavWrapper, NavItem, NavList} from "./HeaderNavStyled";
+import {ROLE_BANK, ROLE_BUREAU, ROLE_CLIENT} from "../../shared/roles";
 
 export class HeaderNav extends Component {
 
   render() {
+    const {user} = this.props;
     return (<HeaderNavWrapper>
       <TabController
         defaultActiveTab={null}
@@ -24,27 +26,41 @@ export class HeaderNav extends Component {
         </Tabs>
         <TabContent>
           <NavList>
-            {/* TODO doc: этот путь есть у всех */}
+            {/** этот путь есть у всех */}
             <NavItem to={'/app/profile'} icon={<SvgProfile/>}>
               Profile
             </NavItem>
-            {/* TODO doc: этот путь только для банка и клиента */}
-            {/* TODO doc: это временно чтобы был доступ к марр=шрутам */}
-            <NavItem to={'/app/requests/bank'} icon={<SvgRequests/>}>
-              Requests
-            </NavItem>
-            {/* TODO doc: этот путь только для банка и клиента */}
-            <NavItem to={'/app/requests/client'} icon={<SvgRequests/>}>
-              Requests
-            </NavItem>
-            {/* TODO doc: этот путь есть только у банка, это список клиентов */}
-            <NavItem to={'/app/clients'} icon={<SvgUsers/>}>
-              Clients
-            </NavItem>
-            {/* TODO doc: этот путь доступен только бюро */}
-            <NavItem to={'/app/documents'} icon={<SvgUsers/>}>
-              Documents
-            </NavItem>
+            {/** этот путь только для банка */}
+            {
+              user && !user.error && user.role === ROLE_BANK &&
+              <NavItem to={'/app/bank/notification'} icon={<SvgRequests/>}>
+                Requests
+              </NavItem>
+            }
+
+            {/** этот путь есть только у банка, это список клиентов */}
+            {
+              user && !user.error && user.role === ROLE_BANK &&
+              <NavItem to={'/app/bank/clients'} icon={<SvgUsers/>}>
+                Clients
+              </NavItem>
+            }
+
+            {/** этот путь только для клиента */}
+            {
+              user && !user.error && user.role === ROLE_CLIENT &&
+              <NavItem to={'/app/client/notification'} icon={<SvgRequests/>}>
+                Requests
+              </NavItem>
+            }
+
+            {/** этот путь доступен только бюро */}
+            {
+              user && !user.error && user.role === ROLE_BUREAU &&
+              <NavItem to={'/app/bureau/clients'} icon={<SvgUsers/>}>
+                Clients
+              </NavItem>
+            }
           </NavList>
         </TabContent>
       </TabController>
