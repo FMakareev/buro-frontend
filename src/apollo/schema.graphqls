@@ -8,9 +8,9 @@ type User {
   gender: String
   email: String
   phone: String
-  master_password: String
+  masterPassword: String
   password: String
-  retype_password: String
+  retypePassword: String
   role: String
   token: String
 }
@@ -54,9 +54,9 @@ type Mutation {
     gender: String,
     email: String!,
     phone: String,
-    master_password: String,
+    masterPassword: String,
     password: String!,
-    retype_password: String!,
+    retypePassword: String!,
     role: String!
   ): User,
 
@@ -71,12 +71,12 @@ type Mutation {
     email: String,
     phone: String,
     password: String,
-    retype_password: String,
+    retypePassword: String,
     role: String
   ): User,
 
   userResetPassword(email: String!): User,
-  userPasswordRecovery(token: String!,password: String!, retype_password: String): User,
-  createNotification(userid: String): Notification,
+  userPasswordRecovery(token: String!,password: String!, retypePassword: String): User,
+  createNotification(clientid: String, bankid: String): Notification
   updateNotification(id: String, status: String): Notification,
 }
