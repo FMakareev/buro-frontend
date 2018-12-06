@@ -56,7 +56,7 @@ export class FormUserRegistration extends Component {
 
   submit = value => {
     return this.props['@apollo/create']({
-      variables: Object.assign({}, value, { retype_password: value.password }),
+      variables: Object.assign({}, value, { retypePassword: value.password }),
     })
       .then(response => {
         console.log(response);
