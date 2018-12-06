@@ -8,6 +8,9 @@ import {getUserFromStore} from "../../store/reducers/user/selectors";
 import {PreloaderWrapper} from "../PreloaderWrapper/PreloaderWrapper";
 import {SpeedingWheel} from "../SmallPreloader/SmallPreloader";
 import {Text} from "../Text/Text";
+import {Header} from "../Header";
+import {HeaderNav} from "../HeaderNav/HeaderNav";
+import {HeaderNotification} from "../HeaderNotification/HeaderNotification";
 
 const MainStyled = styled(Box)`
   width: 100%;
@@ -90,6 +93,20 @@ export class LayoutBase extends PureComponent {
     const {user} = this.props;
     return <Fragment>
       <MainStyled>
+        <Header {...this.state} {...this.props} >
+          {
+            user && !user.initLoading && !user.error &&
+            <Box px={2}>
+              <HeaderNav user={user}/>
+            </Box>
+          }
+          {
+            user && !user.initLoading && !user.error &&
+            <Box px={2}>
+              <HeaderNotification user={user}/>
+            </Box>
+          }
+        </Header>
         {
           user && user.initLoading &&
           <PreloaderWrapper>
