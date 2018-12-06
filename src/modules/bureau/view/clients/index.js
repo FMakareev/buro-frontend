@@ -5,7 +5,6 @@ import {Text} from "../../../../components/Text/Text";
 import {ButtonBase} from "../../../../components/ButtonBase/ButtonBase";
 import {SvgUpload} from "../../../../components/Icons/SvgUpload";
 import {ButtonWithImage} from "../../../../components/ButtonWithImage/ButtonWithImage";
-import {makeData} from "../../helpers/utils";
 import ReactTableStyled from "../../../../components/ReactTableStyled/ReactTableStyled";
 import {FormDocumentUpload} from "../../components/FormDocumentUpload/FormDocumentUpload";
 import Modal from "../../../../components/Modal/Modal";
@@ -105,7 +104,6 @@ export class DocumentsBureauPage extends Component {
       isOpen: false,
       // id пользователя к которому крепится окумент
       id: null,
-      data: makeData(100)
     };
   }
 
