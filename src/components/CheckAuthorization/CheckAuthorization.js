@@ -11,7 +11,6 @@ export const CheckAuthorization = (role = [], AccessDeniedCallback = null) => Wr
   return (props) => {
     try {
       const {user} = props;
-      console.log('user: ', user);
       if (!user || (user && user.error)) {
         return <Redirect to={'/logout'}/>
       }
