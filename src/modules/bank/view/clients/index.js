@@ -63,6 +63,9 @@ const columns = ({ onOpenFormUpdateDoc }) => [
     // filterable: true,
     Cell: props => {
       try {
+        if (!props.original.document || !props.original.document.length) {
+          return <Text>Not provide document</Text>;
+        }
         if (props.original.document) {
           if (props.original.document[0].status === STATUS_PENDING) {
             return (
