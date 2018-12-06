@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import dayjs from 'dayjs';
+import { Query } from 'react-apollo';
 import { Container } from '../../../../components/Container/Container';
 import { Text } from '../../../../components/Text/Text';
 import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
@@ -10,6 +11,9 @@ import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactT
 import { FormDocumentUpload } from '../../../buro/components/FormDocumentUpload/FormDocumentUpload';
 import { Modal } from '../../../../components/Modal/Modal';
 
+import { STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL } from '../../../../shared/statuses';
+import NotificationListQuery from './NotificationListQuery.graphql';
+
 const columns = ({ onOpenFormUpdateDoc }) => [
   {
     id: 'Bank',
@@ -19,7 +23,7 @@ const columns = ({ onOpenFormUpdateDoc }) => [
         {props.value}
       </Text>
     ),
-    accessor: props => props.bank,
+    accessor: props => `${props.bank.firstName} ${props.bank.lastName}`,
   },
   {
     id: 'reqDate',
@@ -29,7 +33,7 @@ const columns = ({ onOpenFormUpdateDoc }) => [
         {props.value}
       </Text>
     ),
-    accessor: props => dayjs(props.reqDate).format('DD.MM.YYYY HH:mm:ss'),
+    accessor: props => dayjs(props.date).format('DD.MM.YYYY HH:mm:ss'),
     filterMethod: (filter, row) =>
       row[filter.id].startsWith(filter.value) && row[filter.id].endsWith(filter.value),
   },
@@ -38,8 +42,10 @@ const columns = ({ onOpenFormUpdateDoc }) => [
     Header: 'Status',
     // filterable: true,
     Cell: props => {
-      if (props.original.reqStatus !== 0) {
-        return <Text>{props.original.reqStatus === 1 ? 'Approved' : 'Not approved'}</Text>;
+      if (props.original.status !== STATUS_PENDING) {
+        return (
+          <Text>{props.original.status === STATUS_APPROVAL ? 'Approved' : 'Not approved'}</Text>
+        );
       }
       return (
         <>
@@ -89,6 +95,7 @@ export class ClientsPage extends Component {
       // id пользователя к которому крепится окумент
       id: null,
       data: makeData(25),
+      clientid: null,
     };
   }
 
@@ -100,20 +107,30 @@ export class ClientsPage extends Component {
   };
 
   render() {
-    const { isOpen, id } = this.state;
+    const { isOpen, id, clientid } = this.state;
     return (
       <Container px={6}>
         <Text fontFamily="bold" fontSize={9} lineHeight={9} mb={7}>
-          Requests
+          Notifications
         </Text>
-        <ReactTableStyled
-          defaultFilterMethod={(filter, row) => String(row[filter.id]).indexOf(filter.value) >= 0}
-          data={this.state.data}
-          filterable
-          columns={columns({
-            onOpenFormUpdateDoc: this.onOpenFormUpdateDoc,
-          })}
-        />
+        <Query query={NotificationListQuery} variables={{ clientid }}>
+          {({ error, data, loading }) => {
+            console.log(error, data, loading);
+            return (
+              <ReactTableStyled
+                defaultFilterMethod={(filter, row) =>
+                  String(row[filter.id]).indexOf(filter.value) >= 0
+                }
+                data={loading ? [] : data.notificationList}
+                filterable
+                columns={columns({
+                  onOpenFormUpdateDoc: this.onOpenFormUpdateDoc,
+                })}
+              />
+            );
+          }}
+        </Query>
+
         {isOpen && (
           <Modal toggleModal={this.toggleModal}>
             <FormDocumentUpload toggleModal={this.toggleModal} id={id} />

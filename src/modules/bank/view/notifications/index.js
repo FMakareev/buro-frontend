@@ -13,6 +13,8 @@ import { Modal } from '../../../../components/Modal/Modal';
 
 import NotificationListQuery from './NotificationListQuery.graphql';
 
+import { STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL } from '../../../../shared/statuses';
+
 const columns = ({ onOpenFormUpdateDoc }) => [
   {
     id: 'Client',
@@ -22,7 +24,8 @@ const columns = ({ onOpenFormUpdateDoc }) => [
         {props.value}
       </Text>
     ),
-    accessor: props => `${props.firstName} ${props.lastName} ${props.sureName}`,
+    accessor: props =>
+      `${props.client.firstName} ${props.client.lastName} ${props.client.patronymic}`,
   },
   {
     id: 'reqDate',
@@ -32,7 +35,7 @@ const columns = ({ onOpenFormUpdateDoc }) => [
         {props.value}
       </Text>
     ),
-    accessor: props => dayjs(props.reqDate).format('DD.MM.YYYY HH:mm:ss'),
+    accessor: props => dayjs(props.date).format('DD.MM.YYYY HH:mm:ss'),
     filterMethod: (filter, row) =>
       row[filter.id].startsWith(filter.value) && row[filter.id].endsWith(filter.value),
   },
@@ -41,19 +44,24 @@ const columns = ({ onOpenFormUpdateDoc }) => [
     Header: 'Status',
     // filterable: true,
     Cell: props => {
-      if (props.original.reqStatus !== 0) {
-        return <Text>{props.original.reqStatus === 1 ? 'Not approved yet' : 'Not approved'}</Text>;
+      if (props.original.status !== STATUS_APPROVAL) {
+        return (
+          <Text>{props.original.status === STATUS_NOT_APPROVAL ? 'Not answered' : 'Pending'}</Text>
+        );
       }
       return (
-        <ButtonWithImage
-          // onClick={() => onOpenFormUpdateDoc(props.original.id)}
-          display="inline-block"
-          size="xsmall"
-          variant="transparent"
-          pl="3px"
-          pr="5px">
-          Download
-        </ButtonWithImage>
+        // TO DO link to table of clients with init state table with this client
+
+        <Text>Answered</Text>
+        // <ButtonWithImage
+        //   // onClick={() => onOpenFormUpdateDoc(props.original.id)}
+        //   display="inline-block"
+        //   size="xsmall"
+        //   variant="transparent"
+        //   pl="3px"
+        //   pr="5px">
+        //   Download
+        // </ButtonWithImage>
       );
     },
     accessor: props => props.reqStatus,
@@ -77,6 +85,7 @@ export class ClientsPage extends Component {
       // id пользователя к которому крепится окумент
       id: null,
       data: makeData(100),
+      bankid: null,
     };
   }
 
@@ -88,25 +97,27 @@ export class ClientsPage extends Component {
   };
 
   render() {
-    const { isOpen, id } = this.state;
+    const { isOpen, id, bankid } = this.state;
     return (
       <Container px={6}>
         <Text fontFamily="bold" fontSize={9} lineHeight={9} mb={7}>
-          Requests
+          Notifications
         </Text>
-        <ReactTableStyled
-          defaultFilterMethod={(filter, row) => String(row[filter.id]).indexOf(filter.value) >= 0}
-          data={this.state.data}
-          filterable
-          columns={columns({
-            onOpenFormUpdateDoc: this.onOpenFormUpdateDoc,
-          })}
-        />
-
-        <Query query={NotificationListQuery} variables={{ id }}>
+        <Query query={NotificationListQuery} variables={{ bankid }}>
           {({ error, data, loading }) => {
             console.log(error, data, loading);
-            return <div />;
+            return (
+              <ReactTableStyled
+                defaultFilterMethod={(filter, row) =>
+                  String(row[filter.id]).indexOf(filter.value) >= 0
+                }
+                data={loading ? [] : data.notificationList}
+                filterable
+                columns={columns({
+                  onOpenFormUpdateDoc: this.onOpenFormUpdateDoc,
+                })}
+              />
+            );
           }}
         </Query>
 
