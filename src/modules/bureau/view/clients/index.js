@@ -12,6 +12,7 @@ import UserDocumentListQuery from './UserDocumentListQuery.graphql';
 import {Query} from "react-apollo";
 import {ROLE_BUREAU} from "../../../../shared/roles";
 import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
+import {getUserFromStore} from "../../../../store/reducers/user/selectors";
 
 const columns = ({onOpenFormUpdateDoc}) => {
 
@@ -86,7 +87,9 @@ const columns = ({onOpenFormUpdateDoc}) => {
     }
   ];
 };
-
+@connect((state)=>({
+  user: getUserFromStore(state),
+}))
 @CheckAuthorization([ROLE_BUREAU])
 export class DocumentsBureauPage extends Component {
   static propTypes = {};
