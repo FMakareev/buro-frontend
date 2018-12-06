@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Query} from "react-apollo";
-import {Redirect} from 'react-router-dom';
 import {Container} from '../../../../components/Container/Container';
 import FormUserProfile from '../../components/FormProfileUser/FormUserProfile';
 import ErrorCatch from "../../../../components/ErrorCatch/ErrorCatch";
