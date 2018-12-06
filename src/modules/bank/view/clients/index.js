@@ -1,22 +1,23 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import dayjs from 'dayjs';
-import { Query } from 'react-apollo';
-import { Container } from '../../../../components/Container/Container';
-import { Text } from '../../../../components/Text/Text';
-import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
-import { SvgCancelRequest } from '../../../../components/Icons/SvgCancelRequest';
-import { ButtonWithImage } from '../../../../components/ButtonWithImage/ButtonWithImage';
-import { makeData } from '../../../bureau/helpers/utils';
-import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactTableStyled';
+import {Query} from 'react-apollo';
+import {connect} from 'react-redux';
+import {Container} from '../../../../components/Container/Container';
+import {Text} from '../../../../components/Text/Text';
+import {makeData} from '../../../bureau/helpers/utils';
+import {ReactTableStyled} from '../../../../components/ReactTableStyled/ReactTableStyled';
 
 import UserListQuery from './UserListQuery.graphql';
 
-import { STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL } from '../../../../shared/statuses';
+import {STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL} from '../../../../shared/statuses';
 import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
 import {ROLE_BANK} from "../../../../shared/roles";
 import {getUserFromStore} from "../../../../store/reducers/user/selectors";
+import {CreateNotificationButton} from "./CreateNotificationButton";
+import {ButtonBase} from "../../../../components/ButtonBase/ButtonBase";
+import {Box} from "../../../../components/Box/Box";
 
-const columns = () => [
+const columns = (user) => [
   {
     id: 'Client',
     Header: 'Client',
@@ -70,31 +71,33 @@ const columns = () => [
         if (props.original.document) {
           if (props.original.document[0].status === STATUS_PENDING) {
             return (
-              <ButtonWithImage
-                // onClick={() => onOpenFormUpdateDoc(props.original.id)}
-                display="inline-block"
-                iconRight={
-                  <Text fontSize={5} lineHeight={0} fill="inherit">
-                    <SvgCancelRequest />
-                  </Text>
-                }
-                size="xsmall"
-                variant="transparent"
-                pl="3px"
-                pr="5px">
-                Requested
-              </ButtonWithImage>
+              <Text fontSize={6} color={'color1'}>
+                Pending approval
+              </Text>
             );
           }
-          return (
-            <ButtonBase
-              // onClick={() => onOpenFormUpdateDoc(props.original.id)}
-              display="inline-block"
-              size="xsmall"
-              variant="transparent">
-              {props.original.document[0].status === STATUS_APPROVAL ? 'Download' : 'Request'}
-            </ButtonBase>
-          );
+          if (props.original.document[0].status === STATUS_APPROVAL) {
+            return (
+              <ButtonBase
+                as={'a'}
+                display={"inline-block"}
+                href={props.original.document[0].file}
+                size={"xsmall"}
+                variant={"transparent"}
+                pl={"3px"}
+                pr={"5px"}
+                id={user.id}
+              >
+                Download
+              </ButtonBase>
+            );
+          } else {
+            return (
+              <CreateNotificationButton id={user.id}>
+                Request
+              </CreateNotificationButton>
+            );
+          }
         }
       } catch (error) {
         console.log(error);
@@ -110,7 +113,7 @@ const columns = () => [
   },
 ];
 
-@connect((state)=>({
+@connect((state) => ({
   user: getUserFromStore(state),
 }))
 @CheckAuthorization([ROLE_BANK])
@@ -131,28 +134,34 @@ export class ClientsPage extends Component {
   }
 
   render() {
-    const { isOpen, id } = this.state;
+    const {user} = this.props;
     return (
-      <Container px={6}>
-        <Text fontFamily="bold" fontSize={8} lineHeight={8} mb={7}>
+      <Container backgroundColor={'transparent'} px={6}>
+        <Text fontFamily={'bold'} fontWeight={'bold'} fontSize={9} lineHeight={9} mb={7}>
           Clients
         </Text>
 
-        <Query query={UserListQuery}>
-          {({ error, data, loading }) => {
-            console.log(error, data, loading);
-            return (
-              <ReactTableStyled
-                defaultFilterMethod={(filter, row) =>
-                  String(row[filter.id]).indexOf(filter.value) >= 0
-                }
-                data={loading ? [] : data.userDocumentList}
-                filterable
-                columns={columns()}
-              />
-            );
-          }}
-        </Query>
+        <Box backgroundColor={'color0'} >
+          <Query query={UserListQuery}
+                 variables={{
+                   id: user.id
+                 }}
+          >
+            {({error, data, loading}) => {
+              console.log(error, data, loading);
+              return (
+                <ReactTableStyled
+                  defaultFilterMethod={(filter, row) =>
+                    String(row[filter.id]).indexOf(filter.value) >= 0
+                  }
+                  data={loading ? [] : data.userDocumentList}
+                  filterable
+                  columns={columns(user)}
+                />
+              );
+            }}
+          </Query>
+        </Box>
 
       </Container>
     );
