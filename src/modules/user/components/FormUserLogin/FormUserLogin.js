@@ -33,7 +33,7 @@ import {USER_ADD} from "../../../../store/reducers/user/actionTypes";
 @connect(
   null,
   dispatch => ({
-    addUser: user => dispatch({ type: USER_ADD, payload: user }),
+    addUser: user => dispatch({ type: USER_ADD, user: user }),
   }),
 )
 @withRouter
