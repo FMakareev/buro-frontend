@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import dayjs from 'dayjs';
+import { Query } from 'react-apollo';
 import { Container } from '../../../../components/Container/Container';
 import { Text } from '../../../../components/Text/Text';
 import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
@@ -9,6 +10,10 @@ import { makeData } from '../../../document/helpers/utils';
 import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactTableStyled';
 import { FormDocumentUpload } from '../../../document/components/FormDocumentUpload/FormDocumentUpload';
 import { Modal } from '../../../../components/Modal/Modal';
+
+import UserListQuery from './UserListQuery.graphql';
+
+import { STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL } from '../../../../shared/statuses';
 
 const columns = ({ onOpenFormUpdateDoc }) => [
   {
@@ -21,8 +26,8 @@ const columns = ({ onOpenFormUpdateDoc }) => [
     ),
     accessor: props => {
       try {
-        if (props) {
-          return `${props.firstName} ${props.lastName} ${props.sureName}`;
+        if (props.user) {
+          return `${props.user.firstName} ${props.user.lastName} ${props.user.patronymic}`;
         }
       } catch (error) {
         console.log(error);
@@ -39,7 +44,16 @@ const columns = ({ onOpenFormUpdateDoc }) => [
       </Text>
     ),
 
-    accessor: props => dayjs(props.dateBirth).format('DD.MM.YYYY HH:mm:ss'),
+    accessor: props => {
+      try {
+        if (props.user) {
+          return dayjs(props.user.birthdate).format('DD.MM.YYYY');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      return null;
+    },
     filterMethod: (filter, row) =>
       row[filter.id].startsWith(filter.value) && row[filter.id].endsWith(filter.value),
   },
@@ -48,35 +62,47 @@ const columns = ({ onOpenFormUpdateDoc }) => [
     Header: 'Status',
     // filterable: true,
     Cell: props => {
-      if (props.original.reqStatus !== 0) {
-        return (
-          <ButtonBase
-            // onClick={() => onOpenFormUpdateDoc(props.original.id)}
-            display="inline-block"
-            size="xsmall"
-            variant="transparent">
-            {props.original.reqStatus === 1 ? 'Download' : 'Request'}
-          </ButtonBase>
-        );
-      }
-      return (
-        <ButtonWithImage
-          // onClick={() => onOpenFormUpdateDoc(props.original.id)}
-          display="inline-block"
-          iconRight={
-            <Text fontSize={5} lineHeight={0} fill="inherit">
-              <SvgCancelRequest />
-            </Text>
+      try {
+        if (props.original.document) {
+          if (props.original.document[0].status === STATUS_PENDING) {
+            return (
+              <ButtonWithImage
+                // onClick={() => onOpenFormUpdateDoc(props.original.id)}
+                display="inline-block"
+                iconRight={
+                  <Text fontSize={5} lineHeight={0} fill="inherit">
+                    <SvgCancelRequest />
+                  </Text>
+                }
+                size="xsmall"
+                variant="transparent"
+                pl="3px"
+                pr="5px">
+                Requested
+              </ButtonWithImage>
+            );
           }
-          size="xsmall"
-          variant="transparent"
-          pl="3px"
-          pr="5px">
-          Requested
-        </ButtonWithImage>
-      );
+          return (
+            <ButtonBase
+              // onClick={() => onOpenFormUpdateDoc(props.original.id)}
+              display="inline-block"
+              size="xsmall"
+              variant="transparent">
+              {props.original.document[0].status === STATUS_APPROVAL ? 'Download' : 'Request'}
+            </ButtonBase>
+          );
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      return null;
     },
-    accessor: props => props.reqStatus,
+    accessor: props => {
+      if (props.document && props.document.length) {
+        return props.document;
+      }
+      return null;
+    },
   },
 ];
 
@@ -114,14 +140,25 @@ export class ClientsPage extends Component {
         <Text fontFamily="bold" fontSize={8} lineHeight={8} mb={7}>
           Clients
         </Text>
-        <ReactTableStyled
-          defaultFilterMethod={(filter, row) => String(row[filter.id]).indexOf(filter.value) >= 0}
-          data={this.state.data}
-          filterable
-          columns={columns({
-            onOpenFormUpdateDoc: this.onOpenFormUpdateDoc,
-          })}
-        />
+
+        <Query query={UserListQuery}>
+          {({ error, data, loading }) => {
+            console.log(error, data, loading);
+            return (
+              <ReactTableStyled
+                defaultFilterMethod={(filter, row) =>
+                  String(row[filter.id]).indexOf(filter.value) >= 0
+                }
+                data={loading ? [] : data.userDocumentList}
+                filterable
+                columns={columns({
+                  onOpenFormUpdateDoc: this.onOpenFormUpdateDoc,
+                })}
+              />
+            );
+          }}
+        </Query>
+
         {isOpen && (
           <Modal toggleModal={this.toggleModal}>
             <FormDocumentUpload toggleModal={this.toggleModal} id={id} />
