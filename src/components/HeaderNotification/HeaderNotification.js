@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {SvgBell} from "../Icons/SvgBell";
-import {ROLE_BUREAU} from "../../shared/roles";
+import {ROLE_BANK, ROLE_BUREAU, ROLE_CLIENT} from "../../shared/roles";
 import {CircleCount} from "./HeaderNotificationStyled";
 import {ButtonStyled} from "./HeaderNotificationStyled";
+import {CheckAuthorization} from "../CheckAuthorization/CheckAuthorization";
 
 
-
+@CheckAuthorization([ROLE_CLIENT, ROLE_BANK])
 export class HeaderNotification extends Component {
   render() {
     const {user} = this.props;
