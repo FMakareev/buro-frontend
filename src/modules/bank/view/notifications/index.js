@@ -9,7 +9,7 @@ import {ReactTableStyled} from '../../../../components/ReactTableStyled/ReactTab
 import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
 import {ROLE_BANK} from "../../../../shared/roles";
 
-import NotificationListQuery from '../clients/NotificationListQuery.graphql';
+import NotificationListQuery from './NotificationListQuery.graphql';
 
 import {STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL} from '../../../../shared/statuses';
 import {getUserFromStore} from "../../../../store/reducers/user/selectors";

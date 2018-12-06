@@ -13,7 +13,7 @@ import {STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL} from '../../../../
 import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
 import {ROLE_BANK} from "../../../../shared/roles";
 import {getUserFromStore} from "../../../../store/reducers/user/selectors";
-import {CreateNotificationButton} from "./CreateNotificationButton";
+import {CreateNotificationButton} from "../../components/CreateNotificationButton/CreateNotificationButton";
 import {ButtonBase} from "../../../../components/ButtonBase/ButtonBase";
 import {Box} from "../../../../components/Box/Box";
 
