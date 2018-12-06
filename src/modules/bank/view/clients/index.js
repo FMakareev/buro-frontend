@@ -14,6 +14,7 @@ import UserListQuery from './UserListQuery.graphql';
 import { STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL } from '../../../../shared/statuses';
 import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
 import {ROLE_BANK} from "../../../../shared/roles";
+import {getUserFromStore} from "../../../../store/reducers/user/selectors";
 
 const columns = () => [
   {
@@ -109,6 +110,9 @@ const columns = () => [
   },
 ];
 
+@connect((state)=>({
+  user: getUserFromStore(state),
+}))
 @CheckAuthorization([ROLE_BANK])
 export class ClientsPage extends Component {
   static propTypes = {};
