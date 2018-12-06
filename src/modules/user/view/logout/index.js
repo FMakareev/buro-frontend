@@ -6,7 +6,19 @@ import { USER_REMOVE } from '../../../../store/reducers/user/actionTypes';
 
 import { ReactRoutePropTypes } from '../../../../propTypes/ReactRoutePropTypes';
 import { getUserFromStore } from '../../../../store/reducers/user/selectors';
+import {PreloaderWrapper} from "../../../../components/PreloaderWrapper/PreloaderWrapper";
+import {Text} from "../../../../components/Text/Text";
+import {SpeedingWheel} from "../../../../components/SmallPreloader/SmallPreloader";
 
+
+@connect(
+  state => ({
+    user: getUserFromStore(state),
+  }),
+  dispatch => ({
+    removeUser: () => dispatch({ type: USER_REMOVE }),
+  }),
+)
 export class LogOut extends Component {
   static propTypes = {
     ...ReactRoutePropTypes,
@@ -69,17 +81,12 @@ export class LogOut extends Component {
     if (redirect) {
       return <Redirect to={redirect} />;
     }
-    return <div>Loading...</div>
+    return (<PreloaderWrapper>
+      <Text fontSize={12}>
+        <SpeedingWheel/>
+      </Text>
+    </PreloaderWrapper>)
   }
 }
-
-LogOut = connect(
-  state => ({
-    user: getUserFromStore(state),
-  }),
-  dispatch => ({
-    removeUser: () => dispatch({ type: USER_REMOVE }),
-  }),
-)(LogOut);
 
 export default LogOut;
