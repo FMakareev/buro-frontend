@@ -1,0 +1,18 @@
+query ($email: String!) {
+  userEmailItem(email: $email) {
+    id
+    bankName
+    firstName
+    lastName
+    patronymic
+    birthdate
+    gender
+    email
+    phone
+    master_password
+    password
+    retype_password
+    role
+    token
+  }
+}
