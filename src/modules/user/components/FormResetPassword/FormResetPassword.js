@@ -75,7 +75,7 @@ export class FormResetPassword extends Component {
                 placeholder={'Email address'}
                 type={'email'}
                 validate={[required, isEmail]}
-                icon={<SvgEmailIcon />}
+                icon={<Text fontSize={11} lineHeight={0} fill={'inherit'}><SvgEmailIcon /></Text>}
               />
             </Box>
             {!submitFailed && (
