@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import dayjs from 'dayjs';
-import { Query } from 'react-apollo';
-import { Container } from '../../../../components/Container/Container';
-import { Text } from '../../../../components/Text/Text';
-import { ButtonWithImage } from '../../../../components/ButtonWithImage/ButtonWithImage';
-import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactTableStyled';
-import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
-import { ROLE_CLIENT } from "../../../../shared/roles";
+import {Query} from 'react-apollo';
+import {connect} from 'react-redux';
 
-import { STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL } from '../../../../shared/statuses';
+import {Container} from '../../../../components/Container/Container';
+import {Text} from '../../../../components/Text/Text';
+import {ButtonWithImage} from '../../../../components/ButtonWithImage/ButtonWithImage';
+import {ReactTableStyled} from '../../../../components/ReactTableStyled/ReactTableStyled';
+import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
+import {ROLE_CLIENT} from "../../../../shared/roles";
+
+import {STATUS_PENDING, STATUS_APPROVAL} from '../../../../shared/statuses';
 import NotificationListQuery from './NotificationListQuery.graphql';
 import {getUserFromStore} from "../../../../store/reducers/user/selectors";
+import {Box} from "../../../../components/Box/Box";
 
-const columns = ({ onOpenFormUpdateDoc }) => [
+const columns = () => [
   {
     id: 'Bank',
     Header: 'Bank',
@@ -76,7 +79,7 @@ const columns = ({ onOpenFormUpdateDoc }) => [
   },
 ];
 
-@connect((state)=>({
+@connect((state) => ({
   user: getUserFromStore(state),
 }))
 @CheckAuthorization([ROLE_CLIENT])
@@ -91,43 +94,33 @@ export class ClientsPage extends Component {
   }
 
   get initialState() {
-    return {
-      clientid: null,
-    };
+    return {};
   }
 
-  onOpenFormUpdateDoc = id => this.setState(() => ({ id, isOpen: true }));
-
-  toggleModal = () => {
-    console.log('toggleModal');
-    this.setState(state => ({ isOpen: !state.isOpen }));
-  };
-
   render() {
-    const { clientid } = this.state;
+    const {user} = this.props;
     return (
-      <Container px={6}>
-        <Text fontFamily="bold" fontSize={9} lineHeight={9} mb={7}>
+      <Container backgroundColor={'transparent'} px={6}>
+        <Text fontFamily={'bold'} fontWeight={'bold'} fontSize={9} lineHeight={9} mb={7}>
           Notifications
         </Text>
-        <Query query={NotificationListQuery} variables={{ clientid }}>
-          {({ error, data, loading }) => {
-            console.log(error, data, loading);
-            return (
-              <ReactTableStyled
-                defaultFilterMethod={(filter, row) =>
-                  String(row[filter.id]).indexOf(filter.value) >= 0
-                }
-                data={loading ? [] : data.notificationList}
-                filterable
-                columns={columns({
-                  onOpenFormUpdateDoc: this.onOpenFormUpdateDoc,
-                })}
-              />
-            );
-          }}
-        </Query>
-
+        <Box backgroundColor={'color0'}>
+          <Query query={NotificationListQuery} variables={{clientid: user.id}}>
+            {({error, data, loading}) => {
+              console.log(error, data, loading);
+              return (
+                <ReactTableStyled
+                  defaultFilterMethod={(filter, row) =>
+                    String(row[filter.id]).indexOf(filter.value) >= 0
+                  }
+                  data={loading ? [] : data.notificationList}
+                  filterable
+                  columns={columns()}
+                />
+              );
+            }}
+          </Query>
+        </Box>
       </Container>
     );
   }
