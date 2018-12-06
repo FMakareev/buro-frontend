@@ -1,6 +1,5 @@
 import faker from 'faker';
 import { range } from '../../helpers/range';
-import { userItem } from './userItem';
 import { notificationItem } from './notificationItem';
 
 export const notificationList = (query, props) =>
