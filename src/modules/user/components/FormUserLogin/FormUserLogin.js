@@ -129,7 +129,7 @@ export class FormUserLogin extends Component {
             apolloError: null,
           }));
           this.setUser(result);
-          history.push(`app/profile/${uname}`);
+          history.push(`app/profile`);
           return Promise.resolve(result);
         }
       })
@@ -173,7 +173,7 @@ export class FormUserLogin extends Component {
               component={TextFieldWithIcon}
               placeholder="Email address"
               type="email"
-              icon={<SvgEmailIcon/>}
+              icon={<Text fontSize={11} lineHeight={0} fill={'inherit'}><SvgEmailIcon/></Text>}
               validate={[required, isEmail]}
             />
           </Box>
@@ -183,7 +183,7 @@ export class FormUserLogin extends Component {
               component={TextFieldWithIcon}
               placeholder="Password"
               type={"password"}
-              icon={<SvgPasswordIcon/>}
+              icon={<Text fontSize={11} lineHeight={0} fill={'inherit'}><SvgPasswordIcon/></Text>}
               validate={[required]}
             />
           </Box>
