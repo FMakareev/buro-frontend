@@ -48,9 +48,13 @@ export const NavItem = ({to, children, icon}) => (<NavLinkStyled to={to} activeC
 
 export const NavList = styled.div`
   position: absolute;
-  right: 56px;
-  top: 0;
+  right: 0;
+  top: 50px;
   z-index: 2;
+  @media(min-width: 567px){
+    right: 56px;
+    top: 0;
+  }
 `;
 
 export const HeaderNavWrapper = styled.div`
