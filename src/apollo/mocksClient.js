@@ -4,12 +4,48 @@ import { userDocumentList } from './graphql/query/userDocumentList';
 import { userList } from './graphql/query/userList';
 import { userItem } from './graphql/query/userItem';
 import { notificationList } from './graphql/query/notificationList';
+import {ROLE_BANK, ROLE_BUREAU, ROLE_CLIENT} from "../shared/roles";
 
 const defaultMocks = {
   Query: () => ({
     userList,
     userItem,
-    userEmailItem: userItem,
+    userEmailItem: (query, {email}) =>{
+      console.log(query, email);
+      switch(email){
+        case('client@test.com'):{
+          return {
+            ...userItem(),
+            email: 'client@test.com',
+            role: ROLE_CLIENT,
+          }
+        }
+        case('bank@test.com'):{
+          return {
+            ...userItem(),
+            email: 'bank@test.com',
+            role: ROLE_BANK,
+          }
+        }
+        case('bureau@test.com'):{
+          return {
+            ...userItem(),
+            email: 'bureau@test.com',
+            role: ROLE_BUREAU,
+          }
+        }
+        default: {
+          throw Error(JSON.stringify({
+            userEmailItem: null,
+            errors: [
+              {
+                message:'GraphQL error: user not found'
+              }
+            ]
+          }))
+        }
+      }
+    },
     userDocumentList,
     notificationList,
   }),
