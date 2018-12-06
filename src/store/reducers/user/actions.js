@@ -1,25 +1,82 @@
 /* global isBrowser */
 
-import { USER_LOADING, USER_LOADING_ERROR, USER_LOADING_SUCCESS, USER_REMOVE } from './actionTypes';
+import {
+  USER_ADD,
+  USER_INIT_LOADING_ERROR,
+  USER_INIT_LOADING_START,
+  USER_INIT_LOADING_SUCCESS, USER_NOT_AUTHORIZED,
+  USER_REMOVE,
+  USER_UPDATE_LOADING_ERROR,
+  USER_UPDATE_LOADING_START,
+  USER_UPDATE_LOADING_SUCCESS
+} from './actionTypes';
+import {mocksClient} from '../../../apollo/mocksClient';
+import UserEmailItemQuery from './UserEmailItemQuery.graphql';
 
-export const userInit = () => dispatch =>
-  new Promise((resolve, reject) => {
+
+/**
+ * @desc метод инициализации пользователя в системе
+ * */
+export const userInit = () => dispatch => {
+  return new Promise((resolve, reject) => {
     try {
-      dispatch({
-        type: USER_LOADING_SUCCESS,
-        user: JSON.parse(localStorage.getItem('user')),
-      });
+      if (isBrowser) {
+        dispatch({
+          type: USER_INIT_LOADING_START,
+        });
+        const user = JSON.parse(localStorage.getItem('user'));
+        console.log(user);
+        if (user) {
+          /** TODO : Заменить mocksClient на обычный client и убрать setTimeout */
+          setTimeout(()=>{
+            mocksClient.query({
+              query: UserEmailItemQuery,
+              variables: {
+                email: user.email,
+              }
+            })
+              .then(({data}) => {
+                const {userEmailItem} = data;
+                localStorage.setItem('user', JSON.stringify(userEmailItem));
+                dispatch({
+                  type: USER_INIT_LOADING_SUCCESS,
+                  user: {
+                    ...userEmailItem,
+                  },
+                });
+                resolve(userEmailItem);
+              })
+              .catch(error => {
+                localStorage.clear();
+                console.log(error);
+                /** */
+                dispatch({
+                  type: USER_INIT_LOADING_ERROR,
+                  user: {
+                    error: USER_NOT_AUTHORIZED,
+                  }
+                });
+                reject(error)
+              })
+          }, 5000)
+        } else {
+          localStorage.clear();
+          dispatch({
+            type: USER_INIT_LOADING_ERROR,
+            user: {
+              error: USER_NOT_AUTHORIZED,
+            }
+          });
+        }
+      }
     } catch (error) {
-      dispatch({
-        type: USER_LOADING_ERROR,
-        user: error,
-      });
       reject(error);
     }
   });
+};
 
-export const userRemove = () => dispatch =>
-  new Promise((resolve, reject) => {
+export const userRemove = () => dispatch => {
+  return new Promise((resolve, reject) => {
     try {
       if (isBrowser) {
         window.localStorage.clear();
@@ -38,8 +95,71 @@ export const userRemove = () => dispatch =>
       reject(error);
     }
   });
+};
+
+export const userUpdate = () => dispatch => {
+  return new Promise((resolve, reject) => {
+    try {
+      if (isBrowser) {
+        dispatch({
+          type: USER_UPDATE_LOADING_START,
+          user: {
+            loading: true,
+          }
+        });
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+          /** TODO : Заменить mocksClient на обычный client и убрать setTimeout */
+         setTimeout(()=>{
+           mocksClient.query({
+             query: UserEmailItemQuery,
+             variables: {
+               email: user.email,
+             }
+           })
+             .then(({data}) => {
+               const {userEmailItem} = data;
+               localStorage.setItem('user', JSON.stringify(userEmailItem));
+               dispatch({
+                 type: USER_UPDATE_LOADING_SUCCESS,
+                 user: {
+                   ...userEmailItem,
+                 },
+               });
+               resolve(userEmailItem);
+             })
+             .catch(error => {
+               console.log(error);
+               localStorage.clear();
+               /** */
+               dispatch({
+                 type: USER_UPDATE_LOADING_ERROR,
+                 user: {
+                   error: error,
+                 }
+               });
+               reject(error)
+             })
+         }, 5000)
+        } else {
+          localStorage.clear();
+          dispatch({
+            type: USER_UPDATE_LOADING_ERROR,
+            user: {
+              error: 'User not logged',
+            }
+          });
+        }
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 
 export default {
   userInit,
+  userUpdate,
   userRemove,
 };
