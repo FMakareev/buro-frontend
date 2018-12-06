@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import dayjs from 'dayjs';
+import {connect} from 'react-redux';
+
 import {Container} from "../../../../components/Container/Container";
 import {Text} from "../../../../components/Text/Text";
 import {ButtonBase} from "../../../../components/ButtonBase/ButtonBase";
@@ -13,6 +15,7 @@ import {Query} from "react-apollo";
 import {ROLE_BUREAU} from "../../../../shared/roles";
 import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
 import {getUserFromStore} from "../../../../store/reducers/user/selectors";
+import {Box} from "../../../../components/Box/Box";
 
 const columns = ({onOpenFormUpdateDoc}) => {
 
@@ -87,7 +90,8 @@ const columns = ({onOpenFormUpdateDoc}) => {
     }
   ];
 };
-@connect((state)=>({
+
+@connect((state) => ({
   user: getUserFromStore(state),
 }))
 @CheckAuthorization([ROLE_BUREAU])
@@ -120,29 +124,30 @@ export class DocumentsBureauPage extends Component {
   render() {
     const {isOpen, id} = this.state;
     return (
-      <Container px={6}>
-        <Text fontFamily={'bold'} fontSize={8} lineHeight={8} mb={7}>
+      <Container backgroundColor={'transparent'} px={6}>
+        <Text fontFamily={'bold'} fontWeight={'bold'} fontSize={9} lineHeight={9} mb={7}>
           Documents
         </Text>
-
-        <Query query={UserDocumentListQuery}>
-          {
-            ({error, data, loading}) => {
-              console.log(error, data, loading);
-              return (
-                <ReactTableStyled
-                  defaultFilterMethod={(filter, row) =>
-                    String(row[filter.id]).indexOf(filter.value) >= 0}
-                  data={loading?[]:data.userDocumentList}
-                  filterable
-                  loading={loading}
-                  columns={columns({
-                    onOpenFormUpdateDoc: this.onOpenFormUpdateDoc,
-                  })}
-                />)
+        <Box backgroundColor={'color0'}>
+          <Query query={UserDocumentListQuery}>
+            {
+              ({error, data, loading}) => {
+                console.log(error, data, loading);
+                return (
+                  <ReactTableStyled
+                    defaultFilterMethod={(filter, row) =>
+                      String(row[filter.id]).indexOf(filter.value) >= 0}
+                    data={loading ? [] : data.userDocumentList}
+                    filterable
+                    loading={loading}
+                    columns={columns({
+                      onOpenFormUpdateDoc: this.onOpenFormUpdateDoc,
+                    })}
+                  />)
+              }
             }
-          }
-        </Query>
+          </Query>
+        </Box>
         {
           isOpen &&
           <Modal toggleModal={this.toggleModal}>
