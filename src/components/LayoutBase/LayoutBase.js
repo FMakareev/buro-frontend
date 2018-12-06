@@ -1,8 +1,13 @@
 import React, {Fragment, PureComponent} from 'react';
-import {LAYOUT_ADMIN, LAYOUT_APP, LAYOUT_AUTH} from '../../shared/layout';
+import {connect} from 'react-redux';
+import {LAYOUT_ADMIN, LAYOUT_APP} from '../../shared/layout';
 import {Footer} from "../Footer/Footer";
 import styled from 'styled-components';
 import {Box} from "../Box/Box";
+import {getUserFromStore} from "../../store/reducers/user/selectors";
+import {PreloaderWrapper} from "../PreloaderWrapper/PreloaderWrapper";
+import {SpeedingWheel} from "../SmallPreloader/SmallPreloader";
+import {Text} from "../Text/Text";
 
 const MainStyled = styled(Box)`
   width: 100%;
@@ -15,6 +20,9 @@ const MainStyled = styled(Box)`
   }
 `;
 
+@connect((state) => ({
+  user: getUserFromStore(state),
+}))
 export class LayoutBase extends PureComponent {
   static propTypes = {};
 
@@ -42,6 +50,7 @@ export class LayoutBase extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     const pathname = {...this.state};
+
     if (nextProps.location.pathname !== pathname) {
       const {
         route: {routes},
@@ -78,9 +87,23 @@ export class LayoutBase extends PureComponent {
 
   render() {
     const {Layout, routes} = this.state;
+    const {user} = this.props;
     return <Fragment>
       <MainStyled>
-        {Layout && <Layout {...this.props} route={routes}/>}
+        {
+          user && user.initLoading &&
+          <PreloaderWrapper>
+            <Text fontSize={12}>
+              <SpeedingWheel/>
+            </Text>
+          </PreloaderWrapper>
+        }
+        {
+          (user &&
+            !user.initLoading) &&
+          Layout &&
+          <Layout {...this.props} route={routes}/>
+        }
       </MainStyled>
       <Footer/>
     </Fragment>;
