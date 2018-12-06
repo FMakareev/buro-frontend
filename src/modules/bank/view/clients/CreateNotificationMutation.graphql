@@ -1,0 +1,20 @@
+mutation($clientid: String, $bankid: String){
+  createNotification(clientid: $clientid, bankid:$bankid) {
+    id
+    date
+    status
+    bank{
+      id
+      bankName
+      role
+    }
+    client{
+      id
+      firstName
+      lastName
+      patronymic
+      role
+    }
+  }
+}
+
