@@ -9,9 +9,9 @@ query ($email: String!) {
     gender
     email
     phone
-    master_password
+    masterPassword
     password
-    retype_password
+    retypePassword
     role
     token
   }
