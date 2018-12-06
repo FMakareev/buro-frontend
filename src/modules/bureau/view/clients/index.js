@@ -11,6 +11,8 @@ import {FormDocumentUpload} from "../../components/FormDocumentUpload/FormDocume
 import Modal from "../../../../components/Modal/Modal";
 import UserDocumentListQuery from './UserDocumentListQuery.graphql';
 import {Query} from "react-apollo";
+import {ROLE_BUREAU} from "../../../../shared/roles";
+import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
 
 const columns = ({onOpenFormUpdateDoc}) => {
 
@@ -86,7 +88,7 @@ const columns = ({onOpenFormUpdateDoc}) => {
   ];
 };
 
-
+@CheckAuthorization([ROLE_BUREAU])
 export class DocumentsBureauPage extends Component {
   static propTypes = {};
 
