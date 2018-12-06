@@ -22,7 +22,7 @@ export const routes = [
     resolvers: [],
   },
   {
-    layout: 0,
+    layout: LAYOUT_AUTH,
     order: 0,
     exact: true,
     hidden: true,
@@ -75,7 +75,7 @@ export const routes = [
     layout: LAYOUT_APP,
     exact: false,
     name: 'Profile',
-    path: '/profile/:email',
+    path: '/profile',
     order: 0,
     hidden: false,
     load: () => import(/* webpackChunkName: 'userProfile'  */ './view/profile'),
