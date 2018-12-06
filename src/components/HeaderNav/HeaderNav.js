@@ -33,7 +33,7 @@ export class HeaderNav extends Component {
             {/** этот путь только для банка */}
             {
               user && !user.error && user.role === ROLE_BANK &&
-              <NavItem to={'/app/bank/notification'} icon={<SvgRequests/>}>
+              <NavItem to={'/app/bank/notifications'} icon={<SvgRequests/>}>
                 Requests
               </NavItem>
             }
@@ -49,7 +49,7 @@ export class HeaderNav extends Component {
             {/** этот путь только для клиента */}
             {
               user && !user.error && user.role === ROLE_CLIENT &&
-              <NavItem to={'/app/client/notification'} icon={<SvgRequests/>}>
+              <NavItem to={'/app/client/notifications'} icon={<SvgRequests/>}>
                 Requests
               </NavItem>
             }
