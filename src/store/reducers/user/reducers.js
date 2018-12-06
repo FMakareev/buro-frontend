@@ -1,11 +1,54 @@
-import { USER_ADD, USER_REMOVE } from './actionTypes';
+/** isBrowser */
+import {
+  USER_ADD, USER_INIT_LOADING_ERROR,
+  USER_INIT_LOADING_START, USER_INIT_LOADING_SUCCESS,
+  USER_REMOVE, USER_UPDATE_LOADING_ERROR, USER_UPDATE_LOADING_START, USER_UPDATE_LOADING_SUCCESS
+} from './actionTypes';
 
-const initialState = null;
+const initialState = {
+  error: null,
+  initLoading: false,
+  updateLoading: false,
+};
 
-export const ReducerUser = (prevState = initialState, { type, payload }) => {
+export const ReducerUser = (prevState = initialState, {type, user, ...rest}) => {
   switch (type) {
+    case USER_INIT_LOADING_START:
+      return Object.assign({}, prevState, {
+        initLoading: true,
+        ...user
+      });
+    case  USER_INIT_LOADING_SUCCESS:
+      return Object.assign({}, prevState, {
+        ...initialState,
+        ...user
+      });
+    case USER_INIT_LOADING_ERROR:
+      return Object.assign({}, prevState, {
+        initLoading: false,
+        ...user
+      });
+      /** экшены обновления пользователя */
+    case USER_UPDATE_LOADING_START:
+      return Object.assign({}, prevState, {
+        updateLoading: true,
+        ...user
+      });
+    case  USER_UPDATE_LOADING_SUCCESS:
+      return Object.assign({}, prevState, {
+        ...initialState,
+        ...user
+      });
+    case USER_UPDATE_LOADING_ERROR:
+      return Object.assign({}, prevState, {
+        ...initialState,
+        ...user
+      });
     case USER_ADD:
-      return Object.assign({}, prevState, payload);
+      return Object.assign({}, prevState, {
+        ...initialState,
+        ...user
+      });
     case USER_REMOVE:
       if (isBrowser) {
         window.localStorage.clear();
@@ -20,7 +63,7 @@ export const ReducerUser = (prevState = initialState, { type, payload }) => {
         }
       }
 
-      return null;
+      return initialState;
     default:
       return prevState;
   }
