@@ -52,19 +52,19 @@ const TextField = styled(TextFieldBase)`
   }
 
   & + svg {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 
-    fill: ${props => {
-      if (props.meta.touched && props.meta.error) {
-        return props.theme.colors.color9;
-      }
-      if (props.meta.dirty) {
-        return props.theme.colors.color1;
-      }
-      return props.theme.colors.color5;
-    }} !important;
+  fill: ${props => {
+  if (props.meta.touched && props.meta.error) {
+    return props.theme.colors.color9;
+  }
+  if (props.meta.dirty) {
+    return props.theme.colors.color1;
+  }
+  return props.theme.colors.color5;
+}} !important;
   }
 
   :focus {
@@ -75,7 +75,21 @@ const TextField = styled(TextFieldBase)`
     }
   }
 `;
+const IconWrapper = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
 
+  fill: ${props => {
+  if (props.meta.touched && props.meta.error) {
+    return props.theme.colors.color9;
+  }
+  if (props.meta.dirty) {
+    return props.theme.colors.color1;
+  }
+  return props.theme.colors.color5;
+}} !important;
+`
 const Error = styled.span`
   position: absolute;
   top: -12px;
