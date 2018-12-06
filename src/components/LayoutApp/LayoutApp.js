@@ -1,11 +1,6 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import { matchRoutes } from 'react-router-config';
 import PropTypes from 'prop-types';
-
-import Header from '../Header/Header';
-import HeaderNav from "../HeaderNav/HeaderNav";
-import {HeaderNotification} from "../HeaderNotification/HeaderNotification";
-import {Box} from "../Box/Box";
 
 export class LayoutApp extends Component {
   static propTypes = {};
@@ -45,19 +40,7 @@ export class LayoutApp extends Component {
       route: { routes },
       location,
     } = this.props;
-    return (
-      <Fragment>
-        <Header {...this.state} {...this.props} >
-          <Box px={2}>
-            <HeaderNav/>
-          </Box>
-          <Box px={2}>
-            <HeaderNotification/>
-          </Box>
-        </Header>
-        {this.renderRoutes(routes, location.pathname)}
-      </Fragment>
-    );
+    return this.renderRoutes(routes, location.pathname)
   }
 }
 
