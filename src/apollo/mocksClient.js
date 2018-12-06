@@ -1,33 +1,34 @@
 import setupClient from './helpers/apolloClientMock';
 import schema from './schema.graphqls';
-import { userDocumentList } from './graphql/query/userDocumentList';
-import { userList } from './graphql/query/userList';
-import { userItem } from './graphql/query/userItem';
-import { notificationList } from './graphql/query/notificationList';
+import {userDocumentList} from './graphql/query/userDocumentList';
+import {userList} from './graphql/query/userList';
+import {userItem} from './graphql/query/userItem';
+import {notificationList} from './graphql/query/notificationList';
 import {ROLE_BANK, ROLE_BUREAU, ROLE_CLIENT} from "../shared/roles";
+import faker from "faker";
 
 const defaultMocks = {
   Query: () => ({
     userList,
     userItem,
-    userEmailItem: (query, {email}) =>{
+    userEmailItem: (query, {email}) => {
       console.log(query, email);
-      switch(email){
-        case('client@test.com'):{
+      switch (email) {
+        case('client@test.com'): {
           return {
             ...userItem(),
             email: 'client@test.com',
             role: ROLE_CLIENT,
           }
         }
-        case('bank@test.com'):{
+        case('bank@test.com'): {
           return {
             ...userItem(),
             email: 'bank@test.com',
             role: ROLE_BANK,
           }
         }
-        case('bureau@test.com'):{
+        case('bureau@test.com'): {
           return {
             ...userItem(),
             email: 'bureau@test.com',
@@ -39,7 +40,7 @@ const defaultMocks = {
             userEmailItem: null,
             errors: [
               {
-                message:'GraphQL error: user not found'
+                message: 'GraphQL error: user not found'
               }
             ]
           }))
@@ -57,6 +58,18 @@ const defaultMocks = {
     createUser: (mutation, props) => props,
     updateUser: (mutation, props) => props,
     userResetPassword: (mutation, props) => props,
+    createNotification: (mutation, props) => {
+      // для имитации запроса к серверу с рандомной задержкой и результатом.
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          faker.random.number(1) ? resolve(JSON.stringify({data: {createNotification: props}})) : reject(JSON.stringify({
+            errors: [{
+              message: 'error!'
+            }]
+          }));
+        }, faker.random.number(2000));
+      })
+    },
     userPasswordRecovery: (mutation, props) =>
       // throw Error(JSON.stringify({
       //   userPasswordRecovery: null,
