@@ -1,7 +1,5 @@
 query($bankid: String){
   notificationList(bankid: $bankid){
-    # bankid
-   
       id
       status
       date
@@ -11,6 +9,6 @@ query($bankid: String){
         lastName
         patronymic
       }
-   
+
   }
 }
