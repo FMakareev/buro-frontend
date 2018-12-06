@@ -81,7 +81,7 @@ export class FormUserPasswordRecovery extends Component {
                 component={TextFieldWithIcon}
                 placeholder={"Password"}
                 type={"password"}
-                icon={<SvgPasswordIcon/>}
+                icon={<Text fontSize={11} lineHeight={0} fill={'inherit'}><SvgPasswordIcon/></Text>}
                 validate={[required]}
               />
             </Box>
@@ -91,7 +91,7 @@ export class FormUserPasswordRecovery extends Component {
                 component={TextFieldWithIcon}
                 placeholder={"Retype password"}
                 type={"password"}
-                icon={<SvgPasswordIcon/>}
+                icon={<Text fontSize={11} lineHeight={0} fill={'inherit'}><SvgPasswordIcon/></Text>}
                 validate={[required]}
               />
             </Box>
