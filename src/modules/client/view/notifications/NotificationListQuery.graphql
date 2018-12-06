@@ -1,0 +1,14 @@
+query($clientid: String){
+  notificationList(clientid: $clientid){ 
+      id
+      status
+      date
+      bank{
+        id
+        firstName
+        lastName
+        patronymic
+      }
+   
+  }
+}

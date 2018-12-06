@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import dayjs from 'dayjs';
+import { Query } from 'react-apollo';
 import { Container } from '../../../../components/Container/Container';
 import { Text } from '../../../../components/Text/Text';
 import { ButtonWithImage } from '../../../../components/ButtonWithImage/ButtonWithImage';
-import { makeData } from '../../../bureau/helpers/utils';
 import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactTableStyled';
-import { ROLE_CLIENT } from "../../../../shared/roles";
 import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
+import { ROLE_CLIENT } from "../../../../shared/roles";
 
-const columns = () => [
+import { STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL } from '../../../../shared/statuses';
+import NotificationListQuery from './NotificationListQuery.graphql';
+
+const columns = ({ onOpenFormUpdateDoc }) => [
   {
     id: 'Bank',
     Header: 'Bank',
@@ -17,7 +20,7 @@ const columns = () => [
         {props.value}
       </Text>
     ),
-    accessor: props => props.bank,
+    accessor: props => `${props.bank.firstName} ${props.bank.lastName}`,
   },
   {
     id: 'reqDate',
@@ -27,7 +30,7 @@ const columns = () => [
         {props.value}
       </Text>
     ),
-    accessor: props => dayjs(props.reqDate).format('DD.MM.YYYY HH:mm:ss'),
+    accessor: props => dayjs(props.date).format('DD.MM.YYYY HH:mm:ss'),
     filterMethod: (filter, row) =>
       row[filter.id].startsWith(filter.value) && row[filter.id].endsWith(filter.value),
   },
@@ -36,10 +39,11 @@ const columns = () => [
     Header: 'Status',
     // filterable: true,
     Cell: props => {
-      if (props.original.reqStatus !== 0) {
-        return <Text>{props.original.reqStatus === 1 ? 'Approved' : 'Not approved'}</Text>;
+      if (props.original.status !== STATUS_PENDING) {
+        return (
+          <Text>{props.original.status === STATUS_APPROVAL ? 'Approved' : 'Not approved'}</Text>
+        );
       }
-      console.log(props);
       return (
         <>
           <ButtonWithImage
@@ -84,7 +88,7 @@ export class ClientsPage extends Component {
 
   get initialState() {
     return {
-      data: makeData(25),
+      clientid: null,
     };
   }
 
@@ -96,18 +100,29 @@ export class ClientsPage extends Component {
   };
 
   render() {
-    const { isOpen, id } = this.state;
+    const { clientid } = this.state;
     return (
       <Container px={6}>
         <Text fontFamily="bold" fontSize={9} lineHeight={9} mb={7}>
-          Requests
+          Notifications
         </Text>
-        <ReactTableStyled
-          defaultFilterMethod={(filter, row) => String(row[filter.id]).indexOf(filter.value) >= 0}
-          data={this.state.data}
-          filterable
-          columns={columns()}
-        />
+        <Query query={NotificationListQuery} variables={{ clientid }}>
+          {({ error, data, loading }) => {
+            console.log(error, data, loading);
+            return (
+              <ReactTableStyled
+                defaultFilterMethod={(filter, row) =>
+                  String(row[filter.id]).indexOf(filter.value) >= 0
+                }
+                data={loading ? [] : data.notificationList}
+                filterable
+                columns={columns({
+                  onOpenFormUpdateDoc: this.onOpenFormUpdateDoc,
+                })}
+              />
+            );
+          }}
+        </Query>
 
       </Container>
     );

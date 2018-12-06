@@ -1,15 +1,17 @@
-import setupClient from './helpers/apolloClientMock'
+import setupClient from './helpers/apolloClientMock';
 import schema from './schema.graphqls';
-import {userDocumentList} from "./graphql/query/userDocumentList";
-import {userList} from "./graphql/query/userList";
-import {userItem} from "./graphql/query/userItem";
+import { userDocumentList } from './graphql/query/userDocumentList';
+import { userList } from './graphql/query/userList';
+import { userItem } from './graphql/query/userItem';
+import { notificationList } from './graphql/query/notificationList';
 
 const defaultMocks = {
   Query: () => ({
-    userList: userList,
-    userItem: userItem,
+    userList,
+    userItem,
     userEmailItem: userItem,
-    userDocumentList: userDocumentList,
+    userDocumentList,
+    notificationList,
   }),
   Mutation: () => ({
     /**
@@ -19,7 +21,7 @@ const defaultMocks = {
     createUser: (mutation, props) => props,
     updateUser: (mutation, props) => props,
     userResetPassword: (mutation, props) => props,
-    userPasswordRecovery: (mutation, props) => {
+    userPasswordRecovery: (mutation, props) =>
       // throw Error(JSON.stringify({
       //   userPasswordRecovery: null,
       //   errors: [
@@ -28,11 +30,10 @@ const defaultMocks = {
       //     }
       //   ]
       // }))
-      return props;
-    },
-  })
-}
+      props,
+  }),
+};
 
 export const mocksClient = setupClient(defaultMocks, schema)();
 
-export default mocksClient
+export default mocksClient;

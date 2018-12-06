@@ -1,0 +1,16 @@
+query($bankid: String){
+  notificationList(bankid: $bankid){
+    # bankid
+   
+      id
+      status
+      date
+      client{
+        id
+        firstName
+        lastName
+        patronymic
+      }
+   
+  }
+}
