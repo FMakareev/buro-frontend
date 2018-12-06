@@ -14,9 +14,9 @@ export const userItem = () => {
     gender: faker.random.arrayElement(['male', 'female']),
     email: faker.internet.email(),
     phone: faker.phone.phoneNumber(),
-    master_password: faker.random.uuid(),
+    masterPassword: faker.random.uuid(),
     password: password,
-    retype_password: password,
+    retypePassword: password,
     role: bankName ? 'bank' : 'client',
     token: null,
   }
