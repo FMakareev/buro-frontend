@@ -34,7 +34,7 @@ export class HeaderNav extends Component {
             {
               user && !user.error && user.role === ROLE_BANK &&
               <NavItem to={'/app/bank/notifications'} icon={<SvgRequests/>}>
-                Requests
+                Notifications
               </NavItem>
             }
 
@@ -50,7 +50,7 @@ export class HeaderNav extends Component {
             {
               user && !user.error && user.role === ROLE_CLIENT &&
               <NavItem to={'/app/client/notifications'} icon={<SvgRequests/>}>
-                Requests
+                Notifications
               </NavItem>
             }
 
@@ -61,6 +61,9 @@ export class HeaderNav extends Component {
                 Clients
               </NavItem>
             }
+            <NavItem to={'/logout'}>
+              Logout
+            </NavItem>
           </NavList>
         </TabContent>
       </TabController>
