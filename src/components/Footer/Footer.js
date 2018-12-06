@@ -7,13 +7,13 @@ import {Text} from "../Text/Text";
 export const Footer = () => (<Flex
   mt={'-36px'}
   justifyContent={'space-between'}
-  flexDirection={'row'}
+  flexDirection={['column','column','row','row','row',]}
   px={[5, 5, 7, 7, 7]}
   py={3}>
-  <Text color={'color1'} fontSize={'14px'} lineHeight={'20px'}>
+  <Text mb={[3,0,0,0,0]} color={'color1'} fontSize={'14px'} lineHeight={'20px'}>
     Copyright © 2018, The Bureau.
   </Text>
-  <Flex>
+  <Flex mx={-3}>
     <Text color={'color1'} px={3} fontSize={'14px'} lineHeight={'20px'}>
       <Link to={'/help'}>
         FAQ
