@@ -4,15 +4,15 @@ import { Query } from 'react-apollo';
 import { Container } from '../../../../components/Container/Container';
 import { Text } from '../../../../components/Text/Text';
 import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactTableStyled';
-import { Modal } from '../../../../components/Modal/Modal';
 import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
 import {ROLE_BANK} from "../../../../shared/roles";
 
 import NotificationListQuery from './NotificationListQuery.graphql';
 
 import { STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL } from '../../../../shared/statuses';
+import {getUserFromStore} from "../../../../store/reducers/user/selectors";
 
-const columns = ({ onOpenFormUpdateDoc }) => [
+const columns = () => [
   {
     id: 'Client',
     Header: 'Client',
@@ -65,6 +65,9 @@ const columns = ({ onOpenFormUpdateDoc }) => [
   },
 ];
 
+@connect((state)=>({
+  user: getUserFromStore(state),
+}))
 @CheckAuthorization([ROLE_BANK])
 export class ClientsPage extends Component {
   static propTypes = {};
@@ -78,10 +81,6 @@ export class ClientsPage extends Component {
 
   get initialState() {
     return {
-      // статус открытия модального окна
-      isOpen: false,
-      // id пользователя к которому крепится окумент
-      id: null,
       bankid: null,
     };
   }
@@ -94,7 +93,7 @@ export class ClientsPage extends Component {
   };
 
   render() {
-    const { isOpen, id, bankid } = this.state;
+    const { bankid } = this.state;
     return (
       <Container px={6}>
         <Text fontFamily="bold" fontSize={9} lineHeight={9} mb={7}>
