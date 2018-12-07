@@ -1,19 +1,21 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import dayjs from 'dayjs';
-import {Query} from 'react-apollo';
-import {connect} from 'react-redux';
+import { Query } from 'react-apollo';
+import { connect } from 'react-redux';
 
-import {Container} from '../../../../components/Container/Container';
-import {Text} from '../../../../components/Text/Text';
-import {ButtonWithImage} from '../../../../components/ButtonWithImage/ButtonWithImage';
-import {ReactTableStyled} from '../../../../components/ReactTableStyled/ReactTableStyled';
-import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
-import {ROLE_CLIENT} from "../../../../shared/roles";
+import { Container } from '../../../../components/Container/Container';
+import { Text } from '../../../../components/Text/Text';
+import { ButtonWithImage } from '../../../../components/ButtonWithImage/ButtonWithImage';
+import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactTableStyled';
+import { CheckAuthorization } from '../../../../components/CheckAuthorization/CheckAuthorization';
+import { ROLE_CLIENT } from '../../../../shared/roles';
 
-import {STATUS_PENDING, STATUS_APPROVAL} from '../../../../shared/statuses';
+import { STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL } from '../../../../shared/statuses';
 import NotificationListQuery from './NotificationListQuery.graphql';
-import {getUserFromStore} from "../../../../store/reducers/user/selectors";
-import {Box} from "../../../../components/Box/Box";
+import { getUserFromStore } from '../../../../store/reducers/user/selectors';
+import { Box } from '../../../../components/Box/Box';
+
+import { UpdateNotificationButtons } from '../../components/UpdateNotificationButtons/UpdateNotificationButtons';
 
 const columns = () => [
   {
@@ -48,38 +50,13 @@ const columns = () => [
           <Text>{props.original.status === STATUS_APPROVAL ? 'Approved' : 'Not approved'}</Text>
         );
       }
-      return (
-        <>
-          <ButtonWithImage
-            // onClick={() => onOpenFormUpdateDoc(props.original.id)}
-            display="inline-block"
-            size="xsmall"
-            variant="transparent"
-            mr="5px"
-            ml="5px"
-            pl="3px"
-            pr="5px">
-            Approve
-          </ButtonWithImage>
-          <ButtonWithImage
-            // onClick={() => onOpenFormUpdateDoc(props.original.id)}
-            display="inline-block"
-            size="xsmall"
-            variant="transparent"
-            mr="5px"
-            ml="5px"
-            pl="3px"
-            pr="5px">
-            Not approve
-          </ButtonWithImage>
-        </>
-      );
+      return <UpdateNotificationButtons id={props.original.id} />;
     },
-    accessor: props => props.reqStatus,
+    accessor: props => props.status,
   },
 ];
 
-@connect((state) => ({
+@connect(state => ({
   user: getUserFromStore(state),
 }))
 @CheckAuthorization([ROLE_CLIENT])
@@ -98,15 +75,15 @@ export class ClientsPage extends Component {
   }
 
   render() {
-    const {user} = this.props;
+    const { user } = this.props;
     return (
       <Container backgroundColor={'transparent'} px={6}>
         <Text fontFamily={'bold'} fontWeight={'bold'} fontSize={9} lineHeight={9} mb={7}>
           Notifications
         </Text>
         <Box backgroundColor={'color0'}>
-          <Query query={NotificationListQuery} variables={{clientid: user.id}}>
-            {({error, data, loading}) => {
+          <Query query={NotificationListQuery} variables={{ clientid: user.id }}>
+            {({ error, data, loading }) => {
               console.log(error, data, loading);
               return (
                 <ReactTableStyled
