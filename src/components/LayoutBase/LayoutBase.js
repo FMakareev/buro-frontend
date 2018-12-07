@@ -32,6 +32,7 @@ export class LayoutBase extends Component {
   constructor(props) {
     super(props);
     this.state = this.initialState;
+    // listen
   }
 
   get initialState() {
@@ -51,7 +52,7 @@ export class LayoutBase extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const pathname = { ...this.state };
+    const pathname = this.state;
 
     if (nextProps.location.pathname !== pathname) {
       const {

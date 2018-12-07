@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { matchRoutes } from 'react-router-config';
+import React, {Component} from 'react';
+import {matchRoutes} from 'react-router-config';
 import PropTypes from 'prop-types';
 
 export class LayoutAuth extends Component {
@@ -9,15 +9,14 @@ export class LayoutAuth extends Component {
   constructor(props) {
     super(props);
     this.state = this.initialState;
-    console.log('LayoutAuth:');
   }
 
   get initialState() {
     const {
-      route: { routes },
+      route: {routes},
       location,
     } = this.props;
-    try{
+    try {
       return this.renderRoutes(routes, location.pathname)
     } catch (e) {
 
@@ -27,6 +26,17 @@ export class LayoutAuth extends Component {
         match: null,
         location: null,
       };
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {location} = this.props;
+    if (nextProps.location.pathname !== location.pathname) {
+      const {
+        route: {routes},
+        location,
+      } = nextProps;
+      this.setState(()=>({...this.renderRoutes(routes, location.pathname)}))
     }
   }
 

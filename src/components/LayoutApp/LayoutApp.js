@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { matchRoutes } from 'react-router-config';
+import {matchRoutes} from 'react-router-config';
 import PropTypes from 'prop-types';
 
 export class LayoutApp extends Component {
@@ -11,36 +11,54 @@ export class LayoutApp extends Component {
   }
 
   get initialState() {
-    return { name: '' };
+    const {
+      route: {routes},
+      location,
+    } = this.props;
+    try {
+      return this.renderRoutes(routes, location.pathname)
+    } catch (e) {
+
+      return {
+        Component: null,
+        route: null,
+        match: null,
+        location: null,
+      };
+    }
   }
 
-  updateName(name) {
-    this.setState({ name });
+  componentWillReceiveProps(nextProps) {
+    const {location} = this.props;
+    if (nextProps.location.pathname !== location.pathname) {
+      const {
+        route: {routes},
+        location,
+      } = nextProps;
+      this.setState(() => ({...this.renderRoutes(routes, location.pathname)}))
+    }
   }
 
   renderRoutes = (routes, pathname) => {
     try {
       const result = matchRoutes(routes, pathname).reverse();
       const Component = result[0].route.component;
-      const { location } = this.props;
 
-      if (this.state.name !== result[0].route.name) {
-        this.updateName(result[0].route.name);
+      return {
+        Component: Component,
+        route: result[0].route,
+        location: this.props.location,
+        match: result[0].match,
       }
-
-      return <Component location={location} route={result[0].route} match={result[0].match} />;
     } catch (error) {
       console.log(error);
     }
-    return undefined;
   };
 
   render() {
-    const {
-      route: { routes },
-      location,
-    } = this.props;
-    return this.renderRoutes(routes, location.pathname)
+    const {Component, ...rest} = this.state;
+
+    return Component && <Component {...rest}/>
   }
 }
 
