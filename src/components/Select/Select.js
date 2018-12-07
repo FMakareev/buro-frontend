@@ -1,10 +1,18 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import {color} from 'styled-system';
 
 import {SelectBase} from '../SelectBase/SelectBase';
 import Label from '../Label/Label';
 import Message from '../Message/Message';
+import {FontFamilyProperty} from "../../styles/styleProperty/FontFamilyProperty";
+import {FontSizeProperty} from "../../styles/styleProperty/FontSizeProperty";
+import {LineHeightProperty} from "../../styles/styleProperty/LineHeightProperty";
+import {BorderRadiusProperty} from "../../styles/styleProperty/BorderRadiusProperty";
+import {BorderColorProperty} from "../../styles/styleProperty/BorderColorProperty";
+import {FillSvgProperty} from "../../styles/styleProperty/FillSvgProperty";
+import {BoxShadowProperty} from "../../styles/styleProperty/BoxShadowProperty";
 
 const CustomStyles = {
   dropdownIndicator: (provided, state) => ({
@@ -79,50 +87,56 @@ const CustomStyles = {
 const Wrapper = styled.div`
   position: relative;
   text-align: left;
-  font-family: ${props => props.theme.fontFamily.medium};
-  font-size: ${props => props.theme.fontSizes[6]}px;
-  line-height: ${props => props.theme.fontSizes[11]}px;
-  border-radius: ${props => props.theme.fontSizes[2]}px;
-  border-color: ${props => {
-  if (props.meta.dirty) {
-    return props.theme.colors.color1;
-  }
-  if (props.meta.touched && props.meta.error) {
-    return props.theme.colors.color9;
-  }
-  return props.theme.colors.color5;
-}} !important;
-  color: ${props => {
-  if (props.meta.dirty) {
-    return props.theme.colors.color1;
-  }
-  if (props.meta.touched && props.meta.error) {
-    return props.theme.colors.color9;
-  }
-  return props.theme.colors.color5;
-}} !important;
+  ${(props) => FontFamilyProperty({...props, fontFamily: 'medium'})};
+  ${(props) => FontSizeProperty({...props, fontSize: 6})};
+  ${(props) => LineHeightProperty({...props, lineHeight: 11})};
+  ${(props) => BorderRadiusProperty({...props, borderRadius: 11})};
+
+
+  ${props => {
+    if (props.meta.dirty) {
+      return BorderColorProperty({...props, borderColor: 'color1'});
+    }
+    if (props.meta.touched && props.meta.error) {
+      return BorderColorProperty({...props, borderColor: 'color9'});
+    }
+    return BorderColorProperty({...props, borderColor: 'color5'});  
+  }}
+    ${(props) => color({...props, color: 'color12'})};
+
+  ${props => {
+    if (props.meta.dirty) {
+      return color({...props, color: 'color1'});
+    }
+    if (props.meta.touched && props.meta.error) {
+      return color({...props, color: 'color9'});
+  
+    }
+    return color({...props, color: 'color5'});
+  }}
 
   & svg {
     position: absolute;
     top: 10px;
     right: 10px;
 
-    fill: ${props => {
-  if (props.meta.dirty) {
-    return props.theme.colors.color1;
-  }
-  if (props.meta.touched && props.meta.error) {
-    return props.theme.colors.color9;
-  }
-  return props.theme.colors.color5;
-}} !important;
+  ${props => {
+    if (props.meta.touched && props.meta.error) {
+      return FillSvgProperty({...props, fill: 'color9'});
+    }
+    if (props.meta.dirty) {
+      return FillSvgProperty({...props, fill: 'color1'});
+    }
+    return FillSvgProperty({...props, fill: 'color5'});
+  }}
   }
 
   :focus {
-    border-color: ${props => props.theme.colors.color1};
-    box-shadow: 0 0 0 5px ${props => props.theme.colors.color10};
+    ${props => BorderColorProperty({...props, borderColor: 'color1'})}
+    ${(props) => BoxShadowProperty({...props, boxShadow: 2})};    
+
     & + svg {
-      fill: ${props => props.theme.colors.color1};
+      ${props => FillSvgProperty({...props, fill: 'color1'})};
     }
   }
 `;

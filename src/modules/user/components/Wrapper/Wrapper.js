@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { Container } from '../../../../components/Container/Container';
+import {BorderRadiusProperty} from "../../../../styles/styleProperty/BorderRadiusProperty";
+import {BoxShadowProperty} from "../../../../styles/styleProperty/BoxShadowProperty";
 
 export const Wrapper = styled(Container)`
   max-width: 360px;
@@ -7,8 +9,8 @@ export const Wrapper = styled(Container)`
   padding-top: 15px;
   padding-right: 20px;
   padding-bottom: 15px;
-  border-radius: ${({theme}) => theme && theme.borderRadius && theme.borderRadius[3]}px;
-  box-shadow: ${({theme}) => theme && theme.boxShadow && theme.boxShadow[0]};
+  ${(props) => BorderRadiusProperty({...props, borderRadius: 3})};
+  ${(props) => BoxShadowProperty({...props, boxShadow: 0})};    
 `;
 
 export default Wrapper;

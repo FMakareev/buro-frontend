@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ButtonWithImage } from '../../../../components/ButtonWithImage/ButtonWithImage';
+import {FontFamilyProperty} from "../../../../styles/styleProperty/FontFamilyProperty";
+import {FontSizeProperty} from "../../../../styles/styleProperty/FontSizeProperty";
+import {color} from 'styled-system';
+import {LineHeightProperty} from "../../../../styles/styleProperty/LineHeightProperty";
 
 const ButtonWithImageStyled = styled(ButtonWithImage)`
   width: 100%;
@@ -12,10 +16,10 @@ const ErrorHandler = styled.span`
   position: absolute;
   top: -12px;
   left: 0;
-  font-family: ${({theme}) => theme && theme.fontFamily && theme.fontFamily.medium};
-  font-size: ${({theme}) => theme && theme.fontSizes && theme.fontSizes[4] - 2}px;
-  line-height: ${({theme}) => theme && theme.fontSizes[4] && theme.fontSizes[4] - 2}px;
-  color: ${({theme}) => theme && theme.colors && theme.colors.color9};
+  ${(props) => FontFamilyProperty({...props, fontFamily: 'medium'})};
+  ${(props) => FontSizeProperty({...props, fontSize: '6px'})};
+  ${(props) => LineHeightProperty({...props, lineHeight:  '6px'})};
+  ${(props) => color({...props, color: 'color9'})};
 `;
 
 export const ButtonWithImageError = ({ children, error, ...props }) => (

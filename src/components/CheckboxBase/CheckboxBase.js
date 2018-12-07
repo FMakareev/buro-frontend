@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { space } from 'styled-system';
-import { __metadata } from 'tslib';
 import checkboxOn from '../../assets/icons/multicolor/checkboxOn.multicolor.svg';
 import checkboxOff from '../../assets/icons/multicolor/checkboxOff.multicolor.svg';
-// import onCheckbox from '../../assets/image/onCheckbox.png';
+import {BackgroundColorProperty} from "../../styles/styleProperty/BackgroundColorProperty";
 
 const Wrapper = styled.div`
   ${space};
@@ -27,9 +26,7 @@ const Input = styled.input`
     vertical-align: text-top;
     width: 28px;
     height: 28px;
-    background-color: ${props => props.theme.colors.color0};
-    /* border: 1px solid ${props => props.theme.colors.color1}; */
-    /* border-radius: ${props => props.theme.fontSizes[3]}px;  */
+    ${props => BackgroundColorProperty({...props, backgroundColor: 'color0'})}
     box-sizing: border-box;
     background: url(${checkboxOff});
     background-repeat: no-repeat;
@@ -37,7 +34,7 @@ const Input = styled.input`
 
   /* // Box hover
   &:hover + label:before {
-    background-color: ${props => props.theme.colors.color2};
+    ${props => BackgroundColorProperty({...props, backgroundColor: 'color2'})}
   } */
 
   /* // Box focus

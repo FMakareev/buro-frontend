@@ -17,11 +17,10 @@ const TextField = styled.input`
     }
     return BorderRadiusProperty({...props, borderColor: 'color5'});
   }};
-  background-color: transparent;
+  background-color: #fff;
   box-sizing: border-box;
   padding: 6px 10px 6px 10px;
   ${(props) => color({...props, color: 'color1'})};
-  ${(props) => BorderColorProperty({...props, backgroundColor: 'color0'})};
   cursor: 'text';
   ${FontSizeProperty};
   ${LineHeightProperty};
