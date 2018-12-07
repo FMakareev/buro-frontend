@@ -159,7 +159,6 @@ export class FormUserLogin extends Component {
       pristine,
       invalid,
       submitFailed,
-      submitSucceeded,
       error,
     } = this.props;
     const {apolloError, submitting} = this.state;

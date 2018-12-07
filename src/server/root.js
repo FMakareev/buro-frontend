@@ -9,6 +9,7 @@ import { client } from '../apollo/index.server';
 import CreateRootComponent from './CreateRootComponent';
 // import { initLocalize } from '../store/reducers/localization/actions';
 import CreateRenderComponents from './CreateRenderComponents';
+import {mocksClient} from "../apollo/mocksClient";
 
 export const Root = async (request, response) => {
   /**
@@ -20,7 +21,8 @@ export const Root = async (request, response) => {
 
   const RouterContext = {};
 
-  const ApolloClient = client(request, response);
+  // const ApolloClient = client(request, response);
+  const ApolloClient = mocksClient;
 
   const RootComponent = CreateRootComponent({
     ApolloClient,

@@ -1,4 +1,4 @@
-import React, {Fragment, PureComponent} from 'react';
+import React, {Fragment, Component} from 'react';
 import {connect} from 'react-redux';
 import {LAYOUT_ADMIN, LAYOUT_APP} from '../../shared/layout';
 import {Footer} from "../Footer/Footer";
@@ -26,7 +26,7 @@ const MainStyled = styled(Box)`
 @connect((state) => ({
   user: getUserFromStore(state),
 }))
-export class LayoutBase extends PureComponent {
+export class LayoutBase extends Component {
   static propTypes = {};
 
   constructor(props) {
@@ -35,20 +35,19 @@ export class LayoutBase extends PureComponent {
   }
 
   get initialState() {
-    return {
-      Layout: null,
-      routes: null,
-      loading: true,
-      indexRoute: null,
-    };
-  }
-
-  componentDidMount() {
     const {
       route: {routes},
       location,
     } = this.props;
-    this.updateLayout(location, routes);
+    const indexRoute = this.findLayoutInPathname(location.pathname);
+
+    return {
+      indexRoute,
+      pathname: location.pathname,
+      Layout: routes[indexRoute] ? routes[indexRoute].component : null,
+      routes: routes[indexRoute],
+      loading: false,
+    };
   }
 
   componentWillReceiveProps(nextProps) {

@@ -33,7 +33,7 @@ export const CreateRootComponent = ({
    * @description parse request url
    * */
   const { search } = url.parse(request.originalUrl);
-
+  console.log('request.originalUrl: ', request.originalUrl);
   return (
     <AsyncComponentProvider asyncContext={asyncContext}>
       <ProviderRedux store={Store}>

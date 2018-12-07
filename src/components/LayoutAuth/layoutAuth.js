@@ -5,24 +5,51 @@ import PropTypes from 'prop-types';
 export class LayoutAuth extends Component {
   static propTypes = {};
 
+
+  constructor(props) {
+    super(props);
+    this.state = this.initialState;
+    console.log('LayoutAuth:');
+  }
+
+  get initialState() {
+    const {
+      route: { routes },
+      location,
+    } = this.props;
+    try{
+      return this.renderRoutes(routes, location.pathname)
+    } catch (e) {
+
+      return {
+        Component: null,
+        route: null,
+        match: null,
+        location: null,
+      };
+    }
+  }
+
   renderRoutes = (routes, pathname) => {
     try {
       const result = matchRoutes(routes, pathname).reverse();
       const Component = result[0].route.component;
-      return (
-        <Component location={this.props.location} route={result[0].route} match={result[0].match} />
-      );
+
+      return {
+        Component: Component,
+        route: result[0].route,
+        location: this.props.location,
+        match: result[0].match,
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
   render() {
-    const {
-      route: { routes },
-      location,
-    } = this.props;
-    return this.renderRoutes(routes, location.pathname)
+    const {Component, ...rest} = this.state;
+
+    return Component && <Component {...rest}/>
   }
 }
 

@@ -1,16 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import {color} from 'styled-system';
 
 import { Text } from '../../../../components/Text/Text';
+import {FontFamilyProperty} from "../../../../styles/styleProperty/FontFamilyProperty";
+import {FontSizeProperty} from "../../../../styles/styleProperty/FontSizeProperty";
+import {LineHeightProperty} from "../../../../styles/styleProperty/LineHeightProperty";
 
 const StyledText = styled(Text)`
-  font-family: ${props => props.theme.fontFamily.regular};
-  font-size: ${props => props.theme.fontSizes[4]}px;
-  line-height: ${props => props.theme.fontSizes[6]}px;
-  color: ${props => props.theme.colors.color5};
+  ${(props) => FontFamilyProperty({...props, fontFamily: 'regular'})};
+  ${(props) => FontSizeProperty({...props, fontSize: 4})};
+
+  ${(props) => LineHeightProperty({...props, lineHeight: 6})};
+
+  ${(props) => color({...props, color: 'color5'})};
 
   & > a {
-    color: ${props => props.theme.colors.color8};
+    ${(props) => color({...props, color: 'color8'})};
     text-decoration: none;
   }
 `;

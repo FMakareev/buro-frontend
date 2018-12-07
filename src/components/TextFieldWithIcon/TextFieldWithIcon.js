@@ -4,9 +4,17 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import {TextFieldBase} from '../TextFieldBase/TextFieldBase';
-import {Text} from '../Text/Text';
 import {Flex} from '../Flex/Flex';
 import {Box} from '../Box/Box';
+import {FontFamilyProperty} from "../../styles/styleProperty/FontFamilyProperty";
+import {FontSizeProperty} from "../../styles/styleProperty/FontSizeProperty";
+import {LineHeightProperty} from "../../styles/styleProperty/LineHeightProperty";
+import {BorderRadiusProperty} from "../../styles/styleProperty/BorderRadiusProperty";
+import {BorderColorProperty} from "../../styles/styleProperty/BorderColorProperty";
+import {BoxShadowProperty} from "../../styles/styleProperty/BoxShadowProperty";
+import {FillSvgProperty} from "../../styles/styleProperty/FillSvgProperty";
+import {StrokeSvgProperty} from "../../styles/styleProperty/StrokeSvgProperty";
+import {color} from 'styled-system';
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,70 +31,83 @@ const TextField = styled(TextFieldBase)`
   padding-left: 20px;
   padding-top: 8px;
   padding-bottom: 8px;
-  font-family: ${props => props.theme.fontFamily.medium};
-  font-size: ${props => props.theme.fontSizes[6]}px;
-  line-height: ${props => props.theme.fontSizes[11]}px;
-  border-radius: ${props => props.theme.fontSizes[2]}px;
-  border-color: ${props => {
+  ${(props) => FontFamilyProperty({...props, fontFamily: 'medium'})};
+  ${(props) => FontSizeProperty({...props, fontSize: 6})};
+  ${(props) => LineHeightProperty({...props, lineHeight: 11})};
+  ${(props) => BorderRadiusProperty({...props, borderRadius: 2})};
+
+  ${props => {
     if (props.meta.touched && props.meta.error) {
-      return props.theme.colors.color9;
+      return  BorderColorProperty({...props, borderColor: 'color9'});
     }
+    if (props.meta.dirty) {
+      return  BorderColorProperty({...props, borderColor: 'color1'});
+    }
+    return  BorderColorProperty({...props, borderColor: 'color5'});
+  }}
   
-    if (props.meta.dirty) {
-      return props.theme.colors.color1;
-    }
-    return props.theme.colors.color5;
-  }} !important;
-  color: ${props => {
+  ${props => {
     if (props.meta.touched && props.meta.error) {
-      return props.theme.colors.color9;
+      return color({...props, color: 'color9'});
     }
     if (props.meta.dirty) {
-      return props.theme.colors.color1;
+      return color({...props, color: 'color1'});
     }
-    return props.theme.colors.color5;
-  }} !important;
+    return color({...props, color: 'color5'});
+  }}
 
   ::placeholder {
-    color: ${props => props.theme.colors.color5};
+     ${props => {
+      if (props.meta.touched && props.meta.error) {
+        return color({...props, color: 'color9'});
+      }
+      if (props.meta.dirty) {
+        return color({...props, color: 'color1'});
+      }
+      return color({...props, color: 'color5'});
+    }}
+
   }
 
   :focus {
-    border-color: ${props => props.theme.colors.color1};
-    box-shadow: 0 0 0 5px ${props => props.theme.colors.color10};  
+    ${(props) => BorderColorProperty({...props, borderColor: 'color1'})};
+    ${(props) => BoxShadowProperty({...props, boxShadow: 2})};    
   }
 `;
 const IconWrapper = styled.div`
   position: absolute;
   top: 10px;
   right: 10px;
+  ${(props) => FillSvgProperty({...props, fill: 'color9'})};
+  ${props => {
+    if (props.meta.touched && props.meta.error) {
+      return FillSvgProperty({...props, fill: 'color9'});
+    }
+    if (props.meta.dirty) {
+      return FillSvgProperty({...props, fill: 'color1'});
+    }
+    return FillSvgProperty({...props, fill: 'color5'});
+  }}
+  ${props => {
+    if (props.meta.touched && props.meta.error) {
+      return StrokeSvgProperty({...props, stroke: 'color9'});
+    }
+    if (props.meta.dirty) {
+      return StrokeSvgProperty({...props, stroke: 'color1'});
+    }
+    return StrokeSvgProperty({...props, stroke: 'color5'});
+  }}
 
-  fill: ${props => {
-  if (props.meta.touched && props.meta.error) {
-    return props.theme.colors.color9;
-  }
-  if (props.meta.dirty) {
-    return props.theme.colors.color1;
-  }
-  return props.theme.colors.color5;
-}} !important;
-  stroke: ${props => {
-  if (props.meta.touched && props.meta.error) {
-    return props.theme.colors.color9;
-  }
-  if (props.meta.dirty) {
-    return props.theme.colors.color1;
-  }
-  return props.theme.colors.color5;
-}} !important;
 `;
 const Error = styled.span`
   position: absolute;
   top: -12px;
-  font-family: ${props => props.theme.fontFamily.medium};
-  font-size: ${props => props.theme.fontSizes[4] - 2}px;
-  line-height: ${props => props.theme.fontSizes[4] - 2}px;
-  color: ${props => props.theme.colors.color9};
+  
+  ${(props) => FontFamilyProperty({...props, fontFamily: 'medium'})};
+  ${(props) => FontSizeProperty({...props, fontSize: '6px'})};
+  ${(props) => LineHeightProperty({...props, lineHeight: '6px'})};
+  ${(props) => color({...props, color: 'color9'})};
+
 `;
 
 /**

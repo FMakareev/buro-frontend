@@ -19,7 +19,7 @@ export const ColorPallet = {
   color10: '#E7EDF8',
   color11: '#134177',
   color12: '#333333',
-  color13: '#a2a2a233',
+  color13: '#a2a2a2',
 };
 
 const Space = [
@@ -53,7 +53,11 @@ const Weight = [300, 500, 700];
 
 const Breakpoints = ['576px', '768px', '992px', '1200px'];
 
-const boxShadow = ['4px 8px 16px rgba(28, 65, 84, 0.08)', '2px 2px 4px rgba(0,0,0,0.25)'];
+const boxShadow = [
+  '4px 8px 16px rgba(28, 65, 84, 0.08)',
+  '2px 2px 4px rgba(0,0,0,0.25)',
+  '0 0 0 5px #E7EDF8'
+];
 
 export const StyledThemeProvider = ({ children }) => (
   <Provider

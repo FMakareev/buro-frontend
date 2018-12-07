@@ -12,10 +12,10 @@ const ErrorHandler = styled.span`
   position: absolute;
   top: -12px;
   left: 0;
-  font-family: ${props => props.theme.fontFamily.medium};
-  font-size: ${props => props.theme.fontSizes[4] - 2}px;
-  line-height: ${props => props.theme.fontSizes[4] - 2}px;
-  color: ${props => props.theme.colors.color9};
+  font-family: ${({theme}) => theme && theme.fontFamily && theme.fontFamily.medium};
+  font-size: ${({theme}) => theme && theme.fontSizes && theme.fontSizes[4] - 2}px;
+  line-height: ${({theme}) => theme && theme.fontSizes[4] && theme.fontSizes[4] - 2}px;
+  color: ${({theme}) => theme && theme.colors && theme.colors.color9};
 `;
 
 export const ButtonWithImageError = ({ children, error, ...props }) => (

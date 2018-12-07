@@ -5,22 +5,23 @@ import { Flex } from '../../../../components/Flex/Flex';
 import { Box } from '../../../../components/Box/Box';
 
 import { SvgLogo } from '../../../../components/Icons/SvgLogo';
+import {Text} from "../../../../components/Text/Text";
 
-const StyledBox = styled(Box)`
-  margin: auto;
-  margin-left: 17px;
-  font-family: ${props => props.theme.fontFamily.bold};
-  color: ${props => props.theme.colors.color1};
-`;
+// const StyledBox = styled(Box)`
+//   margin: auto;
+//   margin-left: 17px;
+//   font-family: ${({theme}) => theme && theme.fontFamily && theme.fontFamily.bold};
+//   color: ${({theme}) => theme && theme.colors && theme.colors.color1};
+// `;
 
 export const Title = ({ children, mb }) => (
   <Flex mb={mb}>
     <Box>
       <SvgLogo />
     </Box>
-    <StyledBox as="h2" fontSize="24px" lineHeight="32px">
+    <Text fontFamily={'bold'} color={'color1'} ml={6} as="h2" fontSize="24px" lineHeight="32px">
       {children}
-    </StyledBox>
+    </Text>
   </Flex>
 );
 

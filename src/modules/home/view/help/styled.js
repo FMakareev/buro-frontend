@@ -21,10 +21,10 @@ export const StyledContainer = styled(Container)`
 export const Title = styled(Box)`
   width: 100%;
   text-align: center;
-  font-size: ${props => props.theme.fontSizes[9]}px;
-  font-family: ${props => props.theme.fontFamily.bold};
-  line-height: ${props => props.theme.lineHeight[11]}px;
-  color: ${props => props.theme.colors.color1};
+  font-size: ${({theme}) => theme && theme.fontSizes && theme.fontSizes[9]}px;
+  font-family: ${({theme}) => theme && theme.fontFamily && theme.fontFamily.bold};
+  line-height: ${({theme}) => theme && theme.lineHeight && theme.lineHeight[11]}px;
+  color: ${({theme}) => theme && theme.colors && theme.colors.color1};
 `;
 
 export const Wrapper = styled(Flex)`
@@ -33,17 +33,17 @@ export const Wrapper = styled(Flex)`
   padding-top: 4px;
   padding-right: 11px;
   padding-bottom: 4px;
-  border: 1px solid ${props => props.theme.colors.color13};
-  background-color: ${props => props.theme.colors.color0};
+  border: 1px solid ${({theme}) => theme && theme.colors && theme.colors.color13};
+  background-color: ${({theme}) => theme && theme.colors && theme.colors.color0};
   border-radius: 4px;
-  box-shadow: ${props => props.theme.boxShadow[1]};
+  box-shadow: ${({theme}) => theme && theme.boxShadow && theme.boxShadow[1]};
 `;
 
 export const StyledTextField = styled(TextFieldBase)`
-  font-family: ${props => props.theme.fontFamily.bold};
-  font-size: ${props => props.theme.fontSizes[6]}px;
-  line-height: ${props => props.theme.lineHeight[9]}px;
-  color: ${props => props.theme.colors.color1};
+  font-family: ${({theme}) => theme && theme.fontFamily && theme.fontFamily.bold};
+  font-size: ${({theme}) => theme && theme.fontSizes && theme.fontSizes[6]}px;
+  line-height: ${({theme}) => theme && theme.lineHeight && theme.lineHeight[9]}px;
+  color: ${({theme}) => theme && theme.colors && theme.colors.color1};
   border-style: none !important;
 `;
 

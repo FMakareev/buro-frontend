@@ -6,9 +6,7 @@ import { reducer as formReducer } from 'redux-form';
 import { ReducerUser } from './user/reducers';
 
 export const rootReducer = combineReducers({
-  form: formReducer.plugin({
-    // FormLogin: ReducerFormLogin,
-  }),
+  form: formReducer,
   // locale,
   // notifications,
   user: ReducerUser,

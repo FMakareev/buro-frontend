@@ -10,18 +10,18 @@ import LineHeightProperty from '../../styles/styleProperty/LineHeightProperty';
 
 const TextField = styled.input`
   width: 100%;
-  border: 1px solid
-    ${props => {
-      if ((props.meta && props.meta.active) || props.meta.dirty) {
-        return props.theme.colors.color7;
-      }
-      return props.theme.colors.color5;
-    }}!important;
+  border: 1px solid;
+  ${props => {
+    if ((props.meta && props.meta.active) || props.meta.dirty) {
+      return BorderRadiusProperty({...props, borderColor: 'color7'})
+    }
+    return BorderRadiusProperty({...props, borderColor: 'color5'});
+  }};
   background-color: transparent;
   box-sizing: border-box;
   padding: 6px 10px 6px 10px;
-  color: ${props => props.theme.colors.color1} !important;
-  background-color: ${props => props.theme.colors.color0};
+  ${(props) => color({...props, color: 'color1'})};
+  ${(props) => BorderColorProperty({...props, backgroundColor: 'color0'})};
   cursor: 'text';
   ${FontSizeProperty};
   ${LineHeightProperty};
@@ -30,8 +30,8 @@ const TextField = styled.input`
   ${display};
   ${space};
 
-  ::placeholder {
-    color: ${props => props.theme.colors.color4}};
+  &::placeholder {
+   ${(props) => color({...props, color: 'color5'})};
   }
 
   :focus::-webkit-input-placeholder {
@@ -75,10 +75,7 @@ export class TextFieldBase extends Component {
       py,
       px,
       disabled,
-      lineHeight,
-      fontSize,
       meta,
-      color,
     } = this.props;
 
     return (
