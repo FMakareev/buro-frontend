@@ -3,27 +3,32 @@ import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
 
+import { color } from 'styled-system';
 import { TextFieldBase } from '../TextFieldBase/TextFieldBase';
-import {Label} from "../Label/Label";
+import { Label } from '../Label/Label';
+
+import { FontSizeProperty } from '../../styles/styleProperty/FontSizeProperty';
+import { FontFamilyProperty } from '../../styles/styleProperty/FontFamilyProperty';
+import { LineHeightProperty } from '../../styles/styleProperty/LineHeightProperty';
+import { BoxShadowProperty } from '../../styles/styleProperty/BoxShadowProperty';
+import { BorderRadiusProperty } from '../../styles/styleProperty/BorderRadiusProperty';
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-
-
 const TextField = styled(TextFieldBase)`
-  font-family: ${props => props.theme.fontFamily.regular};
-  font-size: ${props => props.theme.fontSizes[5]}px;
-  line-height: ${props => props.theme.fontSizes[8]}px;
-  box-shadow: ${props => props.theme.boxShadow[0]};
-  border-radius: ${props => props.theme.fontSizes[2]}px;
+  ${props => FontFamilyProperty({ ...props, fontFamily: 'regular' })};
+  ${props => FontSizeProperty({ ...props, fontSize: 5 })};
+  ${props => LineHeightProperty({ ...props, lineHeight: 8 })};
+  ${props => BoxShadowProperty({ ...props, boxShadow: 0 })};
+  ${props => BorderRadiusProperty({ ...props, borderRadius: 2 })};
 `;
 
 const Error = styled.span`
   margin-left: 10px;
-  color: ${props => props.theme.colors.color9};
+  ${props => color({ ...props, color: 'color9' })};
 `;
 
 /**

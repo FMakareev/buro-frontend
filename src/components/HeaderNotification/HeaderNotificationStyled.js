@@ -1,5 +1,7 @@
-import {Text} from "../Text/Text";
-import styled from "styled-components";
+import styled from 'styled-components';
+import { Text } from '../Text/Text';
+
+import { BackgroundColorProperty } from '../../styles/styleProperty/BackgroundColorProperty';
 
 export const CircleCount = styled(Text)`
   position: absolute;
@@ -13,7 +15,7 @@ export const CircleCount = styled(Text)`
   font-size: 14px;
   line-height: 16px;
   padding: 0 4px;
-  background-color: ${({theme}) => theme && theme.colors && theme.colors.color1};
+  ${props => BackgroundColorProperty({ ...props, backgroundColor: 'color1' })};
   color: #ffffff;
 `;
 export const ButtonStyled = styled(Text)`

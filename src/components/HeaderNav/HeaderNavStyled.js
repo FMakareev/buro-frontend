@@ -1,8 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import {NavLink} from "react-router-dom";
-import {Text} from "../Text/Text";
+import React from 'react';
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+import { color } from 'styled-system';
+import { Text } from '../Text/Text';
 
+import { BackgroundColorProperty } from '../../styles/styleProperty/BackgroundColorProperty';
 
 export const ButtonStyled = styled(Text)`
   background-color: transparent;
@@ -23,40 +25,41 @@ export const NavLinkStyled = styled(NavLink)`
   border-radius: 4px;
   padding: 8px 40px;
   min-width: 200px;
-  border: 1px solid ${({theme}) => theme.colors.color1};
-  background-color: ${({theme}) => theme.colors.color0};
+  border: 1px solid ${props => color({ ...props, color: 'color1' })};
+  ${props => BackgroundColorProperty({ ...props, backgroundColor: 'color0' })};
 
   &.selected {
-    background-color: ${({theme}) => theme.colors.color3};
+    ${props => BackgroundColorProperty({ ...props, backgroundColor: 'color3' })};
   }
-  &:hover{
-    background-color: ${({theme}) => theme.colors.color3};
+  &:hover {
+    ${props => BackgroundColorProperty({ ...props, backgroundColor: 'color3' })};
   }
 `;
 
-export const NavItem = ({to, children, icon}) => (<NavLinkStyled to={to} activeClassName="selected">
-  <Text fontFamily={'medium'}  fontSize={'14px'} lineHeight={'20px'} color={'color1'}>
-    {children}
-  </Text>
-  {
-    icon &&
-    <Text lineHeight={'24px'} fontSize={'24px'}>
-      {icon}
+export const NavItem = ({ to, children, icon }) => (
+  <NavLinkStyled to={to} activeClassName="selected">
+    <Text fontFamily="medium" fontSize="14px" lineHeight="20px" color="color1">
+      {children}
     </Text>
-  }
-</NavLinkStyled>);
+    {icon && (
+      <Text lineHeight="24px" fontSize="24px">
+        {icon}
+      </Text>
+    )}
+  </NavLinkStyled>
+);
 
 export const NavList = styled.div`
   position: absolute;
   right: 0;
   top: 50px;
   z-index: 2;
-  @media(min-width: 567px){
+  @media (min-width: 567px) {
     right: 56px;
     top: 0;
   }
 `;
 
 export const HeaderNavWrapper = styled.div`
-  position: relative;  
+  position: relative;
 `;

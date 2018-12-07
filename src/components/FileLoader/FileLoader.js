@@ -1,67 +1,65 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
 import styled from 'styled-components';
-import Text from "../Text/Text";
-import SvgDragNDrop from "../Icons/SvgDragNDrop";
-import {PreloaderWrapper} from "../PreloaderWrapper/PreloaderWrapper";
-import {SpeedingWheel} from "../SmallPreloader/SmallPreloader";
+import { color } from 'styled-system';
+import Text from '../Text/Text';
+import SvgDragNDrop from '../Icons/SvgDragNDrop';
+import { PreloaderWrapper } from '../PreloaderWrapper/PreloaderWrapper';
+import { SpeedingWheel } from '../SmallPreloader/SmallPreloader';
+import { BorderColorProperty } from '../../styles/styleProperty/BorderColorProperty';
 
 const WrapperStyled = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);  
-  text-align: center;  
+  transform: translate(-50%, -50%);
+  text-align: center;
 `;
 const DropzoneStyled = styled(Dropzone)`
   position: relative;
   border-radius: 4px;
   background-color: #ffffff;
   width: 650px;
-  height: 396px;    
+  height: 396px;
   padding: 3%;
   box-shadow: 4px 8px 16px rgba(28, 65, 84, 0.08);
-  color: ${({reject, theme})=>{
-    if(reject){
-      return theme.colors.color9;
-    } else {
-      return theme.colors.color1;
+  ${props => {
+    if (props.reject) {
+      return color({ ...props, color: 'color9' });
     }
+    return color({ ...props, color: 'color1' });
   }};
-  border: 0.5px solid ${({reject, theme})=>{
-    if(reject){
-      return theme.colors.color9;
-    } else {
-      return '#D3D3D3';
+  border: 0.5px solid;
+  ${(reject, props) => {
+    if (reject) {
+      return BorderColorProperty({ ...props, borderColor: 'color9' });
     }
+    return BorderColorProperty({ ...props, borderColor: 'color14' });
   }};
   cursor: pointer;
-  
+
   &:after {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     z-index: 2;
     display: block;
     border-radius: 4px;
     max-width: 590px;
     width: 94%;
     min-height: 336px;
-    border: 2px dashed  ${({reject, theme})=>{
-      if(reject){
-        return theme.colors.color9;
-      } else {
-        return theme.colors.color1;
+    border: 2px dashed;
+    ${(reject, props) => {
+      if (reject) {
+        return BorderColorProperty({ ...props, borderColor: 'color9' });
       }
+      return BorderColorProperty({ ...props, borderColor: 'color1' });
     }};
   }
 `;
-
-
-
 
 const Preloader = styled.div`
   width: 40px;
@@ -120,36 +118,36 @@ export class FileLoader extends Component {
     /** Показывает загрузку */
     isLoading: PropTypes.bool,
   };
+
   static defaultProps = {
     multiple: false,
   };
 
-
   render() {
-    const {isLoading, ...rest} = this.props;
-    return <DropzoneStyled {...rest} >
-      <WrapperStyled>
-        <Text fontSize={8} fontFamily={'regular'} color={'inherit'} mb={12}>
-          Drag your file here
-        </Text>
-        <Text mb={12}>
-          <SvgDragNDrop/>
-        </Text>
-        <Text fontSize={6} fontFamily={'regular'} color={'inherit'}>
-          Files with the extension "xml" are allowed
-        </Text>
-      </WrapperStyled>
-      {
-        isLoading &&
-        <PreloaderWrapper>
-          <Text fontSize={12}>
-            <SpeedingWheel/>
+    const { isLoading, ...rest } = this.props;
+    return (
+      <DropzoneStyled {...rest}>
+        <WrapperStyled>
+          <Text fontSize={8} fontFamily="regular" color="inherit" mb={12}>
+            Drag your file here
           </Text>
-        </PreloaderWrapper>
-      }
-    </DropzoneStyled>
+          <Text mb={12}>
+            <SvgDragNDrop />
+          </Text>
+          <Text fontSize={6} fontFamily="regular" color="inherit">
+            Files with the extension "xml" are allowed
+          </Text>
+        </WrapperStyled>
+        {isLoading && (
+          <PreloaderWrapper>
+            <Text fontSize={12}>
+              <SpeedingWheel />
+            </Text>
+          </PreloaderWrapper>
+        )}
+      </DropzoneStyled>
+    );
   }
-
 }
 
 export default FileLoader;

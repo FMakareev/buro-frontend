@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 
+import { color } from 'styled-system';
 import { Container } from '../../../../components/Container/Container';
 import { Box } from '../../../../components/Box/Box';
 import { Flex } from '../../../../components/Flex/Flex';
 import { TextFieldBase } from '../../../../components/TextFieldBase/TextFieldBase';
 import { ButtonWithImageError } from '../../../user/components/ButtonWithImageError/ButtonWithImageError';
+
+import { FontSizeProperty } from '../../../../styles/styleProperty/FontSizeProperty';
+import { FontFamilyProperty } from '../../../../styles/styleProperty/FontFamilyProperty';
+import { LineHeightProperty } from '../../../../styles/styleProperty/LineHeightProperty';
+import { BoxShadowProperty } from '../../../../styles/styleProperty/BoxShadowProperty';
+import { BackgroundColorProperty } from '../../../../styles/styleProperty/BackgroundColorProperty';
 
 export const StyledContainer = styled(Container)`
   display: flex;
@@ -21,10 +28,10 @@ export const StyledContainer = styled(Container)`
 export const Title = styled(Box)`
   width: 100%;
   text-align: center;
-  font-size: ${({theme}) => theme && theme.fontSizes && theme.fontSizes[9]}px;
-  font-family: ${({theme}) => theme && theme.fontFamily && theme.fontFamily.bold};
-  line-height: ${({theme}) => theme && theme.lineHeight && theme.lineHeight[11]}px;
-  color: ${({theme}) => theme && theme.colors && theme.colors.color1};
+  ${props => FontSizeProperty({ ...props, fontSize: 9 })};
+  ${props => FontFamilyProperty({ ...props, fontFamily: 'bold' })};
+  ${props => LineHeightProperty({ ...props, lineHeight: 11 })};
+  ${props => color({ ...props, color: 'color1' })};
 `;
 
 export const Wrapper = styled(Flex)`
@@ -33,17 +40,17 @@ export const Wrapper = styled(Flex)`
   padding-top: 4px;
   padding-right: 11px;
   padding-bottom: 4px;
-  border: 1px solid ${({theme}) => theme && theme.colors && theme.colors.color13};
-  background-color: ${({theme}) => theme && theme.colors && theme.colors.color0};
+  border: 1px solid ${props => color({ ...props, color: 'color13' })};
+  ${props => BackgroundColorProperty({ ...props, backgroundColor: 'color0' })};
   border-radius: 4px;
-  box-shadow: ${({theme}) => theme && theme.boxShadow && theme.boxShadow[1]};
+  ${props => BoxShadowProperty({ ...props, boxShadow: 1 })};
 `;
 
 export const StyledTextField = styled(TextFieldBase)`
-  font-family: ${({theme}) => theme && theme.fontFamily && theme.fontFamily.bold};
-  font-size: ${({theme}) => theme && theme.fontSizes && theme.fontSizes[6]}px;
-  line-height: ${({theme}) => theme && theme.lineHeight && theme.lineHeight[9]}px;
-  color: ${({theme}) => theme && theme.colors && theme.colors.color1};
+  ${props => FontFamilyProperty({ ...props, fontFamily: 'bold' })};
+  ${props => FontSizeProperty({ ...props, fontSize: 6 })};
+  ${props => LineHeightProperty({ ...props, lineHeight: 9 })};
+  ${props => color({ ...props, color: 'color1' })};
   border-style: none !important;
 `;
 
