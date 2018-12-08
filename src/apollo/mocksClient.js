@@ -6,6 +6,8 @@ import { userList } from './graphql/query/userList';
 import { userItem } from './graphql/query/userItem';
 import { notificationList } from './graphql/query/notificationList';
 import { ROLE_BANK, ROLE_BUREAU, ROLE_CLIENT } from '../shared/roles';
+import {notificationItem} from "./graphql/query/notificationItem";
+import {STATUS_PENDING} from "../shared/statuses";
 
 const defaultMocks = {
   Query: () => ({
@@ -65,7 +67,7 @@ const defaultMocks = {
       new Promise((resolve, reject) => {
         setTimeout(() => {
           faker.random.number(1)
-            ? resolve(JSON.stringify({ data: { createNotification: props } }))
+            ? resolve({...notificationItem(), status: STATUS_PENDING,})
             : reject(
                 JSON.stringify({
                   errors: [
@@ -81,10 +83,13 @@ const defaultMocks = {
       // для имитации запроса к серверу с рандомной задержкой и результатом.
       new Promise((resolve, reject) => {
         setTimeout(() => {
-          faker.random.number(1)
-            ? resolve(JSON.stringify({ data: { updateNotification: props } }))
+         return faker.random.number(1)
+            ? resolve({...notificationItem(), status: props.status,})
             : reject(
                 JSON.stringify({
+                  data:{
+                    updateNotification: null,
+                  },
                   errors: [
                     {
                       message: 'error!',
