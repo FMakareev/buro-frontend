@@ -4,12 +4,11 @@ import {Query} from 'react-apollo';
 import {connect} from 'react-redux';
 import {Container} from '../../../../components/Container/Container';
 import {Text} from '../../../../components/Text/Text';
-import {makeData} from '../../../bureau/helpers/utils';
 import {ReactTableStyled} from '../../../../components/ReactTableStyled/ReactTableStyled';
 
 import UserListQuery from './UserListQuery.graphql';
 
-import {STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL} from '../../../../shared/statuses';
+import {STATUS_PENDING, STATUS_APPROVAL} from '../../../../shared/statuses';
 import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
 import {ROLE_BANK} from "../../../../shared/roles";
 import {getUserFromStore} from "../../../../store/reducers/user/selectors";
@@ -128,33 +127,34 @@ export class ClientsPage extends Component {
   }
 
   get initialState() {
-    return {
-      data: makeData(100),
-    };
+    return {};
   }
 
   render() {
     const {user} = this.props;
+    console.log(this.props);
     return (
       <Container backgroundColor={'transparent'} px={6}>
         <Text fontFamily={'bold'} fontWeight={'bold'} fontSize={9} lineHeight={9} mb={7}>
           Clients
         </Text>
 
-        <Box backgroundColor={'color0'} >
+        <Box backgroundColor={'color0'}>
           <Query query={UserListQuery}
                  variables={{
                    id: user.id
                  }}
           >
             {({error, data, loading}) => {
-              console.log(error, data, loading);
+              console.log('UserListQuery: ',error, data, loading);
               return (
                 <ReactTableStyled
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
-                  data={loading ? [] : data.userDocumentList}
+                  data={loading ? [] : data && data.userDocumentList}
+                  loadingText={loading ? 'Loading...' : error ? 'Error...' : 'Loading...'}
+                  loading={loading}
                   filterable
                   columns={columns(user)}
                 />

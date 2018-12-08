@@ -6,8 +6,6 @@ import {Box} from '../../../../components/Box/Box';
 import {Flex} from '../../../../components/Flex/Flex';
 import {Text} from '../../../../components/Text/Text';
 
-import {FormSendQuestion} from './FormSendQuestion';
-
 import TabController from '../../../../components/TabController/TabController';
 import {Tabs} from '../../../../components/Tabs/Tabs';
 import {TabContent} from '../../../../components/TabContent/TabContent';
@@ -99,7 +97,7 @@ export class HelpPage extends Component {
           ))}
         </Box>
       </Box>
-      <FormSendQuestion />
+      {/*<FormSendQuestion />*/}
     </StyledContainer>
   }
 }

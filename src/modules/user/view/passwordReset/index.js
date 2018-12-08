@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Wrapper from '../../components/Wrapper/Wrapper';
 import { Title } from '../../components/Title/Title';
 import { FormResetPassword } from '../../components/FormResetPassword/FormResetPassword';
-import { Box } from '../../../../components/Box/Box';
 
 export class PasswordResetPage extends Component {
   static propTypes = {};

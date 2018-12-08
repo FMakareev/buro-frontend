@@ -14,7 +14,7 @@ import { ButtonTriggerGroup } from '../../../../components/ButtonTriggerGroup/Bu
 
 import { required } from '../../../../utils/validation/required';
 import { phoneNumber } from '../../../../utils/validation/phoneNumber';
-import {graphql} from "react-apollo/index";
+import {graphql} from "react-apollo";
 import UpdateUserMutation from './UpdateUserMutation.graphql';
 
 /**

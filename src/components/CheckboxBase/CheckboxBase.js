@@ -28,7 +28,7 @@ const Input = styled.input`
     height: 28px;
     ${props => BackgroundColorProperty({...props, backgroundColor: 'color0'})}
     box-sizing: border-box;
-    background: url(${checkboxOff});
+    background-image: url(${checkboxOff});
     background-repeat: no-repeat;
   }
 

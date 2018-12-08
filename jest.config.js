@@ -7,8 +7,9 @@ module.exports = {
   "setupTestFrameworkScriptFile": "<rootDir>/config/setupTests.js",
   transform: {
     '^.+\\.js?$': "<rootDir>/config/jest/transformer.js",
+    "\\.(gql|graphql|graphqls)$": "jest-transform-graphql",
     '\\.(css|less)$': '<rootDir>/node_modules/jest-css-modules',
-    "^.+\\.svg$": "jest-svg-transformer"
+    "^.+\\.svg$": "<rootDir>/config/jest/inlineSvg"
   },
   moduleNameMapper: {
     "/\.(css|less)$/": "identity-obj-proxy"
