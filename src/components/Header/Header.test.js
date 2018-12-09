@@ -15,3 +15,7 @@ test('Header: Рендерится без ошибок', () => {
       </StyledThemeProvider>,
     )
 });
+
+test('Header: рендер компонента переданного в children', () => {
+
+});
