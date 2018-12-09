@@ -9,6 +9,7 @@ const initialState = {
   error: null,
   initLoading: false,
   updateLoading: false,
+  isAuth: false,
 };
 
 export const ReducerUser = (prevState = initialState, {type, user, ...rest}) => {
@@ -21,11 +22,13 @@ export const ReducerUser = (prevState = initialState, {type, user, ...rest}) => 
     case  USER_INIT_LOADING_SUCCESS:
       return Object.assign({}, prevState, {
         ...initialState,
-        ...user
+        ...user,
+        isAuth: true,
       });
     case USER_INIT_LOADING_ERROR:
       return Object.assign({}, prevState, {
         initLoading: false,
+        isAuth: false,
         ...user
       });
       /** экшены обновления пользователя */
@@ -37,16 +40,19 @@ export const ReducerUser = (prevState = initialState, {type, user, ...rest}) => 
     case  USER_UPDATE_LOADING_SUCCESS:
       return Object.assign({}, prevState, {
         ...initialState,
+        isAuth: true,
         ...user
       });
     case USER_UPDATE_LOADING_ERROR:
       return Object.assign({}, prevState, {
         ...initialState,
+        isAuth: false,
         ...user
       });
     case USER_ADD:
       return Object.assign({}, prevState, {
         ...initialState,
+        isAuth: true,
         ...user
       });
     case USER_REMOVE:
