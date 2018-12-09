@@ -1,24 +1,24 @@
 
 
-test('HeaderNav: пользователь не авторизован', async () => {
+test('HeaderNotification: пользователь не авторизован', async () => {
   /**
    * в редаксе нет пользователя, вернет null
    * */
 });
 
-test('HeaderNav: Загрузка', async () => {
+test('HeaderNotification: Загрузка', async () => {
   /**
    * состояние загрузки
    * */
 });
 
-test('HeaderNav: ошибка', async () => {
+test('HeaderNotification: ошибка', async () => {
   /**
    * состояние ошибки
    * */
 });
 
-test('HeaderNav: загрузилось', async () => {
+test('HeaderNotification: загрузилось', async () => {
   /**
    * состояние загрузка завершена
    * */
