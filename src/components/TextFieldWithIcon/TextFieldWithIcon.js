@@ -101,11 +101,11 @@ const IconWrapper = styled.div`
 `;
 const Error = styled.span`
   position: absolute;
-  top: -12px;
+  top: -16px;
   
   ${(props) => FontFamilyProperty({...props, fontFamily: 'medium'})};
-  ${(props) => FontSizeProperty({...props, fontSize: '6px'})};
-  ${(props) => LineHeightProperty({...props, lineHeight: '6px'})};
+  ${(props) => FontSizeProperty({...props, fontSize: '12px'})};
+  ${(props) => LineHeightProperty({...props, lineHeight: '16px'})};
   ${(props) => color({...props, color: 'color9'})};
 
 `;
