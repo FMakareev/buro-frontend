@@ -24,6 +24,10 @@ export const Root = async (request, response) => {
   // const ApolloClient = client(request, response);
   const ApolloClient = mocksClient;
 
+  /** Сброс кеша */
+  ApolloClient.resetStore();
+
+
   const RootComponent = CreateRootComponent({
     ApolloClient,
     RouterContext,
