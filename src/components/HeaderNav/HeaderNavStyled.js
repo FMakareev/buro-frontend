@@ -5,6 +5,7 @@ import { color } from 'styled-system';
 import { Text } from '../Text/Text';
 
 import { BackgroundColorProperty } from '../../styles/styleProperty/BackgroundColorProperty';
+import BorderColorProperty from "../../styles/styleProperty/BorderColorProperty";
 
 export const ButtonStyled = styled(Text)`
   background-color: transparent;
@@ -25,7 +26,8 @@ export const NavLinkStyled = styled(NavLink)`
   border-radius: 4px;
   padding: 8px 40px;
   min-width: 200px;
-  border: 1px solid ${props => color({ ...props, color: 'color1' })};
+  border: 1px solid;
+  ${props => BorderColorProperty({ ...props, borderColor: 'color1' })}
   ${props => BackgroundColorProperty({ ...props, backgroundColor: 'color0' })};
 
   &.selected {
