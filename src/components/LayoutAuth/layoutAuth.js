@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
 import {matchRoutes} from 'react-router-config';
 import PropTypes from 'prop-types';
+import {getUserFromStore} from "../../store/reducers/user/selectors";
+import {connect} from "react-redux";
 
+@connect(state => ({
+  user: getUserFromStore(state),
+}))
 export class LayoutAuth extends Component {
   static propTypes = {};
 
@@ -29,14 +34,30 @@ export class LayoutAuth extends Component {
     }
   }
 
+  componentDidMount() {
+    try {
+      const {location, user, history} = this.props;
+      if (location.pathname !== '/logout' && user.isAuth) {
+        history.push('/app/profile');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
   componentWillReceiveProps(nextProps) {
-    const {location} = this.props;
-    if (nextProps.location.pathname !== location.pathname) {
-      const {
-        route: {routes},
-        location,
-      } = nextProps;
-      this.setState(()=>({...this.renderRoutes(routes, location.pathname)}))
+    try {
+      const {location} = this.props;
+      if (nextProps.location.pathname !== location.pathname) {
+        const {
+          route: {routes},
+          location,
+        } = nextProps;
+        this.setState(() => ({...this.renderRoutes(routes, location.pathname)}))
+      }
+    } catch (e) {
+      console.error(e);
     }
   }
 
