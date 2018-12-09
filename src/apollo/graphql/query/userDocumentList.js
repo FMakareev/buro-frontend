@@ -5,7 +5,7 @@ import {documentItem} from "./documentItem";
 
 
 export const userDocumentList = (query, props) => {
-  return range(100).map(d => {
+  return range(faker.random.number(100)).map(d => {
     return {
       id: faker.random.uuid(),
       user: userItem(),
