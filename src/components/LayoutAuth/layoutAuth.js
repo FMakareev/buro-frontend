@@ -37,6 +37,7 @@ export class LayoutAuth extends Component {
   componentDidMount() {
     try {
       const {location, user, history} = this.props;
+      /** редиректим пользователя в профиль если он авторизован и текущий маршрут не выход */
       if (location.pathname !== '/logout' && user.isAuth) {
         history.push('/app/profile');
       }
