@@ -95,12 +95,12 @@ export class LayoutBase extends Component {
       <Fragment>
         <MainStyled>
           <Header {...this.state} {...this.props}>
-            {user && !user.initLoading && !user.error && (
+            {user && !user.initLoading && !user.error && user.isAuth && (
               <Box px={2}>
                 <HeaderNav user={user} />
               </Box>
             )}
-            {user && !user.initLoading && !user.error && (
+            {user && !user.initLoading && !user.error && user.isAuth && (
               <Box px={2}>
                 <HeaderNotification user={user} />
               </Box>
