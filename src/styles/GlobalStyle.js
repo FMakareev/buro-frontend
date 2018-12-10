@@ -31,24 +31,29 @@ export const GlobalStyle = createGlobalStyle`
     box-shadow: 0 0 0 5px #E7EDF8;
   }
   
-
   @font-face {
     font-family: 'Montserrat Regular';
-    src: url('../assets/fonts/Montserrat-Regular.ttf') format('truetype');
+    src: url('montserrat-regular-webfont.ttf') format('truetype'),
+    url('montserrat-regular-webfont.woff2') format('woff2'),
+    url('montserrat-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
   }
 
   @font-face {
   font-family: 'Montserrat Medium';
-  src: url('../assets/fonts/Montserrat-Medium.ttf') format('truetype');
+  src: url('montserrat-medium-webfont.ttf') format('truetype'),
+    url('montserrat-medium-webfont.woff2') format('woff2'),
+    url('montserrat-medium-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   }
 
   @font-face {
   font-family: 'Montserrat Bold';
-  src: url('../assets/fonts/Montserrat-Bold.ttf') format('truetype');
+  src:  url('montserrat-bold-webfont.ttf') format('truetype'),
+    url('montserrat-bold-webfont.woff2') format('woff2'),
+    url('montserrat-bold-webfont.woff') format('woff');
   font-weight: bold;
   font-style: normal;
 }
