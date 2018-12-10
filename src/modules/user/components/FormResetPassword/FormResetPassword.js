@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
-import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
-import { Link } from 'react-router-dom';
-import { graphql } from 'react-apollo';
+import React, {Component} from 'react';
+import {Field, reduxForm, Form, SubmissionError} from 'redux-form';
+import {Link} from 'react-router-dom';
+import {graphql} from 'react-apollo';
 
-import { TextFieldWithIcon } from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
+import {TextFieldWithIcon} from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
 
-import { SvgEmailIcon } from '../../../../components/Icons/SvgEmailIcon';
-import { SvgArrowRight } from '../../../../components/Icons/SvgArrowRight';
-import { SvgArrowLeft } from '../../../../components/Icons/SvgArrowLeft';
-import { SvgReloadIcon } from '../../../../components/Icons/SvgReloadIcon';
+import {SvgEmailIcon} from '../../../../components/Icons/SvgEmailIcon';
+import {SvgArrowRight} from '../../../../components/Icons/SvgArrowRight';
+import {SvgArrowLeft} from '../../../../components/Icons/SvgArrowLeft';
+import {SvgReloadIcon} from '../../../../components/Icons/SvgReloadIcon';
 
-import { Text } from '../../../../components/Text/Text';
-import { Box } from '../../../../components/Box/Box';
-import { Flex } from '../../../../components/Flex/Flex';
+import {Text} from '../../../../components/Text/Text';
+import {Box} from '../../../../components/Box/Box';
+import {Flex} from '../../../../components/Flex/Flex';
 
-import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
+import {ButtonWithImageError} from '../ButtonWithImageError/ButtonWithImageError';
 
-import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
-import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
+import {SpeedingWheel} from '../../../../components/SmallPreloader/SmallPreloader';
+import {PreloaderWrapper} from '../../../../components/PreloaderWrapper/PreloaderWrapper';
 
 import isEmail from '../../../../utils/validation/isEmail';
-import { required } from '../../../../utils/validation/required';
+import {required} from '../../../../utils/validation/required';
 
 import ResetPasswordMutation from './ResetPasswordMutation.graphql';
 
@@ -38,19 +38,49 @@ export class FormResetPassword extends Component {
     };
   }
 
+
+  getNetworkError = errors => {
+    try{
+      let errorList = {};
+      errors.forEach(item => {
+        switch (item.message) {
+          case('user not found'):{
+            errorList.email = 'User with the specified address not found.'
+          }
+        }
+      });
+      return errorList;
+    } catch(error) {
+      console.error(error);
+      return {
+        _error: 'Unexpected error.'
+      }
+    }
+  };
+
   submit = value => {
     console.log(value);
     return this.props['@apollo/update']({
       variables: Object.assign({}, value),
     })
       .then(response => {
-        console.log(response);
+
+        return response;
       })
-      .catch(error => {
-        console.log(error);
-        throw new SubmissionError({
-          _error: 'Connection error!',
-        });
+      .catch(({graphQLErrors, message, networkError, ...rest}) => {
+        console.log('graphQLErrors: ', graphQLErrors);
+        console.log('message: ', message);
+        console.log('networkError: ', networkError);
+        console.log('rest: ', rest);
+        if(graphQLErrors){
+          throw new SubmissionError({
+            ...this.getNetworkError(graphQLErrors),
+          });
+        } else {
+          throw new SubmissionError({
+            _error: message
+          });
+        }
       });
   };
 
@@ -68,14 +98,14 @@ export class FormResetPassword extends Component {
       <Form onSubmit={handleSubmit(this.submit)}>
         {(submitFailed || (!submitSucceeded && !submitFailed)) && (
           <Flex justifyContent={'center'} width={'100%'} flexDirection={'column'}>
-            <Box width={'100%'} mb={6}>
+            <Box width={'100%'} mb={7}>
               <Field
                 name={'email'}
                 component={TextFieldWithIcon}
                 placeholder={'Email address'}
                 type={'email'}
                 validate={[required, isEmail]}
-                icon={<Text fontSize={11} lineHeight={0} fill={'inherit'}><SvgEmailIcon /></Text>}
+                icon={<Text fontSize={11} lineHeight={0} fill={'inherit'}><SvgEmailIcon/></Text>}
               />
             </Box>
             {!submitFailed && (
@@ -89,7 +119,7 @@ export class FormResetPassword extends Component {
                   width={'100%'}
                   iconRight={
                     <Text fontSize={12} lineHeight={0}>
-                      <SvgArrowRight />
+                      <SvgArrowRight/>
                     </Text>
                   }
                   disabled={pristine || submitting || invalid}>
@@ -107,7 +137,7 @@ export class FormResetPassword extends Component {
                   error={error}
                   iconRight={
                     <Text fontSize={12} lineHeight={0}>
-                      <SvgReloadIcon />
+                      <SvgReloadIcon/>
                     </Text>
                   }>
                   Try again
@@ -135,7 +165,7 @@ export class FormResetPassword extends Component {
                 error={error}
                 iconLeft={
                   <Text fontSize={12} lineHeight={0}>
-                    <SvgArrowLeft />
+                    <SvgArrowLeft/>
                   </Text>
                 }>
                 Go to main screen
@@ -147,7 +177,7 @@ export class FormResetPassword extends Component {
         {submitting && (
           <PreloaderWrapper>
             <Text fontSize={12}>
-              <SpeedingWheel />
+              <SpeedingWheel/>
             </Text>
           </PreloaderWrapper>
         )}
