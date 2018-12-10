@@ -147,7 +147,6 @@ export class TextFieldWithIcon extends PureComponent {
       loading,
       icon,
     } = this.props;
-    console.log(meta);
     return (
       <Wrapper>
         <Flex alignItems="left" flexDirection="column" position="relative">
