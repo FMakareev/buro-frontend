@@ -33,27 +33,27 @@ export const GlobalStyle = createGlobalStyle`
   
   @font-face {
     font-family: 'Montserrat Regular';
-    src: url('montserrat-regular-webfont.ttf') format('truetype'),
-    url('montserrat-regular-webfont.woff2') format('woff2'),
-    url('montserrat-regular-webfont.woff') format('woff');
+    src: url('montserrat-regular-webfont.ttf') format('font-truetype'),
+    url('montserrat-regular-webfont.woff2') format('font-woff2'),
+    url('montserrat-regular-webfont.woff') format('font-woff');
     font-weight: normal;
     font-style: normal;
   }
 
   @font-face {
   font-family: 'Montserrat Medium';
-  src: url('montserrat-medium-webfont.ttf') format('truetype'),
-    url('montserrat-medium-webfont.woff2') format('woff2'),
-    url('montserrat-medium-webfont.woff') format('woff');
+  src: url('montserrat-medium-webfont.ttf') format('font-truetype'),
+    url('montserrat-medium-webfont.woff2') format('font-woff2'),
+    url('montserrat-medium-webfont.woff') format('font-woff');
   font-weight: normal;
   font-style: normal;
   }
 
   @font-face {
   font-family: 'Montserrat Bold';
-  src:  url('montserrat-bold-webfont.ttf') format('truetype'),
-    url('montserrat-bold-webfont.woff2') format('woff2'),
-    url('montserrat-bold-webfont.woff') format('woff');
+  src:  url('montserrat-bold-webfont.ttf') format('font-truetype'),
+    url('montserrat-bold-webfont.woff2') format('font-woff2'),
+    url('montserrat-bold-webfont.woff') format('font-woff');
   font-weight: bold;
   font-style: normal;
 }
