@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Field, reduxForm, Form, SubmissionError} from 'redux-form';
+import styled from 'styled-components';
+import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
 
 import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
@@ -9,13 +10,23 @@ import { Box } from '../../../../components/Box/Box';
 import { Flex } from '../../../../components/Flex/Flex';
 import { Text } from '../../../../components/Text/Text';
 import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
+import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
 import { DayPickerBase } from '../../../../components/DayPickerBase/DayPickerBase';
 import { ButtonTriggerGroup } from '../../../../components/ButtonTriggerGroup/ButtonTriggerGroup';
 
+import { SvgReloadIcon } from '../../../../components/Icons/SvgReloadIcon';
+
+import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
+import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
+
 import { required } from '../../../../utils/validation/required';
 import { phoneNumber } from '../../../../utils/validation/phoneNumber';
-import {graphql} from "react-apollo";
+import { graphql } from 'react-apollo';
 import UpdateUserMutation from './UpdateUserMutation.graphql';
+
+const StyledBox = styled(Box)`
+  text-align: center;
+`;
 
 /**
  * @param {string} value - вводимое пользователем значение
@@ -65,24 +76,61 @@ export class FormProfileUser extends Component {
   constructor(props) {
     super(props);
   }
+
+  getNetworkError = errors => {
+    try {
+      let errorList = {};
+      errors.forEach(item => {
+        switch (item.message) {
+          case 'too young': {
+            errorList.birthdate = 'You too young!';
+          }
+        }
+      });
+      return errorList;
+    } catch (error) {
+      console.error(error);
+      return {
+        _error: 'Unexpected error.',
+      };
+    }
+  };
+
   // TODO: добавить вызов метода обновления данных пользователя в редаке, это экшен userUpdate
   submit = value => {
-    console.log(value);
     return this.props['@apollo/update']({
       variables: Object.assign({}, value),
     })
-      .then((response) => {
+      .then(response => {
         console.log(response);
-      }).catch(error => {
-        console.log(error);
-        throw new SubmissionError({
-          _error: 'Connection error!',
-        });
       })
+      .catch(({ graphQLErrors, message, networkError, ...rest }) => {
+        console.log('graphQLErrors: ', graphQLErrors);
+        console.log('message: ', message);
+        console.log('networkError: ', networkError);
+        console.log('rest: ', rest);
+        if (graphQLErrors) {
+          throw new SubmissionError({
+            ...this.getNetworkError(graphQLErrors),
+          });
+        } else {
+          throw new SubmissionError({
+            _error: message,
+          });
+        }
+      });
   };
 
   render() {
-    const { handleSubmit, pristine, submitting, invalid } = this.props;
+    const {
+      handleSubmit,
+      pristine,
+      submitting,
+      submitSucceeded,
+      submitFailed,
+      invalid,
+      error,
+    } = this.props;
 
     return (
       <Form onSubmit={handleSubmit(this.submit)}>
@@ -101,12 +149,7 @@ export class FormProfileUser extends Component {
             />
           </Box>
           <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[4, 0]}>
-            <Field
-              name="birthdate"
-              component={DayPickerBase}
-              label="Date of Birth:"
-              type="date"
-            />
+            <Field name="birthdate" component={DayPickerBase} label="Date of Birth:" type="date" />
           </Box>
           <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[2, 0]}>
             <Field
@@ -156,20 +199,53 @@ export class FormProfileUser extends Component {
           </Box>
         </Flex>
         <Flex justifyContent="center">
-          <ButtonBase
-            type="submit"
-            variant="primary"
-            size="medium"
-            px={122}
-            py={2}
-            disable={pristine || submitting || invalid}>
-            Save
-          </ButtonBase>
+          <StyledBox>
+            {!submitFailed && (
+              <ButtonBase
+                type="submit"
+                variant="primary"
+                size="medium"
+                px={122}
+                py={2}
+                disabled={pristine || submitting || invalid}>
+                Save
+              </ButtonBase>
+            )}
+
+            {submitFailed && (
+              <ButtonWithImageError
+                type={'submit'}
+                variant={'error'}
+                size={'medium'}
+                py={2}
+                error={error}
+                iconRight={
+                  <Text fontSize={11} lineHeight={0}>
+                    <SvgReloadIcon />
+                  </Text>
+                }>
+                Try again
+              </ButtonWithImageError>
+            )}
+
+            {submitSucceeded && !submitting && (
+              <Text fontSize={6} lineHeight={12} color={'color1'} fontFamily={'medium'}>
+                Changes was successfully saved.
+              </Text>
+            )}
+          </StyledBox>
         </Flex>
+
+        {submitting && (
+          <PreloaderWrapper>
+            <Text fontSize={13}>
+              <SpeedingWheel />
+            </Text>
+          </PreloaderWrapper>
+        )}
       </Form>
     );
   }
 }
-
 
 export default FormProfileUser;
