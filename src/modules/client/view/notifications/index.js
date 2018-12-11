@@ -91,6 +91,7 @@ export class ClientsPage extends Component {
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
                   data={loading ? [] : data.notificationList}
+                  error={error}
                   filterable
                   columns={columns()}
                 />

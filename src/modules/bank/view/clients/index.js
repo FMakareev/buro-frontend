@@ -1,22 +1,22 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import dayjs from 'dayjs';
-import {Query} from 'react-apollo';
-import {connect} from 'react-redux';
-import {Container} from '../../../../components/Container/Container';
-import {Text} from '../../../../components/Text/Text';
-import {ReactTableStyled} from '../../../../components/ReactTableStyled/ReactTableStyled';
+import { Query } from 'react-apollo';
+import { connect } from 'react-redux';
+import { Container } from '../../../../components/Container/Container';
+import { Text } from '../../../../components/Text/Text';
+import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactTableStyled';
 
 import UserListQuery from './UserListQuery.graphql';
 
-import {STATUS_PENDING, STATUS_APPROVAL} from '../../../../shared/statuses';
-import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
-import {ROLE_BANK} from "../../../../shared/roles";
-import {getUserFromStore} from "../../../../store/reducers/user/selectors";
-import {CreateNotificationButton} from "../../components/CreateNotificationButton/CreateNotificationButton";
-import {ButtonBase} from "../../../../components/ButtonBase/ButtonBase";
-import {Box} from "../../../../components/Box/Box";
+import { STATUS_PENDING, STATUS_APPROVAL } from '../../../../shared/statuses';
+import { CheckAuthorization } from '../../../../components/CheckAuthorization/CheckAuthorization';
+import { ROLE_BANK } from '../../../../shared/roles';
+import { getUserFromStore } from '../../../../store/reducers/user/selectors';
+import { CreateNotificationButton } from '../../components/CreateNotificationButton/CreateNotificationButton';
+import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
+import { Box } from '../../../../components/Box/Box';
 
-const columns = (user) => [
+const columns = user => [
   {
     id: 'Client',
     Header: 'Client',
@@ -79,23 +79,18 @@ const columns = (user) => [
             return (
               <ButtonBase
                 as={'a'}
-                display={"inline-block"}
+                display={'inline-block'}
                 href={props.original.document[0].file}
-                size={"xsmall"}
-                variant={"transparent"}
-                pl={"3px"}
-                pr={"5px"}
-                id={user.id}
-              >
+                size={'xsmall'}
+                variant={'transparent'}
+                pl={'3px'}
+                pr={'5px'}
+                id={user.id}>
                 Download
               </ButtonBase>
             );
           } else {
-            return (
-              <CreateNotificationButton id={user.id}>
-                Request
-              </CreateNotificationButton>
-            );
+            return <CreateNotificationButton id={user.id}>Request</CreateNotificationButton>;
           }
         }
       } catch (error) {
@@ -112,7 +107,7 @@ const columns = (user) => [
   },
 ];
 
-@connect((state) => ({
+@connect(state => ({
   user: getUserFromStore(state),
 }))
 @CheckAuthorization([ROLE_BANK])
@@ -131,7 +126,7 @@ export class ClientsPage extends Component {
   }
 
   render() {
-    const {user} = this.props;
+    const { user } = this.props;
     console.log(this.props);
     return (
       <Container backgroundColor={'transparent'} px={6}>
@@ -140,21 +135,22 @@ export class ClientsPage extends Component {
         </Text>
 
         <Box backgroundColor={'color0'}>
-          <Query query={UserListQuery}
-                 variables={{
-                   id: user.id
-                 }}
-          >
-            {({error, data, loading}) => {
-              console.log('UserListQuery: ',error, data, loading);
+          <Query
+            query={UserListQuery}
+            variables={{
+              id: user.id,
+            }}>
+            {({ error, data, loading }) => {
+              console.log('UserListQuery: ', error, data, loading);
               return (
                 <ReactTableStyled
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
                   data={loading ? [] : data && data.userDocumentList}
-                  loadingText={loading ? 'Loading...' : error ? 'Error...' : 'Loading...'}
+                  // loadingText={loading ? 'Loading...' : error ? 'Error...' : 'Loading...'}
                   loading={loading}
+                  error={error}
                   filterable
                   columns={columns(user)}
                 />
@@ -162,7 +158,6 @@ export class ClientsPage extends Component {
             }}
           </Query>
         </Box>
-
       </Container>
     );
   }

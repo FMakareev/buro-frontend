@@ -1,19 +1,19 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import dayjs from 'dayjs';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-import {Query} from 'react-apollo';
-import {Container} from '../../../../components/Container/Container';
-import {Text} from '../../../../components/Text/Text';
-import {ReactTableStyled} from '../../../../components/ReactTableStyled/ReactTableStyled';
-import {CheckAuthorization} from "../../../../components/CheckAuthorization/CheckAuthorization";
-import {ROLE_BANK} from "../../../../shared/roles";
+import { Query } from 'react-apollo';
+import { Container } from '../../../../components/Container/Container';
+import { Text } from '../../../../components/Text/Text';
+import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactTableStyled';
+import { CheckAuthorization } from '../../../../components/CheckAuthorization/CheckAuthorization';
+import { ROLE_BANK } from '../../../../shared/roles';
 
 import NotificationListQuery from './NotificationListQuery.graphql';
 
-import {STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL} from '../../../../shared/statuses';
-import {getUserFromStore} from "../../../../store/reducers/user/selectors";
-import {Box} from "../../../../components/Box/Box";
+import { STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL } from '../../../../shared/statuses';
+import { getUserFromStore } from '../../../../store/reducers/user/selectors';
+import { Box } from '../../../../components/Box/Box';
 
 const columns = () => [
   {
@@ -68,7 +68,7 @@ const columns = () => [
   },
 ];
 
-@connect((state) => ({
+@connect(state => ({
   user: getUserFromStore(state),
 }))
 @CheckAuthorization([ROLE_BANK])
@@ -87,17 +87,19 @@ export class ClientsPage extends Component {
   }
 
   render() {
-    const {user} = this.props;
+    const { user } = this.props;
     return (
       <Container backgroundColor={'transparent'} px={6}>
         <Text fontFamily={'bold'} fontWeight={'bold'} fontSize={9} lineHeight={9} mb={7}>
           Notifications
         </Text>
         <Box backgroundColor={'color0'}>
-          <Query query={NotificationListQuery} variables={{
-            bankid: user.id
-          }}>
-            {({error, data, loading}) => {
+          <Query
+            query={NotificationListQuery}
+            variables={{
+              bankid: user.id,
+            }}>
+            {({ error, data, loading }) => {
               console.log(error, data, loading);
               return (
                 <ReactTableStyled
@@ -107,6 +109,7 @@ export class ClientsPage extends Component {
                   data={loading ? [] : data.notificationList}
                   filterable
                   columns={columns()}
+                  error={error}
                 />
               );
             }}
