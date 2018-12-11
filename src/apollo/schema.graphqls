@@ -10,7 +10,7 @@ type User {
   phone: String
   masterPassword: String
   password: String
-  # retypePassword: String
+  retypePassword: String
   role: String
   token: String
 }
@@ -56,7 +56,7 @@ type Mutation {
     phone: String,
     masterPassword: String,
     password: String!,
-    # retypePassword: String!,
+    retypePassword: String!,
     role: String!
   ): User,
 
