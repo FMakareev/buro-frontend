@@ -53,6 +53,7 @@ const defaultMocks = {
           };
         }
         default: {
+          // throw new GraphQLError('user not found');
           throw Error(
             JSON.stringify({
               userEmailItem: null,
@@ -83,7 +84,23 @@ const defaultMocks = {
         return props;
       }
     },
-    updateUser: (mutation, props) => props,
+    updateUser: (mutation, props) =>
+      // для имитации запроса к серверу с рандомной задержкой и результатом.
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          faker.random.number(1)
+            ? resolve({ ...userItem() })
+            : reject(
+                JSON.stringify({
+                  errors: [
+                    {
+                      message: 'error!',
+                    },
+                  ],
+                }),
+              );
+        }, faker.random.number(2000));
+      }),
     userResetPassword: (mutation, props) => {
       if (props.email === 'error@test.com') {
         throw new GraphQLError('user not found');

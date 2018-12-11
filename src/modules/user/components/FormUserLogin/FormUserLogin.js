@@ -1,34 +1,34 @@
 /** global ENDPOINT_CLIENT */
-import React, {Component} from 'react';
-import {Field, reduxForm, Form, SubmissionError} from 'redux-form';
-import {Link, withRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {withApollo} from "react-apollo";
+import React, { Component } from 'react';
+import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withApollo } from 'react-apollo';
 
-import {formPropTypes} from '../../../../propTypes/Forms/FormPropTypes';
+import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
-import {TextFieldWithIcon} from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
+import { TextFieldWithIcon } from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
 
-import {Box} from '../../../../components/Box/Box';
-import {Flex} from '../../../../components/Flex/Flex';
-import {HelpText} from '../HelpText/HelpText';
-import {ButtonWithImageError} from '../ButtonWithImageError/ButtonWithImageError';
+import { Box } from '../../../../components/Box/Box';
+import { Flex } from '../../../../components/Flex/Flex';
+import { HelpText } from '../HelpText/HelpText';
+import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
 
-import {SvgArrowRight} from '../../../../components/Icons/SvgArrowRight';
-import {SvgEmailIcon} from '../../../../components/Icons/SvgEmailIcon';
-import {SvgPasswordIcon} from '../../../../components/Icons/SvgPasswordIcon';
-import {SvgReloadIcon} from '../../../../components/Icons/SvgReloadIcon';
+import { SvgArrowRight } from '../../../../components/Icons/SvgArrowRight';
+import { SvgEmailIcon } from '../../../../components/Icons/SvgEmailIcon';
+import { SvgPasswordIcon } from '../../../../components/Icons/SvgPasswordIcon';
+import { SvgReloadIcon } from '../../../../components/Icons/SvgReloadIcon';
 
-import {Text} from '../../../../components/Text/Text';
+import { Text } from '../../../../components/Text/Text';
 
-import {SpeedingWheel} from '../../../../components/SmallPreloader/SmallPreloader';
-import {PreloaderWrapper} from '../../../../components/PreloaderWrapper/PreloaderWrapper';
+import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
+import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
 
-import {required} from '../../../../utils/validation/required';
-import {isEmail} from '../../../../utils/validation/isEmail';
+import { required } from '../../../../utils/validation/required';
+import { isEmail } from '../../../../utils/validation/isEmail';
 import UserEmailItemQuery from './UserEmailItemQuery.graphql';
-import {jsonToUrlEncoded} from "../../../../utils/jsontools/jsonToUrlEncoded";
-import {USER_ADD} from "../../../../store/reducers/user/actionTypes";
+import { jsonToUrlEncoded } from '../../../../utils/jsontools/jsonToUrlEncoded';
+import { USER_ADD } from '../../../../store/reducers/user/actionTypes';
 
 @connect(
   null,
@@ -55,8 +55,28 @@ export class FormUserLogin extends Component {
     return {
       submitting: false,
       apolloError: null,
-    }
+    };
   }
+
+  // getNetworkError = errors => {
+  //   try {
+  //     let errorList = {};
+  //     errors.forEach(item => {
+  //       switch (item.message) {
+  //         case 'user not found': {
+  //           errorList.email = 'Wrong email or password';
+  //           errorList.password = 'Wrong email or password';
+  //         }
+  //       }
+  //     });
+  //     return errorList;
+  //   } catch (error) {
+  //     console.error(error);
+  //     return {
+  //       _error: 'Unexpected error.',
+  //     };
+  //   }
+  // };
 
   submit = value => {
     this.setState(() => ({
@@ -79,38 +99,38 @@ export class FormUserLogin extends Component {
           return this.getUser(value.uname);
         }
       })
-      .catch(({status, statusText}) => {
+      .catch(({ status, statusText }) => {
         console.log('statusText', statusText);
         console.log('status', status);
+
         this.setState(() => ({
           submitting: false,
           apolloError: null,
         }));
+
         if (status === 401) {
-          throw new SubmissionError({_error: 'неверный логин или пароль'});
+          throw new SubmissionError({ _error: 'Wrong email or password' });
         } else {
-          throw new SubmissionError({_error: 'Unexpected error.'});
+          throw new SubmissionError({
+            _error: message,
+          });
         }
       });
   };
 
-  setUser = (props) => {
+  setUser = props => {
     console.log('setUser: ', props);
     const {
-      data: {userEmailItem},
+      data: { userEmailItem },
     } = props;
-    const {addUser} = this.props;
-
+    const { addUser } = this.props;
 
     addUser(userEmailItem);
-    localStorage.setItem(
-      'user',
-      JSON.stringify(userEmailItem),
-    );
+    localStorage.setItem('user', JSON.stringify(userEmailItem));
   };
 
-  getUser = (uname) => {
-    const {client, history} = this.props;
+  getUser = uname => {
+    const { client, history } = this.props;
 
     return client
       .query({
@@ -133,6 +153,7 @@ export class FormUserLogin extends Component {
           return Promise.resolve(result);
         }
       })
+
       .catch(error => {
         console.log('getUser error:', error);
 
@@ -143,25 +164,19 @@ export class FormUserLogin extends Component {
       });
   };
 
-  mockSubmit = (value) => {
-    this.setState(({submitting})=>({submitting:!submitting}));
+  mockSubmit = value => {
+    this.setState(({ submitting }) => ({ submitting: !submitting }));
     return new Promise((resolve, reject) => {
-      setTimeout(()=>{
+      setTimeout(() => {
         this.getUser(value.email);
         resolve(true);
       }, 2000);
-    })
+    });
   };
 
   render() {
-    const {
-      handleSubmit,
-      pristine,
-      invalid,
-      submitFailed,
-      error,
-    } = this.props;
-    const {apolloError, submitting} = this.state;
+    const { handleSubmit, pristine, invalid, submitFailed, error } = this.props;
+    const { apolloError, submitting } = this.state;
 
     return (
       <Form onSubmit={handleSubmit(this.mockSubmit)}>
@@ -172,17 +187,25 @@ export class FormUserLogin extends Component {
               component={TextFieldWithIcon}
               placeholder="Email address"
               type="email"
-              icon={<Text fontSize={11} lineHeight={0} fill={'inherit'}><SvgEmailIcon/></Text>}
+              icon={
+                <Text fontSize={11} lineHeight={0} fill={'inherit'}>
+                  <SvgEmailIcon />
+                </Text>
+              }
               validate={[required, isEmail]}
             />
           </Box>
           <Box width="100%" mb={4}>
             <Field
-              name={"password"}
+              name={'password'}
               component={TextFieldWithIcon}
               placeholder="Password"
-              type={"password"}
-              icon={<Text fontSize={11} lineHeight={0} fill={'inherit'}><SvgPasswordIcon/></Text>}
+              type={'password'}
+              icon={
+                <Text fontSize={11} lineHeight={0} fill={'inherit'}>
+                  <SvgPasswordIcon />
+                </Text>
+              }
               validate={[required]}
             />
           </Box>
@@ -197,16 +220,16 @@ export class FormUserLogin extends Component {
             </Flex>
           </Box>
 
-          {!submitFailed && (
+          {!submitFailed && !apolloError && (
             <Box width="100%">
               <ButtonWithImageError
                 type="submit"
                 variant="primary"
                 size="medium"
-                error={error || apolloError}
+                error={error}
                 iconRight={
                   <Text fontSize={12} lineHeight={0}>
-                    <SvgArrowRight/>
+                    <SvgArrowRight />
                   </Text>
                 }
                 disabled={pristine || submitting || invalid}>
@@ -214,28 +237,29 @@ export class FormUserLogin extends Component {
               </ButtonWithImageError>
             </Box>
           )}
-          {submitFailed || apolloError && (
-            <Box width="100%">
-              <ButtonWithImageError
-                type="submit"
-                variant="error"
-                size="medium"
-                error={error || apolloError}
-                iconRight={
-                  <Text fontSize={12} lineHeight={0}>
-                    <SvgReloadIcon/>
-                  </Text>
-                }>
-                Try again
-              </ButtonWithImageError>
-            </Box>
-          )}
+          {submitFailed ||
+            (apolloError && (
+              <Box width="100%">
+                <ButtonWithImageError
+                  type="submit"
+                  variant="error"
+                  size="medium"
+                  error={error || apolloError}
+                  iconRight={
+                    <Text fontSize={12} lineHeight={0}>
+                      <SvgReloadIcon />
+                    </Text>
+                  }>
+                  Try again
+                </ButtonWithImageError>
+              </Box>
+            ))}
         </Flex>
 
         {submitting && (
           <PreloaderWrapper>
             <Text fontSize={12}>
-              <SpeedingWheel/>
+              <SpeedingWheel />
             </Text>
           </PreloaderWrapper>
         )}
@@ -243,6 +267,5 @@ export class FormUserLogin extends Component {
     );
   }
 }
-
 
 export default FormUserLogin;
