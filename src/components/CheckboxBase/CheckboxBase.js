@@ -4,12 +4,12 @@ import styled from 'styled-components';
 import { space } from 'styled-system';
 import checkboxOn from '../../assets/icons/multicolor/checkboxOn.multicolor.svg';
 import checkboxOff from '../../assets/icons/multicolor/checkboxOff.multicolor.svg';
-import {BackgroundColorProperty} from "../../styles/styleProperty/BackgroundColorProperty";
+import { BackgroundColorProperty } from '../../styles/styleProperty/BackgroundColorProperty';
 
 const Wrapper = styled.div`
   ${space};
 `;
-console.log('checkboxOff: ',checkboxOn);
+console.log('checkboxOff: ', checkboxOn);
 const Input = styled.input`
   position: absolute; // take it out of document flow
   opacity: 0; // hide it
@@ -26,7 +26,7 @@ const Input = styled.input`
     vertical-align: text-top;
     width: 28px;
     height: 28px;
-    ${props => BackgroundColorProperty({...props, backgroundColor: 'color0'})}
+    ${props => BackgroundColorProperty({ ...props, backgroundColor: 'color0' })}
     box-sizing: border-box;
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjYiIGhlaWdodD0iMjUiIHZpZXdCb3g9IjAgMCAyNiAyNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI0LjYwMTMgNi40MjY5NUMyNC4zMTY5IDYuNDI2OTUgMjQuMDc3NSA2LjY0OTE5IDI0LjA3NzUgNi45MzQzNlYxOC4wNTY1QzI0LjA3NzUgMjAuODM4IDIxLjcxNTIgMjMuMTEwMiAxOC44MDA5IDIzLjExMDJINy4yMDAxMkM0LjI4NTgzIDIzLjExMDIgMS45MjM1OSAyMC44MzggMS45MjM1OSAxOC4wNTY1VjYuOTM0MzZDMS45MjM1OSA0LjE1Mjg0IDQuMjg1ODMgMS44ODA2OSA3LjIwMDEyIDEuODgwNjlIMTguODAwOUMxOS4wODUzIDEuODgwNjkgMTkuMzI0OCAxLjY1ODQ0IDE5LjMyNDggMS4zNzMyOEMxOS4zMjQ4IDEuMDg4MDkgMTkuMDg1MyAwLjg2NTkgMTguODAwOSAwLjg2NTlINy4yMDAxMkMzLjcxNzkyIDAuODY1OSAwLjg3NTg4NSAzLjU4MzIyIDAuODc1ODg1IDYuOTM0MzZWMTguMDU2NUMwLjg3NTg4NSAyMS40MDc2IDMuNzE3OTIgMjQuMTI1IDcuMjAwMTIgMjQuMTI1SDE4LjgwMDlDMjIuMjgzMiAyNC4xMjUgMjUuMTI1MiAyMS40MDc2IDI1LjEyNTIgMTguMDU2NVY2LjkzNDM2QzI1LjEyNTIgNi42NDkxOCAyNC44ODU3IDYuNDI2OTUgMjQuNjAxMyA2LjQyNjk1WiIgZmlsbD0iIzA5Mzk3MSIgc3Ryb2tlPSIjMDkzOTcxIiBzdHJva2Utd2lkdGg9IjAuMjUiLz4KPHBhdGggZD0iTTEuMzk4ODcgMTguNTYzOUMxLjY4MzIzIDE4LjU2MzkgMS45MjI3MSAxOC4zNDE3IDEuOTIyNzEgMTguMDU2NUwxLjkyMjcxIDYuOTM0NDFDMS45MjI3IDQuMTUyODkgNC4yODQ5NCAxLjg4MDc0IDcuMTk5MjQgMS44ODA3NEwxOC44MDAxIDEuODgwNzRDMjEuNzE0NCAxLjg4MDc0IDI0LjA3NjYgNC4xNTI4OSAyNC4wNzY2IDYuOTM0NDFMMjQuMDc2NiAxOC4wNTY1QzI0LjA3NjYgMjAuODM4MSAyMS43MTQ0IDIzLjExMDIgMTguODAwMSAyMy4xMTAyTDcuMTk5MjQgMjMuMTEwMkM2LjkxNDg4IDIzLjExMDIgNi42NzU0MSAyMy4zMzI1IDYuNjc1NDEgMjMuNjE3NkM2LjY3NTQxIDIzLjkwMjggNi45MTQ5IDI0LjEyNSA3LjE5OTI0IDI0LjEyNUwxOC44MDAxIDI0LjEyNUMyMi4yODIzIDI0LjEyNSAyNS4xMjQzIDIxLjQwNzcgMjUuMTI0MyAxOC4wNTY1TDI1LjEyNDMgNi45MzQ0MUMyNS4xMjQzIDMuNTgzMjcgMjIuMjgyMyAwLjg2NTkxMiAxOC44MDAxIDAuODY1OTEyTDcuMTk5MjQgMC44NjU5MTNDMy43MTcwMyAwLjg2NTkxMyAwLjg3NTAwMiAzLjU4MzI3IDAuODc1MDAyIDYuOTM0NDFMMC44NzUwMDMgMTguMDU2NUMwLjg3NTAwMyAxOC4zNDE3IDEuMTE0NDggMTguNTYzOSAxLjM5ODg3IDE4LjU2MzlaIiBmaWxsPSIjMDkzOTcxIiBzdHJva2U9IiMwOTM5NzEiIHN0cm9rZS13aWR0aD0iMC4yNSIvPgo8L3N2Zz4K);
     background-repeat: no-repeat;
@@ -34,7 +34,7 @@ const Input = styled.input`
 
   /* // Box hover
   &:hover + label:before {
-    ${props => BackgroundColorProperty({...props, backgroundColor: 'color2'})}
+    ${props => BackgroundColorProperty({ ...props, backgroundColor: 'color2' })}
   } */
 
   /* // Box focus
@@ -111,7 +111,7 @@ export class CheckboxBase extends Component {
         <Input
           id={`styled-checkbox-${index || input.name}`}
           type="checkbox"
-          checked={input.value}
+          checked={input ? input.value : false}
           disabled={disabled}
           {...input}
         />
