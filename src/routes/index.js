@@ -3,12 +3,12 @@ import { asyncComponent } from 'react-async-component';
 import * as modules from '../modules/index';
 import LayoutBase from '../components/LayoutBase/LayoutBase';
 import LayoutApp from '../components/LayoutApp/LayoutApp';
+import LayoutAuth  from '../components/LayoutAuth/layoutAuth';
 
 import ErrorCatch from '../components/ErrorCatch/ErrorCatch';
 import { Store } from '../store';
-import { LayoutAuth } from '../components/LayoutAuth/layoutAuth';
 import { GetPageTitle } from '../components/GetPageTitle/GetPageTitle';
-import { LAYOUT_ADMIN, LAYOUT_APP, LAYOUT_AUTH } from '../shared/layout';
+import { LAYOUT_APP, LAYOUT_AUTH } from '../shared/layout';
 import {SpeedingWheel} from "../components/SmallPreloader/SmallPreloader";
 import {Text} from "../components/Text/Text";
 import {PreloaderWrapper} from "../components/PreloaderWrapper/PreloaderWrapper";

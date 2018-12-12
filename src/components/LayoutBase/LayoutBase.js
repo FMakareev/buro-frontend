@@ -9,8 +9,8 @@ import { PreloaderWrapper } from '../PreloaderWrapper/PreloaderWrapper';
 import { SpeedingWheel } from '../SmallPreloader/SmallPreloader';
 import { Text } from '../Text/Text';
 import { Header } from '../Header/Header';
-import { HeaderNav } from '../HeaderNav/HeaderNav';
-import { HeaderNotification } from '../HeaderNotification/HeaderNotification';
+import HeaderNav  from '../HeaderNav/HeaderNav';
+import HeaderNotification  from '../HeaderNotification/HeaderNotification';
 
 const MainStyled = styled(Box)`
   width: 100%;
@@ -23,9 +23,6 @@ const MainStyled = styled(Box)`
   }
 `;
 
-@connect(state => ({
-  user: getUserFromStore(state),
-}))
 export class LayoutBase extends Component {
   static propTypes = {};
 
@@ -120,5 +117,11 @@ export class LayoutBase extends Component {
     );
   }
 }
+
+
+
+LayoutBase = connect(state => ({
+  user: getUserFromStore(state),
+}))(LayoutBase);
 
 export default LayoutBase;

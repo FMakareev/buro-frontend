@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import {getUserFromStore} from "../../store/reducers/user/selectors";
 import {connect} from "react-redux";
 
-@connect(state => ({
-  user: getUserFromStore(state),
-}))
+
 export class LayoutAuth extends Component {
   static propTypes = {};
 
@@ -94,5 +92,9 @@ LayoutAuth.propTypes = {
 LayoutAuth.defaultProps = {
   route: null,
 };
+
+LayoutAuth = connect(state => ({
+  user: getUserFromStore(state),
+}))(LayoutAuth);
 
 export default LayoutAuth;

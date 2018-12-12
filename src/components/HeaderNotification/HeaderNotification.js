@@ -10,11 +10,6 @@ import NotificationListQuery from './NotificationListQuery.graphql';
 import {getUserFromStore} from "../../store/reducers/user/selectors";
 import {withRouter} from "react-router-dom";
 
-@withRouter
-@connect((state) => ({
-  user: getUserFromStore(state),
-}))
-@CheckAuthorization([ROLE_CLIENT, ROLE_BANK])
 export class HeaderNotification extends Component {
 
   redirectToNotificationList = () => {
@@ -68,4 +63,9 @@ export class HeaderNotification extends Component {
   }
 }
 
+HeaderNotification =withRouter(HeaderNotification);
+HeaderNotification = CheckAuthorization([ROLE_CLIENT, ROLE_BANK])(HeaderNotification);
+HeaderNotification = connect((state) => ({
+  user: getUserFromStore(state),
+}))(HeaderNotification);
 export default HeaderNotification;
