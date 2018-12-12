@@ -24,32 +24,25 @@ const build = async () => {
   const clientCompiler = multiCompiler.compilers[0];
   const serverCompiler = multiCompiler.compilers[1];
 
-  const clientPromise = compilerPromise(clientCompiler);
-  const serverPromise = compilerPromise(serverCompiler);
 
-  serverCompiler.watch({}, (error, stats) => {
-    if (!error && !stats.hasErrors()) {
-      console.log(stats.toString(serverConfig.stats));
+
+  clientCompiler.run((error, stats) => {
+    if(error && stats.hasErrors()){
+      console.log(error);
     }
-    return null;
+    console.log('Client compiler has finished execution.');
+    process.stdout.write(stats.toString() + "\n");
   });
 
-  clientCompiler.watch({}, (error, stats) => {
-    if (!error && !stats.hasErrors()) {
-      console.log(stats.toString(clientConfig.stats));
+  serverCompiler.run((error, stats) => {
+    if(error && stats.hasErrors()){
+      console.log(error);
     }
-    return null;
+    console.log('Server compiler has finished execution.');
+    process.stdout.write(stats.toString() + "\n");
   });
 
-  // wait until client and server is compiled
-  try {
-    await serverPromise;
-    await clientPromise;
-    logMessage('Done!', 'info');
-    process.exit();
-  } catch (error) {
-    logMessage(error, 'error');
-  }
+
 };
 
 build();
