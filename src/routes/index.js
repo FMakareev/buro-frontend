@@ -50,7 +50,7 @@ const createRoutes = (modulesRoutes, newRoutes, moduleName) => {
                 <SpeedingWheel/>
               </Text>
             </PreloaderWrapper>),
-            ErrorComponent: ({  }) => {
+            ErrorComponent: (error) => {
               console.log('ErrorComponent: ',error);
               return <ErrorCatch>{error.message}</ErrorCatch>
             },

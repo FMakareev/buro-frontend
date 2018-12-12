@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import styled from 'styled-components';
 import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
-
+import {connect} from 'react-redux';
 import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
 import { TextFieldWithLabel } from '../../../../components/TextFieldWithLabel/TextFieldWithLabel';
@@ -23,6 +23,9 @@ import { required } from '../../../../utils/validation/required';
 import { phoneNumber } from '../../../../utils/validation/phoneNumber';
 import { graphql } from 'react-apollo';
 import UpdateUserMutation from './UpdateUserMutation.graphql';
+import {getUserFromStore} from "../../../../store/reducers/user/selectors";
+import {ROLE_BANK, ROLE_CLIENT} from "../../../../shared/roles";
+import {userUpdate} from "../../../../store/reducers/user/actions";
 
 const StyledBox = styled(Box)`
   text-align: center;
@@ -68,6 +71,12 @@ const normalizePhoneNumber = value => {
 @reduxForm({
   form: 'FormProfileUser',
 })
+@connect(state=>({
+  user: getUserFromStore(state),
+}),
+  dispatch => ({
+    userUpdate: () => dispatch(userUpdate())
+  }))
 export class FormProfileUser extends Component {
   static propTypes = {
     ...formPropTypes,
@@ -96,13 +105,14 @@ export class FormProfileUser extends Component {
     }
   };
 
-  // TODO: добавить вызов метода обновления данных пользователя в редаке, это экшен userUpdate
+  // TODO: добавить вызов метода обновления данных пользователя в редакcе, это экшен userUpdate
   submit = value => {
     return this.props['@apollo/update']({
       variables: Object.assign({}, value),
     })
       .then(response => {
         console.log(response);
+        this.props.userUpdate();
       })
       .catch(({ graphQLErrors, message, networkError, ...rest }) => {
         console.log('graphQLErrors: ', graphQLErrors);
@@ -130,6 +140,7 @@ export class FormProfileUser extends Component {
       submitFailed,
       invalid,
       error,
+      user
     } = this.props;
 
     return (
@@ -137,29 +148,52 @@ export class FormProfileUser extends Component {
         <Text fontFamily={'bold'} as="h2" fontSize={9} lineHeight={11} mb={9}>
           Main data:
         </Text>
-        <Flex mx={-6} justifyContent="space-between" />
         <Flex mx={-6} justifyContent="space-between" flexWrap="wrap" mb="30px">
-          <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[1, 0]}>
-            <Field
-              name="firstName"
-              component={TextFieldWithLabel}
-              label="First Name:"
-              type="text"
-              validate={[required]}
-            />
-          </Box>
-          <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[4, 0]}>
-            <Field name="birthdate" component={DayPickerBase} label="Date of Birth:" type="date" />
-          </Box>
-          <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[2, 0]}>
-            <Field
-              name="lastName"
-              component={TextFieldWithLabel}
-              label="Last Name:"
-              type="text"
-              validate={[required]}
-            />
-          </Box>
+
+          {
+            user.role === ROLE_CLIENT &&
+            <Fragment>
+              <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[1, 0]}>
+                <Field
+                  name="firstName"
+                  component={TextFieldWithLabel}
+                  label="First Name:"
+                  type="text"
+                  validate={[required]}
+                />
+              </Box>
+              <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[4, 0]}>
+                <Field
+                  name="birthdate"
+                  component={DayPickerBase}
+                  label="Date of Birth:"
+                  type="date"
+                />
+              </Box>
+              <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[2, 0]}>
+                <Field
+                  name="lastName"
+                  component={TextFieldWithLabel}
+                  label="Last Name:"
+                  type="text"
+                  validate={[required]}
+                />
+              </Box>
+            </Fragment>
+          }
+          {
+            user.role === ROLE_BANK && <Fragment>
+              <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[1, 0]}>
+                <Field
+                  name="bankName"
+                  component={TextFieldWithLabel}
+                  label="Bank name"
+                  type="text"
+                  disabled={true}
+                />
+              </Box>
+            </Fragment>
+          }
           <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[5, 0]}>
             <Field
               name="phone"
@@ -170,33 +204,37 @@ export class FormProfileUser extends Component {
               normalize={normalizePhoneNumber}
             />
           </Box>
-          <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[3, 0]}>
-            <Field
-              name="patronymic"
-              component={TextFieldWithLabel}
-              label="Patronymic:"
-              type="text"
-              validate={[required]}
-            />
-          </Box>
-          <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[6, 0]}>
-            <Field
-              name="gender"
-              component={ButtonTriggerGroup}
-              label="Gender:"
-              type="text"
-              options={[
-                {
-                  label: 'Male',
-                  value: 'male',
-                },
-                {
-                  label: 'Female',
-                  value: 'female',
-                },
-              ]}
-            />
-          </Box>
+          {
+            user.role === ROLE_CLIENT && <Fragment>
+              <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[3, 0]}>
+                <Field
+                  name="patronymic"
+                  component={TextFieldWithLabel}
+                  label="Patronymic:"
+                  type="text"
+                  validate={[required]}
+                />
+              </Box>
+              <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[6, 0]}>
+                <Field
+                  name="gender"
+                  component={ButtonTriggerGroup}
+                  label="Gender:"
+                  type="text"
+                  options={[
+                    {
+                      label: 'Male',
+                      value: 'male',
+                    },
+                    {
+                      label: 'Female',
+                      value: 'female',
+                    },
+                  ]}
+                />
+              </Box>
+            </Fragment>
+          }
         </Flex>
         <Flex justifyContent="center">
           <StyledBox>

@@ -1,5 +1,5 @@
 mutation(
-  $id: String,
+$id: String,
 $firstName: String,
 $lastName: String,
 $patronymic: String,
@@ -7,9 +7,6 @@ $birthdate: String,
 $gender: String,
 $email: String,
 $phone: String,
-$password: String,
-$confirmPassword: String,
-$role: String,
 ) {
   updateuser(
     id: $id,
@@ -20,18 +17,17 @@ $role: String,
     gender:$gender,
     email :$email ,
     phone:$phone,
-    password:$password,
-    confirmPassword :$confirmPassword ,
-    role :$role ,
   ){
-    id
-    firstName
-    lastName
-    patronymic
-    birthdate
-    gender
-    email
-    phone
-    role
+    user{
+      id
+      firstName
+      lastName
+      patronymic
+      birthdate
+      gender
+      email
+      phone
+      role
+    }
   }
 }
