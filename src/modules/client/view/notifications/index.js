@@ -25,7 +25,7 @@ const columns = () => [
         {props.value}
       </Text>
     ),
-    accessor: props => `${props.bank.firstName} ${props.bank.lastName}`,
+    accessor: props => `${props.bank.bankName}`,
   },
   {
     id: 'reqDate',
@@ -55,10 +55,7 @@ const columns = () => [
   },
 ];
 
-@connect(state => ({
-  user: getUserFromStore(state),
-}))
-@CheckAuthorization([ROLE_CLIENT])
+
 export class ClientsPage extends Component {
   static propTypes = {};
 
@@ -89,7 +86,13 @@ export class ClientsPage extends Component {
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
-                  data={loading ? [] : data.notificationlist}
+                  data={
+                    loading ? [] :
+                      Object.hasOwnProperty.call(data, 'notificationlist') &&
+                      Array.isArray(data.notificationlist) ?
+                        data.notificationlist :
+                        []
+                  }
                   error={error}
                   filterable
                   columns={columns()}
@@ -102,5 +105,10 @@ export class ClientsPage extends Component {
     );
   }
 }
+
+ClientsPage = CheckAuthorization([ROLE_CLIENT])(ClientsPage);
+ClientsPage = connect(state => ({
+  user: getUserFromStore(state),
+}))(ClientsPage);
 
 export default ClientsPage;

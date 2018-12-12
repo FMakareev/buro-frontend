@@ -32,9 +32,6 @@ const validate = values => {
   return error;
 };
 
-@graphql(UserPasswordRecoveryMutation, {
-  name: '@apollo/update'
-})
 export class FormUserPasswordRecovery extends Component {
   static propTypes = {
     ...formPropTypes,
@@ -176,6 +173,9 @@ export class FormUserPasswordRecovery extends Component {
   }
 }
 
+FormUserPasswordRecovery = graphql(UserPasswordRecoveryMutation, {
+  name: '@apollo/update'
+})(FormUserPasswordRecovery)
 FormUserPasswordRecovery = reduxForm({
   form: 'FormUserPasswordRecovery',
   validate,

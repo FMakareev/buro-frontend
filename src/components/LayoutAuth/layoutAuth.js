@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import {getUserFromStore} from "../../store/reducers/user/selectors";
 import {connect} from "react-redux";
 
-@connect(state => ({
-  user: getUserFromStore(state),
-}))
+
 export class LayoutAuth extends Component {
   static propTypes = {};
 
@@ -38,7 +36,11 @@ export class LayoutAuth extends Component {
     try {
       const {location, user, history} = this.props;
       /** редиректим пользователя в профиль если он авторизован и текущий маршрут не выход */
-      if (location.pathname !== '/logout' && user.isAuth) {
+      if (location.pathname !== '/logout' &&
+        location.pathname !== '/help' &&
+        location.pathname !== '/policy' &&
+        location.pathname !== '/terms' &&
+        user.isAuth) {
         history.push('/app/profile');
       }
     } catch (error) {
@@ -94,5 +96,9 @@ LayoutAuth.propTypes = {
 LayoutAuth.defaultProps = {
   route: null,
 };
+
+LayoutAuth = connect(state => ({
+  user: getUserFromStore(state),
+}))(LayoutAuth);
 
 export default LayoutAuth;

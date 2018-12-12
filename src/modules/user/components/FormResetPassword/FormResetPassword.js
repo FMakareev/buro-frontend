@@ -24,12 +24,7 @@ import {required} from '../../../../utils/validation/required';
 
 import ResetPasswordMutation from './ResetPasswordMutation.graphql';
 
-@graphql(ResetPasswordMutation, {
-  name: '@apollo/update',
-})
-@reduxForm({
-  form: 'FormResetPassword',
-})
+
 export class FormResetPassword extends Component {
   constructor(props) {
     super(props);
@@ -185,3 +180,11 @@ export class FormResetPassword extends Component {
     );
   }
 }
+
+FormResetPassword = graphql(ResetPasswordMutation, {
+  name: '@apollo/update',
+})(FormResetPassword)
+FormResetPassword = reduxForm({
+  form: 'FormResetPassword',
+})(FormResetPassword)
+export default FormResetPassword

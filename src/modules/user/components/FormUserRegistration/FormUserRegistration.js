@@ -35,16 +35,75 @@ import {SvgBank} from '../../../../components/Icons/SvgBank';
 
 const minLength8 = minLength(8);
 const minLength12 = minLength(12);
-// TODO: обновить схему в файле mockClients
-@graphql(CreateUserMutation, {
-  name: '@apollo/create',
-})
-@reduxForm({
-  form: 'FormUserRegistration',
-})
-@connect(state => ({
-  values: getFormValues('FormUserRegistration')(state),
-}))
+
+
+
+
+const validate = values => {
+  const errors = {};
+
+  const {role,email, bankName,password,confirmPassword,masterpassword,retypemasterpassword, privacy} = values;
+
+
+  if (!role) {
+    errors.role = 'Required';
+  }
+  if (!bankName) {
+    errors.bankName = 'Required';
+  }
+
+  if (!password) {
+    errors.password = 'Required';
+  }
+  if (!email) {
+    errors.email = 'Required';
+  }
+  if (isEmail(email)) {
+    errors.email = 'Invalid email';
+  }
+  if (!privacy) {
+    errors.privacy = 'Required';
+  }
+
+
+  if (!masterpassword) {
+    errors.masterpassword = 'Required';
+  }
+  if (!retypemasterpassword) {
+    errors.retypemasterpassword = 'Required';
+  }
+  if (masterpassword !== undefined && masterpassword.length < 12) {
+    errors.masterpassword = 'Must be 12 characters or more';
+  }
+
+  if (masterpassword !== retypemasterpassword) {
+    errors.retypemasterpassword = 'Passwords do not match';
+  }
+
+  if (!password) {
+    errors.password = 'Required';
+  }
+
+  if (!confirmPassword) {
+    errors.confirmPassword = 'Required';
+  }
+
+  if (password !== undefined && password.length < 8) {
+    errors.password = 'Must be 8 characters or more';
+  }
+
+  if (password !== confirmPassword) {
+    errors.confirmPassword = 'Passwords do not match';
+  }
+
+  return errors;
+};
+
+
+
+
+
+
 export class FormUserRegistration extends Component {
   static propTypes = {
     ...formPropTypes,
@@ -79,7 +138,7 @@ export class FormUserRegistration extends Component {
   submit = value => {
     console.log(value);
     return this.props['@apollo/create']({
-      variables: Object.assign({}, value, {confirmPassword: value.password,phone: '000000000'}),
+      variables: Object.assign({}, value, {confirmPassword: value.password, phone: '000000000'}),
     })
       .then(response => {
         return response;
@@ -129,7 +188,6 @@ export class FormUserRegistration extends Component {
                     {value: ROLE_BANK, label: 'Bank'},
                     {value: ROLE_CLIENT, label: 'Client'},
                   ]}
-                  validate={[required]}
                 />
               </Box>
               {values && values.role === ROLE_BANK && (
@@ -144,7 +202,6 @@ export class FormUserRegistration extends Component {
                         <SvgBank/>
                       </Text>
                     }
-                    validate={[required]}
                   />
                 </Box>
               )}
@@ -160,7 +217,6 @@ export class FormUserRegistration extends Component {
                       <SvgEmailIcon/>
                     </Text>
                   }
-                  validate={[required, isEmail]}
                 />
               </Box>
               <Box width={'100%'} mb={6}>
@@ -177,22 +233,46 @@ export class FormUserRegistration extends Component {
                   validate={[required, minLength8]}
                 />
               </Box>
-              {values && values.role === ROLE_CLIENT && (
-                <Box width={'100%'} mb={6}>
-                  <Field
-                    name="masterpassword"
-                    component={TextFieldWithIcon}
-                    placeholder="Master Password"
-                    type="password"
-                    icon={
-                      <Text fontSize={11} lineHeight={0} fill={'inherit'}>
-                        <SvgPasswordIcon/>
-                      </Text>
-                    }
-                    validate={[required, minLength12]}
-                  />
-                </Box>
-              )}
+              <Box width={'100%'} mb={6}>
+                <Field
+                  name="confirmPassword"
+                  component={TextFieldWithIcon}
+                  placeholder="Password retype"
+                  type="password"
+                  icon={
+                    <Text fontSize={11} lineHeight={0} fill={'inherit'}>
+                      <SvgPasswordIcon/>
+                    </Text>
+                  }
+                />
+              </Box>
+              <Box width={'100%'} mb={6}>
+                <Field
+                  name="masterpassword"
+                  component={TextFieldWithIcon}
+                  placeholder="Master Password"
+                  type="password"
+                  icon={
+                    <Text fontSize={11} lineHeight={0} fill={'inherit'}>
+                      <SvgPasswordIcon/>
+                    </Text>
+                  }
+                />
+              </Box>
+              <Box width={'100%'} mb={6}>
+                <Field
+                  name="retypemasterpassword"
+                  component={TextFieldWithIcon}
+                  placeholder="Retype master Password"
+                  type="password"
+                  icon={
+                    <Text fontSize={11} lineHeight={0} fill={'inherit'}>
+                      <SvgPasswordIcon/>
+                    </Text>
+                  }
+                />
+              </Box>
+
               <Box width={'100%'} mb={8}>
                 <Field
                   name={'privacy'}
@@ -205,7 +285,6 @@ export class FormUserRegistration extends Component {
                   }
                   component={Checkbox}
                   type="text"
-                  validate={[required]}
                 />
               </Box>
               {!submitSucceeded && !submitFailed && (
@@ -268,4 +347,19 @@ export class FormUserRegistration extends Component {
   }
 }
 
+
+
+// TODO: обновить схему в файле mockClients
+FormUserRegistration = graphql(CreateUserMutation, {
+  name: '@apollo/create',
+})(FormUserRegistration);
+
+FormUserRegistration = connect(state => ({
+  values: getFormValues('FormUserRegistration')(state),
+}))(FormUserRegistration);
+
+FormUserRegistration = reduxForm({
+  form: 'FormUserRegistration',
+  validate
+})(FormUserRegistration);
 export default FormUserRegistration;

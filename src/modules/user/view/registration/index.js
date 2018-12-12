@@ -7,7 +7,7 @@ import { Wrapper } from '../../components/Wrapper/Wrapper';
 import { Title } from '../../components/Title/Title';
 import { HelpText } from '../../components/HelpText/HelpText';
 
-import { FormUserRegistration } from '../../components/FormUserRegistration/FormUserRegistration';
+import FormUserRegistration  from '../../components/FormUserRegistration/FormUserRegistration';
 
 export class RegistrationPage extends Component {
   static propTypes = {};

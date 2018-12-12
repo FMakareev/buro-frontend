@@ -9,7 +9,8 @@
     "@babel/plugin-proposal-export-namespace-from",
     "@babel/plugin-proposal-throw-expressions",
     "@babel/plugin-transform-react-jsx",
-    "@babel/plugin-transform-runtime"
+    "@babel/plugin-transform-runtime",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }]
   ],
   "ignore": ["node_modules", "build", "public"]
 }

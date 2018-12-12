@@ -5,7 +5,7 @@ import { PreloaderWrapper } from '../PreloaderWrapper/PreloaderWrapper';
 import { Text } from '../Text/Text';
 
 const Wrapper = styled(PreloaderWrapper)`
-  background-color: rgba(239, 234, 234, 0.44);
+  height: calc(100% - 200px);
 `;
 
 export const NoDataComponent = () => (

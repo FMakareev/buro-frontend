@@ -12,10 +12,7 @@ import {CheckAuthorization} from "../../../../components/CheckAuthorization/Chec
 
 
 
-@connect((state) => ({
-  user: getUserFromStore(state),
-}))
-@CheckAuthorization()
+
 export class ProfilePage extends Component {
   static propTypes = {
     user: PropTypes.object,
@@ -52,5 +49,11 @@ export class ProfilePage extends Component {
     );
   }
 }
+ProfilePage = CheckAuthorization()(ProfilePage);
+
+ProfilePage = connect((state) => ({
+  user: getUserFromStore(state),
+}))(ProfilePage);
+
 
 export default ProfilePage;

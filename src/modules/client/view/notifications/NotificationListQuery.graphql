@@ -5,9 +5,7 @@ query($clientid: String){
     date
     bank {
       id
-      firstName
-      lastName
-      patronymic
+      bankName
     }
   }
 }

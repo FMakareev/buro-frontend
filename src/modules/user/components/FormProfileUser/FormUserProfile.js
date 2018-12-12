@@ -1,27 +1,27 @@
 import React, {Component, Fragment} from 'react';
 import styled from 'styled-components';
-import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
+import {Field, reduxForm, Form, SubmissionError} from 'redux-form';
 import {connect} from 'react-redux';
-import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
+import {formPropTypes} from '../../../../propTypes/Forms/FormPropTypes';
 
-import { TextFieldWithLabel } from '../../../../components/TextFieldWithLabel/TextFieldWithLabel';
+import {TextFieldWithLabel} from '../../../../components/TextFieldWithLabel/TextFieldWithLabel';
 
-import { Box } from '../../../../components/Box/Box';
-import { Flex } from '../../../../components/Flex/Flex';
-import { Text } from '../../../../components/Text/Text';
-import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
-import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
-import { DayPickerBase } from '../../../../components/DayPickerBase/DayPickerBase';
-import { ButtonTriggerGroup } from '../../../../components/ButtonTriggerGroup/ButtonTriggerGroup';
+import {Box} from '../../../../components/Box/Box';
+import {Flex} from '../../../../components/Flex/Flex';
+import {Text} from '../../../../components/Text/Text';
+import {ButtonBase} from '../../../../components/ButtonBase/ButtonBase';
+import {ButtonWithImageError} from '../ButtonWithImageError/ButtonWithImageError';
+import {DayPickerBase} from '../../../../components/DayPickerBase/DayPickerBase';
+import {ButtonTriggerGroup} from '../../../../components/ButtonTriggerGroup/ButtonTriggerGroup';
 
-import { SvgReloadIcon } from '../../../../components/Icons/SvgReloadIcon';
+import {SvgReloadIcon} from '../../../../components/Icons/SvgReloadIcon';
 
-import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
-import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
+import {SpeedingWheel} from '../../../../components/SmallPreloader/SmallPreloader';
+import {PreloaderWrapper} from '../../../../components/PreloaderWrapper/PreloaderWrapper';
 
-import { required } from '../../../../utils/validation/required';
-import { phoneNumber } from '../../../../utils/validation/phoneNumber';
-import { graphql } from 'react-apollo';
+import {required} from '../../../../utils/validation/required';
+import {phoneNumber} from '../../../../utils/validation/phoneNumber';
+import {graphql} from 'react-apollo';
 import UpdateUserMutation from './UpdateUserMutation.graphql';
 import {getUserFromStore} from "../../../../store/reducers/user/selectors";
 import {ROLE_BANK, ROLE_CLIENT} from "../../../../shared/roles";
@@ -65,18 +65,7 @@ const normalizePhoneNumber = value => {
   return onlyNums;
 };
 
-@graphql(UpdateUserMutation, {
-  name: '@apollo/update',
-})
-@reduxForm({
-  form: 'FormProfileUser',
-})
-@connect(state=>({
-  user: getUserFromStore(state),
-}),
-  dispatch => ({
-    userUpdate: () => dispatch(userUpdate())
-  }))
+
 export class FormProfileUser extends Component {
   static propTypes = {
     ...formPropTypes,
@@ -114,7 +103,7 @@ export class FormProfileUser extends Component {
         console.log(response);
         this.props.userUpdate();
       })
-      .catch(({ graphQLErrors, message, networkError, ...rest }) => {
+      .catch(({graphQLErrors, message, networkError, ...rest}) => {
         console.log('graphQLErrors: ', graphQLErrors);
         console.log('message: ', message);
         console.log('networkError: ', networkError);
@@ -205,14 +194,14 @@ export class FormProfileUser extends Component {
             />
           </Box>
           {
-            user.role === ROLE_CLIENT && <Fragment>
+            user.role === ROLE_CLIENT &&
+            <Fragment>
               <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[3, 0]}>
                 <Field
                   name="patronymic"
                   component={TextFieldWithLabel}
                   label="Patronymic:"
                   type="text"
-                  validate={[required]}
                 />
               </Box>
               <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[6, 0]}>
@@ -259,7 +248,7 @@ export class FormProfileUser extends Component {
                 error={error}
                 iconRight={
                   <Text fontSize={11} lineHeight={0}>
-                    <SvgReloadIcon />
+                    <SvgReloadIcon/>
                   </Text>
                 }>
                 Try again
@@ -277,7 +266,7 @@ export class FormProfileUser extends Component {
         {submitting && (
           <PreloaderWrapper>
             <Text fontSize={13}>
-              <SpeedingWheel />
+              <SpeedingWheel/>
             </Text>
           </PreloaderWrapper>
         )}
@@ -286,4 +275,17 @@ export class FormProfileUser extends Component {
   }
 }
 
+
+FormProfileUser = graphql(UpdateUserMutation, {
+  name: '@apollo/update',
+})(FormProfileUser);
+FormProfileUser = connect(state => ({
+    user: getUserFromStore(state),
+  }),
+  dispatch => ({
+    userUpdate: () => dispatch(userUpdate())
+  }))(FormProfileUser);
+FormProfileUser = reduxForm({
+  form: 'FormProfileUser',
+})(FormProfileUser);
 export default FormProfileUser;
