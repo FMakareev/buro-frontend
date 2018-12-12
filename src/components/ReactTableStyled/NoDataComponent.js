@@ -10,7 +10,7 @@ const Wrapper = styled(PreloaderWrapper)`
 
 export const NoDataComponent = () => (
   <Wrapper>
-    <Text fontSize={8}>no data</Text>
+    <Text fontSize={8}>No data</Text>
   </Wrapper>
 );
 

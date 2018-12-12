@@ -8,10 +8,10 @@ $gender: String,
 $email: String,
 $phone: String,
 $password: String,
-$retypePassword: String,
+$confirmPassword: String,
 $role: String,
 ) {
-  updateUser(
+  updateuser(
     id: $id,
     firstName:$firstName,
     lastName:$lastName,
@@ -21,7 +21,7 @@ $role: String,
     email :$email ,
     phone:$phone,
     password:$password,
-    retypePassword :$retypePassword ,
+    confirmPassword :$confirmPassword ,
     role :$role ,
   ){
     id
@@ -32,8 +32,6 @@ $role: String,
     gender
     email
     phone
-    password
-    retypePassword
     role
   }
 }

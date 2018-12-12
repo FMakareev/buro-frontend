@@ -1,5 +1,5 @@
 query($bankid: String){
-  notificationList(bankid: $bankid){
+  notificationlist(bankid: $bankid){
       id
       status
       date

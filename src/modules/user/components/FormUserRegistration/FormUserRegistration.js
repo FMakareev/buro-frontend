@@ -1,41 +1,41 @@
-import React, { Component } from 'react';
-import { Field, reduxForm, Form, SubmissionError, getFormValues } from 'redux-form';
-import { Link } from 'react-router-dom';
-import { graphql } from 'react-apollo';
-import { connect } from 'react-redux';
-import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
+import React, {Component} from 'react';
+import {Field, reduxForm, Form, SubmissionError, getFormValues} from 'redux-form';
+import {Link} from 'react-router-dom';
+import {graphql} from 'react-apollo';
+import {connect} from 'react-redux';
+import {formPropTypes} from '../../../../propTypes/Forms/FormPropTypes';
 
-import { Select } from '../../../../components/Select/Select';
-import { Checkbox } from '../../../../components/Checkbox/Checkbox';
+import {Select} from '../../../../components/Select/Select';
+import {Checkbox} from '../../../../components/Checkbox/Checkbox';
 
-import { TextFieldWithIcon } from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
+import {TextFieldWithIcon} from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
 
-import { Box } from '../../../../components/Box/Box';
-import { Flex } from '../../../../components/Flex/Flex';
-import { HelpText } from '../HelpText/HelpText';
+import {Box} from '../../../../components/Box/Box';
+import {Flex} from '../../../../components/Flex/Flex';
+import {HelpText} from '../HelpText/HelpText';
 
-import { SvgArrowRight } from '../../../../components/Icons/SvgArrowRight';
-import { SvgEmailIcon } from '../../../../components/Icons/SvgEmailIcon';
-import { SvgPasswordIcon } from '../../../../components/Icons/SvgPasswordIcon';
-import { SvgReloadIcon } from '../../../../components/Icons/SvgReloadIcon';
+import {SvgArrowRight} from '../../../../components/Icons/SvgArrowRight';
+import {SvgEmailIcon} from '../../../../components/Icons/SvgEmailIcon';
+import {SvgPasswordIcon} from '../../../../components/Icons/SvgPasswordIcon';
+import {SvgReloadIcon} from '../../../../components/Icons/SvgReloadIcon';
 
-import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
-import { Text } from '../../../../components/Text/Text';
+import {ButtonWithImageError} from '../ButtonWithImageError/ButtonWithImageError';
+import {Text} from '../../../../components/Text/Text';
 
-import { required } from '../../../../utils/validation/required';
+import {required} from '../../../../utils/validation/required';
 
-import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
-import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
+import {SpeedingWheel} from '../../../../components/SmallPreloader/SmallPreloader';
+import {PreloaderWrapper} from '../../../../components/PreloaderWrapper/PreloaderWrapper';
 import isEmail from '../../../../utils/validation/isEmail';
 import minLength from '../../../../utils/validation/minLength';
 
 import CreateUserMutation from './CreateUserMutation.graphql';
-import { ROLE_BANK, ROLE_CLIENT } from '../../../../shared/roles';
-import { SvgBank } from '../../../../components/Icons/SvgBank';
+import {ROLE_BANK, ROLE_CLIENT} from '../../../../shared/roles';
+import {SvgBank} from '../../../../components/Icons/SvgBank';
 
 const minLength8 = minLength(8);
 const minLength12 = minLength(12);
-
+// TODO: обновить схему в файле mockClients
 @graphql(CreateUserMutation, {
   name: '@apollo/create',
 })
@@ -79,12 +79,12 @@ export class FormUserRegistration extends Component {
   submit = value => {
     console.log(value);
     return this.props['@apollo/create']({
-      variables: Object.assign({}, value),
+      variables: Object.assign({}, value, {confirmPassword: value.password,phone: '000000000'}),
     })
       .then(response => {
         return response;
       })
-      .catch(({ graphQLErrors, message, networkError, ...rest }) => {
+      .catch(({graphQLErrors, message, networkError, ...rest}) => {
         console.log('graphQLErrors: ', graphQLErrors);
         console.log('message: ', message);
         console.log('networkError: ', networkError);
@@ -126,8 +126,8 @@ export class FormUserRegistration extends Component {
                   labelKey="label"
                   valueKey="value"
                   options={[
-                    { value: ROLE_BANK, label: 'Bank' },
-                    { value: ROLE_CLIENT, label: 'Client' },
+                    {value: ROLE_BANK, label: 'Bank'},
+                    {value: ROLE_CLIENT, label: 'Client'},
                   ]}
                   validate={[required]}
                 />
@@ -141,7 +141,7 @@ export class FormUserRegistration extends Component {
                     type={'text'}
                     icon={
                       <Text fontSize={11} lineHeight={0} stroke={'inherit'} fill={'inherit'}>
-                        <SvgBank />
+                        <SvgBank/>
                       </Text>
                     }
                     validate={[required]}
@@ -157,7 +157,7 @@ export class FormUserRegistration extends Component {
                   type="email"
                   icon={
                     <Text fontSize={11} lineHeight={0} fill={'inherit'}>
-                      <SvgEmailIcon />
+                      <SvgEmailIcon/>
                     </Text>
                   }
                   validate={[required, isEmail]}
@@ -171,7 +171,7 @@ export class FormUserRegistration extends Component {
                   type="password"
                   icon={
                     <Text fontSize={11} lineHeight={0} fill={'inherit'}>
-                      <SvgPasswordIcon />
+                      <SvgPasswordIcon/>
                     </Text>
                   }
                   validate={[required, minLength8]}
@@ -180,13 +180,13 @@ export class FormUserRegistration extends Component {
               {values && values.role === ROLE_CLIENT && (
                 <Box width={'100%'} mb={6}>
                   <Field
-                    name="masterPassword"
+                    name="masterpassword"
                     component={TextFieldWithIcon}
                     placeholder="Master Password"
                     type="password"
                     icon={
                       <Text fontSize={11} lineHeight={0} fill={'inherit'}>
-                        <SvgPasswordIcon />
+                        <SvgPasswordIcon/>
                       </Text>
                     }
                     validate={[required, minLength12]}
@@ -218,7 +218,7 @@ export class FormUserRegistration extends Component {
                     error={error}
                     iconRight={
                       <Text fontSize={11} lineHeight={0}>
-                        <SvgArrowRight />
+                        <SvgArrowRight/>
                       </Text>
                     }
                     disabled={pristine || submitting || invalid}>
@@ -236,7 +236,7 @@ export class FormUserRegistration extends Component {
                     error={error}
                     iconRight={
                       <Text fontSize={11} lineHeight={0}>
-                        <SvgReloadIcon />
+                        <SvgReloadIcon/>
                       </Text>
                     }>
                     Try again
@@ -249,7 +249,7 @@ export class FormUserRegistration extends Component {
           {submitSucceeded && (
             <Box width={'100%'} mb={6}>
               <Text fontSize={6} lineHeight={12} color={'color1'} fontFamily={'medium'}>
-                Account successfully registered. <br />
+                Account successfully registered. <br/>
                 Now you can sign in.
               </Text>
             </Box>
@@ -259,7 +259,7 @@ export class FormUserRegistration extends Component {
         {submitting && (
           <PreloaderWrapper>
             <Text fontSize={13}>
-              <SpeedingWheel />
+              <SpeedingWheel/>
             </Text>
           </PreloaderWrapper>
         )}

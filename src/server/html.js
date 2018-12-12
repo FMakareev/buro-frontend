@@ -11,6 +11,7 @@ const Html = ({content, client: {cache}, reduxState, asyncState, lang}) => {
       <meta charSet="utf-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <link rel="stylesheet" type="text/css" href="/assets/style/react-table.css"/>
+      <link rel="stylesheet" type="text/css" href="/assets/style/fonts.css"/>
 
       <title></title>
       <style/>

@@ -43,7 +43,7 @@ export class ProfilePage extends Component {
                 if (loading) {
                   return 'Loading..,';
                 }
-                return <FormUserProfile initialValues={data && data.userEmailItem}/>
+                return <FormUserProfile initialValues={data && data.useremailitem}/>
               }
             }
           </Query>

@@ -1,5 +1,5 @@
 mutation($id: String, $status: String){
-  updateNotification(id: $id, status: $status) {
+  updatenotification(id: $id, status: $status) {
       id
       status
       date

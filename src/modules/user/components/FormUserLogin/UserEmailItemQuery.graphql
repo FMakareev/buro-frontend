@@ -1,5 +1,5 @@
 query ($email: String!) {
-  userEmailItem(email: $email) {
+  useremailitem(email: $email) {
     id
     bankName
     firstName
@@ -9,10 +9,6 @@ query ($email: String!) {
     gender
     email
     phone
-    masterPassword
-    password
-    retypePassword
     role
-    token
   }
 }

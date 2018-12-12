@@ -55,7 +55,7 @@ export const NavList = styled.div`
   position: absolute;
   right: 0;
   top: 50px;
-  z-index: 2;
+  z-index: 20;
   @media (min-width: 567px) {
     right: 56px;
     top: 0;

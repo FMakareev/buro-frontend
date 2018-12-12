@@ -42,7 +42,7 @@ export class HeaderNotification extends Component {
     return (<Query
       query={NotificationListQuery}
       variables={{
-        id: user.id,
+        ...(user.role === ROLE_CLIENT? {clientid: user.id}:{clientid: user.id}),
       }}
     >
       {
@@ -57,7 +57,7 @@ export class HeaderNotification extends Component {
             {
               !loading && !error &&
               <CircleCount>
-                {data.notificationList.length}
+                {data.notificationlist.length}
               </CircleCount>
             }
             <SvgBell/>

@@ -1,19 +1,26 @@
 mutation(
-$email: String,
-$password: String,
-$masterPassword: String,
-$role: String,
+$email: String!,
+$password: String!,
+$confirmPassword: String!,
+$masterpassword: String!,
+$role: String!,
+$phone: String!,
 $bankName: String,
 ) {
-  createUser(
+  createuser(
     email :$email ,
     password:$password,
-    masterPassword: $masterPassword ,
+    confirmPassword: $confirmPassword ,
+    masterpassword: $masterpassword ,
     role :$role ,
+    phone: $phone,
     bankName: $bankName,
   ){
-    id
-    email
-    role
+    user{
+      id
+      email
+      bankName
+      role
+    }
   }
 }

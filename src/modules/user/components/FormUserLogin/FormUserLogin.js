@@ -121,12 +121,12 @@ export class FormUserLogin extends Component {
   setUser = props => {
     console.log('setUser: ', props);
     const {
-      data: { userEmailItem },
+      data: { useremailitem },
     } = props;
     const { addUser } = this.props;
 
-    addUser(userEmailItem);
-    localStorage.setItem('user', JSON.stringify(userEmailItem));
+    addUser(useremailitem);
+    localStorage.setItem('user', JSON.stringify(useremailitem));
   };
 
   getUser = uname => {

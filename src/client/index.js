@@ -7,7 +7,7 @@ import { renderRoutes } from 'react-router-config';
 
 import { AsyncComponentProvider } from 'react-async-component';
 import asyncBootstrapper from 'react-async-bootstrapper';
-// import { client } from '../apollo/index.client';
+import { client } from '../apollo/index.client';
 import { ConfigRouter } from '../routes';
 import { Store } from '../store';
 import { StyledThemeProvider } from '../styles/StyledThemeProvider';
@@ -26,7 +26,7 @@ const rehydrateState = window.ASYNC_COMPONENTS_STATE;
 export const ROOT = (
   <AsyncComponentProvider rehydrateState={rehydrateState}>
     <StyledThemeProvider>
-      <ApolloProvider client={mocksClient}>
+      <ApolloProvider client={client}>
         <ProviderRedux store={Store}>
           <Fragment>
             <GlobalStyle />

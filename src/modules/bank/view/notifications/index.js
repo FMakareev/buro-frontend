@@ -106,7 +106,7 @@ export class ClientsPage extends Component {
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
-                  data={loading ? [] : data.notificationList}
+                  data={loading ? [] : data.notificationlist}
                   filterable
                   columns={columns()}
                   error={error}

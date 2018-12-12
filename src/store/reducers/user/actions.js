@@ -11,6 +11,7 @@ import {
   USER_UPDATE_LOADING_SUCCESS
 } from './actionTypes';
 import {mocksClient} from '../../../apollo/mocksClient';
+import {client} from '../../../apollo/index.client';
 import UserEmailItemQuery from './UserEmailItemQuery.graphql';
 
 
@@ -28,23 +29,23 @@ export const userInit = () => dispatch => {
         console.log(user);
         if (user) {
           /** TODO : Заменить mocksClient на обычный client и убрать setTimeout */
-          setTimeout(()=>{
-            mocksClient.query({
+          // setTimeout(()=>{
+            client.query({
               query: UserEmailItemQuery,
               variables: {
                 email: user.email,
               }
             })
               .then(({data}) => {
-                const {userEmailItem} = data;
-                localStorage.setItem('user', JSON.stringify(userEmailItem));
+                const {useremailitem} = data;
+                localStorage.setItem('user', JSON.stringify(useremailitem));
                 dispatch({
                   type: USER_INIT_LOADING_SUCCESS,
                   user: {
-                    ...userEmailItem,
+                    ...useremailitem,
                   },
                 });
-                resolve(userEmailItem);
+                resolve(useremailitem);
               })
               .catch(error => {
                 localStorage.clear();
@@ -58,7 +59,7 @@ export const userInit = () => dispatch => {
                 });
                 reject(error)
               })
-          }, 500)
+          // }, 500)
         } else {
           localStorage.clear();
           dispatch({
@@ -110,23 +111,23 @@ export const userUpdate = () => dispatch => {
         const user = JSON.parse(localStorage.getItem('user'));
         if (user) {
           /** TODO : Заменить mocksClient на обычный client и убрать setTimeout */
-         setTimeout(()=>{
-           mocksClient.query({
+         // setTimeout(()=>{
+           client.query({
              query: UserEmailItemQuery,
              variables: {
                email: user.email,
              }
            })
              .then(({data}) => {
-               const {userEmailItem} = data;
-               localStorage.setItem('user', JSON.stringify(userEmailItem));
+               const {useremailitem} = data;
+               localStorage.setItem('user', JSON.stringify(useremailitem));
                dispatch({
                  type: USER_UPDATE_LOADING_SUCCESS,
                  user: {
-                   ...userEmailItem,
+                   ...useremailitem,
                  },
                });
-               resolve(userEmailItem);
+               resolve(useremailitem);
              })
              .catch(error => {
                console.log(error);
@@ -140,7 +141,7 @@ export const userUpdate = () => dispatch => {
                });
                reject(error)
              })
-         }, 500)
+         // }, 500)
         } else {
           localStorage.clear();
           dispatch({

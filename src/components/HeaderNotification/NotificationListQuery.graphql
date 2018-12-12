@@ -1,5 +1,5 @@
 query($clientid: String, $bankid: String){
-  notificationList(clientid: $clientid, bankid: $bankid){
+  notificationlist(clientid: $clientid, bankid: $bankid){
     id
   }
 }

@@ -151,7 +151,7 @@
     "build:ssr:stats": "babel-node scripts/build.ssr.js --port=3007 --NODE_ENV=production  --watch=false --ssr_fetch=false --analyse=true",
     "build:ssr:prod": "babel-node scripts/build.ssr.js --port=3007 --NODE_ENV=production  --watch=false --ssr_fetch=false",
     "build:ssr:dev": "babel-node scripts/build.ssr.js --port=3007 --NODE_ENV=development  --watch=false --ssr_fetch=false",
-    "start:ssr": "babel-node scripts/start.ssr.js --port=3007 --NODE_ENV=development --watch=true --ssr_fetch=false",
+    "start:ssr": "babel-node scripts/start.ssr.js --port=3007 --NODE_ENV=development --ENDPOINT_CLIENT='' --watch=true --ssr_fetch=false",
     "start:ssr:server": "node public/server.js",
     "test": "jest",
     "test:snapshot:update": "jest --updateSnapshot",

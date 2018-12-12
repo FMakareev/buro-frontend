@@ -5,12 +5,11 @@ import { connect } from 'react-redux';
 
 import { Container } from '../../../../components/Container/Container';
 import { Text } from '../../../../components/Text/Text';
-import { ButtonWithImage } from '../../../../components/ButtonWithImage/ButtonWithImage';
 import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactTableStyled';
 import { CheckAuthorization } from '../../../../components/CheckAuthorization/CheckAuthorization';
 import { ROLE_CLIENT } from '../../../../shared/roles';
 
-import { STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL } from '../../../../shared/statuses';
+import { STATUS_PENDING, STATUS_APPROVAL } from '../../../../shared/statuses';
 import NotificationListQuery from './NotificationListQuery.graphql';
 import { getUserFromStore } from '../../../../store/reducers/user/selectors';
 import { Box } from '../../../../components/Box/Box';
@@ -90,7 +89,7 @@ export class ClientsPage extends Component {
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
-                  data={loading ? [] : data.notificationList}
+                  data={loading ? [] : data.notificationlist}
                   error={error}
                   filterable
                   columns={columns()}

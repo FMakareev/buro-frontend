@@ -1,5 +1,5 @@
 mutation($clientid: String, $bankid: String){
-  createNotification(clientid: $clientid, bankid:$bankid) {
+  createnotification(clientid: $clientid, bankid:$bankid) {
     id
     date
     status

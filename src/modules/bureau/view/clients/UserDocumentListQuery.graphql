@@ -1,5 +1,5 @@
 query{
-  userDocumentList{
+  userdocumentlist{
     id
     user{
       id

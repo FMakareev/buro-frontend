@@ -5,7 +5,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import fetch from 'unfetch';
 
 export const client = new ApolloClient({
-  cache: new InMemoryCache().restore(window.APOLLO_STATE),
+  cache: new InMemoryCache().restore(isBrowser && window.APOLLO_STATE),
   link: createHttpLink({
     uri: `${ENDPOINT_CLIENT}/graphql`,
     credentials: 'same-origin',
