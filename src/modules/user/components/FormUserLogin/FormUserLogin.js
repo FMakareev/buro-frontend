@@ -260,14 +260,14 @@ export class FormUserLogin extends Component {
 
 FormUserLogin = withRouter(FormUserLogin);
 FormUserLogin = withApollo(FormUserLogin);
-FormUserLogin = reduxForm({
-  form: 'FormUserLogin',
-})(FormUserLogin);
-
 FormUserLogin =connect(
   null,
   dispatch => ({
     addUser: user => dispatch({ type: USER_ADD, user: user }),
   }),
 )(FormUserLogin);
+FormUserLogin = reduxForm({
+  form: 'FormUserLogin',
+})(FormUserLogin);
+
 export default FormUserLogin;

@@ -279,13 +279,13 @@ export class FormProfileUser extends Component {
 FormProfileUser = graphql(UpdateUserMutation, {
   name: '@apollo/update',
 })(FormProfileUser);
-FormProfileUser = reduxForm({
-  form: 'FormProfileUser',
-})(FormProfileUser);
 FormProfileUser = connect(state => ({
     user: getUserFromStore(state),
   }),
   dispatch => ({
     userUpdate: () => dispatch(userUpdate())
   }))(FormProfileUser);
+FormProfileUser = reduxForm({
+  form: 'FormProfileUser',
+})(FormProfileUser);
 export default FormProfileUser;

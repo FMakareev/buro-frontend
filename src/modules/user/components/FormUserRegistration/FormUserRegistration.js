@@ -353,12 +353,13 @@ export class FormUserRegistration extends Component {
 FormUserRegistration = graphql(CreateUserMutation, {
   name: '@apollo/create',
 })(FormUserRegistration);
-FormUserRegistration = reduxForm({
-  form: 'FormUserRegistration',
-  validate
-})(FormUserRegistration);
+
 FormUserRegistration = connect(state => ({
   values: getFormValues('FormUserRegistration')(state),
 }))(FormUserRegistration);
 
+FormUserRegistration = reduxForm({
+  form: 'FormUserRegistration',
+  validate
+})(FormUserRegistration);
 export default FormUserRegistration;
