@@ -102,14 +102,13 @@ export class NotificationsPage extends Component {
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
-                  data={
-                    loading
-                      ? []
-                      : Object.hasOwnProperty.call(data, 'notificationlist') &&
-                        Array.isArray(data.notificationlist)
-                      ? data.notificationlist
-                      : []
-                  }
+                  // data={loading ? []
+                  //     : Object.hasOwnProperty.call(data, 'notificationlist') &&
+                  //       Array.isArray(data.notificationlist)
+                  //     ? data.notificationlist
+                  //     : []
+                  // }
+                  data={loading ? [] : data && data.notificationlist}
                   filterable
                   columns={columns()}
                   error={error}
