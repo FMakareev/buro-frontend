@@ -101,10 +101,6 @@ const columns = ({ onOpenFormUpdateDoc }) => {
   ];
 };
 
-@connect(state => ({
-  user: getUserFromStore(state),
-}))
-@CheckAuthorization([ROLE_BUREAU])
 export class DocumentsBureauPage extends Component {
   static propTypes = {};
 
@@ -168,5 +164,12 @@ export class DocumentsBureauPage extends Component {
     );
   }
 }
+
+
+DocumentsBureauPage = CheckAuthorization([ROLE_BUREAU])(DocumentsBureauPage);
+
+DocumentsBureauPage = connect(state => ({
+  user: getUserFromStore(state),
+}))(DocumentsBureauPage);
 
 export default DocumentsBureauPage;

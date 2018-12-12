@@ -11,14 +11,7 @@ import {Text} from "../../../../components/Text/Text";
 import {SpeedingWheel} from "../../../../components/SmallPreloader/SmallPreloader";
 
 
-@connect(
-  state => ({
-    user: getUserFromStore(state),
-  }),
-  dispatch => ({
-    removeUser: () => dispatch({ type: USER_REMOVE }),
-  }),
-)
+
 export class LogOut extends Component {
   static propTypes = {
     ...ReactRoutePropTypes,
@@ -88,5 +81,12 @@ export class LogOut extends Component {
     </PreloaderWrapper>)
   }
 }
-
+LogOut = connect(
+  state => ({
+    user: getUserFromStore(state),
+  }),
+  dispatch => ({
+    removeUser: () => dispatch({ type: USER_REMOVE }),
+  }),
+)(LogOut);
 export default LogOut;

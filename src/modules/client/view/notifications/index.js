@@ -55,10 +55,7 @@ const columns = () => [
   },
 ];
 
-@connect(state => ({
-  user: getUserFromStore(state),
-}))
-@CheckAuthorization([ROLE_CLIENT])
+
 export class ClientsPage extends Component {
   static propTypes = {};
 
@@ -102,5 +99,10 @@ export class ClientsPage extends Component {
     );
   }
 }
+
+ClientsPage = CheckAuthorization([ROLE_CLIENT])(ClientsPage);
+ClientsPage = connect(state => ({
+  user: getUserFromStore(state),
+}))(ClientsPage);
 
 export default ClientsPage;
