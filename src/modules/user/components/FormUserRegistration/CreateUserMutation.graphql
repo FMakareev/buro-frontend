@@ -2,7 +2,7 @@ mutation(
 $email: String!,
 $password: String!,
 $confirmPassword: String!,
-$masterpassword: String!,
+$masterpassword: String,
 $role: String!,
 $phone: String!,
 $bankName: String,

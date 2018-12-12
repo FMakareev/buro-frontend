@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProfilePage: загруженный профиль 1`] = `
+<div
+  className="sc-bxivhb dUiVDW"
+>
+  <div
+    className="sc-1jxwge6-0 sc-14k9gvj-0 mQmih"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <h2
+        className="sc-1jxwge6-0 sc-18ch56c-0 jEovzQ"
+        color="color1"
+        fontFamily="bold"
+        fontSize={9}
+      >
+        Main data:
+      </h2>
+      <div
+        className="sc-1jxwge6-0 wterhv-0 bBNfoQ"
+      >
+        <div
+          className="sc-1jxwge6-0 iDrvMd"
+          order={
+            Array [
+              5,
+              0,
+            ]
+          }
+          width={
+            Array [
+              "100%",
+              "100%",
+              "50%",
+            ]
+          }
+        >
+          <div
+            className="uh5600-0 bTQmIh"
+          >
+            <div
+              className="sc-1jxwge6-0 sc-18ch56c-0 sc-1hfdosk-0 cNcynQ"
+              color="color1"
+              fontFamily="regular"
+              fontSize={5}
+            >
+              Telephone:
+            </div>
+            <input
+              aria-required={false}
+              className="uh5600-1 hRLQUv wsrc07-0 kZIRDH"
+              label="Telephone:"
+              name="phone"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="sc-1jxwge6-0 wterhv-0 eLvilD"
+      >
+        <div
+          className="sc-1jxwge6-0 gl5g86-0 cUSPHQ"
+        >
+          <button
+            className="mxzgdr-0 hhHYBZ"
+            disabled={true}
+            size="medium"
+            type="submit"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`ProfilePage: загрузка пользовательских данных 1`] = `
+<div
+  className="sc-bxivhb dUiVDW"
+>
+  <div
+    className="sc-1jxwge6-0 sc-14k9gvj-0 mQmih"
+  >
+    Loading..,
+  </div>
+</div>
+`;
+
+exports[`ProfilePage: ошибка во время загрузки пользовательских данных 1`] = `
+<div
+  className="sc-bxivhb dUiVDW"
+>
+  <div
+    className="sc-1jxwge6-0 sc-14k9gvj-0 mQmih"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <h2
+        className="sc-1jxwge6-0 sc-18ch56c-0 jEovzQ"
+        color="color1"
+        fontFamily="bold"
+        fontSize={9}
+      >
+        Main data:
+      </h2>
+      <div
+        className="sc-1jxwge6-0 wterhv-0 bBNfoQ"
+      >
+        <div
+          className="sc-1jxwge6-0 iDrvMd"
+          order={
+            Array [
+              5,
+              0,
+            ]
+          }
+          width={
+            Array [
+              "100%",
+              "100%",
+              "50%",
+            ]
+          }
+        >
+          <div
+            className="uh5600-0 bTQmIh"
+          >
+            <div
+              className="sc-1jxwge6-0 sc-18ch56c-0 sc-1hfdosk-0 cNcynQ"
+              color="color1"
+              fontFamily="regular"
+              fontSize={5}
+            >
+              Telephone:
+            </div>
+            <input
+              aria-required={false}
+              className="uh5600-1 hRLQUv wsrc07-0 kZIRDH"
+              label="Telephone:"
+              name="phone"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="sc-1jxwge6-0 wterhv-0 eLvilD"
+      >
+        <div
+          className="sc-1jxwge6-0 gl5g86-0 cUSPHQ"
+        >
+          <button
+            className="mxzgdr-0 hhHYBZ"
+            disabled={true}
+            size="medium"
+            type="submit"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;

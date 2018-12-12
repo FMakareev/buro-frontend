@@ -2,6 +2,29 @@ import { createGlobalStyle } from 'styled-components';
 import BG from '../assets/image/bg.jpg';
 
 export const GlobalStyle = createGlobalStyle`
+
+@font-face {
+  font-family: 'Montserrat Regular';
+  src: url('/assets/fonts/Montserrat-Regular.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat Medium';
+  src: url('/assets/fonts/Montserrat-Medium.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat Bold';
+  src: url('/assets/fonts/Montserrat-Bold.ttf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
   *{
     box-sizing: border-box;
   }
@@ -31,27 +54,6 @@ export const GlobalStyle = createGlobalStyle`
     box-shadow: 0 0 0 5px #E7EDF8;
   }
  
-@font-face {
-  font-family: 'Montserrat Regular';
-  src: url('/assets/fonts/Montserrat-Regular.ttf') format('font-truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat Medium';
-  src: url('/assets/fonts/Montserrat-Medium.ttf') format('font-truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat Bold';
-  src: url('/assets/fonts/Montserrat-Bold.ttf') format('font-truetype');
-  font-weight: bold;
-  font-style: normal;
-}
-
 
 `;
 
