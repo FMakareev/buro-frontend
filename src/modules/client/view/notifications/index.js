@@ -56,7 +56,7 @@ const columns = () => [
 ];
 
 
-export class ClientsPage extends Component {
+export class ClientsNotificationsPage extends Component {
   static propTypes = {};
 
   static defaultProps = {};
@@ -106,9 +106,9 @@ export class ClientsPage extends Component {
   }
 }
 
-ClientsPage = CheckAuthorization([ROLE_CLIENT])(ClientsPage);
-ClientsPage = connect(state => ({
+ClientsNotificationsPage = CheckAuthorization([ROLE_CLIENT])(ClientsNotificationsPage);
+ClientsNotificationsPage = connect(state => ({
   user: getUserFromStore(state),
-}))(ClientsPage);
+}))(ClientsNotificationsPage);
 
-export default ClientsPage;
+export default ClientsNotificationsPage;
