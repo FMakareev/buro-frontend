@@ -5,17 +5,17 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider as ProviderRedux } from 'react-redux';
 import mocksClient from '../../../../apollo/mocksClient';
 
-import { LoginPage } from './index';
+import { LogOut } from './index';
 import { StyledThemeProvider } from '../../../../styles/StyledThemeProvider';
 import { Store } from '../../../../store';
 
-test('LoginPage: рендер без ошибок', () => {
+test('LogOut: рендер без ошибок', () => {
   const output = renderer.create(
     <StyledThemeProvider>
       <ProviderRedux store={Store}>
         <BrowserRouter>
           <ApolloProvider client={mocksClient}>
-            <LoginPage />
+            <LogOut />
           </ApolloProvider>
         </BrowserRouter>
       </ProviderRedux>

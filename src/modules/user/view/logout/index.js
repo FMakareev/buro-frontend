@@ -6,10 +6,9 @@ import { USER_REMOVE } from '../../../../store/reducers/user/actionTypes';
 
 import { ReactRoutePropTypes } from '../../../../propTypes/ReactRoutePropTypes';
 import { getUserFromStore } from '../../../../store/reducers/user/selectors';
-import {PreloaderWrapper} from "../../../../components/PreloaderWrapper/PreloaderWrapper";
-import {Text} from "../../../../components/Text/Text";
-import {SpeedingWheel} from "../../../../components/SmallPreloader/SmallPreloader";
-
+import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
+import { Text } from '../../../../components/Text/Text';
+import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
 
 @connect(
   state => ({
@@ -81,11 +80,13 @@ export class LogOut extends Component {
     if (redirect) {
       return <Redirect to={redirect} />;
     }
-    return (<PreloaderWrapper>
-      <Text fontSize={12}>
-        <SpeedingWheel/>
-      </Text>
-    </PreloaderWrapper>)
+    return (
+      <PreloaderWrapper>
+        <Text fontSize={12}>
+          <SpeedingWheel />
+        </Text>
+      </PreloaderWrapper>
+    );
   }
 }
 
