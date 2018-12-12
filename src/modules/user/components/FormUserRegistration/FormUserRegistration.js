@@ -104,18 +104,6 @@ const validate = values => {
 
 
 
-
-// TODO: обновить схему в файле mockClients
-@graphql(CreateUserMutation, {
-  name: '@apollo/create',
-})
-@reduxForm({
-  form: 'FormUserRegistration',
-  validate
-})
-@connect(state => ({
-  values: getFormValues('FormUserRegistration')(state),
-}))
 export class FormUserRegistration extends Component {
   static propTypes = {
     ...formPropTypes,
@@ -358,5 +346,19 @@ export class FormUserRegistration extends Component {
     );
   }
 }
+
+
+
+// TODO: обновить схему в файле mockClients
+FormUserRegistration = graphql(CreateUserMutation, {
+  name: '@apollo/create',
+})(FormUserRegistration);
+FormUserRegistration = reduxForm({
+  form: 'FormUserRegistration',
+  validate
+})(FormUserRegistration);
+FormUserRegistration = connect(state => ({
+  values: getFormValues('FormUserRegistration')(state),
+}))(FormUserRegistration);
 
 export default FormUserRegistration;

@@ -30,17 +30,7 @@ import UserEmailItemQuery from './UserEmailItemQuery.graphql';
 import { jsonToUrlEncoded } from '../../../../utils/jsontools/jsonToUrlEncoded';
 import { USER_ADD } from '../../../../store/reducers/user/actionTypes';
 
-@connect(
-  null,
-  dispatch => ({
-    addUser: user => dispatch({ type: USER_ADD, user: user }),
-  }),
-)
-@withRouter
-@withApollo
-@reduxForm({
-  form: 'FormUserLogin',
-})
+
 export class FormUserLogin extends Component {
   static propTypes = {
     ...formPropTypes,
@@ -268,4 +258,16 @@ export class FormUserLogin extends Component {
   }
 }
 
+FormUserLogin = withRouter(FormUserLogin);
+FormUserLogin = withApollo(FormUserLogin);
+FormUserLogin = reduxForm({
+  form: 'FormUserLogin',
+})(FormUserLogin);
+
+FormUserLogin =connect(
+  null,
+  dispatch => ({
+    addUser: user => dispatch({ type: USER_ADD, user: user }),
+  }),
+)(FormUserLogin);
 export default FormUserLogin;

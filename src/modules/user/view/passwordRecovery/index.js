@@ -5,7 +5,7 @@ import { Box } from '../../../../components/Box/Box';
 import { Wrapper } from '../../components/Wrapper/Wrapper';
 import { Title } from '../../components/Title/Title';
 
-import { FormUserPasswordRecovery } from '../../components/FormUserPasswordRecovery/FormUserPasswordRecovery';
+import FormUserPasswordRecovery  from '../../components/FormUserPasswordRecovery/FormUserPasswordRecovery';
 import {Redirect} from "react-router-dom";
 
 export class PasswordRecovery extends Component {
