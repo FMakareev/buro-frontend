@@ -72,7 +72,7 @@ const columns = () => [
   user: getUserFromStore(state),
 }))
 @CheckAuthorization([ROLE_BANK])
-export class ClientsPage extends Component {
+export class NotificationsPage extends Component {
   static propTypes = {};
 
   static defaultProps = {};
@@ -120,4 +120,4 @@ export class ClientsPage extends Component {
   }
 }
 
-export default ClientsPage;
+export default NotificationsPage;

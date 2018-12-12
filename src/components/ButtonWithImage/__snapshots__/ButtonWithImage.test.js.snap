@@ -5,17 +5,21 @@ exports[`ButtonWithImage: Рендерится без ошибок 1`] = `
   className="sc-bxivhb dUiVDW"
 >
   <button
-    className="mxzgdr-0 ioAChj"
+    className="mxzgdr-0 bbXgdI"
     size="large"
+    type="button"
   >
     <div
-      className="wterhv-0 icKJBl"
+      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+      width="100%"
     >
+      <div />
       <div
-        className="wterhv-0 irkFkV"
+        className="sc-1jxwge6-0 wterhv-0 irkFkV"
       >
         Button
       </div>
+      <div />
     </div>
   </button>
 </div>
@@ -26,24 +30,21 @@ exports[`ButtonWithImage: Рендерится с иконкой слева 1`] 
   className="sc-bxivhb dUiVDW"
 >
   <button
-    className="mxzgdr-0 ioAChj"
+    className="mxzgdr-0 bbXgdI"
     size="large"
+    type="button"
   >
     <div
-      className="wterhv-0 icKJBl"
+      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+      width="100%"
     >
+      <div />
       <div
-        className="wterhv-0 irkFkV"
-      >
-        <svg
-          data-file-name="SvgPlayMonocolor"
-        />
-      </div>
-      <div
-        className="wterhv-0 irkFkV"
+        className="sc-1jxwge6-0 wterhv-0 irkFkV"
       >
         Button
       </div>
+      <div />
     </div>
   </button>
 </div>
@@ -54,24 +55,21 @@ exports[`ButtonWithImage: Рендерится с иконкой справа 1`
   className="sc-bxivhb dUiVDW"
 >
   <button
-    className="mxzgdr-0 ioAChj"
+    className="mxzgdr-0 bbXgdI"
     size="large"
+    type="button"
   >
     <div
-      className="wterhv-0 icKJBl"
+      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+      width="100%"
     >
+      <div />
       <div
-        className="wterhv-0 irkFkV"
+        className="sc-1jxwge6-0 wterhv-0 irkFkV"
       >
         Button
       </div>
-      <div
-        className="wterhv-0 irkFkV"
-      >
-        <svg
-          data-file-name="SvgPlayMonocolor"
-        />
-      </div>
+      <div />
     </div>
   </button>
 </div>
