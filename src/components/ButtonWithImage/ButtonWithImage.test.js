@@ -1,7 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 // import 'jest-styled-components'; // этот импорт нужен чтобы в снэпшоты попали css стили которые генерируются при рендере компонента
-import Play from '../../assets/icons/monocolor/play.monocolor.svg';
+import ArrowLeft from '../../assets/icons/multicolor/arrowLeft.multicolor.svg';
+import ArrowRight from '../../assets/icons/multicolor/arrowRight.multicolor.svg';
 
 import {StyledThemeProvider} from '../../styles/StyledThemeProvider';
 import {ButtonWithImage} from './ButtonWithImage';
@@ -17,7 +18,7 @@ test('ButtonWithImage: Рендерится без ошибок', () => {
 
 test('ButtonWithImage: Рендерится с иконкой справа', () => {
   const output = renderer.create(<StyledThemeProvider>
-      <ButtonWithImage rightIcon={<Play/>} children={'Button'} variant={'large'} size={'large'}/>
+      <ButtonWithImage rightIcon={<ArrowRight/>} children={'Button'} variant={'large'} size={'large'}/>
     </StyledThemeProvider>
   );
   expect(output).toMatchSnapshot();
@@ -25,7 +26,7 @@ test('ButtonWithImage: Рендерится с иконкой справа', () 
 
 test('ButtonWithImage: Рендерится с иконкой слева', () => {
   const output = renderer.create(<StyledThemeProvider>
-      <ButtonWithImage leftIcon={<Play/>} children={'Button'} variant={'large'} size={'large'}/>
+      <ButtonWithImage leftIcon={<ArrowLeft/>} children={'Button'} variant={'large'} size={'large'}/>
     </StyledThemeProvider>
   );
   expect(output).toMatchSnapshot();

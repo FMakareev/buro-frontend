@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
 
-import { color } from 'styled-system';
-
 import { Link as DefaultLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { space, width, display, color } from 'styled-system';
