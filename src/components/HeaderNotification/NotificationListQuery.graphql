@@ -1,5 +1,11 @@
-query($clientid: String, $bankid: String){
+query HeaderNotificationList($clientid: String, $bankid: String){
   notificationlist(clientid: $clientid, bankid: $bankid){
     id
+    status
+    date
+    bank {
+      id
+      bankName
+    }
   }
 }
