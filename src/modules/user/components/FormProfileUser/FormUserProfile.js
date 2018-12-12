@@ -194,14 +194,14 @@ export class FormProfileUser extends Component {
             />
           </Box>
           {
-            user.role === ROLE_CLIENT && <Fragment>
+            user.role === ROLE_CLIENT &&
+            <Fragment>
               <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[3, 0]}>
                 <Field
                   name="patronymic"
                   component={TextFieldWithLabel}
                   label="Patronymic:"
                   type="text"
-                  validate={[required]}
                 />
               </Box>
               <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[6, 0]}>

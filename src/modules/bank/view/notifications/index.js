@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import dayjs from 'dayjs';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import { Query } from 'react-apollo';
-import { Container } from '../../../../components/Container/Container';
-import { Text } from '../../../../components/Text/Text';
-import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactTableStyled';
-import { CheckAuthorization } from '../../../../components/CheckAuthorization/CheckAuthorization';
-import { ROLE_BANK } from '../../../../shared/roles';
+import {Query} from 'react-apollo';
+import {Container} from '../../../../components/Container/Container';
+import {Text} from '../../../../components/Text/Text';
+import {ReactTableStyled} from '../../../../components/ReactTableStyled/ReactTableStyled';
+import {CheckAuthorization} from '../../../../components/CheckAuthorization/CheckAuthorization';
+import {ROLE_BANK} from '../../../../shared/roles';
 
 import NotificationListQuery from './NotificationListQuery.graphql';
 
-import { STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL } from '../../../../shared/statuses';
-import { getUserFromStore } from '../../../../store/reducers/user/selectors';
-import { Box } from '../../../../components/Box/Box';
+import {STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL} from '../../../../shared/statuses';
+import {getUserFromStore} from '../../../../store/reducers/user/selectors';
+import {Box} from '../../../../components/Box/Box';
 
 const columns = () => [
   {
@@ -84,7 +84,7 @@ export class ClientsPage extends Component {
   }
 
   render() {
-    const { user } = this.props;
+    const {user} = this.props;
     return (
       <Container backgroundColor={'transparent'} px={6}>
         <Text fontFamily={'bold'} fontWeight={'bold'} fontSize={9} lineHeight={9} mb={7}>
@@ -96,14 +96,20 @@ export class ClientsPage extends Component {
             variables={{
               bankid: user.id,
             }}>
-            {({ error, data, loading }) => {
+            {({error, data, loading}) => {
               console.log(error, data, loading);
               return (
                 <ReactTableStyled
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
-                  data={!loading && data && !data.notificationlist ? data.notificationlist : []}
+                  data={
+                    loading ? [] :
+                      Object.hasOwnProperty.call(data, 'notificationlist') &&
+                      Array.isArray(data.notificationlist) ?
+                        data.notificationlist :
+                        []
+                  }
                   filterable
                   columns={columns()}
                   error={error}
@@ -116,6 +122,7 @@ export class ClientsPage extends Component {
     );
   }
 }
+
 ClientsPage = CheckAuthorization([ROLE_BANK])(ClientsPage);
 ClientsPage = connect(state => ({
   user: getUserFromStore(state),
