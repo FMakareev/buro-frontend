@@ -55,7 +55,6 @@ const columns = () => [
   },
 ];
 
-
 export class ClientsNotificationsPage extends Component {
   static propTypes = {};
 
@@ -73,11 +72,11 @@ export class ClientsNotificationsPage extends Component {
   render() {
     const { user } = this.props;
     return (
-      <Container backgroundColor={'transparent'} px={6}>
-        <Text fontFamily={'bold'} fontWeight={'bold'} fontSize={9} lineHeight={9} mb={7}>
+      <Container backgroundColor="transparent" px={6}>
+        <Text fontFamily="bold" fontWeight="bold" fontSize={9} lineHeight={9} mb={7}>
           Notifications
         </Text>
-        <Box backgroundColor={'color0'}>
+        <Box backgroundColor="color0">
           <Query query={NotificationListQuery} variables={{ clientid: user.id }}>
             {({ error, data, loading }) => {
               console.log(error, data, loading);
@@ -86,13 +85,14 @@ export class ClientsNotificationsPage extends Component {
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
-                  data={
-                    loading ? [] :
-                      Object.hasOwnProperty.call(data, 'notificationlist') &&
-                      Array.isArray(data.notificationlist) ?
-                        data.notificationlist :
-                        []
-                  }
+                  // data={
+                  //   loading ? [] :
+                  //     Object.hasOwnProperty.call(data, 'notificationlist') &&
+                  //     Array.isArray(data.notificationlist) ?
+                  //       data.notificationlist :
+                  //       []
+                  // }
+                  data={loading ? [] : data && data.notificationlist}
                   error={error}
                   filterable
                   columns={columns()}
