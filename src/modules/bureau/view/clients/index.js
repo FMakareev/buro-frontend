@@ -39,22 +39,40 @@ const columns = ({ onOpenFormUpdateDoc }) => [
     },
   },
   {
-    id: 'updateDate',
-    Header: 'Date of download',
+    id: 'dob',
+    Header: 'Date of birth',
     Cell: props => (
       <Text fontFamily="medium" fontSize={6} lineHeight={9} color="color1">
         {props.value}
       </Text>
     ),
     accessor: props => {
-      if (Array.isArray(props.document) && props.document.length) {
-        return dayjs(props.document[props.document.length - 1].date).format('DD.MM.YYYY HH:mm:ss');
+      if (props.birthdate) {
+        console.log(props.birthdate);
+        return dayjs(props.birthdate).format('DD.MM.YYYY');
       }
       return null;
     },
     filterMethod: (filter, row) =>
       row[filter.id].startsWith(filter.value) && row[filter.id].endsWith(filter.value),
   },
+  // {
+  //   id: 'updateDate',
+  //   Header: 'Date of download',
+  //   Cell: props => (
+  //     <Text fontFamily="medium" fontSize={6} lineHeight={9} color="color1">
+  //       {props.value}
+  //     </Text>
+  //   ),
+  //   accessor: props => {
+  //     if (Array.isArray(props.document) && props.document.length) {
+  //       return dayjs(props.document[props.document.length - 1].date).format('DD.MM.YYYY HH:mm:ss');
+  //     }
+  //     return null;
+  //   },
+  //   filterMethod: (filter, row) =>
+  //     row[filter.id].startsWith(filter.value) && row[filter.id].endsWith(filter.value),
+  // },
   {
     id: 'Document',
     Header: 'Document',
