@@ -66,30 +66,3 @@ it('Проверка визуализации после удоления.', asy
   const tree = component.toJSON();
   expect(tree).toMatchSnapshot();
 });
-
-it("Проверка рендера при ошибке", async () => {
-  const mocks = [
-    {
-      request: {
-        query: DELETE_PRODUCT_MUTATION,
-        variables: { name: 'Buck' },
-      },
-      result: { errors: [{ message: "boi" }] }
-    }
-  ];
-
-  const component = renderer.create(
-    <MockedProvider mocks={mocks} addTypename={false}>
-      <DeleteButton />
-    </MockedProvider>
-  );
-
-  // найти кнопку и имитировать клик
-  const button = component.root.findByType('button');
-  button.props.onClick(); //срабатывает мутация
-
-  await wait(0);
-
-  const tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
-});
