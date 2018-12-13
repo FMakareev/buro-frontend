@@ -5,19 +5,19 @@ import { MockedProvider } from 'react-apollo/test-utils';
 
 import wait from 'waait';
 import faker from 'faker';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Redirect } from 'react-router-dom';
 import { Provider as ProviderRedux } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import mocksClient from '../../apollo/mocksClient';
+import mocksClient from '../../../../apollo/mocksClient';
 
-import { HeaderNotification } from './HeaderNotification';
-import { Header } from '../Header/Header';
-import { StyledThemeProvider } from '../../styles/StyledThemeProvider';
-import { ROLE_BANK } from '../../shared/roles';
+import { NotificationsPage } from './index';
+import { StyledThemeProvider } from '../../../../styles/StyledThemeProvider';
+import { ROLE_BANK } from '../../../../shared/roles';
+import NotificationListQuery from './NotificationListQuery.graphql';
 
 const mockStore = configureStore();
 
-test('HeaderNotification: пользователь не авторизован', async () => {
+test('NotificationsPage: пользователь не авторизован', () => {
   const store = mockStore({});
 
   const output = renderer.create(
@@ -25,84 +25,16 @@ test('HeaderNotification: пользователь не авторизован',
       <ProviderRedux store={store}>
         <MemoryRouter>
           <ApolloProvider client={mocksClient}>
-            <Header>
-              <HeaderNotification />
-            </Header>
+            <NotificationsPage />
           </ApolloProvider>
         </MemoryRouter>
       </ProviderRedux>
     </StyledThemeProvider>,
   );
-
-  await wait(0);
-
-  const tree = output.toJSON();
-  expect(tree).toMatchSnapshot();
+  expect(output.root.findByType(Redirect).props.to).toBe('/logout');
 });
 
-test('HeaderNotification: Загрузка', async () => {
-  const store = mockStore({
-    user: {
-      error: false,
-      initLoading: true,
-      updateLoading: false,
-      role: null,
-      id: null,
-    },
-  });
-
-  const output = renderer.create(
-    <StyledThemeProvider>
-      <ProviderRedux store={store}>
-        <MemoryRouter>
-          <ApolloProvider client={mocksClient}>
-            <Header>
-              <HeaderNotification />
-            </Header>
-          </ApolloProvider>
-        </MemoryRouter>
-      </ProviderRedux>
-    </StyledThemeProvider>,
-  );
-
-  await wait(3);
-
-  const tree = output.toJSON();
-  expect(tree).toMatchSnapshot();
-});
-
-test('HeaderNotification: ошибка', async () => {
-  const store = mockStore({
-    user: {
-      error: true,
-      initLoading: false,
-      updateLoading: false,
-      role: null,
-      id: null,
-    },
-  });
-
-  const output = renderer.create(
-    <StyledThemeProvider>
-      <ProviderRedux store={store}>
-        <MemoryRouter>
-          <ApolloProvider client={mocksClient}>
-            <Header>
-              <HeaderNotification />
-            </Header>
-          </ApolloProvider>
-        </MemoryRouter>
-      </ProviderRedux>
-    </StyledThemeProvider>,
-  );
-
-  await wait(3);
-
-  const tree = output.toJSON();
-  expect(tree).toMatchSnapshot();
-});
-
-test('HeaderNotification: загрузилось', async () => {
+test('NotificationsPage: загрузка пользовательских данных', () => {
   const store = mockStore({
     user: {
       error: null,
@@ -118,17 +50,83 @@ test('HeaderNotification: загрузилось', async () => {
       <ProviderRedux store={store}>
         <MemoryRouter>
           <ApolloProvider client={mocksClient}>
-            <Header>
-              <HeaderNotification />
-            </Header>
+            <NotificationsPage />
           </ApolloProvider>
         </MemoryRouter>
       </ProviderRedux>
     </StyledThemeProvider>,
   );
+  expect(output).toMatchSnapshot();
+});
 
-  await wait(3);
+test('NotificationsPage: ошибка во время загрузки пользовательских данных', async () => {
+  const initialValue = {
+    user: {
+      error: null,
+      initLoading: false,
+      updateLoading: false,
+      role: ROLE_BANK,
+      id: faker.random.uuid(),
+    },
+  };
+  const store = mockStore(initialValue);
+  const dogMock = {
+    request: {
+      query: NotificationListQuery,
+      variables: {
+        id: initialValue.user.id,
+      },
+    },
+    error: new Error(
+      JSON.stringify({
+        error: [
+          {
+            message: 'Error!',
+          },
+        ],
+      }),
+    ),
+  };
+  const output = renderer.create(
+    <StyledThemeProvider>
+      <ProviderRedux store={store}>
+        <MemoryRouter>
+          <MockedProvider mocks={[dogMock]} addTypename>
+            <NotificationsPage />
+          </MockedProvider>
+        </MemoryRouter>
+      </ProviderRedux>
+    </StyledThemeProvider>,
+  );
+  await wait(0); // небольшая задержка
 
   const tree = output.toJSON();
   expect(tree).toMatchSnapshot();
+});
+
+test('NotificationsPage: загруженный список нотификаций', async () => {
+  const store = mockStore({
+    user: {
+      error: null,
+      initLoading: false,
+      updateLoading: false,
+      role: ROLE_BANK,
+      id: faker.random.uuid(),
+    },
+  });
+
+  const output = renderer.create(
+    <StyledThemeProvider>
+      <ProviderRedux store={store}>
+        <MemoryRouter>
+          <ApolloProvider client={mocksClient}>
+            <NotificationsPage />
+          </ApolloProvider>
+        </MemoryRouter>
+      </ProviderRedux>
+    </StyledThemeProvider>,
+  );
+  await wait(5); // небольшая задержка
+
+  expect(output).toMatchSnapshot();
 });

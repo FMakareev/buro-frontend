@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ClientsNotificationsPage: загруженный список нотификаций 1`] = `
+<div
+  className="sc-bxivhb dUiVDW"
+/>
+`;
+
+exports[`ClientsNotificationsPage: загрузка пользовательских данных 1`] = `
+<div
+  className="sc-bxivhb dUiVDW"
+/>
+`;
+
+exports[`ClientsNotificationsPage: ошибка во время загрузки пользовательских данных 1`] = `
+<div
+  className="sc-bxivhb dUiVDW"
+/>
+`;

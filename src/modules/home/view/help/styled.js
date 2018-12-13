@@ -21,7 +21,7 @@ export const StyledContainer = styled(Container)`
   min-height: calc(100vh - 51px - 18px - 36px);
 
   @media (min-width: 768px) {
-    min-height: calc(100vh - 63px - 18px - 36px);
+    min-height: calc(100vh - 66px - 18px - 36px);
   }
 `;
 

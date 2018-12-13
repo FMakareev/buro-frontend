@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ClientsPage: загруженный список клиентов 1`] = `
+exports[`NotificationsPage: загруженный список нотификаций 1`] = `
 <div
   className="sc-bxivhb dUiVDW"
 >
@@ -14,7 +14,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
       fontSize={9}
       fontWeight="bold"
     >
-      Clients
+      Notifications
     </div>
     <div
       className="sc-1jxwge6-0 jSlHKu"
@@ -79,7 +79,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                 <div
                   className="rt-resizable-header-content"
                 >
-                  Date of birth
+                  Request date
                 </div>
                 <div
                   className="rt-resizer"
@@ -1012,7 +1012,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
 </div>
 `;
 
-exports[`ClientsPage: загрузка пользовательских данных 1`] = `
+exports[`NotificationsPage: загрузка пользовательских данных 1`] = `
 <div
   className="sc-bxivhb dUiVDW"
 >
@@ -1026,7 +1026,7 @@ exports[`ClientsPage: загрузка пользовательских данн
       fontSize={9}
       fontWeight="bold"
     >
-      Clients
+      Notifications
     </div>
     <div
       className="sc-1jxwge6-0 jSlHKu"
@@ -1091,7 +1091,7 @@ exports[`ClientsPage: загрузка пользовательских данн
                 <div
                   className="rt-resizable-header-content"
                 >
-                  Date of birth
+                  Request date
                 </div>
                 <div
                   className="rt-resizer"
@@ -2006,7 +2006,7 @@ exports[`ClientsPage: загрузка пользовательских данн
           </div>
         </div>
         <div
-          className="sc-1jxwge6-0 d5w2g7-0 sc-1mb6nwv-0 koaxEZ"
+          className="sc-1jxwge6-0 d5w2g7-0 sc-1mb6nwv-0 dkqukC"
         >
           <div
             className="sc-1jxwge6-0 sc-18ch56c-0 fzRVpo"
@@ -2024,7 +2024,7 @@ exports[`ClientsPage: загрузка пользовательских данн
 </div>
 `;
 
-exports[`ClientsPage: ошибка во время загрузки пользовательских данных 1`] = `
+exports[`NotificationsPage: ошибка во время загрузки пользовательских данных 1`] = `
 <div
   className="sc-bxivhb dUiVDW"
 >
@@ -2038,7 +2038,7 @@ exports[`ClientsPage: ошибка во время загрузки пользо
       fontSize={9}
       fontWeight="bold"
     >
-      Clients
+      Notifications
     </div>
     <div
       className="sc-1jxwge6-0 jSlHKu"
@@ -2103,7 +2103,7 @@ exports[`ClientsPage: ошибка во время загрузки пользо
                 <div
                   className="rt-resizable-header-content"
                 >
-                  Date of birth
+                  Request date
                 </div>
                 <div
                   className="rt-resizer"
