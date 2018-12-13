@@ -1,31 +1,31 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
-import {Field, reduxForm, Form, SubmissionError} from 'redux-form';
-import {connect} from 'react-redux';
-import {formPropTypes} from '../../../../propTypes/Forms/FormPropTypes';
+import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
+import { connect } from 'react-redux';
+import { graphql } from 'react-apollo';
+import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
-import {TextFieldWithLabel} from '../../../../components/TextFieldWithLabel/TextFieldWithLabel';
+import { TextFieldWithLabel } from '../../../../components/TextFieldWithLabel/TextFieldWithLabel';
 
-import {Box} from '../../../../components/Box/Box';
-import {Flex} from '../../../../components/Flex/Flex';
-import {Text} from '../../../../components/Text/Text';
-import {ButtonBase} from '../../../../components/ButtonBase/ButtonBase';
-import {ButtonWithImageError} from '../ButtonWithImageError/ButtonWithImageError';
-import {DayPickerBase} from '../../../../components/DayPickerBase/DayPickerBase';
-import {ButtonTriggerGroup} from '../../../../components/ButtonTriggerGroup/ButtonTriggerGroup';
+import { Box } from '../../../../components/Box/Box';
+import { Flex } from '../../../../components/Flex/Flex';
+import { Text } from '../../../../components/Text/Text';
+import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
+import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
+import { DayPickerBase } from '../../../../components/DayPickerBase/DayPickerBase';
+import { ButtonTriggerGroup } from '../../../../components/ButtonTriggerGroup/ButtonTriggerGroup';
 
-import {SvgReloadIcon} from '../../../../components/Icons/SvgReloadIcon';
+import { SvgReloadIcon } from '../../../../components/Icons/SvgReloadIcon';
 
-import {SpeedingWheel} from '../../../../components/SmallPreloader/SmallPreloader';
-import {PreloaderWrapper} from '../../../../components/PreloaderWrapper/PreloaderWrapper';
+import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
+import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
 
-import {required} from '../../../../utils/validation/required';
-import {phoneNumber} from '../../../../utils/validation/phoneNumber';
-import {graphql} from 'react-apollo';
+import { required } from '../../../../utils/validation/required';
+import { phoneNumber } from '../../../../utils/validation/phoneNumber';
 import UpdateUserMutation from './UpdateUserMutation.graphql';
-import {getUserFromStore} from "../../../../store/reducers/user/selectors";
-import {ROLE_BANK, ROLE_CLIENT} from "../../../../shared/roles";
-import {userUpdate} from "../../../../store/reducers/user/actions";
+import { getUserFromStore } from '../../../../store/reducers/user/selectors';
+import { ROLE_BANK, ROLE_CLIENT } from '../../../../shared/roles';
+import { userUpdate } from '../../../../store/reducers/user/actions';
 
 const StyledBox = styled(Box)`
   text-align: center;
@@ -33,38 +33,41 @@ const StyledBox = styled(Box)`
 
 /**
  * @param {string} value - вводимое пользователем значение
- * @desc приведение вводимого значения телефона к формату "+ 7 911 111 11 11" */
+ * @desc приведение вводимого значения телефона к формату только цифры */
 const normalizePhoneNumber = value => {
-  if (value.length > 17) {
-    return value.slice(0, 17);
-  }
+  // if (value.length > 17) {
+  //   return value.slice(0, 17);
+  // }
 
-  if (value.length === 1) return `+ 7 ${value.replace(/[^\d]/g, '')}`;
+  // if (value.length === 1) return `+ 7 ${value.replace(/[^\d]/g, '')}`;
 
   const onlyNums = value.replace(/[^\d]/g, '');
 
-  if (onlyNums.length <= 4) {
-    return `+ 7 ${onlyNums.slice(1, 4)}`;
-  }
+  // if (onlyNums.length <= 4) {
+  //   return `+ 7 ${onlyNums.slice(1, 4)}`;
+  // }
 
-  if (onlyNums.length <= 7) {
-    return `+ 7 ${onlyNums.slice(1, 4)} ${onlyNums.slice(4)}`;
-  }
+  // if (onlyNums.length <= 7) {
+  //   return `+ 7 ${onlyNums.slice(1, 4)} ${onlyNums.slice(4)}`;
+  // }
 
-  if (onlyNums.length <= 9) {
-    return `+ 7 ${onlyNums.slice(1, 4)} ${onlyNums.slice(4, 7)} ${onlyNums.slice(7)}`;
-  }
+  // if (onlyNums.length <= 9) {
+  //   return `+ 7 ${onlyNums.slice(1, 4)} ${onlyNums.slice(4, 7)} ${onlyNums.slice(7)}`;
+  // }
 
-  if (onlyNums.length <= 11) {
-    return `+ 7 ${onlyNums.slice(1, 4)} ${onlyNums.slice(4, 7)} ${onlyNums.slice(
-      7,
-      9,
-    )} ${onlyNums.slice(9)}`;
+  // if (onlyNums.length <= 11) {
+  //   return `+ 7 ${onlyNums.slice(1, 4)} ${onlyNums.slice(4, 7)} ${onlyNums.slice(
+  //     7,
+  //     9,
+  //   )} ${onlyNums.slice(9)}`;
+  // }
+
+  if (onlyNums.length > 25) {
+    return `${onlyNums.slice(0, 25)}`;
   }
 
   return onlyNums;
 };
-
 
 export class FormProfileUser extends Component {
   static propTypes = {
@@ -77,7 +80,7 @@ export class FormProfileUser extends Component {
 
   getNetworkError = errors => {
     try {
-      let errorList = {};
+      const errorList = {};
       errors.forEach(item => {
         switch (item.message) {
           case 'too young': {
@@ -95,15 +98,15 @@ export class FormProfileUser extends Component {
   };
 
   // TODO: добавить вызов метода обновления данных пользователя в редакcе, это экшен userUpdate
-  submit = value => {
-    return this.props['@apollo/update']({
+  submit = value =>
+    this.props['@apollo/update']({
       variables: Object.assign({}, value),
     })
       .then(response => {
         console.log(response);
         this.props.userUpdate();
       })
-      .catch(({graphQLErrors, message, networkError, ...rest}) => {
+      .catch(({ graphQLErrors, message, networkError, ...rest }) => {
         console.log('graphQLErrors: ', graphQLErrors);
         console.log('message: ', message);
         console.log('networkError: ', networkError);
@@ -118,7 +121,6 @@ export class FormProfileUser extends Component {
           });
         }
       });
-  };
 
   render() {
     const {
@@ -129,18 +131,16 @@ export class FormProfileUser extends Component {
       submitFailed,
       invalid,
       error,
-      user
+      user,
     } = this.props;
 
     return (
       <Form onSubmit={handleSubmit(this.submit)}>
-        <Text fontFamily={'bold'} as="h2" fontSize={9} lineHeight={11} mb={9}>
+        <Text fontFamily="bold" as="h2" fontSize={9} lineHeight={11} mb={9}>
           Main data:
         </Text>
         <Flex mx={-6} justifyContent="space-between" flexWrap="wrap" mb="30px">
-
-          {
-            user.role === ROLE_CLIENT &&
+          {user.role === ROLE_CLIENT && (
             <Fragment>
               <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[1, 0]}>
                 <Field
@@ -169,20 +169,20 @@ export class FormProfileUser extends Component {
                 />
               </Box>
             </Fragment>
-          }
-          {
-            user.role === ROLE_BANK && <Fragment>
+          )}
+          {user.role === ROLE_BANK && (
+            <Fragment>
               <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[1, 0]}>
                 <Field
                   name="bankName"
                   component={TextFieldWithLabel}
                   label="Bank name"
                   type="text"
-                  disabled={true}
+                  disabled
                 />
               </Box>
             </Fragment>
-          }
+          )}
           <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[5, 0]}>
             <Field
               name="phone"
@@ -193,8 +193,7 @@ export class FormProfileUser extends Component {
               normalize={normalizePhoneNumber}
             />
           </Box>
-          {
-            user.role === ROLE_CLIENT &&
+          {user.role === ROLE_CLIENT && (
             <Fragment>
               <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[3, 0]}>
                 <Field
@@ -223,7 +222,7 @@ export class FormProfileUser extends Component {
                 />
               </Box>
             </Fragment>
-          }
+          )}
         </Flex>
         <Flex justifyContent="center">
           <StyledBox>
@@ -241,14 +240,14 @@ export class FormProfileUser extends Component {
 
             {submitFailed && (
               <ButtonWithImageError
-                type={'submit'}
-                variant={'error'}
-                size={'medium'}
+                type="submit"
+                variant="error"
+                size="medium"
                 py={2}
                 error={error}
                 iconRight={
                   <Text fontSize={11} lineHeight={0}>
-                    <SvgReloadIcon/>
+                    <SvgReloadIcon />
                   </Text>
                 }>
                 Try again
@@ -256,7 +255,7 @@ export class FormProfileUser extends Component {
             )}
 
             {submitSucceeded && !submitting && (
-              <Text fontSize={6} lineHeight={12} color={'color1'} fontFamily={'medium'}>
+              <Text fontSize={6} lineHeight={12} color="color1" fontFamily="medium">
                 Changes was successfully saved.
               </Text>
             )}
@@ -266,7 +265,7 @@ export class FormProfileUser extends Component {
         {submitting && (
           <PreloaderWrapper>
             <Text fontSize={13}>
-              <SpeedingWheel/>
+              <SpeedingWheel />
             </Text>
           </PreloaderWrapper>
         )}
@@ -275,16 +274,17 @@ export class FormProfileUser extends Component {
   }
 }
 
-
 FormProfileUser = graphql(UpdateUserMutation, {
   name: '@apollo/update',
 })(FormProfileUser);
-FormProfileUser = connect(state => ({
+FormProfileUser = connect(
+  state => ({
     user: getUserFromStore(state),
   }),
   dispatch => ({
-    userUpdate: () => dispatch(userUpdate())
-  }))(FormProfileUser);
+    userUpdate: () => dispatch(userUpdate()),
+  }),
+)(FormProfileUser);
 FormProfileUser = reduxForm({
   form: 'FormProfileUser',
 })(FormProfileUser);

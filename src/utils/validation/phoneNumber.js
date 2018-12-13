@@ -1,3 +1,3 @@
 export const phoneNumber = value =>
-  value && value.length < 17 ? 'Invalid phone number, must be 10 digits' : undefined;
+  value && value.length < 7 ? 'Invalid phone number, must be minimum 7 digits' : undefined;
 export default phoneNumber;
