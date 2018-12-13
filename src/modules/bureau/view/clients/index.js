@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import dayjs from 'dayjs';
 import { connect } from 'react-redux';
 
+import { Query } from 'react-apollo';
 import { Container } from '../../../../components/Container/Container';
 import { Text } from '../../../../components/Text/Text';
 import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
@@ -11,95 +12,88 @@ import ReactTableStyled from '../../../../components/ReactTableStyled/ReactTable
 import { FormDocumentUpload } from '../../components/FormDocumentUpload/FormDocumentUpload';
 import Modal from '../../../../components/Modal/Modal';
 import UserDocumentListQuery from './UserDocumentListQuery.graphql';
-import { Query } from 'react-apollo';
+import UserListQuery from './UserListQuery.graphql';
 import { ROLE_BUREAU } from '../../../../shared/roles';
 import { CheckAuthorization } from '../../../../components/CheckAuthorization/CheckAuthorization';
 import { getUserFromStore } from '../../../../store/reducers/user/selectors';
 import { Box } from '../../../../components/Box/Box';
 
-const columns = ({ onOpenFormUpdateDoc }) => {
-  return [
-    {
-      id: 'Client',
-      Header: 'Client',
-      Cell: props => {
+const columns = ({ onOpenFormUpdateDoc }) => [
+  {
+    id: 'Client',
+    Header: 'Client',
+    Cell: props => (
+      <Text fontFamily="medium" fontSize={6} lineHeight={9} color="color1">
+        {props.value}
+      </Text>
+    ),
+    accessor: props => {
+      try {
+        if (props.user) {
+          return `${props.user.firstName} ${props.user.lastName} ${props.user.patronymic}`;
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      return null;
+    },
+  },
+  {
+    id: 'updateDate',
+    Header: 'Date of download',
+    Cell: props => (
+      <Text fontFamily="medium" fontSize={6} lineHeight={9} color="color1">
+        {props.value}
+      </Text>
+    ),
+    accessor: props => {
+      if (Array.isArray(props.document) && props.document.length) {
+        return dayjs(props.document[props.document.length - 1].date).format('DD.MM.YYYY HH:mm:ss');
+      }
+      return null;
+    },
+    filterMethod: (filter, row) =>
+      row[filter.id].startsWith(filter.value) && row[filter.id].endsWith(filter.value),
+  },
+  {
+    id: 'Document',
+    Header: 'Document',
+    filterable: false,
+    Cell: props => {
+      if (props.value) {
         return (
-          <Text fontFamily={'medium'} fontSize={6} lineHeight={9} color={'color1'}>
-            {props.value}
-          </Text>
+          <ButtonBase
+            onClick={() => onOpenFormUpdateDoc(props.original.id)}
+            display="inline-block"
+            size="xsmall"
+            variant="transparent">
+            Update
+          </ButtonBase>
         );
-      },
-      accessor: props => {
-        try {
-          if (props.user) {
-            return `${props.user.firstName} ${props.user.lastName} ${props.user.patronymic}`;
+      }
+      return (
+        <ButtonWithImage
+          onClick={() => onOpenFormUpdateDoc(props.original.id)}
+          display="inline-block"
+          iconRight={
+            <Text fontSize={5} lineHeight={0} fill="inherit">
+              <SvgUpload />
+            </Text>
           }
-        } catch (error) {
-          console.log(error);
-        }
-        return null;
-      },
+          size="xsmall"
+          variant="transparent">
+          Upload
+        </ButtonWithImage>
+      );
     },
-    {
-      id: 'updateDate',
-      Header: 'Date of download',
-      Cell: props => (
-        <Text fontFamily={'medium'} fontSize={6} lineHeight={9} color={'color1'}>
-          {props.value}
-        </Text>
-      ),
-      accessor: props => {
-        if (Array.isArray(props.document) && props.document.length) {
-          return dayjs(props.document[props.document.length - 1].date).format(
-            'DD.MM.YYYY HH:mm:ss',
-          );
-        }
-        return null;
-      },
-      filterMethod: (filter, row) =>
-        row[filter.id].startsWith(filter.value) && row[filter.id].endsWith(filter.value),
+    accessor: props => {
+      if (props.document && props.document.length) {
+        return props.document;
+      }
+      return null;
     },
-    {
-      id: 'Document',
-      Header: 'Document',
-      filterable: false,
-      Cell: props => {
-        if (props.value) {
-          return (
-            <ButtonBase
-              onClick={() => onOpenFormUpdateDoc(props.original.id)}
-              display={'inline-block'}
-              size={'xsmall'}
-              variant={'transparent'}>
-              Update
-            </ButtonBase>
-          );
-        } else {
-          return (
-            <ButtonWithImage
-              onClick={() => onOpenFormUpdateDoc(props.original.id)}
-              display={'inline-block'}
-              iconRight={
-                <Text fontSize={5} lineHeight={0} fill={'inherit'}>
-                  <SvgUpload />
-                </Text>
-              }
-              size={'xsmall'}
-              variant={'transparent'}>
-              Upload
-            </ButtonWithImage>
-          );
-        }
-      },
-      accessor: props => {
-        if (props.document && props.document.length) {
-          return props.document;
-        }
-        return null;
-      },
-    },
-  ];
-};
+  },
+];
 
 export class DocumentsBureauPage extends Component {
   static propTypes = {};
@@ -130,12 +124,12 @@ export class DocumentsBureauPage extends Component {
   render() {
     const { isOpen, id } = this.state;
     return (
-      <Container backgroundColor={'transparent'} px={6}>
-        <Text fontFamily={'bold'} fontWeight={'bold'} fontSize={9} lineHeight={9} mb={7}>
+      <Container backgroundColor="transparent" px={6}>
+        <Text fontFamily="bold" fontWeight="bold" fontSize={9} lineHeight={9} mb={7}>
           Documents
         </Text>
-        <Box backgroundColor={'color0'}>
-          <Query query={UserDocumentListQuery}>
+        <Box backgroundColor="color0">
+          <Query query={UserListQuery}>
             {({ error, data, loading }) => {
               console.log(error, data, loading);
               return (
@@ -143,7 +137,7 @@ export class DocumentsBureauPage extends Component {
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
-                  data={loading ? [] : data.userDocumentList}
+                  data={loading ? [] : data.userList}
                   error={error}
                   filterable
                   loading={loading}
@@ -164,7 +158,6 @@ export class DocumentsBureauPage extends Component {
     );
   }
 }
-
 
 DocumentsBureauPage = CheckAuthorization([ROLE_BUREAU])(DocumentsBureauPage);
 

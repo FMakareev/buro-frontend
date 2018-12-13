@@ -1,0 +1,16 @@
+query($id: String){
+  userlist(id: $id){
+    id
+    user{
+      id
+      firstName
+      lastName
+      patronymic
+      birthdate
+    }
+    document{
+      id
+      status
+    }
+  }
+}
