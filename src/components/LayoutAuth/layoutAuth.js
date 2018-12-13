@@ -36,11 +36,14 @@ export class LayoutAuth extends Component {
     try {
       const {location, user, history} = this.props;
       /** редиректим пользователя в профиль если он авторизован и текущий маршрут не выход */
-      if (location.pathname !== '/logout' &&
+      // TODO: эту порнографию переделать
+      if (
+        location.pathname !== '/logout' &&
         location.pathname !== '/help' &&
         location.pathname !== '/policy' &&
         location.pathname !== '/terms' &&
-        user.isAuth) {
+        user.isAuth
+      ) {
         history.push('/app/profile');
       }
     } catch (error) {
