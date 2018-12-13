@@ -29,8 +29,8 @@ const columns = ({ onOpenFormUpdateDoc }) => [
     ),
     accessor: props => {
       try {
-        if (props.user) {
-          return `${props.user.firstName} ${props.user.lastName} ${props.user.patronymic}`;
+        if (props) {
+          return `${props.firstName} ${props.lastName} ${props.patronymic}`;
         }
       } catch (error) {
         console.log(error);
@@ -137,7 +137,7 @@ export class DocumentsBureauPage extends Component {
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
-                  data={loading ? [] : data.userList}
+                  data={loading ? [] : data.userlist}
                   error={error}
                   filterable
                   loading={loading}
@@ -159,7 +159,7 @@ export class DocumentsBureauPage extends Component {
   }
 }
 
-DocumentsBureauPage = CheckAuthorization([ROLE_BUREAU])(DocumentsBureauPage);
+// DocumentsBureauPage = CheckAuthorization([ROLE_BUREAU])(DocumentsBureauPage);
 
 DocumentsBureauPage = connect(state => ({
   user: getUserFromStore(state),
