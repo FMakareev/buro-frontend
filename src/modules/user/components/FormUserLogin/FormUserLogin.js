@@ -30,7 +30,6 @@ import UserEmailItemQuery from './UserEmailItemQuery.graphql';
 import { jsonToUrlEncoded } from '../../../../utils/jsontools/jsonToUrlEncoded';
 import { USER_ADD } from '../../../../store/reducers/user/actionTypes';
 
-
 export class FormUserLogin extends Component {
   static propTypes = {
     ...formPropTypes,
@@ -102,7 +101,7 @@ export class FormUserLogin extends Component {
           throw new SubmissionError({ _error: 'Wrong email or password' });
         } else {
           throw new SubmissionError({
-            _error: message,
+            _error: 'error',
           });
         }
       });
@@ -131,7 +130,8 @@ export class FormUserLogin extends Component {
       })
       .then(result => {
         console.log(result);
-        if (result.errors) {
+        if (result.errors || result.data.useremailitem === null) {
+          // TO DO change this
           throw result;
         } else {
           this.setState(() => ({
@@ -146,10 +146,10 @@ export class FormUserLogin extends Component {
 
       .catch(error => {
         console.log('getUser error:', error);
-
         this.setState(() => ({
           submitting: false,
-          apolloError: 'Unexpected error',
+          apolloError:
+            error.data.useremailitem === null ? 'Wrong email or password' : 'Unexpected error',
         }));
       });
   };
@@ -178,7 +178,7 @@ export class FormUserLogin extends Component {
               placeholder="Email address"
               type="email"
               icon={
-                <Text fontSize={11} lineHeight={0} fill={'inherit'}>
+                <Text fontSize={11} lineHeight={0} fill="inherit">
                   <SvgEmailIcon />
                 </Text>
               }
@@ -187,12 +187,12 @@ export class FormUserLogin extends Component {
           </Box>
           <Box width="100%" mb={4}>
             <Field
-              name={'password'}
+              name="password"
               component={TextFieldWithIcon}
               placeholder="Password"
-              type={'password'}
+              type="password"
               icon={
-                <Text fontSize={11} lineHeight={0} fill={'inherit'}>
+                <Text fontSize={11} lineHeight={0} fill="inherit">
                   <SvgPasswordIcon />
                 </Text>
               }
@@ -260,10 +260,10 @@ export class FormUserLogin extends Component {
 
 FormUserLogin = withRouter(FormUserLogin);
 FormUserLogin = withApollo(FormUserLogin);
-FormUserLogin =connect(
+FormUserLogin = connect(
   null,
   dispatch => ({
-    addUser: user => dispatch({ type: USER_ADD, user: user }),
+    addUser: user => dispatch({ type: USER_ADD, user }),
   }),
 )(FormUserLogin);
 FormUserLogin = reduxForm({
