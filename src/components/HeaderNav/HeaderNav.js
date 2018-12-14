@@ -45,6 +45,13 @@ export class HeaderNav extends Component {
                 Clients
               </NavItem>
             }
+            {/** этот путь есть только у банка, это список клиентов */}
+            {
+              user && !user.error && user.role === ROLE_BANK &&
+              <NavItem to={'/app/bank/documents'} icon={<SvgUsers/>}>
+                Documents
+              </NavItem>
+            }
 
             {/** этот путь только для клиента */}
             {
