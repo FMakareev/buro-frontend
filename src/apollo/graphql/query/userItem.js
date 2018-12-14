@@ -1,7 +1,8 @@
 import faker from "faker";
+import {ROLE_BANK, ROLE_CLIENT} from "../../../shared/roles";
 
 
-export const userItem = () => {
+export const useritem = () => {
   const bankName = faker.random.number(1) ? faker.name.jobTitle() : null;
   const password = faker.internet.password();
   return {
@@ -14,10 +15,10 @@ export const userItem = () => {
     gender: faker.random.arrayElement(['male', 'female']),
     email: faker.internet.email(),
     phone: faker.phone.phoneNumber(),
-    masterPassword: faker.random.uuid(),
+    masterpassword: faker.random.uuid(),
     password: password,
-    retypePassword: password,
-    role: bankName ? 'bank' : 'client',
+    confirmPassword: password,
+    role: bankName ? ROLE_BANK : ROLE_CLIENT,
     token: null,
   }
 };

@@ -2,52 +2,39 @@ import faker from 'faker';
 import { GraphQLError } from 'graphql';
 import setupClient from './helpers/apolloClientMock';
 import schema from './schema.graphqls';
-import { userDocumentList } from './graphql/query/userDocumentList';
-import { userList } from './graphql/query/userList';
-import { userItem } from './graphql/query/userItem';
-import { notificationList } from './graphql/query/notificationList';
+import { userdocumentlist } from './graphql/query/userdocumentlist';
+import { userlist } from './graphql/query/userList';
+import { useritem } from './graphql/query/useritem';
+import { notificationlist } from './graphql/query/notificationlist';
 import { ROLE_BANK, ROLE_BUREAU, ROLE_CLIENT } from '../shared/roles';
 import { notificationItem } from './graphql/query/notificationItem';
 import { STATUS_PENDING } from '../shared/statuses';
 
-class ValidationError extends GraphQLError {
-  constructor(errors) {
-    super('The request is invalid.');
-    this.state = errors.reduce((result, error) => {
-      if (Object.prototype.hasOwnProperty.call(result, error.key)) {
-        result[error.key].push(error.message);
-      } else {
-        result[error.key] = [error.message];
-      }
-      return result;
-    }, {});
-  }
-}
 
 const defaultMocks = {
   Query: () => ({
-    userList,
-    userItem,
-    userEmailItem: (query, { email }) => {
+    userlist,
+    useritem,
+    useremailitem: (query, { email }) => {
       console.log(query, email);
       switch (email) {
         case 'client@test.com': {
           return {
-            ...userItem(),
+            ...useritem(),
             email: 'client@test.com',
             role: ROLE_CLIENT,
           };
         }
         case 'bank@test.com': {
           return {
-            ...userItem(),
+            ...useritem(),
             email: 'bank@test.com',
             role: ROLE_BANK,
           };
         }
         case 'bureau@test.com': {
           return {
-            ...userItem(),
+            ...useritem(),
             email: 'bureau@test.com',
             role: ROLE_BUREAU,
           };
@@ -56,7 +43,7 @@ const defaultMocks = {
           // throw new GraphQLError('user not found');
           throw Error(
             JSON.stringify({
-              userEmailItem: null,
+              useremailitem: null,
               errors: [
                 {
                   message: 'GraphQL error: user not found',
@@ -67,15 +54,18 @@ const defaultMocks = {
         }
       }
     },
-    userDocumentList,
-    notificationList,
+    userdocumentlist: ()=>{
+      console.log('userdocumentlist');
+      return userdocumentlist()
+    },
+    notificationlist,
   }),
   Mutation: () => ({
     /**
      * @params {func} mutation - этот же запрос
      * @params {object} props - аргументы которые были переданы
      * */
-    createUser: (mutation, props) => {
+    createuser: (mutation, props) => {
       if (props.email === 'error@test.com') {
         throw new GraphQLError('already registered');
       } else if (props.bankName && props.bankName !== 'KnownBank') {
@@ -84,12 +74,12 @@ const defaultMocks = {
         return props;
       }
     },
-    updateUser: (mutation, props) =>
+    updateuser: (mutation, props) =>
       // для имитации запроса к серверу с рандомной задержкой и результатом.
       new Promise((resolve, reject) => {
         setTimeout(() => {
           faker.random.number(1)
-            ? resolve({ ...userItem() })
+            ? resolve({ ...useritem() })
             : reject(
                 JSON.stringify({
                   errors: [
@@ -101,14 +91,14 @@ const defaultMocks = {
               );
         }, faker.random.number(2000));
       }),
-    userResetPassword: (mutation, props) => {
+    resetpass: (mutation, props) => {
       if (props.email === 'error@test.com') {
         throw new GraphQLError('user not found');
       } else {
         return props;
       }
     },
-    createNotification: (mutation, props) =>
+    createnotification: (mutation, props) =>
       // для имитации запроса к серверу с рандомной задержкой и результатом.
       new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -125,7 +115,7 @@ const defaultMocks = {
               );
         }, faker.random.number(2000));
       }),
-    updateNotification: (mutation, props) =>
+    updatenotification: (mutation, props) =>
       // для имитации запроса к серверу с рандомной задержкой и результатом.
       new Promise((resolve, reject) => {
         setTimeout(
@@ -135,7 +125,7 @@ const defaultMocks = {
               : reject(
                   JSON.stringify({
                     data: {
-                      updateNotification: null,
+                      updatenotification: null,
                     },
                     errors: [
                       {
@@ -147,9 +137,9 @@ const defaultMocks = {
           faker.random.number(2000),
         );
       }),
-    userPasswordRecovery: (mutation, props) =>
+    recoverypass: (mutation, props) =>
       // throw Error(JSON.stringify({
-      //   userPasswordRecovery: null,
+      //   recoverypass: null,
       //   errors: [
       //     {
       //       message:'Error!'

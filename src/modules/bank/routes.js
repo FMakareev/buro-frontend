@@ -15,11 +15,22 @@ export const routes = [
   {
     layout: LAYOUT_APP,
     exact: true,
-    name: 'Notifications: bank',
+    name: 'Notifications',
     path: '/bank/notifications',
     order: 0,
     hidden: false,
     load: () => import(/* webpackChunkName: 'requestsRequestsBank'  */ './view/notifications'),
+    resolvers: [],
+  },
+
+  {
+    layout: LAYOUT_APP,
+    exact: true,
+    name: 'Documents',
+    path: '/bank/documents',
+    order: 0,
+    hidden: false,
+    load: () => import(/* webpackChunkName: 'requestsUserDocuments'  */ './view/documents'),
     resolvers: [],
   },
 ];

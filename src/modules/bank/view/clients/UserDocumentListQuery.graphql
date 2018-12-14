@@ -1,0 +1,18 @@
+query($excludeowner: String!){
+  userdocumentlist(excludeowner: $excludeowner){
+    id
+    client{
+      id
+      firstName
+      lastName
+      patronymic
+      birthdate
+    }
+    owner{
+      id
+      bankName
+    }
+    date
+    status
+  }
+}

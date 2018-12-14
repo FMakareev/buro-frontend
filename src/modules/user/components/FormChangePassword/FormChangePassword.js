@@ -110,44 +110,39 @@ export class FormChangePassword extends Component {
           flexDirection="column"
           flexWrap="wrap"
           mb="30px">
-          <Fragment>
-            <Box width={['100%', '100%', '40%']} px={6} mb={4}>
-              <Field
-                name="oldPassword"
-                component={TextFieldWithLabel}
-                label="Old Password:"
-                type="password"
-                validate={[required]}
-              />
-            </Box>
-          </Fragment>
-          <Fragment>
-            <Box width={['100%', '100%', '40%']} px={6} mb={4}>
-              <Field
-                name="newPassword"
-                component={TextFieldWithLabel}
-                label="New password:"
-                type="password"
-                validate={[required]}
-              />
-            </Box>
-          </Fragment>
-          <Fragment>
-            <Box width={['100%', '100%', '40%']} px={6} mb={2}>
-              <Field
-                name="confirmPassword"
-                component={TextFieldWithLabel}
-                label="Confirm new password:"
-                type="password"
-                validate={[required]}
-              />
-            </Box>
-          </Fragment>
+          <Box width={['100%', '100%', '50%']} px={6} mb={4}>
+            <Field
+              name="oldPassword"
+              component={TextFieldWithLabel}
+              label="Old Password:"
+              type="password"
+              validate={[required]}
+            />
+          </Box>
+          <Box width={['100%', '100%', '50%']} px={6} mb={4}>
+            <Field
+              name="newPassword"
+              component={TextFieldWithLabel}
+              label="New password:"
+              type="password"
+              validate={[required]}
+            />
+          </Box>
+          <Box width={['100%', '100%', '50%']} px={6} mb={2}>
+            <Field
+              name="confirmPassword"
+              component={TextFieldWithLabel}
+              label="Confirm new password:"
+              type="password"
+              validate={[required]}
+            />
+          </Box>
         </Flex>
         <Flex justifyContent="start">
-          <StyledBox mb={9}>
+          <StyledBox mb={9} width={['100%', '100%', '50%']}>
             {!submitFailed && (
               <ButtonBase
+                display={'inline-block'}
                 type="submit"
                 variant="primary"
                 size="medium"
@@ -160,6 +155,7 @@ export class FormChangePassword extends Component {
 
             {submitFailed && (
               <ButtonWithImageError
+                display={'inline-block'}
                 type="submit"
                 variant="error"
                 size="medium"

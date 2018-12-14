@@ -8,24 +8,19 @@ type User {
   gender: String
   email: String
   phone: String
-  masterPassword: String
+  masterpassword: String
   password: String
-  retypePassword: String
+  confirmPassword: String
   role: String
   token: String
 }
 
-type Document {
-  id: String,
-  status: String,
-  date: String,
-  file: String,
-}
-
 type UserDocument {
   id: String
-  user: User
-  document: [Document]
+  client: User
+  owner: User
+  date: String
+  status: String
 }
 
 type Notification {
@@ -37,15 +32,15 @@ type Notification {
 }
 
 type Query {
-  userList: [User],
-  userItem(id: String): User,
-  userEmailItem(email: String): User,
-  userDocumentList(id: String): [UserDocument],
-  notificationList(clientid: String, bankid: String): [Notification]
+  userlist: [User],
+  useritem(id: String): User,
+  useremailitem(email: String): User,
+  userdocumentlist(bankid: String, excludeowner: String): [UserDocument],
+  notificationlist(clientid: String, bankid: String): [Notification]
 }
 type Mutation {
 
-  createUser(
+  createuser(
     bankName: String,
     firstName: String,
     lastName: String,
@@ -54,13 +49,13 @@ type Mutation {
     gender: String,
     email: String!,
     phone: String,
-    masterPassword: String,
+    masterpassword: String,
     password: String!,
-    retypePassword: String!,
+    confirmPassword: String!,
     role: String!
   ): User,
 
-  updateUser(
+  updateuser(
     id: String,
     bankName: String,
     firstName: String,
@@ -71,12 +66,15 @@ type Mutation {
     email: String,
     phone: String,
     password: String,
-    retypePassword: String,
+    confirmPassword: String,
     role: String
   ): User,
 
-  userResetPassword(email: String!): User,
-  userPasswordRecovery(token: String!,password: String!, retypePassword: String): User,
-  createNotification(clientid: String, bankid: String): Notification
-  updateNotification(id: String, status: String): Notification,
+  resetpass(email: String!): User,
+  recoverypass(token: String!,password: String!, confirmPassword: String): User,
+  createnotification(clientid: String, bankid: String, date: String, status: String): Notification
+  updatenotification(id: String!, status: String!): Notification,
+
+  createuserdocument(clientid: String!): UserDocument
+  updateuserdocument(clientid: String!, bankid: String!): UserDocument
 }

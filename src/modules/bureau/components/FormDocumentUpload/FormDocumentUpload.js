@@ -44,9 +44,14 @@ export class FormDocumentUpload extends Component {
     };
     this.setState(() => ({isLoading: true, reject: null}));
 
-    fetch('/doc/upload', options).then(response => {
+    fetch('/upload/excel', options).then(response => {
       console.log(response);
-      this.setState(() => ({isLoading: false, submitSucceeded: true}));
+      if(response.status < 300){
+        this.setState(() => ({isLoading: false, submitSucceeded: true}));
+        return true;
+      } else {
+        throw response;
+      }
 
     }).catch(error => {
       this.setState(() => ({isLoading: false, submitFailed: true}));
@@ -76,7 +81,7 @@ export class FormDocumentUpload extends Component {
         />
       }
       {
-        submitSucceeded  && <WrapperMessage reject={submitFailed}>
+        (submitSucceeded || submitFailed) && <WrapperMessage reject={submitFailed}>
           <MessageContentStyled>
             {
               submitSucceeded &&

@@ -1,0 +1,18 @@
+query($bankid: String!){
+  userdocumentlist(bankid: $bankid){
+    id
+    client{
+      id
+      firstName
+      lastName
+      patronymic
+      birthdate
+    }
+    owner{
+      id
+      bankName
+    }
+    date
+    status
+  }
+}

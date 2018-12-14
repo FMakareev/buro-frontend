@@ -9,13 +9,13 @@ import {SpeedingWheel} from "../../../../components/SmallPreloader/SmallPreloade
 /**
  * @desc Кнопка для вызова мутации создания уведомления к пользователю
  * */
-export const CreateNotificationButton = ({children, id}) => {
+export const CreateNotificationButton = ({children, clientid, bankid}) => {
   return (<Mutation mutation={CreateNotificationMutation}>
-      {(createNotification, {called, date, error, loading}) => {
-        console.log('Mutation: called', called);
-        console.log('Mutation: date', date);
-        console.log('Mutation: loading', loading);
-        console.log('Mutation: error', error);
+      {(createnotification, {called, date, error, loading}) => {
+        // console.log('Mutation: called', called);
+        // console.log('Mutation: date', date);
+        // console.log('Mutation: loading', loading);
+        // console.log('Mutation: error', error);
         /** появляется если called - запрос был вызван, !loading - загрузка не идет, !error - нет ошибок*/
         if (called && !loading && !error) {
           return (<Text fontSize={6} color={'color1'}>
@@ -26,7 +26,7 @@ export const CreateNotificationButton = ({children, id}) => {
           <ButtonWithImage
             disabled={loading}
             onClick={() => {
-              createNotification({variables: {id}})
+              createnotification({variables: {clientid,bankid}})
             }}
             display={"inline-block"}
             iconRight={
@@ -48,6 +48,7 @@ export const CreateNotificationButton = ({children, id}) => {
 };
 CreateNotificationButton.propTypes = {
   /** id банка */
-  id: PropTypes.string.isRequired,
+  clientid: PropTypes.string.isRequired,
+  bankid: PropTypes.string.isRequired,
 };
 export default CreateNotificationButton;

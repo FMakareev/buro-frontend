@@ -321,7 +321,7 @@ exports[`PasswordRecovery: рендер с параметрами строки 1
                 <input
                   aria-required={false}
                   className="sc-1tlq1yi-2 fRLrXW wsrc07-0 kZIRDH"
-                  name="retypePassword"
+                  name="confirmPassword"
                   onBlur={[Function]}
                   onChange={[Function]}
                   onDragStart={[Function]}

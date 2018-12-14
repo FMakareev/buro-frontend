@@ -30,7 +30,7 @@ export const userInit = () => dispatch => {
         if (user) {
           /** TODO : Заменить mocksClient на обычный client и убрать setTimeout */
           // setTimeout(()=>{
-            client.query({
+          client.query({
               query: UserEmailItemQuery,
               variables: {
                 email: user.email,
@@ -112,7 +112,7 @@ export const userUpdate = () => dispatch => {
         if (user) {
           /** TODO : Заменить mocksClient на обычный client и убрать setTimeout */
          // setTimeout(()=>{
-           client.query({
+          client.query({
              query: UserEmailItemQuery,
              variables: {
                email: user.email,

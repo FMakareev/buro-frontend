@@ -29,21 +29,21 @@ export class UpdateNotificationButtons extends Component {
     const { id } = this.props;
     return (
       <Mutation mutation={UpdateNotificationMutation}>
-        {(updateNotification, { called, data, error, loading }) => {
+        {(updatenotification, { called, data, error, loading }) => {
           console.log('Mutation: called', called);
           console.log('Mutation: data', data);
           console.log('Mutation: loading', loading);
           console.log('Mutation: error', error);
           /** появляется если called - запрос был вызван, !loading - загрузка не идет, !error - нет ошибок */
           if (called && !loading && !error && data) {
-            if (data.updateNotification.status === STATUS_APPROVAL) {
+            if (data.updatenotification.status === STATUS_APPROVAL) {
               return (
                 <Text fontSize={6} color="color1">
                   Approved
                 </Text>
               );
             }
-            if (data.updateNotification.status === STATUS_NOT_APPROVAL) {
+            if (data.updatenotification.status === STATUS_NOT_APPROVAL) {
               return (
                 <Text fontSize={6} color="color1">
                   Not approved
@@ -56,7 +56,7 @@ export class UpdateNotificationButtons extends Component {
               <ButtonWithImage
                 disabled={loading}
                 onClick={() => {
-                  updateNotification({ variables: { id, status: STATUS_APPROVAL } });
+                  updatenotification({ variables: { id, status: STATUS_APPROVAL } });
                   this.setState({ status: STATUS_APPROVAL });
                 }}
                 iconRight={
@@ -78,7 +78,7 @@ export class UpdateNotificationButtons extends Component {
               <ButtonWithImage
                 disabled={loading}
                 onClick={() => {
-                  updateNotification({ variables: { id, status: STATUS_NOT_APPROVAL } });
+                  updatenotification({ variables: { id, status: STATUS_NOT_APPROVAL } });
                   this.setState({ status: STATUS_NOT_APPROVAL });
                 }}
                 iconRight={

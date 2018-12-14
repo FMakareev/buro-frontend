@@ -1,16 +1,9 @@
-query($id: String){
-  userdocumentlist(id: $id){
+query{
+  userlist{
     id
-    user{
-      id
-      firstName
-      lastName
-      patronymic
-      birthdate
-    }
-    document{
-      id
-      status
-    }
+    firstName
+    lastName
+    patronymic
+    birthdate
   }
 }
