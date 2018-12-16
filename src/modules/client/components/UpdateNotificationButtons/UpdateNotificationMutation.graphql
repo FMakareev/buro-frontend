@@ -1,9 +1,7 @@
 mutation($id: String!, $status: String!){
   updatenotification(id: $id, status: $status) {
     notification{
-      id
       status
-      date
     }
   }
 }
