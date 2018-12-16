@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { ApolloProvider } from 'react-apollo';
 import { MockedProvider } from 'react-apollo/test-utils';
@@ -8,8 +8,6 @@ import { MockedProvider } from 'react-apollo/test-utils';
 import wait from 'waait';
 import faker from 'faker';
 import { MemoryRouter, Redirect } from 'react-router-dom';
-import { Provider as ProviderRedux } from 'react-redux';
-import configureStore from 'redux-mock-store';
 import mocksClient from '../../../../apollo/mocksClient';
 
 import { CreateNotificationButton } from './CreateNotificationButton';
@@ -50,33 +48,35 @@ test('CreateNotificationButton: вызов запроса', () => {
 });
 
 test('CreateNotificationButton: запрос завершен', async () => {
-  const mocks = [
-    {
-      request: {
-        query: CreateNotificationMutation,
-        variables: {
-          bankid: faker.random.uuid(),
-          clientid: faker.random.uuid(),
-        },
-      },
-      result: {
-        data: [{ status: 'requested' }],
-      },
-    },
-  ];
 
   const props = {
     clientid: '7865f87e-9ed8-4bad-aa51-771a0b2ed197',
     bankid: 'ee850dd9-db5a-4d67-a22f-2a516e7d44e7',
   };
 
+  const mocks = [
+    {
+      request: {
+        query: CreateNotificationMutation,
+        variables: props,
+      },
+      result: {
+        data: {
+          createnotification:{
+            notification:{
+              status: 'resolve'
+            }
+          }
+        },
+      },
+    },
+  ];
+
   const output = renderer.create(
     <StyledThemeProvider>
-      <MemoryRouter>
-        <MockedProvider mocks={mocks} addTypename={false}>
-          <CreateNotificationButton {...props}>Request</CreateNotificationButton>
-        </MockedProvider>
-      </MemoryRouter>
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <CreateNotificationButton {...props} />
+      </MockedProvider>
     </StyledThemeProvider>,
   );
 
@@ -86,7 +86,8 @@ test('CreateNotificationButton: запрос завершен', async () => {
   await wait(1);
 
   const tree = output.toJSON();
-  expect(tree).toMatchSnapshot();
+  console.log(tree);
+  // expect(tree).toMatchSnapshot();
 });
 
 // test('CreateNotificationButton: запрос завершен ошибкой', async () => {
