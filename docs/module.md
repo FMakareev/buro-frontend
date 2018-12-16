@@ -1,14 +1,13 @@
-# Модули в проекте
+# Project modules
 
-Модули проекта лежат в дирректории `src/modules/`.
+Project modules are available in the directory `src/modules/`.
 
-Структура модуля:
+### Module structure:
 
 * {moduleName}
   * [view](#view)
-        * {pageName}
-            * index.js
-  * [reducers](#reducers)
+    * {pageName}
+      * index.js
   * [index.js](#indexjs) 
   * [package.json](#packagejson)
   * [routes.js](#routesjs)
@@ -73,7 +72,7 @@ Required for each module file, without it the module will not be included in the
   "name": "moduleName",
   "version": "0.0.1",
   "private": true,
-  "main": "./index.js",
+  "main": index.js,
   "translate": [
     {
       "ISO Code": "en",
@@ -87,7 +86,7 @@ Required for each module file, without it the module will not be included in the
 
 ### routes.js
 
-Список маршрутов модуля. обязательно должен быть хотябы один маршрут.
+List of routes module. must have at least one route.
 
 * exact - [react-router](https://reacttraining.com/react-router/web/api/Route/exact-bool)
 * title - the title of the page will be presented in the title tag in the head, you can specify the key from the dictionary
@@ -105,7 +104,3 @@ export const routes = [
     },
 ]
 ```
-
-### translate.xml
-
-

@@ -69,8 +69,6 @@ export const browserConfigGenerator = () => {
 
       new webpack.HotModuleReplacementPlugin(),
 
-      // ...(process.env.NODE_ENV === 'development' &&  process.env.ANALYSE ? [] : [new BundleAnalyzerPlugin()]),
-
       new ManifestPlugin({
         fileName: 'asset-manifest.json',
       }),
@@ -78,7 +76,9 @@ export const browserConfigGenerator = () => {
       new webpack.ProvidePlugin({
         $: "jquery",
         jQuery: "jquery"
-      })
+      }),
+
+      ...(process.env.ANALYSE ? [new BundleAnalyzerPlugin()] : []),
     ],
     resolve: {
       modules: ['node_modules'],
