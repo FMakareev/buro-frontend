@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Mutation } from 'react-apollo';
-import UpdateNotificationMutation from './UpdateNotificationMutation.graphql';
 import { ButtonWithImage } from '@lib/ui/ButtonWithImage/ButtonWithImage';
 import { Text } from '@lib/ui/Text/Text';
 import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
+import UpdateNotificationMutation from './UpdateNotificationMutation.graphql';
 import { STATUS_NOT_APPROVAL, STATUS_APPROVAL, STATUS_PENDING } from '../../../../shared/statuses';
 
 /**
@@ -36,14 +36,14 @@ export class UpdateNotificationButtons extends Component {
           console.log('Mutation: error', error);
           /** появляется если called - запрос был вызван, !loading - загрузка не идет, !error - нет ошибок */
           if (called && !loading && !error && data) {
-            if (data.updatenotification.status === STATUS_APPROVAL) {
+            if (data.updatenotification.notification.status === STATUS_APPROVAL) {
               return (
                 <Text fontSize={6} color="color1">
                   Approved
                 </Text>
               );
             }
-            if (data.updatenotification.status === STATUS_NOT_APPROVAL) {
+            if (data.updatenotification.notification.status === STATUS_NOT_APPROVAL) {
               return (
                 <Text fontSize={6} color="color1">
                   Not approved
