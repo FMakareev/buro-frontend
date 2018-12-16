@@ -1,22 +1,19 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { mount } from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
 
 import { ApolloProvider } from 'react-apollo';
 import { MockedProvider } from 'react-apollo/test-utils';
 
 import wait from 'waait';
-import faker from 'faker';
-import { MemoryRouter, Redirect } from 'react-router-dom';
-import { __await } from 'tslib';
+
+import { StyledThemeProvider } from '../../../../styles/StyledThemeProvider';
 import mocksClient from '../../../../apollo/mocksClient';
 
 import { UpdateNotificationButtons } from './UpdateNotificationButtons';
-
 import UpdateNotificationMutation from './UpdateNotificationMutation.graphql';
-import { STATUS_NOT_APPROVAL, STATUS_APPROVAL } from '../../../../shared/statuses';
 
-import { StyledThemeProvider } from '../../../../styles/StyledThemeProvider';
+import { STATUS_NOT_APPROVAL, STATUS_APPROVAL } from '../../../../shared/statuses';
 
 test('UpdateNotificationButtons: обычное состояние', () => {
   const output = renderer.create(
@@ -35,6 +32,7 @@ test('UpdateNotificationButtons: обычное состояние', () => {
 test('UpdateNotificationButtons: вызов запроса подтверждения', async () => {
   const props = {
     id: '5c110dda9add292473c000c6',
+    status: STATUS_APPROVAL,
   };
 
   const mocks = [
@@ -47,7 +45,7 @@ test('UpdateNotificationButtons: вызов запроса подтвержде�
         data: {
           updatenotification: {
             notification: {
-              status: 'resolve',
+              status: STATUS_APPROVAL,
             },
           },
         },
@@ -74,6 +72,7 @@ test('UpdateNotificationButtons: вызов запроса подтвержде�
 test('UpdateNotificationButtons: вызов запроса запрета', async () => {
   const props = {
     id: '5c110dda9adb492473c000c6',
+    status: STATUS_NOT_APPROVAL,
   };
 
   const mocks = [
@@ -86,7 +85,7 @@ test('UpdateNotificationButtons: вызов запроса запрета', asyn
         data: {
           updatenotification: {
             notification: {
-              status: 'reject',
+              status: STATUS_NOT_APPROVAL,
             },
           },
         },
@@ -111,7 +110,7 @@ test('UpdateNotificationButtons: вызов запроса запрета', asyn
 });
 
 test('UpdateNotificationButtons: вызов запроса подтверждения завершен', async () => {
-  const props = { id: '5c110dda9adb492473c414c6', status: 'resolve' };
+  const props = { id: '5c110dda9adb492473c414c6', status: STATUS_APPROVAL };
 
   const mocks = [
     {
@@ -123,7 +122,7 @@ test('UpdateNotificationButtons: вызов запроса подтвержде�
         data: {
           updatenotification: {
             notification: {
-              status: 'resolve',
+              status: STATUS_APPROVAL,
             },
           },
         },
@@ -149,7 +148,7 @@ test('UpdateNotificationButtons: вызов запроса подтвержде�
 });
 
 test('UpdateNotificationButtons: вызов запроса запрета завершен', async () => {
-  const props = { id: '5c110dda9adb492473c500c6', status: 'reject' };
+  const props = { id: '5c110dda9adb492473c500c6', status: STATUS_NOT_APPROVAL };
 
   const mocks = [
     {
@@ -161,7 +160,7 @@ test('UpdateNotificationButtons: вызов запроса запрета зав
         data: {
           updatenotification: {
             notification: {
-              status: 'reject',
+              status: STATUS_NOT_APPROVAL,
             },
           },
         },
@@ -188,7 +187,7 @@ test('UpdateNotificationButtons: вызов запроса запрета зав
 });
 
 test('UpdateNotificationButtons: вызов запроса подтверждения с ошибкой', async () => {
-  const props = { id: '5c110dda9adb492473c414c6', status: 'resolve' };
+  const props = { id: '5c110dda9adb492473c414c6', status: STATUS_APPROVAL };
 
   const mocks = [
     {
@@ -218,7 +217,7 @@ test('UpdateNotificationButtons: вызов запроса подтвержде�
 });
 
 test('UpdateNotificationButtons: вызов запроса запрета с ошибкой', async () => {
-  const props = { id: '5c110dda9adb492473c500c6', status: 'reject' };
+  const props = { id: '5c110dda9adb492473c500c6', status: STATUS_NOT_APPROVAL };
 
   const mocks = [
     {
