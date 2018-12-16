@@ -5,9 +5,8 @@ import schema from './schema.graphqls';
 import { userdocumentlist } from './graphql/query/userdocumentlist';
 import { userlist } from './graphql/query/userList';
 import { useritem } from './graphql/query/useritem';
-import { notificationlist } from './graphql/query/notificationlist';
 import { ROLE_BANK, ROLE_BUREAU, ROLE_CLIENT } from '../shared/roles';
-import { notificationItem } from './graphql/query/notificationItem';
+import { notificationitem } from './graphql/query/notificationitem';
 import { STATUS_PENDING } from '../shared/statuses';
 
 
@@ -103,7 +102,7 @@ const defaultMocks = {
       new Promise((resolve, reject) => {
         setTimeout(() => {
           faker.random.number(1)
-            ? resolve({ ...notificationItem(), status: STATUS_PENDING })
+            ? resolve({ ...notificationitem(), status: STATUS_PENDING })
             : reject(
                 JSON.stringify({
                   errors: [
@@ -121,7 +120,7 @@ const defaultMocks = {
         setTimeout(
           () =>
             faker.random.number(1)
-              ? resolve({ ...notificationItem(), status: props.status })
+              ? resolve({ ...notificationitem(), status: props.status })
               : reject(
                   JSON.stringify({
                     data: {
