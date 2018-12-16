@@ -11,11 +11,7 @@ import {SpeedingWheel} from "@lib/ui/SmallPreloader/SmallPreloader";
  * */
 export const CreateNotificationButton = ({children, clientid, bankid}) => {
   return (<Mutation mutation={CreateNotificationMutation}>
-      {(createnotification, {called, date, error, loading}) => {
-        // console.log('Mutation: called', called);
-        // console.log('Mutation: date', date);
-        // console.log('Mutation: loading', loading);
-        // console.log('Mutation: error', error);
+      {(mutation, {called, data, error, loading }) => {
         /** появляется если called - запрос был вызван, !loading - загрузка не идет, !error - нет ошибок*/
         if (called && !loading && !error) {
           return (<Text fontSize={6} color={'color1'}>
@@ -25,9 +21,7 @@ export const CreateNotificationButton = ({children, clientid, bankid}) => {
         return (
           <ButtonWithImage
             disabled={loading}
-            onClick={() => {
-              createnotification({variables: {clientid,bankid}})
-            }}
+            onClick={() => mutation({variables: {clientid, bankid}})}
             display={"inline-block"}
             iconRight={
               loading ? <Text fontSize={5} lineHeight={0} fill="inherit">
