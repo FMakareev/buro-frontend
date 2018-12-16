@@ -4,6 +4,8 @@ exports[`CreateNotificationButton: запрос завершен 1`] = `"<div cl
 
 exports[`CreateNotificationButton: запрос завершен ошибкой 1`] = `"<div class=\\"sc-bxivhb dUiVDW\\"><div font-size=\\"6\\" color=\\"color1\\" class=\\"sc-1jxwge6-0 sc-18ch56c-0 hxjSXI\\">Pending approval</div></div>"`;
 
+exports[`CreateNotificationButton: запрос завершен ошибкой 2`] = `"<div class=\\"sc-bxivhb dUiVDW\\"><div font-size=\\"6\\" color=\\"color1\\" class=\\"sc-1jxwge6-0 sc-18ch56c-0 hxjSXI\\">Pending approval</div></div>"`;
+
 exports[`CreateNotificationButton: обычное состояние 1`] = `
 <div
   className="sc-bxivhb dUiVDW"

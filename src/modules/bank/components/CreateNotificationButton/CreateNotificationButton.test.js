@@ -53,57 +53,78 @@ test('CreateNotificationButton: вызов запроса', () => {
 test('CreateNotificationButton: запрос завершен', async () => {
   const mocks = [
     {
-      request: { CreateNotificationMutation },
-      result: { data: { hello: 'world' } },
+      request: {
+        CreateNotificationMutation,
+        variables: {
+          bankid: faker.random.uuid(),
+          // clientid: faker.random.uuid(),
+        },
+      },
+      result: {
+        data: [{ status: 'requested' }],
+      },
     },
   ];
 
   const props = { id: faker.random.uuid() };
 
-  const output = mount(
+  const output = renderer.create(
     <StyledThemeProvider>
-      <MockedProvider mocks={mocks}>
-        <MemoryRouter>
+      <MemoryRouter>
+        <MockedProvider mocks={mocks}>
           <ApolloProvider client={mocksClient}>
             <CreateNotificationButton {...props}>Request</CreateNotificationButton>
           </ApolloProvider>
-        </MemoryRouter>
-      </MockedProvider>
+        </MockedProvider>
+      </MemoryRouter>
     </StyledThemeProvider>,
   );
 
-  output.find('button').simulate('click');
+  const button = output.root.findByType('button');
+  button.props.onClick();
 
   await wait(1);
 
-  expect(output.html()).toMatchSnapshot();
+  const tree = output.toJSON();
+  expect(tree).toMatchSnapshot();
 });
 
 test('CreateNotificationButton: запрос завершен ошибкой', async () => {
   const mocks = [
     {
-      request: { CreateNotificationMutation },
-      error: new Error('Something went wrong'),
+      request: {
+        CreateNotificationMutation,
+        variables: {
+          bankid: faker.random.uuid(),
+          // clientid: faker.random.uuid(),
+        },
+      },
+      error: new Error('Network Error!'),
+      result: {
+        errors: [{ message: 'GraphQLError!' }],
+      },
     },
   ];
 
   const props = { id: faker.random.uuid() };
 
-  const output = mount(
+  const output = renderer.create(
     <StyledThemeProvider>
-      <MockedProvider mocks={mocks}>
-        <MemoryRouter>
+      <MemoryRouter>
+        <MockedProvider mocks={mocks} addTypename>
           <ApolloProvider client={mocksClient}>
             <CreateNotificationButton {...props}>Request</CreateNotificationButton>
           </ApolloProvider>
-        </MemoryRouter>
-      </MockedProvider>
+        </MockedProvider>
+      </MemoryRouter>
     </StyledThemeProvider>,
   );
 
-  output.find('button').simulate('click');
+  const button = output.root.findByType('button');
+  button.props.onClick();
 
   await wait(1);
 
-  expect(output.html()).toMatchSnapshot();
+  const tree = output.toJSON();
+  expect(tree).toMatchSnapshot();
 });
