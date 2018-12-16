@@ -72,9 +72,9 @@ type Mutation {
 
   resetpass(email: String!): User,
   recoverypass(token: String!,password: String!, confirmPassword: String): User,
-  createnotification(clientid: String, bankid: String, date: String, status: String): Notification
+  createnotification(client: String, bank: String, status: String): Notification
   updatenotification(id: String!, status: String!): Notification,
 
-  createuserdocument(clientid: String!): UserDocument
-  updateuserdocument(clientid: String!, bankid: String!): UserDocument
+  createuserdocument(client: String!): UserDocument
+  updateuserdocument(client: String!, bank: String!): UserDocument
 }

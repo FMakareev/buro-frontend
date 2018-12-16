@@ -1,27 +1,7 @@
-# mutation($clientid: String, $bankid: String){
-#   createnotification(clientid: $clientid, bankid:$bankid) {
-#     id
-#     date
-#     status
-#     bank{
-#       id
-#       bankName
-#       role
-#     }
-#     client{
-#       id
-#       firstName
-#       lastName
-#       patronymic
-#       role
-#     }
-#   }
-# }
-
-mutation($clientid: String, $bankid: String){
+mutation ($clientid: String, $bankid: String){
   createnotification(client: $clientid, bank:$bankid) {
-  notification {
-    status
-  }
+    notification {
+      status
+    }
   }
 }
