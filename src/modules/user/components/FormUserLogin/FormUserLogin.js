@@ -7,28 +7,29 @@ import { withApollo } from 'react-apollo';
 
 import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
-import { TextFieldWithIcon } from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
+import { TextFieldWithIcon } from '@lib/ui/TextFieldWithIcon/TextFieldWithIcon';
 
-import { Box } from '../../../../components/Box/Box';
-import { Flex } from '../../../../components/Flex/Flex';
-import { HelpText } from '../HelpText/HelpText';
-import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
+import {Box} from '@lib/ui/Box/Box';
+import { Flex } from '@lib/ui/Flex/Flex';
 
-import { SvgArrowRight } from '../../../../components/Icons/SvgArrowRight';
-import { SvgEmailIcon } from '../../../../components/Icons/SvgEmailIcon';
-import { SvgPasswordIcon } from '../../../../components/Icons/SvgPasswordIcon';
-import { SvgReloadIcon } from '../../../../components/Icons/SvgReloadIcon';
+import { SvgArrowRight } from '@lib/ui/Icons/SvgArrowRight';
+import { SvgEmailIcon } from '@lib/ui/Icons/SvgEmailIcon';
+import { SvgPasswordIcon } from '@lib/ui/Icons/SvgPasswordIcon';
+import { SvgReloadIcon } from '@lib/ui/Icons/SvgReloadIcon';
 
-import { Text } from '../../../../components/Text/Text';
+import { Text } from '@lib/ui/Text/Text';
 
-import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
-import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
+import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
+import { PreloaderWrapper } from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
 
-import { required } from '../../../../utils/validation/required';
-import { isEmail } from '../../../../utils/validation/isEmail';
-import UserEmailItemQuery from './UserEmailItemQuery.graphql';
-import { jsonToUrlEncoded } from '../../../../utils/jsontools/jsonToUrlEncoded';
+import { required } from '@lib/utils/validation/required';
+import { isEmail } from '@lib/utils/validation/isEmail';
+import { jsonToUrlEncoded } from '@lib/utils/jsontools/jsonToUrlEncoded';
+
 import { USER_ADD } from '../../../../store/reducers/user/actionTypes';
+import { HelpText } from '../HelpText/HelpText';
+import UserEmailItemQuery from './UserEmailItemQuery.graphql';
+import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
 
 export class FormUserLogin extends Component {
   static propTypes = {
@@ -205,7 +206,7 @@ export class FormUserLogin extends Component {
                 Forgot your <Link to="/password-reset">password</Link>?
               </HelpText>
               <HelpText>
-                <Link to="registration">Create at account</Link>
+                <Link to="registration">Create  at account</Link>
               </HelpText>
             </Flex>
           </Box>
