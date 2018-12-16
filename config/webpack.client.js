@@ -81,7 +81,16 @@ export const browserConfigGenerator = () => {
       })
     ],
     resolve: {
-      modules: ['node_modules']
+      modules: ['node_modules'],
+      /** @link https://webpack.js.org/configuration/resolve/#resolve-alias */
+      alias: {
+        /** маска пути для глобальных компонентов проекта */
+        '@lib/ui': path.resolve('src/components/'),
+        /** маска пути для стилей проекта */
+        '@lib/styles': path.resolve('src/styles/'),
+        /** маска пути для утилит проекта проекта */
+        '@lib/utils': path.resolve('src/utils/'),
+      },
     },
     stats: {
       cached: false,
