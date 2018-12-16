@@ -3,7 +3,7 @@ import { GraphQLError } from 'graphql';
 import setupClient from './helpers/apolloClientMock';
 import schema from './schema.graphqls';
 import { userdocumentlist } from './graphql/query/userdocumentlist';
-import { userlist } from './graphql/query/userList';
+import { userlist } from './graphql/query/userlist';
 import { useritem } from './graphql/query/useritem';
 import { ROLE_BANK, ROLE_BUREAU, ROLE_CLIENT } from '../shared/roles';
 import { notificationitem } from './graphql/query/notificationitem';
