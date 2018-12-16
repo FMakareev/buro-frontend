@@ -16,6 +16,7 @@ module.exports = {
     "^@lib/ui(.*)$":  "<rootDir>/src/components$1",
     "^@lib/styles(.*)$":  "<rootDir>/src/styles$1",
     "^@lib/utils(.*)$":  "<rootDir>/src/utils$1",
+    "^@lib/shared(.*)$":  "<rootDir>/src/shared$1",
   },
   "globals": {
     "ENDPOINT_CLIENT": 'http://localhost:5001',

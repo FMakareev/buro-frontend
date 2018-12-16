@@ -12,7 +12,7 @@ import mocksClient from '../../../../apollo/mocksClient';
 
 import { NotificationsPage } from './index';
 import { StyledThemeProvider } from '../../../../styles/StyledThemeProvider';
-import { ROLE_BANK } from '../../../../shared/roles';
+import { ROLE_BANK } from '@lib/shared/roles';
 import NotificationListQuery from './NotificationListQuery.graphql';
 
 const mockStore = configureStore();

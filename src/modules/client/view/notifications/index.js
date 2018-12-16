@@ -7,15 +7,16 @@ import { Container } from '@lib/ui/Container/Container';
 import { Text } from '@lib/ui/Text/Text';
 import { ReactTableStyled } from '@lib/ui/ReactTableStyled/ReactTableStyled';
 import { CheckAuthorization } from '@lib/ui/CheckAuthorization/CheckAuthorization';
-import { ROLE_CLIENT } from '../../../../shared/roles';
+import { ROLE_CLIENT } from '@lib/shared/roles';
 
-import { STATUS_PENDING, STATUS_APPROVAL } from '../../../../shared/statuses';
+import { STATUS_PENDING, STATUS_APPROVAL } from '@lib/shared/statuses';
 import NotificationListQuery from './NotificationListQuery.graphql';
 import { getUserFromStore } from '../../../../store/reducers/user/selectors';
 import { Box } from '@lib/ui/Box/Box';
 
 import { UpdateNotificationButtons } from '../../components/UpdateNotificationButtons/UpdateNotificationButtons';
 
+const has = Object.prototype.hasOwnProperty;
 const columns = () => [
   {
     id: 'Bank',
@@ -85,14 +86,9 @@ export class ClientsNotificationsPage extends Component {
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
-                  // data={
-                  //   loading ? [] :
-                  //     Object.hasOwnProperty.call(data, 'notificationlist') &&
-                  //     Array.isArray(data.notificationlist) ?
-                  //       data.notificationlist :
-                  //       []
-                  // }
-                  data={loading ? [] : data && data.notificationlist}
+                  data={loading ? [] : data && has.call(data, 'notificationlist') ? data.notificationlist : []}
+                  loadingText={loading ? 'Loading...' : error ? 'Error...' : 'Loading...'}
+                  loading={loading}
                   error={error}
                   filterable
                   columns={columns()}

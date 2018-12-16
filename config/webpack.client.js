@@ -8,7 +8,7 @@ import {fileLoaderConfig} from './fileLoaderConfig';
 import {graphqlLoaderConfig} from './graphqlLoaderConfig';
 import {styleLoaderConfig} from './styleLoaderConfig';
 import {scriptsLoaderConfig} from './scriptsLoaderConfig';
-
+import webpackResolve from '../webpack.config';
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 
@@ -80,18 +80,7 @@ export const browserConfigGenerator = () => {
 
       ...(process.env.ANALYSE ? [new BundleAnalyzerPlugin()] : []),
     ],
-    resolve: {
-      modules: ['node_modules'],
-      /** @link https://webpack.js.org/configuration/resolve/#resolve-alias */
-      alias: {
-        /** маска пути для глобальных компонентов проекта */
-        '@lib/ui': path.resolve('src/components/'),
-        /** маска пути для стилей проекта */
-        '@lib/styles': path.resolve('src/styles/'),
-        /** маска пути для утилит проекта проекта */
-        '@lib/utils': path.resolve('src/utils/'),
-      },
-    },
+    ...webpackResolve,
     stats: {
       cached: false,
       cachedAssets: false,

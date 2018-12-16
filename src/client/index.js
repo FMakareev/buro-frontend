@@ -12,7 +12,6 @@ import { ConfigRouter } from '../routes';
 import { Store } from '../store';
 import { StyledThemeProvider } from '../styles/StyledThemeProvider';
 import { GlobalStyle } from '../styles/GlobalStyle';
-// import mocksClient from "../apollo/mocksClient";
 
 /**
  * @description https://github.com/ctrlplusb/react-async-component#server-side-rendering

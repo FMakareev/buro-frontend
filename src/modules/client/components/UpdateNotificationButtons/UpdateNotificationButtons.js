@@ -5,7 +5,7 @@ import UpdateNotificationMutation from './UpdateNotificationMutation.graphql';
 import { ButtonWithImage } from '@lib/ui/ButtonWithImage/ButtonWithImage';
 import { Text } from '@lib/ui/Text/Text';
 import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
-import { STATUS_NOT_APPROVAL, STATUS_APPROVAL, STATUS_PENDING } from '../../../../shared/statuses';
+import { STATUS_NOT_APPROVAL, STATUS_APPROVAL, STATUS_PENDING } from '@lib/shared/statuses';
 
 /**
  * @desc Кнопки для вызова мутации ответов пользователя

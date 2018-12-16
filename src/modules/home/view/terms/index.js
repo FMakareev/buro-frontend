@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {EXCEL_DOWNLOAD} from "@lib/shared/endpoints";
+import {Text} from "@lib/ui/Text/Text";
 
 
 export class TermsPage extends Component {
@@ -19,6 +21,9 @@ export class TermsPage extends Component {
     return (
       <div>
         TermsPage
+        <a href={EXCEL_DOWNLOAD} download>
+          <Text>Upload</Text>
+        </a>
       </div>
     );
   }

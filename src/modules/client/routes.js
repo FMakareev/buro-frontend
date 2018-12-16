@@ -1,4 +1,4 @@
-import { LAYOUT_APP } from '../../shared/layout';
+import { LAYOUT_APP } from '@lib/shared/layout';
 
 export const routes = [
   {

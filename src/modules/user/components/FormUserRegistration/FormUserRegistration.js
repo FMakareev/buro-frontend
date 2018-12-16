@@ -30,7 +30,7 @@ import isEmail from '../../../../utils/validation/isEmail';
 import minLength from '../../../../utils/validation/minLength';
 
 import CreateUserMutation from './CreateUserMutation.graphql';
-import {ROLE_BANK, ROLE_CLIENT} from '../../../../shared/roles';
+import {ROLE_BANK, ROLE_CLIENT} from '@lib/shared/roles';
 import {SvgBank} from '@lib/ui/Icons/SvgBank';
 
 const minLength8 = minLength(8);

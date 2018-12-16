@@ -9,11 +9,12 @@ import {ReactTableStyled} from '@lib/ui/ReactTableStyled/ReactTableStyled';
 import UserDocumentListQuery from './UserDocumentListQuery.graphql';
 
 import {CheckAuthorization} from '@lib/ui/CheckAuthorization/CheckAuthorization';
-import {ROLE_BANK} from '../../../../shared/roles';
+import {ROLE_BANK} from '@lib/shared/roles';
 import {getUserFromStore} from '../../../../store/reducers/user/selectors';
 import {CreateNotificationButton} from '../../components/CreateNotificationButton/CreateNotificationButton';
 import {Box} from '@lib/ui/Box/Box';
-import {STATUS_NEED_UPDATE} from "../../../../shared/statuses";
+import {STATUS_NEED_UPDATE} from "@lib/shared/statuses";
+import {EXCEL_DOWNLOAD} from "@lib/shared/endpoints";
 
 const has = Object.prototype.hasOwnProperty;
 
@@ -23,7 +24,8 @@ const columns = ({onFiltered}) => [
     id: 'Client',
     Header: 'Client',
     Cell: props => (
-      <Text onClick={()=>onFiltered({id:'Client',value:props.value})} fontFamily="medium" fontSize={6} lineHeight={9} color="color1">
+      <Text onClick={() => onFiltered({id: 'Client', value: props.value})} fontFamily="medium" fontSize={6}
+            lineHeight={9} color="color1">
         {props.value}
       </Text>
     ),
@@ -75,7 +77,9 @@ const columns = ({onFiltered}) => [
           </CreateNotificationButton>;
         } else {
           /** TODO: тут будет ссылка или запрос на скачивание документа */
-          return <Text>Upload</Text>
+          return (<a href={EXCEL_DOWNLOAD +`/${props.original.id}`} download>
+            <Text>Upload</Text>
+          </a>)
         }
       } catch (error) {
         console.log(error);
@@ -130,13 +134,13 @@ export class DocumentsPage extends Component {
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
-                  data={loading ? [] : has.call(data, 'userdocumentlist') ? data.userdocumentlist : []}
+                  data={loading ? [] : data && has.call(data, 'userdocumentlist') ? data.userdocumentlist : []}
                   loadingText={loading ? 'Loading...' : error ? 'Error...' : 'Loading...'}
                   loading={loading}
                   error={error}
                   filtered={this.state.filtered}
                   filterable
-                  onFilteredChange={(filtered, column) =>{
+                  onFilteredChange={(filtered, column) => {
                     this.setState(() => ({
                       filtered: filtered
                     }))

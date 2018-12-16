@@ -12,7 +12,7 @@ import {ClientsPage} from './index';
 import {StyledThemeProvider} from "../../../../styles/StyledThemeProvider";
 import {Provider as ProviderRedux} from 'react-redux';
 import configureStore from 'redux-mock-store'
-import {ROLE_BANK} from "../../../../shared/roles";
+import {ROLE_BANK} from "@lib/shared/roles";
 import UserListQuery from './UserListQuery.graphql'
 
 const mockStore = configureStore();
