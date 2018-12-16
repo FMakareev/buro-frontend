@@ -4,7 +4,7 @@ import { Wrapper } from '../../components/Wrapper/Wrapper';
 import { Title } from '../../components/Title/Title';
 
 import FormUserLogin  from '../../components/FormUserLogin/FormUserLogin';
-import { Box } from '../../../../components/Box/Box';
+import { Box } from '@lib/ui/Box/Box';
 
 export class LoginPage extends Component {
   static propTypes = {};

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {color} from 'styled-system';
 
-import { Text } from '../../../../components/Text/Text';
+import { Text } from '@lib/ui/Text/Text';
 import {FontFamilyProperty} from "../../../../styles/styleProperty/FontFamilyProperty";
 import {FontSizeProperty} from "../../../../styles/styleProperty/FontSizeProperty";
 import {LineHeightProperty} from "../../../../styles/styleProperty/LineHeightProperty";

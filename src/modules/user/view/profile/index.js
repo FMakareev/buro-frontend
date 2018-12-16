@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
-import { Container } from '../../../../components/Container/Container';
+import { Container } from '@lib/ui/Container/Container';
 import FormUserProfile from '../../components/FormProfileUser/FormUserProfile';
 import FormChangePassword from '../../components/FormChangePassword/FormChangePassword';
-import ErrorCatch from '../../../../components/ErrorCatch/ErrorCatch';
+import ErrorCatch from '@lib/ui/ErrorCatch/ErrorCatch';
 import { getUserFromStore } from '../../../../store/reducers/user/selectors';
 import UserEmailItemQuery from './UserEmailItemQuery.graphql';
-import { CheckAuthorization } from '../../../../components/CheckAuthorization/CheckAuthorization';
+import { CheckAuthorization } from '@lib/ui/CheckAuthorization/CheckAuthorization';
 
 export class ProfilePage extends Component {
   static propTypes = {

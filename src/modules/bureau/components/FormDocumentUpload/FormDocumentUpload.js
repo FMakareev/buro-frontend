@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import fetch from 'isomorphic-fetch';
-import {FileLoader} from "../../../../components/FileLoader/FileLoader";
-import {Text} from "../../../../components/Text/Text";
-import {ButtonBase} from "../../../../components/ButtonBase/ButtonBase";
+import {FileLoader} from "@lib/ui/FileLoader/FileLoader";
+import {Text} from "@lib/ui/Text/Text";
+import {ButtonBase} from "@lib/ui/ButtonBase/ButtonBase";
 import {MessageContentStyled, WrapperMessage} from "./FormDocumentUploadStyled";
 
 

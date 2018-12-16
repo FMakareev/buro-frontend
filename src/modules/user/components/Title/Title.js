@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Flex } from '../../../../components/Flex/Flex';
-import { Box } from '../../../../components/Box/Box';
+import { Flex } from '@lib/ui/Flex/Flex';
+import { Box } from '@lib/ui/Box/Box';
 
-import { SvgLogo } from '../../../../components/Icons/SvgLogo';
-import {Text} from "../../../../components/Text/Text";
+import { SvgLogo } from '@lib/ui/Icons/SvgLogo';
+import {Text} from "@lib/ui/Text/Text";
 
 
 export const Title = ({ children, mb }) => (

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Mutation } from 'react-apollo';
 import UpdateNotificationMutation from './UpdateNotificationMutation.graphql';
-import { ButtonWithImage } from '../../../../components/ButtonWithImage/ButtonWithImage';
-import { Text } from '../../../../components/Text/Text';
-import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
+import { ButtonWithImage } from '@lib/ui/ButtonWithImage/ButtonWithImage';
+import { Text } from '@lib/ui/Text/Text';
+import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
 import { STATUS_NOT_APPROVAL, STATUS_APPROVAL, STATUS_PENDING } from '../../../../shared/statuses';
 
 /**

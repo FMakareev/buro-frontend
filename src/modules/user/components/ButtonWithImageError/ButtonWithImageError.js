@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ButtonWithImage } from '../../../../components/ButtonWithImage/ButtonWithImage';
+import { ButtonWithImage } from '@lib/ui/ButtonWithImage/ButtonWithImage';
 import {FontFamilyProperty} from "../../../../styles/styleProperty/FontFamilyProperty";
 import {FontSizeProperty} from "../../../../styles/styleProperty/FontSizeProperty";
 import {color} from 'styled-system';

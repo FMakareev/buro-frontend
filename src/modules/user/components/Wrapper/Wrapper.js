@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Container } from '../../../../components/Container/Container';
+import { Container } from '@lib/ui/Container/Container';
 import {BorderRadiusProperty} from "../../../../styles/styleProperty/BorderRadiusProperty";
 import {BoxShadowProperty} from "../../../../styles/styleProperty/BoxShadowProperty";
 

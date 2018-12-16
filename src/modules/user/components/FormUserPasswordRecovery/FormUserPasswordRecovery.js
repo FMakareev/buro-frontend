@@ -4,25 +4,25 @@ import {graphql} from "react-apollo";
 
 import {formPropTypes} from '../../../../propTypes/Forms/FormPropTypes';
 
-import {TextFieldWithIcon} from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
+import {TextFieldWithIcon} from '@lib/ui/TextFieldWithIcon/TextFieldWithIcon';
 
-import {Box} from '../../../../components/Box/Box';
-import {Flex} from '../../../../components/Flex/Flex';
-import {SvgArrowRight} from '../../../../components/Icons/SvgArrowRight';
+import {Box} from '@lib/ui/Box/Box';
+import {Flex} from '@lib/ui/Flex/Flex';
+import {SvgArrowRight} from '@lib/ui/Icons/SvgArrowRight';
 
-import {SvgPasswordIcon} from '../../../../components/Icons/SvgPasswordIcon';
+import {SvgPasswordIcon} from '@lib/ui/Icons/SvgPasswordIcon';
 
 import {ButtonWithImageError} from '../ButtonWithImageError/ButtonWithImageError';
-import {Text} from '../../../../components/Text/Text';
+import {Text} from '@lib/ui/Text/Text';
 
 import {required} from '../../../../utils/validation/required';
 
-import {SpeedingWheel} from '../../../../components/SmallPreloader/SmallPreloader';
-import {PreloaderWrapper} from '../../../../components/PreloaderWrapper/PreloaderWrapper';
-import {SvgReloadIcon} from "../../../../components/Icons/SvgReloadIcon";
+import {SpeedingWheel} from '@lib/ui/SmallPreloader/SmallPreloader';
+import {PreloaderWrapper} from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
+import {SvgReloadIcon} from "@lib/ui/Icons/SvgReloadIcon";
 import UserPasswordRecoveryMutation from './UserPasswordRecoveryMutation.graphql'
 import {Link} from "react-router-dom";
-import {SvgArrowLeft} from "../../../../components/Icons/SvgArrowLeft";
+import {SvgArrowLeft} from "@lib/ui/Icons/SvgArrowLeft";
 
 const validate = values => {
   const error = {};

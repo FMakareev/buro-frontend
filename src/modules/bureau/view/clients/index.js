@@ -3,20 +3,20 @@ import dayjs from 'dayjs';
 import { connect } from 'react-redux';
 
 import { Query } from 'react-apollo';
-import { Container } from '../../../../components/Container/Container';
-import { Text } from '../../../../components/Text/Text';
-import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
-import { SvgUpload } from '../../../../components/Icons/SvgUpload';
-import { ButtonWithImage } from '../../../../components/ButtonWithImage/ButtonWithImage';
-import ReactTableStyled from '../../../../components/ReactTableStyled/ReactTableStyled';
+import { Container } from '@lib/ui/Container/Container';
+import { Text } from '@lib/ui/Text/Text';
+import { ButtonBase } from '@lib/ui/ButtonBase/ButtonBase';
+import { SvgUpload } from '@lib/ui/Icons/SvgUpload';
+import { ButtonWithImage } from '@lib/ui/ButtonWithImage/ButtonWithImage';
+import ReactTableStyled from '@lib/ui/ReactTableStyled/ReactTableStyled';
 import { FormDocumentUpload } from '../../components/FormDocumentUpload/FormDocumentUpload';
-import Modal from '../../../../components/Modal/Modal';
+import Modal from '@lib/ui/Modal/Modal';
 import UserDocumentListQuery from './UserDocumentListQuery.graphql';
 import UserListQuery from './UserListQuery.graphql';
 import { ROLE_BUREAU } from '../../../../shared/roles';
-import { CheckAuthorization } from '../../../../components/CheckAuthorization/CheckAuthorization';
+import { CheckAuthorization } from '@lib/ui/CheckAuthorization/CheckAuthorization';
 import { getUserFromStore } from '../../../../store/reducers/user/selectors';
-import { Box } from '../../../../components/Box/Box';
+import { Box } from '@lib/ui/Box/Box';
 
 const columns = ({ onOpenFormUpdateDoc }) => [
   {

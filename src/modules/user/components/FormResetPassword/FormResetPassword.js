@@ -3,21 +3,21 @@ import {Field, reduxForm, Form, SubmissionError} from 'redux-form';
 import {Link} from 'react-router-dom';
 import {graphql} from 'react-apollo';
 
-import {TextFieldWithIcon} from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
+import {TextFieldWithIcon} from '@lib/ui/TextFieldWithIcon/TextFieldWithIcon';
+// @lib/ui/
+import {SvgEmailIcon} from '@lib/ui/Icons/SvgEmailIcon';
+import {SvgArrowRight} from '@lib/ui/Icons/SvgArrowRight';
+import {SvgArrowLeft} from '@lib/ui/Icons/SvgArrowLeft';
+import {SvgReloadIcon} from '@lib/ui/Icons/SvgReloadIcon';
 
-import {SvgEmailIcon} from '../../../../components/Icons/SvgEmailIcon';
-import {SvgArrowRight} from '../../../../components/Icons/SvgArrowRight';
-import {SvgArrowLeft} from '../../../../components/Icons/SvgArrowLeft';
-import {SvgReloadIcon} from '../../../../components/Icons/SvgReloadIcon';
-
-import {Text} from '../../../../components/Text/Text';
-import {Box} from '../../../../components/Box/Box';
-import {Flex} from '../../../../components/Flex/Flex';
+import {Text} from '@lib/ui/Text/Text';
+import {Box} from '@lib/ui/Box/Box';
+import {Flex} from '@lib/ui/Flex/Flex';
 
 import {ButtonWithImageError} from '../ButtonWithImageError/ButtonWithImageError';
 
-import {SpeedingWheel} from '../../../../components/SmallPreloader/SmallPreloader';
-import {PreloaderWrapper} from '../../../../components/PreloaderWrapper/PreloaderWrapper';
+import {SpeedingWheel} from '@lib/ui/SmallPreloader/SmallPreloader';
+import {PreloaderWrapper} from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
 
 import isEmail from '../../../../utils/validation/isEmail';
 import {required} from '../../../../utils/validation/required';

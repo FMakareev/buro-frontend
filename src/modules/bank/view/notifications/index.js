@@ -3,17 +3,17 @@ import dayjs from 'dayjs';
 import { connect } from 'react-redux';
 
 import { Query } from 'react-apollo';
-import { Container } from '../../../../components/Container/Container';
-import { Text } from '../../../../components/Text/Text';
-import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactTableStyled';
-import { CheckAuthorization } from '../../../../components/CheckAuthorization/CheckAuthorization';
+import { Container } from '@lib/ui/Container/Container';
+import { Text } from '@lib/ui/Text/Text';
+import { ReactTableStyled } from '@lib/ui/ReactTableStyled/ReactTableStyled';
+import { CheckAuthorization } from '@lib/ui/CheckAuthorization/CheckAuthorization';
 import { ROLE_BANK } from '../../../../shared/roles';
 
 import NotificationListQuery from './NotificationListQuery.graphql';
 
 import { STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL } from '../../../../shared/statuses';
 import { getUserFromStore } from '../../../../store/reducers/user/selectors';
-import { Box } from '../../../../components/Box/Box';
+import { Box } from '@lib/ui/Box/Box';
 
 const columns = () => [
   {

@@ -5,33 +5,33 @@ import {graphql} from 'react-apollo';
 import {connect} from 'react-redux';
 import {formPropTypes} from '../../../../propTypes/Forms/FormPropTypes';
 
-import {Select} from '../../../../components/Select/Select';
-import {Checkbox} from '../../../../components/Checkbox/Checkbox';
+import {Select} from '@lib/ui/Select/Select';
+import {Checkbox} from '@lib/ui/Checkbox/Checkbox';
 
-import {TextFieldWithIcon} from '../../../../components/TextFieldWithIcon/TextFieldWithIcon';
+import {TextFieldWithIcon} from '@lib/ui/TextFieldWithIcon/TextFieldWithIcon';
 
-import {Box} from '../../../../components/Box/Box';
-import {Flex} from '../../../../components/Flex/Flex';
+import {Box} from '@lib/ui/Box/Box';
+import {Flex} from '@lib/ui/Flex/Flex';
 import {HelpText} from '../HelpText/HelpText';
 
-import {SvgArrowRight} from '../../../../components/Icons/SvgArrowRight';
-import {SvgEmailIcon} from '../../../../components/Icons/SvgEmailIcon';
-import {SvgPasswordIcon} from '../../../../components/Icons/SvgPasswordIcon';
-import {SvgReloadIcon} from '../../../../components/Icons/SvgReloadIcon';
+import {SvgArrowRight} from '@lib/ui/Icons/SvgArrowRight';
+import {SvgEmailIcon} from '@lib/ui/Icons/SvgEmailIcon';
+import {SvgPasswordIcon} from '@lib/ui/Icons/SvgPasswordIcon';
+import {SvgReloadIcon} from '@lib/ui/Icons/SvgReloadIcon';
 
 import {ButtonWithImageError} from '../ButtonWithImageError/ButtonWithImageError';
-import {Text} from '../../../../components/Text/Text';
+import {Text} from '@lib/ui/Text/Text';
 
 import {required} from '../../../../utils/validation/required';
 
-import {SpeedingWheel} from '../../../../components/SmallPreloader/SmallPreloader';
-import {PreloaderWrapper} from '../../../../components/PreloaderWrapper/PreloaderWrapper';
+import {SpeedingWheel} from '@lib/ui/SmallPreloader/SmallPreloader';
+import {PreloaderWrapper} from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
 import isEmail from '../../../../utils/validation/isEmail';
 import minLength from '../../../../utils/validation/minLength';
 
 import CreateUserMutation from './CreateUserMutation.graphql';
 import {ROLE_BANK, ROLE_CLIENT} from '../../../../shared/roles';
-import {SvgBank} from '../../../../components/Icons/SvgBank';
+import {SvgBank} from '@lib/ui/Icons/SvgBank';
 
 const minLength8 = minLength(8);
 const minLength12 = minLength(12);

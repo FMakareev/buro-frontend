@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CreateNotificationMutation from './CreateNotificationMutation.graphql';
 import {Mutation} from "react-apollo";
-import {ButtonWithImage} from "../../../../components/ButtonWithImage/ButtonWithImage";
-import {Text} from "../../../../components/Text/Text";
-import {SpeedingWheel} from "../../../../components/SmallPreloader/SmallPreloader";
+import {ButtonWithImage} from "@lib/ui/ButtonWithImage/ButtonWithImage";
+import {Text} from "@lib/ui/Text/Text";
+import {SpeedingWheel} from "@lib/ui/SmallPreloader/SmallPreloader";
 
 /**
  * @desc Кнопка для вызова мутации создания уведомления к пользователю

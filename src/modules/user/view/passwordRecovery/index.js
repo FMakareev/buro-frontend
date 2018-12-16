@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Box } from '../../../../components/Box/Box';
+import { Box } from '@lib/ui/Box/Box';
 
 import { Wrapper } from '../../components/Wrapper/Wrapper';
 import { Title } from '../../components/Title/Title';

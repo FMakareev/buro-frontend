@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import dayjs from 'dayjs';
 import { Query } from 'react-apollo';
 import { connect } from 'react-redux';
-import { Container } from '../../../../components/Container/Container';
-import { Text } from '../../../../components/Text/Text';
-import { ReactTableStyled } from '../../../../components/ReactTableStyled/ReactTableStyled';
+import { Container } from '@lib/ui/Container/Container';
+import { Text } from '@lib/ui/Text/Text';
+import { ReactTableStyled } from '@lib/ui/ReactTableStyled/ReactTableStyled';
 
 import UserDocumentListQuery from './UserDocumentListQuery.graphql';
 
 import { STATUS_PENDING, STATUS_APPROVAL } from '../../../../shared/statuses';
-import { CheckAuthorization } from '../../../../components/CheckAuthorization/CheckAuthorization';
+import { CheckAuthorization } from '@lib/ui/CheckAuthorization/CheckAuthorization';
 import { ROLE_BANK } from '../../../../shared/roles';
 import { getUserFromStore } from '../../../../store/reducers/user/selectors';
 import { CreateNotificationButton } from '../../components/CreateNotificationButton/CreateNotificationButton';
-import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
-import { Box } from '../../../../components/Box/Box';
+import { ButtonBase } from '@lib/ui/ButtonBase/ButtonBase';
+import { Box } from '@lib/ui/Box/Box';
 
 const has = Object.prototype.hasOwnProperty;
 

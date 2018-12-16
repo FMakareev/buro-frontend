@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 // import styled from 'styled-components';
 import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
 
-// import { TextFieldBase } from '../../../../components/TextFieldBase/TextFieldBase';
+// import { TextFieldBase } from '@lib/ui/TextFieldBase/TextFieldBase';
 
 import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
-import { Box } from '../../../../components/Box/Box';
-// import { Flex } from '../../../../components/Flex/Flex';
+import { Box } from '@lib/ui/Box/Box';
+// import { Flex } from '@lib/ui/Flex/Flex';
 
-import { Text } from '../../../../components/Text/Text';
+import { Text } from '@lib/ui/Text/Text';
 
-import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
-import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
+import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
+import { PreloaderWrapper } from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
 
 // import { ButtonWithImageError } from '../../../user/components/ButtonWithImageError/ButtonWithImageError';
 

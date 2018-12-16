@@ -3,17 +3,17 @@ import styled from 'styled-components';
 import faker from 'faker';
 
 import { color } from 'styled-system';
-import { Box } from '../../../../components/Box/Box';
-import { Flex } from '../../../../components/Flex/Flex';
-import { Text } from '../../../../components/Text/Text';
+import { Box } from '@lib/ui/Box/Box';
+import { Flex } from '@lib/ui/Flex/Flex';
+import { Text } from '@lib/ui/Text/Text';
 
 import FormSendQuestion from './FormSendQuestion';
 
-import TabController from '../../../../components/TabController/TabController';
-import { Tabs } from '../../../../components/Tabs/Tabs';
-import { TabContent } from '../../../../components/TabContent/TabContent';
+import TabController from '@lib/ui/TabController/TabController';
+import { Tabs } from '@lib/ui/Tabs/Tabs';
+import { TabContent } from '@lib/ui/TabContent/TabContent';
 
-import { SvgDropdownIndicator } from '../../../../components/Icons/SvgDropdownIndicator';
+import { SvgDropdownIndicator } from '@lib/ui/Icons/SvgDropdownIndicator';
 
 import { StyledContainer } from './styled';
 import { FontFamilyProperty } from '../../../../styles/styleProperty/FontFamilyProperty';

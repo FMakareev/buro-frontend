@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 import { color } from 'styled-system';
-import { Container } from '../../../../components/Container/Container';
-import { Box } from '../../../../components/Box/Box';
-import { Flex } from '../../../../components/Flex/Flex';
-import { TextFieldBase } from '../../../../components/TextFieldBase/TextFieldBase';
+import { Container } from '@lib/ui/Container/Container';
+import { Box } from '@lib/ui/Box/Box';
+import { Flex } from '@lib/ui/Flex/Flex';
+import { TextFieldBase } from '@lib/ui/TextFieldBase/TextFieldBase';
 import { ButtonWithImageError } from '../../../user/components/ButtonWithImageError/ButtonWithImageError';
 
 import { FontSizeProperty } from '../../../../styles/styleProperty/FontSizeProperty';

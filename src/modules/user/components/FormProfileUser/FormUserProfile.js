@@ -5,20 +5,20 @@ import { connect } from 'react-redux';
 import { graphql } from 'react-apollo';
 import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
-import { TextFieldWithLabel } from '../../../../components/TextFieldWithLabel/TextFieldWithLabel';
+import { TextFieldWithLabel } from '@lib/ui/TextFieldWithLabel/TextFieldWithLabel';
 
-import { Box } from '../../../../components/Box/Box';
-import { Flex } from '../../../../components/Flex/Flex';
-import { Text } from '../../../../components/Text/Text';
-import { ButtonBase } from '../../../../components/ButtonBase/ButtonBase';
+import { Box } from '@lib/ui/Box/Box';
+import { Flex } from '@lib/ui/Flex/Flex';
+import { Text } from '@lib/ui/Text/Text';
+import { ButtonBase } from '@lib/ui/ButtonBase/ButtonBase';
 import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
-import { DayPickerBase } from '../../../../components/DayPickerBase/DayPickerBase';
-import { ButtonTriggerGroup } from '../../../../components/ButtonTriggerGroup/ButtonTriggerGroup';
+import { DayPickerBase } from '@lib/ui/DayPickerBase/DayPickerBase';
+import { ButtonTriggerGroup } from '@lib/ui/ButtonTriggerGroup/ButtonTriggerGroup';
 
-import { SvgReloadIcon } from '../../../../components/Icons/SvgReloadIcon';
+import { SvgReloadIcon } from '@lib/ui/Icons/SvgReloadIcon';
 
-import { SpeedingWheel } from '../../../../components/SmallPreloader/SmallPreloader';
-import { PreloaderWrapper } from '../../../../components/PreloaderWrapper/PreloaderWrapper';
+import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
+import { PreloaderWrapper } from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
 
 import { required } from '../../../../utils/validation/required';
 import { phoneNumber } from '../../../../utils/validation/phoneNumber';
