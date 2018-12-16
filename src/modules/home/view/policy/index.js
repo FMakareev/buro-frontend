@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {Text} from "@lib/ui/Text/Text";
+import {Container} from "@lib/ui/Container/Container";
 
 
 export class PolicyPage extends Component {
@@ -17,9 +19,12 @@ export class PolicyPage extends Component {
 
   render() {
     return (
-      <div>
-        PolicyPage
-      </div>
+      <Container backgroundColor={'transparent'} px={6}>
+        <Text fontFamily={'bold'} fontWeight={'bold'} fontSize={9} lineHeight={9} mb={7}>
+          Private policy
+        </Text>
+
+      </Container>
     );
   }
 }
