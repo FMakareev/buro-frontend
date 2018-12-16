@@ -83,7 +83,6 @@ const columns = user => [
   },
 ];
 
-
 export class ClientsPage extends Component {
   static propTypes = {};
 

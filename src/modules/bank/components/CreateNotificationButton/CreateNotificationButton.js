@@ -48,7 +48,8 @@ export const CreateNotificationButton = ({children, clientid, bankid}) => {
 };
 CreateNotificationButton.propTypes = {
   /** id банка */
-  clientid: PropTypes.string.isRequired,
   bankid: PropTypes.string.isRequired,
+  /** id клиента */
+  clientid: PropTypes.string.isRequired,
 };
 export default CreateNotificationButton;
