@@ -70,7 +70,7 @@ const columns = user => [
         if (props.original.document) {
           if (props.original.document[0].status === STATUS_PENDING) {
             return (
-              <Text fontSize={6} color={'color1'}>
+              <Text fontSize={6} color="color1">
                 Pending approval
               </Text>
             );
@@ -78,20 +78,23 @@ const columns = user => [
           if (props.original.document[0].status === STATUS_APPROVAL) {
             return (
               <ButtonBase
-                as={'a'}
-                display={'inline-block'}
+                as="a"
+                display="inline-block"
                 href={props.original.document[0].file}
-                size={'xsmall'}
-                variant={'transparent'}
-                pl={'3px'}
-                pr={'5px'}
+                size="xsmall"
+                variant="transparent"
+                pl="3px"
+                pr="5px"
                 id={user.id}>
                 Download
               </ButtonBase>
             );
-          } else {
-            return <CreateNotificationButton id={user.id}>Request</CreateNotificationButton>;
           }
+          return (
+            <CreateNotificationButton bankid={user.id} clientid={props.user.id}>
+              Request
+            </CreateNotificationButton>
+          );
         }
       } catch (error) {
         console.log(error);
@@ -106,7 +109,6 @@ const columns = user => [
     },
   },
 ];
-
 
 export class ClientsPage extends Component {
   static propTypes = {};
@@ -126,12 +128,12 @@ export class ClientsPage extends Component {
     const { user } = this.props;
     console.log(this.props);
     return (
-      <Container backgroundColor={'transparent'} px={6}>
-        <Text fontFamily={'bold'} fontWeight={'bold'} fontSize={9} lineHeight={9} mb={7}>
+      <Container backgroundColor="transparent" px={6}>
+        <Text fontFamily="bold" fontWeight="bold" fontSize={9} lineHeight={9} mb={7}>
           Clients
         </Text>
 
-        <Box backgroundColor={'color0'}>
+        <Box backgroundColor="color0">
           <Query
             query={UserListQuery}
             variables={{
