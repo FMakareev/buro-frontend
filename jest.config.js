@@ -12,7 +12,10 @@ module.exports = {
     "^.+\\.svg$": "<rootDir>/config/jest/inlineSvg"
   },
   moduleNameMapper: {
-    "/\.(css|less)$/": "identity-obj-proxy"
+    "/\.(css|less)$/": "identity-obj-proxy",
+    "^@lib/ui(.*)$":  "<rootDir>/src/components$1",
+    "^@lib/styles(.*)$":  "<rootDir>/src/styles$1",
+    "^@lib/utils(.*)$":  "<rootDir>/src/utils$1",
   },
   "globals": {
     "ENDPOINT_CLIENT": 'http://localhost:5001',
