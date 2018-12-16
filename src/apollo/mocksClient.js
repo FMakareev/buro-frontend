@@ -1,20 +1,21 @@
 import faker from 'faker';
-import { GraphQLError } from 'graphql';
+import {GraphQLError} from 'graphql';
 import setupClient from './helpers/apolloClientMock';
 import schema from './schema.graphqls';
-import { userdocumentlist } from './graphql/query/userdocumentlist';
-import { userlist } from './graphql/query/userlist';
-import { useritem } from './graphql/query/useritem';
-import { ROLE_BANK, ROLE_BUREAU, ROLE_CLIENT } from '../shared/roles';
-import { notificationitem } from './graphql/query/notificationitem';
-import { STATUS_PENDING } from '../shared/statuses';
+import {userdocumentlist} from './graphql/query/userdocumentlist';
+import {userlist} from './graphql/query/userlist';
+import {useritem} from './graphql/query/useritem';
+import {ROLE_BANK, ROLE_BUREAU, ROLE_CLIENT} from '../shared/roles';
+import {notificationitem} from './graphql/query/notificationitem';
+import {STATUS_PENDING} from '../shared/statuses';
+import {notificationlist} from "./graphql/query/notificationlist";
 
 
 const defaultMocks = {
   Query: () => ({
     userlist,
     useritem,
-    useremailitem: (query, { email }) => {
+    useremailitem: (query, {email}) => {
       console.log(query, email);
       switch (email) {
         case 'client@test.com': {
@@ -53,7 +54,7 @@ const defaultMocks = {
         }
       }
     },
-    userdocumentlist: ()=>{
+    userdocumentlist: () => {
       console.log('userdocumentlist');
       return userdocumentlist()
     },
@@ -78,16 +79,16 @@ const defaultMocks = {
       new Promise((resolve, reject) => {
         setTimeout(() => {
           faker.random.number(1)
-            ? resolve({ ...useritem() })
+            ? resolve({...useritem()})
             : reject(
-                JSON.stringify({
-                  errors: [
-                    {
-                      message: 'error!',
-                    },
-                  ],
-                }),
-              );
+            JSON.stringify({
+              errors: [
+                {
+                  message: 'error!',
+                },
+              ],
+            }),
+            );
         }, faker.random.number(2000));
       }),
     resetpass: (mutation, props) => {
@@ -100,18 +101,21 @@ const defaultMocks = {
     createnotification: (mutation, props) =>
       // для имитации запроса к серверу с рандомной задержкой и результатом.
       new Promise((resolve, reject) => {
-        setTimeout(() => {
-          faker.random.number(1)
-            ? resolve({ ...notificationitem(), status: STATUS_PENDING })
+        return setTimeout(() => {
+          return  faker.random.number(1)
+            ? resolve({
+              ...notificationitem(),
+              status: STATUS_PENDING,
+            })
             : reject(
-                JSON.stringify({
-                  errors: [
-                    {
-                      message: 'error!',
-                    },
-                  ],
-                }),
-              );
+            JSON.stringify({
+              errors: [
+                {
+                  message: 'error!',
+                },
+              ],
+            }),
+            );
         }, faker.random.number(2000));
       }),
     updatenotification: (mutation, props) =>
@@ -120,19 +124,19 @@ const defaultMocks = {
         setTimeout(
           () =>
             faker.random.number(1)
-              ? resolve({ ...notificationitem(), status: props.status })
+              ? resolve({...notificationitem(), status: props.status})
               : reject(
-                  JSON.stringify({
-                    data: {
-                      updatenotification: null,
-                    },
-                    errors: [
-                      {
-                        message: 'error!',
-                      },
-                    ],
-                  }),
-                ),
+              JSON.stringify({
+                data: {
+                  updatenotification: null,
+                },
+                errors: [
+                  {
+                    message: 'error!',
+                  },
+                ],
+              }),
+              ),
           faker.random.number(2000),
         );
       }),
