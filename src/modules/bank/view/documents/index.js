@@ -15,6 +15,7 @@ import {CreateNotificationButton} from '../../components/CreateNotificationButto
 import {Box} from '@lib/ui/Box/Box';
 import {STATUS_NEED_UPDATE} from "@lib/shared/statuses";
 import {EXCEL_DOWNLOAD} from "@lib/shared/endpoints";
+import {ButtonWithImage} from "@lib/ui/ButtonWithImage/ButtonWithImage";
 
 const has = Object.prototype.hasOwnProperty;
 
@@ -77,9 +78,17 @@ const columns = ({onFiltered}) => [
           </CreateNotificationButton>;
         } else {
           /** TODO: тут будет ссылка или запрос на скачивание документа */
-          return (<a href={EXCEL_DOWNLOAD +`/${props.original.id}`} download>
-            <Text>Upload</Text>
-          </a>)
+          return (<ButtonWithImage
+            href={EXCEL_DOWNLOAD + `/${props.original.id}`}
+            download
+            as={'a'}
+            display="inline-block"
+            size="xsmall"
+            variant={'transparent'}
+            pl="3px"
+            pr="5px">
+            {children}
+          </ButtonWithImage>)
         }
       } catch (error) {
         console.log(error);
