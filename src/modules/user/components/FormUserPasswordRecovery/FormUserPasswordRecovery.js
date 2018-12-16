@@ -74,7 +74,7 @@ export class FormUserPasswordRecovery extends Component {
           {(submitFailed || (!submitSucceeded && !submitFailed)) && (<Fragment>
             <Box width="100%" mb="16px">
               <Field
-                name={"password"}
+                name={"newPassword"}
                 component={TextFieldWithIcon}
                 placeholder={"Password"}
                 type={"password"}
