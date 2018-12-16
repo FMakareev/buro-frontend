@@ -1,5 +1,5 @@
 import faker from 'faker';
-import { useritem } from './useritem';
+import { useritem } from './userItem';
 import { STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL } from '../../../shared/statuses';
 
 export const notificationitem = () => ({
