@@ -8,7 +8,7 @@ import {GRAPHQL} from "@lib/shared/endpoints";
 export const client = new ApolloClient({
   cache: new InMemoryCache().restore(isBrowser && window.APOLLO_STATE),
   link: createHttpLink({
-    uri: `${ENDPOINT_CLIENT}/${GRAPHQL}`,
+    uri: `${ENDPOINT_CLIENT}${GRAPHQL}`,
     credentials: 'same-origin',
     fetch
   }),

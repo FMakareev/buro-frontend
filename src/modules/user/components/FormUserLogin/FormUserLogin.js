@@ -88,8 +88,8 @@ export class FormUserLogin extends Component {
     })
       .then(response => {
         console.log(response);
-        console.log(response.headers.get('set-cookie'));
-        if (response.status >= 400 || !response.headers.get('set-cookie')) {
+        console.log(document.cookie);
+        if (response.status >= 400 || !document.cookie) {
           throw response;
         } else {
           return this.getUser(value.email);
