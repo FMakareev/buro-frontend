@@ -9,6 +9,7 @@ import { getUserFromStore } from '../../../../store/reducers/user/selectors';
 import { PreloaderWrapper } from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
 import { Text } from '@lib/ui/Text/Text';
 import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
+import {USER_LOGOUT} from "@lib/shared/endpoints";
 
 
 export class LogOut extends Component {
@@ -40,7 +41,7 @@ export class LogOut extends Component {
     if (isBrowser) {
       this.props.removeUser();
       return new Promise((resolve, reject) => {
-        fetch(`${ENDPOINT_CLIENT}/user/logout`, {
+        fetch(`${ENDPOINT_CLIENT}${USER_LOGOUT}`, {
           method: 'POST',
           credentials: 'include',
           mode: 'no-cors',
