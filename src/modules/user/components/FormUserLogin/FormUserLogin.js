@@ -104,7 +104,7 @@ export class FormUserLogin extends Component {
           apolloError: null,
         }));
 
-        if (status === 401) {
+        if (status === 401 || status === 403) {
           throw new SubmissionError({_error: 'Wrong email or password'});
         } else {
           throw new SubmissionError({
