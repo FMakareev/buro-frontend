@@ -30,6 +30,7 @@ import {USER_ADD} from '../../../../store/reducers/user/actionTypes';
 import {HelpText} from '../HelpText/HelpText';
 import UserEmailItemQuery from './UserEmailItemQuery.graphql';
 import {ButtonWithImageError} from '../ButtonWithImageError/ButtonWithImageError';
+import {USER_AUTH} from "@lib/shared/endpoints";
 
 export class FormUserLogin extends Component {
   static propTypes = {
@@ -75,7 +76,7 @@ export class FormUserLogin extends Component {
     this.setState(() => ({
       submitting: true,
     }));
-    return fetch(`${ENDPOINT_CLIENT}/user/login`, {
+    return fetch(`${ENDPOINT_CLIENT+USER_AUTH}`, {
       method: 'POST',
       credentials: 'include',
       mode: 'no-cors',
