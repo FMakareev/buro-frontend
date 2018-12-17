@@ -54,16 +54,6 @@ export const routes = [
   {
     layout: LAYOUT_AUTH,
     exact: true,
-    name: 'New password',
-    path: '/password-recovery',
-    order: 0,
-    hidden: false,
-    load: () => import(/* webpackChunkName: 'userPasswordRecovery' */ './view/passwordRecovery'),
-    resolvers: [],
-  },
-  {
-    layout: LAYOUT_AUTH,
-    exact: true,
     name: 'Reset your password',
     path: '/password-reset',
     order: 0,

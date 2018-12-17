@@ -35,6 +35,8 @@ export class LayoutAuth extends Component {
   componentDidMount() {
     try {
       const {location, user, history} = this.props;
+      console.log(location.pathname);
+      console.log(location.pathname.indexOf('/password-recovery'));
       /** редиректим пользователя в профиль если он авторизован и текущий маршрут не выход */
       // TODO: эту порнографию переделать
       if (
@@ -42,6 +44,7 @@ export class LayoutAuth extends Component {
         location.pathname !== '/help' &&
         location.pathname !== '/policy' &&
         location.pathname !== '/terms' &&
+        location.pathname.indexOf('/password-recovery') !== 0 &&
         user.isAuth
       ) {
         history.push('/app/profile');
