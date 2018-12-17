@@ -160,8 +160,7 @@
     "-prepush": "lint-staged",
     "format": "prettier --config .prettierrc --write 'src/**/*.{js,jsx}'",
     "checkMergeConflict": "babel-node ./tools/checkMergeConflict.js",
-    "sg:start": " npx styleguidist server --config ./config/styleguide.config.js",
-    "sg:build": " npx styleguidist build --config ./config/styleguide.config.js"
+    "get-schema": "get-graphql-schema https://buro.code-artel.com/graphql > schema.graphql"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/jest-css-modules"
