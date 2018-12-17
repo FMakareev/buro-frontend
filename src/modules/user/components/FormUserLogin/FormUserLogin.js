@@ -86,7 +86,9 @@ export class FormUserLogin extends Component {
       body: jsonToUrlEncoded(value),
     })
       .then(response => {
-        if (response.status >= 400) {
+        console.log(response);
+        console.log(response.headers.get('Set-Cookie'));
+        if (response.status >= 400 || !response.headers.get('Set-Cookie')) {
           throw response;
         } else {
           return this.getUser(value.email);
@@ -105,7 +107,7 @@ export class FormUserLogin extends Component {
           throw new SubmissionError({_error: 'Wrong email or password'});
         } else {
           throw new SubmissionError({
-            _error: 'error',
+            _error: 'User not logged',
           });
         }
       });
@@ -231,8 +233,8 @@ export class FormUserLogin extends Component {
               </ButtonWithImageError>
             </Box>
           )}
-          {submitFailed ||
-          (apolloError && (
+          {(submitFailed ||
+          apolloError || error) && (
             <Box width="100%">
               <ButtonWithImageError
                 type="submit"
@@ -247,7 +249,7 @@ export class FormUserLogin extends Component {
                 Try again
               </ButtonWithImageError>
             </Box>
-          ))}
+          )}
         </Flex>
 
         {submitting && (
