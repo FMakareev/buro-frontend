@@ -37,7 +37,7 @@ export class FormDocumentUpload extends Component {
   submit(value) {
     console.log(value);
     const formData = new FormData();
-    formData.append('document', value[0]);
+    formData.append('exel', value[0]);
     const options = {
       method: 'post',
       body: formData,
