@@ -114,6 +114,7 @@ export class FormUserPasswordRecovery extends Component {
               </ButtonWithImageError>
             </Box>
           }
+
           {/** Кнопка повторного запроса, отображается в случае ошибки во время запроса */}
           {submitFailed && (
             <Box width={"100%"}>
