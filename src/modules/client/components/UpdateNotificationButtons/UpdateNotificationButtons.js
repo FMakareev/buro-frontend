@@ -4,12 +4,9 @@ import { Mutation } from 'react-apollo';
 import { ButtonWithImage } from '@lib/ui/ButtonWithImage/ButtonWithImage';
 import { Text } from '@lib/ui/Text/Text';
 import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
-<<<<<<< HEAD
 import UpdateNotificationMutation from './UpdateNotificationMutation.graphql';
-import { STATUS_NOT_APPROVAL, STATUS_APPROVAL, STATUS_PENDING } from '../../../../shared/statuses';
-=======
+// import { STATUS_NOT_APPROVAL, STATUS_APPROVAL, STATUS_PENDING } from '../../../../shared/statuses';
 import { STATUS_NOT_APPROVAL, STATUS_APPROVAL, STATUS_PENDING } from '@lib/shared/statuses';
->>>>>>> b74d674ab94314cad7691f18efc6e27d90ccd029
 
 /**
  * @desc Кнопки для вызова мутации ответов пользователя
