@@ -112,7 +112,7 @@ export class FormChangePassword extends Component {
           mb="30px">
           <Box width={['100%', '100%', '50%']} px={6} mb={4}>
             <Field
-              name="oldPassword"
+              name="password"
               component={TextFieldWithLabel}
               label="Old Password:"
               type="password"
