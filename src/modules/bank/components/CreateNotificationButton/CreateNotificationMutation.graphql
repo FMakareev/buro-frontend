@@ -1,5 +1,5 @@
-mutation ($clientid: String, $bankid: String){
-  createnotification(client: $clientid, bank:$bankid) {
+mutation ($clientid: String, $bankid: String, $status: String){
+  createnotification(client: $clientid, bank:$bankid, status:$status) {
     notification {
       status
     }

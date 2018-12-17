@@ -6,6 +6,8 @@ import { Text } from '@lib/ui/Text/Text';
 import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
 import CreateNotificationMutation from './CreateNotificationMutation.graphql';
 
+import { STATUS_PENDING } from '../../../../shared/statuses';
+
 /**
  * @desc Кнопка для вызова мутации создания уведомления к пользователю
  * */
@@ -23,7 +25,7 @@ export const CreateNotificationButton = ({ children, clientid, bankid }) => (
       return (
         <ButtonWithImage
           disabled={loading}
-          onClick={() => mutation({ variables: { clientid, bankid } })}
+          onClick={() => mutation({ variables: { clientid, bankid, status: STATUS_PENDING } })}
           display="inline-block"
           iconRight={
             loading ? (
