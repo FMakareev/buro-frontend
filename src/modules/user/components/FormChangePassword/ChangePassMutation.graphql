@@ -1,5 +1,5 @@
-mutation($id:String, $password: String!, $newPassword:String!, $confirmPassword:String! ) {
-  changepass(id:$id, password:$password, newPassword:$newPassword, confirmPassword:$confirmPassword) {
+mutation($id:String, $oldPassword: String!, $newPassword:String!, $confirmPassword:String! ) {
+  changepass(id:$id, oldPassword:$oldPassword, newPassword:$newPassword, confirmPassword:$confirmPassword) {
     changepass {
       id
     }

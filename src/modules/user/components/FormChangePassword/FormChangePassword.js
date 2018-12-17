@@ -1,9 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
 import { graphql } from 'react-apollo';
-import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
 import { TextFieldWithLabel } from '@lib/ui/TextFieldWithLabel/TextFieldWithLabel';
 
@@ -11,7 +10,6 @@ import { Box } from '@lib/ui/Box/Box';
 import { Flex } from '@lib/ui/Flex/Flex';
 import { Text } from '@lib/ui/Text/Text';
 import { ButtonBase } from '@lib/ui/ButtonBase/ButtonBase';
-import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
 // import { DayPickerBase } from '@lib/ui/DayPickerBase/DayPickerBase';
 // import { ButtonTriggerGroup } from '@lib/ui/ButtonTriggerGroup/ButtonTriggerGroup';
 
@@ -19,6 +17,8 @@ import { SvgReloadIcon } from '@lib/ui/Icons/SvgReloadIcon';
 
 import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
 import { PreloaderWrapper } from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
+import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
+import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
 import { required } from '../../../../utils/validation/required';
 import ChangePassMutation from './ChangePassMutation.graphql';
@@ -112,7 +112,7 @@ export class FormChangePassword extends Component {
           mb="30px">
           <Box width={['100%', '100%', '50%']} px={6} mb={4}>
             <Field
-              name="password"
+              name="oldPassword"
               component={TextFieldWithLabel}
               label="Old Password:"
               type="password"
@@ -142,7 +142,7 @@ export class FormChangePassword extends Component {
           <StyledBox mb={9} width={['100%', '100%', '50%']}>
             {!submitFailed && (
               <ButtonBase
-                display={'inline-block'}
+                display="inline-block"
                 type="submit"
                 variant="primary"
                 size="medium"
@@ -155,7 +155,7 @@ export class FormChangePassword extends Component {
 
             {submitFailed && (
               <ButtonWithImageError
-                display={'inline-block'}
+                display="inline-block"
                 type="submit"
                 variant="error"
                 size="medium"
