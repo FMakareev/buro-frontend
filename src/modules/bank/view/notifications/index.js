@@ -1,19 +1,19 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import dayjs from 'dayjs';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-import {Query} from 'react-apollo';
-import {Container} from '@lib/ui/Container/Container';
-import {Text} from '@lib/ui/Text/Text';
-import {ReactTableStyled} from '@lib/ui/ReactTableStyled/ReactTableStyled';
-import {CheckAuthorization} from '@lib/ui/CheckAuthorization/CheckAuthorization';
-import {ROLE_BANK} from '@lib/shared/roles';
+import { Query } from 'react-apollo';
+import { Container } from '@lib/ui/Container/Container';
+import { Text } from '@lib/ui/Text/Text';
+import { ReactTableStyled } from '@lib/ui/ReactTableStyled/ReactTableStyled';
+import { CheckAuthorization } from '@lib/ui/CheckAuthorization/CheckAuthorization';
+import { ROLE_BANK } from '@lib/shared/roles';
 
+import { STATUS_APPROVAL, STATUS_NOT_APPROVAL } from '@lib/shared/statuses';
+import { Box } from '@lib/ui/Box/Box';
 import NotificationListQuery from './NotificationListQuery.graphql';
 
-import {STATUS_APPROVAL, STATUS_NOT_APPROVAL} from '@lib/shared/statuses';
-import {getUserFromStore} from '../../../../store/reducers/user/selectors';
-import {Box} from '@lib/ui/Box/Box';
+import { getUserFromStore } from '../../../../store/reducers/user/selectors';
 
 const has = Object.prototype.hasOwnProperty;
 
@@ -27,7 +27,9 @@ const columns = () => [
       </Text>
     ),
     accessor: props =>
-      `${props.client.firstName} ${props.client.lastName} ${props.client.patronymic}`,
+      props.client
+        ? `${props.client.firstName} ${props.client.lastName} ${props.client.patronymic}`
+        : null,
   },
   {
     id: 'reqDate',
@@ -37,7 +39,7 @@ const columns = () => [
         {props.value}
       </Text>
     ),
-    accessor: props => dayjs(props.date).format('DD.MM.YYYY HH:mm:ss'),
+    accessor: props => props.date ? dayjs(props.date).format('DD.MM.YYYY HH:mm:ss') : null,
     filterMethod: (filter, row) =>
       row[filter.id].startsWith(filter.value) && row[filter.id].endsWith(filter.value),
   },
@@ -85,7 +87,7 @@ export class NotificationsPage extends Component {
   }
 
   render() {
-    const {user} = this.props;
+    const { user } = this.props;
     return (
       <Container backgroundColor="transparent" px={6}>
         <Text fontFamily="bold" fontWeight="bold" fontSize={9} lineHeight={9} mb={7}>
@@ -97,14 +99,20 @@ export class NotificationsPage extends Component {
             variables={{
               bankid: user.id,
             }}>
-            {({error, data, loading}) => {
+            {({ error, data, loading }) => {
               console.log(error, data, loading);
               return (
                 <ReactTableStyled
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
-                  data={loading ? [] : data && has.call(data, 'notificationlist') ? data.notificationlist : []}
+                  data={
+                    loading
+                      ? []
+                      : data && has.call(data, 'notificationlist')
+                      ? data.notificationlist
+                      : []
+                  }
                   loadingText={loading ? 'Loading...' : error ? 'Error...' : 'Loading...'}
                   loading={loading}
                   error={error}

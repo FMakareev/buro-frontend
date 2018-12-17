@@ -10,9 +10,9 @@ import { CheckAuthorization } from '@lib/ui/CheckAuthorization/CheckAuthorizatio
 import { ROLE_CLIENT } from '@lib/shared/roles';
 
 import { STATUS_PENDING, STATUS_APPROVAL } from '@lib/shared/statuses';
+import { Box } from '@lib/ui/Box/Box';
 import NotificationListQuery from './NotificationListQuery.graphql';
 import { getUserFromStore } from '../../../../store/reducers/user/selectors';
-import { Box } from '@lib/ui/Box/Box';
 
 import { UpdateNotificationButtons } from '../../components/UpdateNotificationButtons/UpdateNotificationButtons';
 
@@ -26,7 +26,7 @@ const columns = () => [
         {props.value}
       </Text>
     ),
-    accessor: props => `${props.bank.bankName}`,
+    accessor: props => (props.bank ? `${props.bank.bankName}` : null),
   },
   {
     id: 'reqDate',
@@ -36,7 +36,7 @@ const columns = () => [
         {props.value}
       </Text>
     ),
-    accessor: props => dayjs(props.date).format('DD.MM.YYYY HH:mm:ss'),
+    accessor: props => (props.date ? dayjs(props.date).format('DD.MM.YYYY HH:mm:ss') : null),
     filterMethod: (filter, row) =>
       row[filter.id].startsWith(filter.value) && row[filter.id].endsWith(filter.value),
   },
@@ -50,7 +50,7 @@ const columns = () => [
           <Text>{props.original.status === STATUS_APPROVAL ? 'Approved' : 'Not approved'}</Text>
         );
       }
-      return <UpdateNotificationButtons id={props.original.id} />;
+      return <UpdateNotificationButtons id={props.original ? props.original.id : null} />;
     },
     accessor: props => props.status,
   },
@@ -86,7 +86,13 @@ export class ClientsNotificationsPage extends Component {
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
-                  data={loading ? [] : data && has.call(data, 'notificationlist') ? data.notificationlist : []}
+                  data={
+                    loading
+                      ? []
+                      : data && has.call(data, 'notificationlist')
+                      ? data.notificationlist
+                      : []
+                  }
                   loadingText={loading ? 'Loading...' : error ? 'Error...' : 'Loading...'}
                   loading={loading}
                   error={error}
