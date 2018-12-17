@@ -33,7 +33,7 @@ const columns = ({onFiltered}) => [
     accessor: props => {
       try {
         if (has.call(props, 'client')) {
-          return `${props.client.firstName} ${props.client.lastName} ${props.client.patronymic}`;
+          return props.client ? `${props.client.firstName} ${props.client.lastName} ${props.client.patronymic}` : null;
         }
       } catch (error) {
         console.log(error);
@@ -53,7 +53,7 @@ const columns = ({onFiltered}) => [
     accessor: props => {
       try {
         if (has.call(props, 'client')) {
-          return dayjs(props.client.birthdate).format('DD.MM.YYYY');
+          return props.client ? dayjs(props.client.birthdate).format('DD.MM.YYYY') : null;
         }
       } catch (error) {
         console.log(error);
@@ -72,7 +72,7 @@ const columns = ({onFiltered}) => [
         /** TODO: если статус `need update` значит документ был обновлен и его нужно перезапросить */
         if (props.original.status === STATUS_NEED_UPDATE) {
           return <CreateNotificationButton
-            clientid={props.original.client.id}
+            clientid={props.original.client ? props.original.client.id : null}
             bankid={props.original.owner.id}>
             Update
           </CreateNotificationButton>;

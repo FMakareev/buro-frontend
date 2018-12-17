@@ -6,16 +6,15 @@ import { Container } from '@lib/ui/Container/Container';
 import { Text } from '@lib/ui/Text/Text';
 import { ReactTableStyled } from '@lib/ui/ReactTableStyled/ReactTableStyled';
 
-import UserDocumentListQuery from './UserDocumentListQuery.graphql';
-
 import { CheckAuthorization } from '@lib/ui/CheckAuthorization/CheckAuthorization';
 import { ROLE_BANK } from '@lib/shared/roles';
+import { Box } from '@lib/ui/Box/Box';
+import UserDocumentListQuery from './UserDocumentListQuery.graphql';
+
 import { getUserFromStore } from '../../../../store/reducers/user/selectors';
 import { CreateNotificationButton } from '../../components/CreateNotificationButton/CreateNotificationButton';
-import { Box } from '@lib/ui/Box/Box';
 
 const has = Object.prototype.hasOwnProperty;
-
 
 const columns = user => [
   {
@@ -29,7 +28,9 @@ const columns = user => [
     accessor: props => {
       try {
         if (has.call(props, 'client')) {
-          return `${props.client.firstName} ${props.client.lastName} ${props.client.patronymic}`;
+          return props.client
+            ? `${props.client.firstName} ${props.client.lastName} ${props.client.patronymic}`
+            : null;
         }
       } catch (error) {
         console.log(error);
@@ -49,7 +50,7 @@ const columns = user => [
     accessor: props => {
       try {
         if (has.call(props, 'client')) {
-          return dayjs(props.client.birthdate).format('DD.MM.YYYY');
+          return props.client ? dayjs(props.client.birthdate).format('DD.MM.YYYY') : null;
         }
       } catch (error) {
         console.log(error);
@@ -63,10 +64,14 @@ const columns = user => [
     id: 'Request Status',
     Header: 'Status',
     // filterable: true,
-    Cell: (props) => {
-      console.log('Status',props);
+    Cell: props => {
+      console.log('Status', props);
       try {
-        return <CreateNotificationButton bankid={user.id} clientid={props.value}>Request</CreateNotificationButton>;
+        return (
+          <CreateNotificationButton bankid={user.id} clientid={props.value}>
+            Request
+          </CreateNotificationButton>
+        );
       } catch (error) {
         console.log(error);
       }
@@ -74,7 +79,7 @@ const columns = user => [
     },
     accessor: props => {
       if (has.call(props, 'client')) {
-        return props.client.id;
+        return props.client ? props.client.id : null;
       }
       return null;
     },
@@ -99,12 +104,12 @@ export class ClientsPage extends Component {
     const { user } = this.props;
 
     return (
-      <Container backgroundColor={'transparent'} px={6}>
-        <Text fontFamily={'bold'} fontWeight={'bold'} fontSize={9} lineHeight={9} mb={7}>
+      <Container backgroundColor="transparent" px={6}>
+        <Text fontFamily="bold" fontWeight="bold" fontSize={9} lineHeight={9} mb={7}>
           Clients
         </Text>
 
-        <Box backgroundColor={'color0'}>
+        <Box backgroundColor="color0">
           <Query
             query={UserDocumentListQuery}
             variables={{
@@ -117,7 +122,13 @@ export class ClientsPage extends Component {
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
-                  data={loading ? [] : data && has.call(data,'userdocumentlist')? data.userdocumentlist: []}
+                  data={
+                    loading
+                      ? []
+                      : data && has.call(data, 'userdocumentlist')
+                      ? data.userdocumentlist
+                      : []
+                  }
                   loadingText={loading ? 'Loading...' : error ? 'Error...' : 'Loading...'}
                   loading={loading}
                   error={error}
