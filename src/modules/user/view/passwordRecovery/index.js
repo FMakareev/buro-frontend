@@ -27,10 +27,10 @@ export class PasswordRecovery extends Component {
   }
 
   render() {
-    const{match:{params},location} = this.props;
-    const token = location.search.replace('?token=', '');
-    if(!token){
-      return <Redirect to={'/logout'}/>
+    const{match:{params}} = this.props;
+    console.log(params);
+    if(!params || !params.token){
+      return <Redirect to={'/'}/>
     }
     return (
       <Wrapper position={'relative'} ml={['auto', 20, 100]} mt={[10, 120]} maxWidth={360}>
@@ -38,7 +38,7 @@ export class PasswordRecovery extends Component {
           <Title>New password</Title>
         </Box>
         <FormUserPasswordRecovery initialValues={{
-          token: token,
+          token: params.token,
         }}/>
       </Wrapper>
     );
