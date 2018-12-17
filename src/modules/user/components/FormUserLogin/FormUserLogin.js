@@ -86,7 +86,7 @@ export class FormUserLogin extends Component {
         if (response.status >= 400) {
           throw response;
         } else {
-          return this.getUser(value.uname);
+          return this.getUser(value.email);
         }
       })
       .catch(({ status, statusText }) => {
@@ -119,14 +119,13 @@ export class FormUserLogin extends Component {
     localStorage.setItem('user', JSON.stringify(useremailitem));
   };
 
-  getUser = uname => {
+  getUser = email => {
     const { client, history } = this.props;
-
     return client
       .query({
         query: UserEmailItemQuery,
         variables: {
-          email: uname,
+          email: email,
         },
       })
       .then(result => {
