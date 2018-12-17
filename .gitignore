@@ -35,3 +35,16 @@ public/
 
 src/modules/index.js
 
+.bash_history
+.bash_logout
+.bashrc
+.cache/
+.config/
+.docker/
+.flyrc
+.npm/
+.profile
+.ssh/
+.yarnrc
+ci/
+package-lock.json
