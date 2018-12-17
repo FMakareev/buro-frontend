@@ -1,49 +1,54 @@
-import React, {Component} from 'react';
-import {Field, reduxForm, Form, SubmissionError, getFormValues} from 'redux-form';
-import {Link} from 'react-router-dom';
-import {graphql} from 'react-apollo';
-import {connect} from 'react-redux';
-import {formPropTypes} from '../../../../propTypes/Forms/FormPropTypes';
+import React, { Component } from 'react';
+import { Field, reduxForm, Form, SubmissionError, getFormValues } from 'redux-form';
+import { Link } from 'react-router-dom';
+import { graphql } from 'react-apollo';
+import { connect } from 'react-redux';
 
-import {Select} from '@lib/ui/Select/Select';
-import {Checkbox} from '@lib/ui/Checkbox/Checkbox';
+import { Select } from '@lib/ui/Select/Select';
+import { Checkbox } from '@lib/ui/Checkbox/Checkbox';
 
-import {TextFieldWithIcon} from '@lib/ui/TextFieldWithIcon/TextFieldWithIcon';
+import { TextFieldWithIcon } from '@lib/ui/TextFieldWithIcon/TextFieldWithIcon';
 
-import {Box} from '@lib/ui/Box/Box';
-import {Flex} from '@lib/ui/Flex/Flex';
-import {HelpText} from '../HelpText/HelpText';
+import { Box } from '@lib/ui/Box/Box';
+import { Flex } from '@lib/ui/Flex/Flex';
 
-import {SvgArrowRight} from '@lib/ui/Icons/SvgArrowRight';
-import {SvgEmailIcon} from '@lib/ui/Icons/SvgEmailIcon';
-import {SvgPasswordIcon} from '@lib/ui/Icons/SvgPasswordIcon';
-import {SvgReloadIcon} from '@lib/ui/Icons/SvgReloadIcon';
+import { SvgArrowRight } from '@lib/ui/Icons/SvgArrowRight';
+import { SvgEmailIcon } from '@lib/ui/Icons/SvgEmailIcon';
+import { SvgPasswordIcon } from '@lib/ui/Icons/SvgPasswordIcon';
+import { SvgReloadIcon } from '@lib/ui/Icons/SvgReloadIcon';
 
-import {ButtonWithImageError} from '../ButtonWithImageError/ButtonWithImageError';
-import {Text} from '@lib/ui/Text/Text';
+import { Text } from '@lib/ui/Text/Text';
+import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
+import { PreloaderWrapper } from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
+import { ROLE_BANK, ROLE_CLIENT } from '@lib/shared/roles';
+import { SvgBank } from '@lib/ui/Icons/SvgBank';
+import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
 
-import {required} from '../../../../utils/validation/required';
+import { required } from '../../../../utils/validation/required';
 
-import {SpeedingWheel} from '@lib/ui/SmallPreloader/SmallPreloader';
-import {PreloaderWrapper} from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
 import isEmail from '../../../../utils/validation/isEmail';
 import minLength from '../../../../utils/validation/minLength';
 
 import CreateUserMutation from './CreateUserMutation.graphql';
-import {ROLE_BANK, ROLE_CLIENT} from '@lib/shared/roles';
-import {SvgBank} from '@lib/ui/Icons/SvgBank';
+import { HelpText } from '../HelpText/HelpText';
+import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
 const minLength8 = minLength(8);
 const minLength12 = minLength(12);
 
-
-
-
 const validate = values => {
   const errors = {};
 
-  const {role,email, bankName,password,confirmPassword,masterpassword,retypemasterpassword, privacy} = values;
-
+  const {
+    role,
+    email,
+    bankName,
+    password,
+    confirmPassword,
+    masterpassword,
+    retypemasterpassword,
+    privacy,
+  } = values;
 
   if (!role) {
     errors.role = 'Required';
@@ -64,7 +69,6 @@ const validate = values => {
   if (!privacy) {
     errors.privacy = 'Required';
   }
-
 
   if (!masterpassword) {
     errors.masterpassword = 'Required';
@@ -99,11 +103,6 @@ const validate = values => {
   return errors;
 };
 
-
-
-
-
-
 export class FormUserRegistration extends Component {
   static propTypes = {
     ...formPropTypes,
@@ -115,12 +114,13 @@ export class FormUserRegistration extends Component {
 
   getNetworkError = errors => {
     try {
-      let errorList = {};
+      const errorList = {};
       errors.forEach(item => {
+        if (item.message.includes('Tried to save duplicate unique keys')) {
+          errorList.email = 'User with this email already registered.';
+        }
+
         switch (item.message) {
-          case 'already registered': {
-            errorList.email = 'User with this email already registered.';
-          }
           case 'unknown bank': {
             errorList.bankName = 'No finding any bank with this name';
           }
@@ -138,12 +138,10 @@ export class FormUserRegistration extends Component {
   submit = value => {
     console.log(value);
     return this.props['@apollo/create']({
-      variables: Object.assign({}, value, {confirmPassword: value.password, phone: '000000000'}),
+      variables: Object.assign({}, value, { confirmPassword: value.password, phone: '000000' }),
     })
-      .then(response => {
-        return response;
-      })
-      .catch(({graphQLErrors, message, networkError, ...rest}) => {
+      .then(response => response)
+      .catch(({ graphQLErrors, message, networkError, ...rest }) => {
         console.log('graphQLErrors: ', graphQLErrors);
         console.log('message: ', message);
         console.log('networkError: ', networkError);
@@ -177,7 +175,7 @@ export class FormUserRegistration extends Component {
         <Flex justifyContent="center" width="100%" flexDirection="column">
           {!submitSucceeded && (
             <>
-              <Box width={'100%'} mb={6}>
+              <Box width="100%" mb={6}>
                 <Field
                   name="role"
                   component={Select}
@@ -185,100 +183,100 @@ export class FormUserRegistration extends Component {
                   labelKey="label"
                   valueKey="value"
                   options={[
-                    {value: ROLE_BANK, label: 'Bank'},
-                    {value: ROLE_CLIENT, label: 'Client'},
+                    { value: ROLE_BANK, label: 'Bank' },
+                    { value: ROLE_CLIENT, label: 'Client' },
                   ]}
                 />
               </Box>
               {values && values.role === ROLE_BANK && (
-                <Box width={'100%'} mb={6}>
+                <Box width="100%" mb={6}>
                   <Field
-                    name={'bankName'}
+                    name="bankName"
                     component={TextFieldWithIcon}
                     placeholder="Bank name"
-                    type={'text'}
+                    type="text"
                     icon={
-                      <Text fontSize={11} lineHeight={0} stroke={'inherit'} fill={'inherit'}>
-                        <SvgBank/>
+                      <Text fontSize={11} lineHeight={0} stroke="inherit" fill="inherit">
+                        <SvgBank />
                       </Text>
                     }
                   />
                 </Box>
               )}
 
-              <Box width={'100%'} mb={6}>
+              <Box width="100%" mb={6}>
                 <Field
                   name="email"
                   component={TextFieldWithIcon}
                   placeholder="Email address"
                   type="email"
                   icon={
-                    <Text fontSize={11} lineHeight={0} fill={'inherit'}>
-                      <SvgEmailIcon/>
+                    <Text fontSize={11} lineHeight={0} fill="inherit">
+                      <SvgEmailIcon />
                     </Text>
                   }
                 />
               </Box>
-              <Box width={'100%'} mb={6}>
+              <Box width="100%" mb={6}>
                 <Field
                   name="password"
                   component={TextFieldWithIcon}
                   placeholder="Password"
                   type="password"
                   icon={
-                    <Text fontSize={11} lineHeight={0} fill={'inherit'}>
-                      <SvgPasswordIcon/>
+                    <Text fontSize={11} lineHeight={0} fill="inherit">
+                      <SvgPasswordIcon />
                     </Text>
                   }
                   validate={[required, minLength8]}
                 />
               </Box>
-              <Box width={'100%'} mb={6}>
+              <Box width="100%" mb={6}>
                 <Field
                   name="confirmPassword"
                   component={TextFieldWithIcon}
                   placeholder="Password retype"
                   type="password"
                   icon={
-                    <Text fontSize={11} lineHeight={0} fill={'inherit'}>
-                      <SvgPasswordIcon/>
+                    <Text fontSize={11} lineHeight={0} fill="inherit">
+                      <SvgPasswordIcon />
                     </Text>
                   }
                 />
               </Box>
-              <Box width={'100%'} mb={6}>
+              <Box width="100%" mb={6}>
                 <Field
                   name="masterpassword"
                   component={TextFieldWithIcon}
                   placeholder="Master Password"
                   type="password"
                   icon={
-                    <Text fontSize={11} lineHeight={0} fill={'inherit'}>
-                      <SvgPasswordIcon/>
+                    <Text fontSize={11} lineHeight={0} fill="inherit">
+                      <SvgPasswordIcon />
                     </Text>
                   }
                 />
               </Box>
-              <Box width={'100%'} mb={6}>
+              <Box width="100%" mb={6}>
                 <Field
                   name="retypemasterpassword"
                   component={TextFieldWithIcon}
                   placeholder="Retype master Password"
                   type="password"
                   icon={
-                    <Text fontSize={11} lineHeight={0} fill={'inherit'}>
-                      <SvgPasswordIcon/>
+                    <Text fontSize={11} lineHeight={0} fill="inherit">
+                      <SvgPasswordIcon />
                     </Text>
                   }
                 />
               </Box>
 
-              <Box width={'100%'} mb={8}>
+              <Box width="100%" mb={8}>
                 <Field
-                  name={'privacy'}
+                  name="privacy"
                   checked={false}
                   label={
-                    <HelpText width={'90%'}>
+                    <HelpText width="90%">
                       I accept the <Link to="/">terms of service</Link> and
                       <Link to="/"> privacy policy</Link>.
                     </HelpText>
@@ -297,7 +295,7 @@ export class FormUserRegistration extends Component {
                     error={error}
                     iconRight={
                       <Text fontSize={11} lineHeight={0}>
-                        <SvgArrowRight/>
+                        <SvgArrowRight />
                       </Text>
                     }
                     disabled={pristine || submitting || invalid}>
@@ -308,14 +306,14 @@ export class FormUserRegistration extends Component {
               {submitFailed && (
                 <Box width="100%">
                   <ButtonWithImageError
-                    type={'submit'}
-                    variant={'error'}
-                    size={'medium'}
+                    type="submit"
+                    variant="error"
+                    size="medium"
                     py={2}
                     error={error}
                     iconRight={
                       <Text fontSize={11} lineHeight={0}>
-                        <SvgReloadIcon/>
+                        <SvgReloadIcon />
                       </Text>
                     }>
                     Try again
@@ -326,9 +324,9 @@ export class FormUserRegistration extends Component {
           )}
 
           {submitSucceeded && (
-            <Box width={'100%'} mb={6}>
-              <Text fontSize={6} lineHeight={12} color={'color1'} fontFamily={'medium'}>
-                Account successfully registered. <br/>
+            <Box width="100%" mb={6}>
+              <Text fontSize={6} lineHeight={12} color="color1" fontFamily="medium">
+                Account successfully registered. <br />
                 Now you can sign in.
               </Text>
             </Box>
@@ -338,7 +336,7 @@ export class FormUserRegistration extends Component {
         {submitting && (
           <PreloaderWrapper>
             <Text fontSize={13}>
-              <SpeedingWheel/>
+              <SpeedingWheel />
             </Text>
           </PreloaderWrapper>
         )}
@@ -346,8 +344,6 @@ export class FormUserRegistration extends Component {
     );
   }
 }
-
-
 
 // TODO: обновить схему в файле mockClients
 FormUserRegistration = graphql(CreateUserMutation, {
@@ -360,6 +356,6 @@ FormUserRegistration = connect(state => ({
 
 FormUserRegistration = reduxForm({
   form: 'FormUserRegistration',
-  validate
+  validate,
 })(FormUserRegistration);
 export default FormUserRegistration;
