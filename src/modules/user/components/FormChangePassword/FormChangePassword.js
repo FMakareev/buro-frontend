@@ -54,8 +54,11 @@ export class FormChangePassword extends Component {
       const errorList = {};
       errors.forEach(item => {
         switch (item.message) {
-          case 'old pass': {
-            errorList.oldPassword = 'Wrong old password!';
+          case 'Wrong password!': {
+            errorList.password = 'Wrong old password!';
+          }
+          case 'The new password should not be the same as the old one.': {
+            errorList.newPassword = 'The new password should not be the same as the old one.';
           }
         }
       });
@@ -119,7 +122,7 @@ export class FormChangePassword extends Component {
           mb="30px">
           <Box width={['100%', '100%', '50%']} px={6} mb={4}>
             <Field
-              name="oldPassword"
+              name="password"
               component={TextFieldWithLabel}
               label="Old Password:"
               type="password"
