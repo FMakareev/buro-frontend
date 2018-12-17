@@ -35,32 +35,7 @@ const StyledBox = styled(Box)`
  * @param {string} value - вводимое пользователем значение
  * @desc приведение вводимого значения телефона к формату только цифры */
 const normalizePhoneNumber = value => {
-  // if (value.length > 17) {
-  //   return value.slice(0, 17);
-  // }
-
-  // if (value.length === 1) return `+ 7 ${value.replace(/[^\d]/g, '')}`;
-
   const onlyNums = value.replace(/[^\d]/g, '');
-
-  // if (onlyNums.length <= 4) {
-  //   return `+ 7 ${onlyNums.slice(1, 4)}`;
-  // }
-
-  // if (onlyNums.length <= 7) {
-  //   return `+ 7 ${onlyNums.slice(1, 4)} ${onlyNums.slice(4)}`;
-  // }
-
-  // if (onlyNums.length <= 9) {
-  //   return `+ 7 ${onlyNums.slice(1, 4)} ${onlyNums.slice(4, 7)} ${onlyNums.slice(7)}`;
-  // }
-
-  // if (onlyNums.length <= 11) {
-  //   return `+ 7 ${onlyNums.slice(1, 4)} ${onlyNums.slice(4, 7)} ${onlyNums.slice(
-  //     7,
-  //     9,
-  //   )} ${onlyNums.slice(9)}`;
-  // }
 
   if (onlyNums.length > 25) {
     return `${onlyNums.slice(0, 25)}`;

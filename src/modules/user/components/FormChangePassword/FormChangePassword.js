@@ -23,9 +23,13 @@ import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 import { required } from '../../../../utils/validation/required';
 import ChangePassMutation from './ChangePassMutation.graphql';
 import { getUserFromStore } from '../../../../store/reducers/user/selectors';
+import minLength from '../../../../utils/validation/minLength';
+
+const minLength8 = minLength(8);
 
 const StyledBox = styled(Box)`
   text-align: center;
+  justify-content: center;
 `;
 
 const validate = values => {
@@ -77,6 +81,9 @@ export class FormChangePassword extends Component {
         console.log('message: ', message);
         console.log('networkError: ', networkError);
         console.log('rest: ', rest);
+        if (networkError) {
+          throw new SubmissionError({ _error: networkError.message });
+        }
         if (graphQLErrors) {
           throw new SubmissionError({
             ...this.getNetworkError(graphQLErrors),
@@ -101,81 +108,85 @@ export class FormChangePassword extends Component {
 
     return (
       <Form onSubmit={handleSubmit(this.submit)}>
-        <Text fontFamily="bold" as="h2" fontSize={9} lineHeight={11} mb={4}>
-          Change password:
-        </Text>
-        <Flex
-          mx={-6}
-          justifyContent="space-between"
-          flexDirection="column"
-          flexWrap="wrap"
-          mb="30px">
-          <Box width={['100%', '100%', '50%']} px={6} mb={4}>
-            <Field
-              name="oldPassword"
-              component={TextFieldWithLabel}
-              label="Old Password:"
-              type="password"
-              validate={[required]}
-            />
-          </Box>
-          <Box width={['100%', '100%', '50%']} px={6} mb={4}>
-            <Field
-              name="newPassword"
-              component={TextFieldWithLabel}
-              label="New password:"
-              type="password"
-              validate={[required]}
-            />
-          </Box>
-          <Box width={['100%', '100%', '50%']} px={6} mb={2}>
-            <Field
-              name="confirmPassword"
-              component={TextFieldWithLabel}
-              label="Confirm new password:"
-              type="password"
-              validate={[required]}
-            />
-          </Box>
-        </Flex>
-        <Flex justifyContent="start">
-          <StyledBox mb={9} width={['100%', '100%', '50%']}>
-            {!submitFailed && (
-              <ButtonBase
-                display="inline-block"
-                type="submit"
-                variant="primary"
-                size="medium"
-                px={102}
-                py={2}
-                disabled={pristine || submitting || invalid}>
-                Confirm
-              </ButtonBase>
-            )}
+        <Flex>
+          <Box width={['100%', '100%', '50%']}>
+            <Text fontFamily="bold" as="h2" fontSize={9} lineHeight={11} mb={4}>
+              Change password:
+            </Text>
+            <Flex
+              mx={-6}
+              justifyContent="space-between"
+              flexDirection="column"
+              flexWrap="wrap"
+              mb="30px">
+              <Box width={['100%', '100%', '70%']} px={6} mb={4}>
+                <Field
+                  name="oldPassword"
+                  component={TextFieldWithLabel}
+                  label="Old Password:"
+                  type="password"
+                  validate={[required]}
+                />
+              </Box>
+              <Box width={['100%', '100%', '70%']} px={6} mb={4}>
+                <Field
+                  name="newPassword"
+                  component={TextFieldWithLabel}
+                  label="New password:"
+                  type="password"
+                  validate={[required, minLength8]}
+                />
+              </Box>
+              <Box width={['100%', '100%', '70%']} px={6} mb={2}>
+                <Field
+                  name="confirmPassword"
+                  component={TextFieldWithLabel}
+                  label="Confirm new password:"
+                  type="password"
+                  validate={[required, minLength8]}
+                />
+              </Box>
+            </Flex>
+            <Flex justifyContent="center">
+              <StyledBox mb={9} width={['90%', '90%', '80%']}>
+                {!submitFailed && (
+                  <ButtonBase
+                    display="inline-block"
+                    type="submit"
+                    variant="primary"
+                    size="medium"
+                    px={102}
+                    disabled={pristine || submitting || invalid}>
+                    Confirm
+                  </ButtonBase>
+                )}
 
-            {submitFailed && (
-              <ButtonWithImageError
-                display="inline-block"
-                type="submit"
-                variant="error"
-                size="medium"
-                py={2}
-                error={error}
-                iconRight={
-                  <Text fontSize={11} lineHeight={0}>
-                    <SvgReloadIcon />
+                {submitFailed && (
+                  <ButtonWithImageError
+                    display="inline-block"
+                    type="submit"
+                    variant="error"
+                    size="medium"
+                    py={2}
+                    error={error}
+                    iconRight={
+                      <Text fontSize={11} lineHeight={0}>
+                        <SvgReloadIcon />
+                      </Text>
+                    }>
+                    Try again
+                  </ButtonWithImageError>
+                )}
+
+                {submitSucceeded && !submitting && (
+                  <Text fontSize={6} lineHeight={12} color="color1" fontFamily="medium">
+                    Password was successfully changed.
                   </Text>
-                }>
-                Try again
-              </ButtonWithImageError>
-            )}
-
-            {submitSucceeded && !submitting && (
-              <Text fontSize={6} lineHeight={12} color="color1" fontFamily="medium">
-                Password was successfully changed.
-              </Text>
-            )}
-          </StyledBox>
+                )}
+              </StyledBox>
+            </Flex>
+          </Box>
+          <Box width={['0%', '0%', '50%']} />
         </Flex>
 
         {submitting && (
