@@ -10,7 +10,6 @@ import {
   USER_UPDATE_LOADING_START,
   USER_UPDATE_LOADING_SUCCESS
 } from './actionTypes';
-// import {mocksClient} from '../../../apollo/mocksClient';
 import {client} from '../../../apollo/index.client';
 import UserEmailItemQuery from './UserEmailItemQuery.graphql';
 

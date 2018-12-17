@@ -6,8 +6,8 @@ import WriteFileWebpackPlugin from 'write-file-webpack-plugin';
 import {fileLoaderConfig} from './fileLoaderConfig';
 import {graphqlLoaderConfig} from './graphqlLoaderConfig';
 import {scriptsLoaderConfig} from './scriptsLoaderConfig';
+import webpackResolve from "../webpack.config";
 
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 export const serverConfigGenerator = () => {
   const reStyle = /\.(css|less|styl|scss|sass|sss|svg)$/;
@@ -45,18 +45,7 @@ export const serverConfigGenerator = () => {
         },
       ],
     },
-    resolve: {
-      modules: ['node_modules'],
-      /** @link https://webpack.js.org/configuration/resolve/#resolve-alias */
-      alias: {
-        /** маска пути для глобальных компонентов проекта */
-        '@lib/ui': path.resolve('src/components/'),
-        /** маска пути для стилей проекта */
-        '@lib/styles': path.resolve('src/styles/'),
-        /** маска пути для утилит проекта проекта */
-        '@lib/utils': path.resolve('src/utils/'),
-      },
-    },
+    ...webpackResolve,
     plugins: [
       new WriteFileWebpackPlugin(),
       // new BundleAnalyzerPlugin({

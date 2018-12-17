@@ -4,6 +4,7 @@ import {FileLoader} from "@lib/ui/FileLoader/FileLoader";
 import {Text} from "@lib/ui/Text/Text";
 import {ButtonBase} from "@lib/ui/ButtonBase/ButtonBase";
 import {MessageContentStyled, WrapperMessage} from "./FormDocumentUploadStyled";
+import {EXCEL_UPLOAD} from "@lib/shared/endpoints";
 
 
 
@@ -37,14 +38,13 @@ export class FormDocumentUpload extends Component {
     console.log(value);
     const formData = new FormData();
     formData.append('document', value[0]);
-    formData.append('id', this.props.id);
     const options = {
       method: 'post',
       body: formData,
     };
     this.setState(() => ({isLoading: true, reject: null}));
 
-    fetch('/upload/excel', options).then(response => {
+    fetch(`${EXCEL_UPLOAD}/${this.props.id}`, options).then(response => {
       console.log(response);
       if(response.status < 300){
         this.setState(() => ({isLoading: false, submitSucceeded: true}));

@@ -1,24 +1,25 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import dayjs from 'dayjs';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import { Query } from 'react-apollo';
-import { Container } from '@lib/ui/Container/Container';
-import { Text } from '@lib/ui/Text/Text';
-import { ButtonBase } from '@lib/ui/ButtonBase/ButtonBase';
-import { SvgUpload } from '@lib/ui/Icons/SvgUpload';
-import { ButtonWithImage } from '@lib/ui/ButtonWithImage/ButtonWithImage';
+import {Query} from 'react-apollo';
+import {Container} from '@lib/ui/Container/Container';
+import {Text} from '@lib/ui/Text/Text';
+import {ButtonBase} from '@lib/ui/ButtonBase/ButtonBase';
+import {SvgUpload} from '@lib/ui/Icons/SvgUpload';
+import {ButtonWithImage} from '@lib/ui/ButtonWithImage/ButtonWithImage';
 import ReactTableStyled from '@lib/ui/ReactTableStyled/ReactTableStyled';
-import { FormDocumentUpload } from '../../components/FormDocumentUpload/FormDocumentUpload';
+import {FormDocumentUpload} from '../../components/FormDocumentUpload/FormDocumentUpload';
 import Modal from '@lib/ui/Modal/Modal';
-import UserDocumentListQuery from './UserDocumentListQuery.graphql';
 import UserListQuery from './UserListQuery.graphql';
-import { ROLE_BUREAU } from '../../../../shared/roles';
-import { CheckAuthorization } from '@lib/ui/CheckAuthorization/CheckAuthorization';
-import { getUserFromStore } from '../../../../store/reducers/user/selectors';
-import { Box } from '@lib/ui/Box/Box';
+import {ROLE_BUREAU} from '@lib/shared/roles';
+import {getUserFromStore} from '../../../../store/reducers/user/selectors';
+import {Box} from '@lib/ui/Box/Box';
+import {CheckAuthorization} from "@lib/ui/CheckAuthorization/CheckAuthorization";
 
-const columns = ({ onOpenFormUpdateDoc }) => [
+const has = Object.prototype.hasOwnProperty;
+
+const columns = ({onOpenFormUpdateDoc}) => [
   {
     id: 'Client',
     Header: 'Client',
@@ -95,7 +96,7 @@ const columns = ({ onOpenFormUpdateDoc }) => [
           display="inline-block"
           iconRight={
             <Text fontSize={5} lineHeight={0} fill="inherit">
-              <SvgUpload />
+              <SvgUpload/>
             </Text>
           }
           size="xsmall"
@@ -132,15 +133,15 @@ export class DocumentsBureauPage extends Component {
     };
   }
 
-  onOpenFormUpdateDoc = id => this.setState(() => ({ id, isOpen: true }));
+  onOpenFormUpdateDoc = id => this.setState(() => ({id, isOpen: true}));
 
   toggleModal = () => {
     console.log('toggleModal');
-    this.setState(state => ({ isOpen: !state.isOpen }));
+    this.setState(state => ({isOpen: !state.isOpen}));
   };
 
   render() {
-    const { isOpen, id } = this.state;
+    const {isOpen, id} = this.state;
     return (
       <Container backgroundColor="transparent" px={6}>
         <Text fontFamily="bold" fontWeight="bold" fontSize={9} lineHeight={9} mb={7}>
@@ -148,14 +149,14 @@ export class DocumentsBureauPage extends Component {
         </Text>
         <Box backgroundColor="color0">
           <Query query={UserListQuery}>
-            {({ error, data, loading }) => {
-              console.log(error, data, loading);
+            {({error, data, loading, refetch, ...rest}) => {
+              console.log(error, data, loading,rest);
               return (
                 <ReactTableStyled
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
-                  data={loading ? [] : data.userlist}
+                  data={loading ? [] : data && has.call(data, 'userlist') ? data.userlist : []}
                   error={error}
                   filterable
                   loading={loading}
@@ -169,7 +170,7 @@ export class DocumentsBureauPage extends Component {
         </Box>
         {isOpen && (
           <Modal toggleModal={this.toggleModal}>
-            <FormDocumentUpload toggleModal={this.toggleModal} id={id} />
+            <FormDocumentUpload toggleModal={this.toggleModal} id={id}/>
           </Modal>
         )}
       </Container>
@@ -177,7 +178,7 @@ export class DocumentsBureauPage extends Component {
   }
 }
 
-// DocumentsBureauPage = CheckAuthorization([ROLE_BUREAU])(DocumentsBureauPage);
+DocumentsBureauPage = CheckAuthorization([ROLE_BUREAU])(DocumentsBureauPage);
 
 DocumentsBureauPage = connect(state => ({
   user: getUserFromStore(state),

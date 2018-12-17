@@ -11,6 +11,7 @@ module.exports = {
       '@lib/styles': path.resolve('src/styles/'),
       /** маска пути для утилит проекта проекта */
       '@lib/utils': path.resolve('src/utils/'),
+      '@lib/shared': path.resolve('src/shared/'),
     },
   },
 }

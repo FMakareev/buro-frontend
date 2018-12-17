@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import {Text} from "@lib/ui/Text/Text";
+import {Container} from "@lib/ui/Container/Container";
 
 
 export class TermsPage extends Component {
@@ -17,9 +19,12 @@ export class TermsPage extends Component {
 
   render() {
     return (
-      <div>
-        TermsPage
-      </div>
+      <Container backgroundColor={'transparent'} px={6}>
+        <Text fontFamily={'bold'} fontWeight={'bold'} fontSize={9} lineHeight={9} mb={7}>
+          Terms of use
+        </Text>
+
+      </Container>
     );
   }
 }

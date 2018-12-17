@@ -1,4 +1,4 @@
-import { LAYOUT_AUTH } from '../../shared/layout';
+import { LAYOUT_AUTH } from '@lib/shared/layout';
 
 export const routes = [
   {

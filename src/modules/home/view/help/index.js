@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import faker from 'faker';
 
 import { color } from 'styled-system';
 import { Box } from '@lib/ui/Box/Box';

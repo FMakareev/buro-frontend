@@ -1,35 +1,36 @@
 /** global ENDPOINT_CLIENT */
-import React, { Component } from 'react';
-import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
-import { Link, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { withApollo } from 'react-apollo';
+import React, {Component} from 'react';
+import {Field, reduxForm, Form, SubmissionError} from 'redux-form';
+import {Link, withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {withApollo} from 'react-apollo';
 
-import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
+import {formPropTypes} from '../../../../propTypes/Forms/FormPropTypes';
 
-import { TextFieldWithIcon } from '@lib/ui/TextFieldWithIcon/TextFieldWithIcon';
+import {TextFieldWithIcon} from '@lib/ui/TextFieldWithIcon/TextFieldWithIcon';
 
 import {Box} from '@lib/ui/Box/Box';
-import { Flex } from '@lib/ui/Flex/Flex';
+import {Flex} from '@lib/ui/Flex/Flex';
 
-import { SvgArrowRight } from '@lib/ui/Icons/SvgArrowRight';
-import { SvgEmailIcon } from '@lib/ui/Icons/SvgEmailIcon';
-import { SvgPasswordIcon } from '@lib/ui/Icons/SvgPasswordIcon';
-import { SvgReloadIcon } from '@lib/ui/Icons/SvgReloadIcon';
+import {SvgArrowRight} from '@lib/ui/Icons/SvgArrowRight';
+import {SvgEmailIcon} from '@lib/ui/Icons/SvgEmailIcon';
+import {SvgPasswordIcon} from '@lib/ui/Icons/SvgPasswordIcon';
+import {SvgReloadIcon} from '@lib/ui/Icons/SvgReloadIcon';
 
-import { Text } from '@lib/ui/Text/Text';
+import {Text} from '@lib/ui/Text/Text';
 
-import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
-import { PreloaderWrapper } from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
+import {SpeedingWheel} from '@lib/ui/SmallPreloader/SmallPreloader';
+import {PreloaderWrapper} from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
 
-import { required } from '@lib/utils/validation/required';
-import { isEmail } from '@lib/utils/validation/isEmail';
-import { jsonToUrlEncoded } from '@lib/utils/jsontools/jsonToUrlEncoded';
+import {required} from '@lib/utils/validation/required';
+import {isEmail} from '@lib/utils/validation/isEmail';
+import {jsonToUrlEncoded} from '@lib/utils/jsontools/jsonToUrlEncoded';
 
-import { USER_ADD } from '../../../../store/reducers/user/actionTypes';
-import { HelpText } from '../HelpText/HelpText';
+import {USER_ADD} from '../../../../store/reducers/user/actionTypes';
+import {HelpText} from '../HelpText/HelpText';
 import UserEmailItemQuery from './UserEmailItemQuery.graphql';
-import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
+import {ButtonWithImageError} from '../ButtonWithImageError/ButtonWithImageError';
+import {USER_AUTH} from "@lib/shared/endpoints";
 
 export class FormUserLogin extends Component {
   static propTypes = {
@@ -48,31 +49,34 @@ export class FormUserLogin extends Component {
     };
   }
 
-  // getNetworkError = errors => {
-  //   try {
-  //     let errorList = {};
-  //     errors.forEach(item => {
-  //       switch (item.message) {
-  //         case 'user not found': {
-  //           errorList.email = 'Wrong email or password';
-  //           errorList.password = 'Wrong email or password';
-  //         }
-  //       }
-  //     });
-  //     return errorList;
-  //   } catch (error) {
-  //     console.error(error);
-  //     return {
-  //       _error: 'Unexpected error.',
-  //     };
-  //   }
-  // };
+  getNetworkError = errors => {
+    try {
+      let errorList = {};
+      errors.forEach(item => {
+        switch (item.message) {
+          case 'user not found': {
+            errorList.email = 'Wrong email or password';
+            errorList.password = 'Wrong email or password';
+          }
+          case 'Cannot load user session. Error: User not logged':{
+            errorList.graphQLErrors = 'User not logged.'
+          }
+        }
+      });
+      return errorList;
+    } catch (error) {
+      console.error(error);
+      return {
+        _error: 'Unexpected error.',
+      };
+    }
+  };
 
   submit = value => {
     this.setState(() => ({
       submitting: true,
     }));
-    return fetch(`${ENDPOINT_CLIENT}/user/login`, {
+    return fetch(`${ENDPOINT_CLIENT+USER_AUTH}`, {
       method: 'POST',
       credentials: 'include',
       mode: 'no-cors',
@@ -83,13 +87,15 @@ export class FormUserLogin extends Component {
       body: jsonToUrlEncoded(value),
     })
       .then(response => {
-        if (response.status >= 400) {
+        console.log(response);
+        console.log(document.cookie);
+        if (response.status >= 400 || !document.cookie) {
           throw response;
         } else {
-          return this.getUser(value.uname);
+          return this.getUser(value.email);
         }
       })
-      .catch(({ status, statusText }) => {
+      .catch(({status, statusText}) => {
         console.log('statusText', statusText);
         console.log('status', status);
 
@@ -99,10 +105,10 @@ export class FormUserLogin extends Component {
         }));
 
         if (status === 401) {
-          throw new SubmissionError({ _error: 'Wrong email or password' });
+          throw new SubmissionError({_error: 'Wrong email or password'});
         } else {
           throw new SubmissionError({
-            _error: 'error',
+            _error: 'User not logged',
           });
         }
       });
@@ -111,22 +117,21 @@ export class FormUserLogin extends Component {
   setUser = props => {
     console.log('setUser: ', props);
     const {
-      data: { useremailitem },
+      data: {useremailitem},
     } = props;
-    const { addUser } = this.props;
+    const {addUser} = this.props;
 
     addUser(useremailitem);
     localStorage.setItem('user', JSON.stringify(useremailitem));
   };
 
-  getUser = uname => {
-    const { client, history } = this.props;
-
+  getUser = email => {
+    const {client, history} = this.props;
     return client
       .query({
         query: UserEmailItemQuery,
         variables: {
-          email: uname,
+          email: email,
         },
       })
       .then(result => {
@@ -144,19 +149,20 @@ export class FormUserLogin extends Component {
           return Promise.resolve(result);
         }
       })
-
-      .catch(error => {
-        console.log('getUser error:', error);
+      .catch(({graphQLErrors, message, networkError, ...rest}) => {
+        console.log('graphQLErrors: ', graphQLErrors);
+        console.log('message: ', message);
+        console.log('networkError: ', networkError);
+        console.log('rest: ', rest);
         this.setState(() => ({
           submitting: false,
-          apolloError:
-            error.data.useremailitem === null ? 'Wrong email or password' : 'Unexpected error',
+          apolloError: graphQLErrors[0].message,
         }));
       });
   };
 
   mockSubmit = value => {
-    this.setState(({ submitting }) => ({ submitting: !submitting }));
+    this.setState(({submitting}) => ({submitting: !submitting}));
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         this.getUser(value.email);
@@ -166,11 +172,11 @@ export class FormUserLogin extends Component {
   };
 
   render() {
-    const { handleSubmit, pristine, invalid, submitFailed, error } = this.props;
-    const { apolloError, submitting } = this.state;
+    const {handleSubmit, pristine, invalid, submitFailed, error} = this.props;
+    const {apolloError, submitting} = this.state;
 
     return (
-      <Form onSubmit={handleSubmit(this.mockSubmit)}>
+      <Form onSubmit={handleSubmit(this.submit)}>
         <Flex justifyContent="center" width="100%" flexDirection="column">
           <Box width="100%" mb={6}>
             <Field
@@ -180,7 +186,7 @@ export class FormUserLogin extends Component {
               type="email"
               icon={
                 <Text fontSize={11} lineHeight={0} fill="inherit">
-                  <SvgEmailIcon />
+                  <SvgEmailIcon/>
                 </Text>
               }
               validate={[required, isEmail]}
@@ -194,7 +200,7 @@ export class FormUserLogin extends Component {
               type="password"
               icon={
                 <Text fontSize={11} lineHeight={0} fill="inherit">
-                  <SvgPasswordIcon />
+                  <SvgPasswordIcon/>
                 </Text>
               }
               validate={[required]}
@@ -206,7 +212,7 @@ export class FormUserLogin extends Component {
                 Forgot your <Link to="/password-reset">password</Link>?
               </HelpText>
               <HelpText>
-                <Link to="registration">Create  at account</Link>
+                <Link to="registration">Create at account</Link>
               </HelpText>
             </Flex>
           </Box>
@@ -220,7 +226,7 @@ export class FormUserLogin extends Component {
                 error={error}
                 iconRight={
                   <Text fontSize={12} lineHeight={0}>
-                    <SvgArrowRight />
+                    <SvgArrowRight/>
                   </Text>
                 }
                 disabled={pristine || submitting || invalid}>
@@ -228,29 +234,29 @@ export class FormUserLogin extends Component {
               </ButtonWithImageError>
             </Box>
           )}
-          {submitFailed ||
-            (apolloError && (
-              <Box width="100%">
-                <ButtonWithImageError
-                  type="submit"
-                  variant="error"
-                  size="medium"
-                  error={error || apolloError}
-                  iconRight={
-                    <Text fontSize={12} lineHeight={0}>
-                      <SvgReloadIcon />
-                    </Text>
-                  }>
-                  Try again
-                </ButtonWithImageError>
-              </Box>
-            ))}
+          {(submitFailed ||
+          apolloError || error) && (
+            <Box width="100%">
+              <ButtonWithImageError
+                type="submit"
+                variant="error"
+                size="medium"
+                error={error || apolloError}
+                iconRight={
+                  <Text fontSize={12} lineHeight={0}>
+                    <SvgReloadIcon/>
+                  </Text>
+                }>
+                Try again
+              </ButtonWithImageError>
+            </Box>
+          )}
         </Flex>
 
         {submitting && (
           <PreloaderWrapper>
             <Text fontSize={12}>
-              <SpeedingWheel />
+              <SpeedingWheel/>
             </Text>
           </PreloaderWrapper>
         )}
@@ -264,7 +270,7 @@ FormUserLogin = withApollo(FormUserLogin);
 FormUserLogin = connect(
   null,
   dispatch => ({
-    addUser: user => dispatch({ type: USER_ADD, user }),
+    addUser: user => dispatch({type: USER_ADD, user}),
   }),
 )(FormUserLogin);
 FormUserLogin = reduxForm({

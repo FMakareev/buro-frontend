@@ -24,7 +24,7 @@ import { required } from '../../../../utils/validation/required';
 import { phoneNumber } from '../../../../utils/validation/phoneNumber';
 import UpdateUserMutation from './UpdateUserMutation.graphql';
 import { getUserFromStore } from '../../../../store/reducers/user/selectors';
-import { ROLE_BANK, ROLE_CLIENT } from '../../../../shared/roles';
+import { ROLE_BANK, ROLE_CLIENT } from '@lib/shared/roles';
 import { userUpdate } from '../../../../store/reducers/user/actions';
 
 const StyledBox = styled(Box)`

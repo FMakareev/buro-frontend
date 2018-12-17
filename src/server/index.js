@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import formidable from 'formidable';
 import fs from 'fs';
 import { Root } from './root';
+import {EXCEL_DOWNLOAD, EXCEL_UPLOAD} from "@lib/shared/endpoints";
 const form = new formidable.IncomingForm();
 
 const app = express();
@@ -32,8 +33,16 @@ if (langArray.length) {
     }),
   );
 }
+app.get(EXCEL_DOWNLOAD, function (req, response){
+  response.set('Content-Type', 'text/xml');
 
-app.post('/doc/upload', function (req, res){
+  response.send(`<toys>
+    <toy>Transformers</toy>
+    <toy>GI Joe</toy>
+    <toy>He-man</toy>
+</toys>`);
+});
+app.post(EXCEL_UPLOAD, function (req, res){
   console.log('/doc/upload', req);
   form.parse(req);
 
