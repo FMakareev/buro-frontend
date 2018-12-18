@@ -400,19 +400,19 @@ export class FormUserRegistration extends Component {
                       }
                     />
                   </Box>
-                  <Box width="100%" mb={6}>
-                    <Field
-                      name="birthdate"
-                      component={DayPickerBase}
-                      placeholder="Birthdate"
-                      type="date"
-                      icon={
-                        <Text fontSize={11} lineHeight={0} fill="inherit">
-                          <SvgEmailIcon />
-                        </Text>
-                      }
-                    />
-                  </Box>
+                  {/*<Box width="100%" mb={6}>*/}
+                    {/*<Field*/}
+                      {/*name="birthdate"*/}
+                      {/*component={DayPickerBase}*/}
+                      {/*placeholder="Birthdate"*/}
+                      {/*type="date"*/}
+                      {/*icon={*/}
+                        {/*<Text fontSize={11} lineHeight={0} fill="inherit">*/}
+                          {/*<SvgEmailIcon />*/}
+                        {/*</Text>*/}
+                      {/*}*/}
+                    {/*/>*/}
+                  {/*</Box>*/}
                 </Flex>
               )}
             </Flex>
