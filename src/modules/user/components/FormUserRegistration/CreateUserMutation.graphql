@@ -6,6 +6,10 @@ $masterpassword: String!,
 $role: String!,
 $phone: String!,
 $bankName: String,
+$firstName: String,
+$lastName: String,
+$patronymic: String,
+$birthdate: String,
 ) {
   createuser(
     email :$email ,
@@ -15,6 +19,10 @@ $bankName: String,
     role :$role ,
     phone: $phone,
     bankName: $bankName,
+    firstName:$firstName,
+    lastName:$lastName,
+    patronymic:$patronymic,
+    birthdate:$birthdate,
   ){
     user{
       id
