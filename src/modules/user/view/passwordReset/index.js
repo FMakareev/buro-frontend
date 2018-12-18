@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Wrapper from '../../components/Wrapper/Wrapper';
 import { Title } from '../../components/Title/Title';
-import FormResetPassword  from '../../components/FormResetPassword/FormResetPassword';
+import FormResetPassword from '../../components/FormResetPassword/FormResetPassword';
 
 export class PasswordResetPage extends Component {
   static propTypes = {};
@@ -19,7 +19,7 @@ export class PasswordResetPage extends Component {
 
   render() {
     return (
-      <Wrapper ml={['auto', 20, 100]} mt={[10, 120]} maxWidth={360}>
+      <Wrapper ml={['auto', 20, 100]} mt={[10, 120]} maxWidth="360px">
         <Title mb={6}>Reset your password</Title>
         <FormResetPassword />
       </Wrapper>

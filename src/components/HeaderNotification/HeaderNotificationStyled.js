@@ -4,6 +4,7 @@ import { Text } from '../Text/Text';
 import { BackgroundColorProperty } from '../../styles/styleProperty/BackgroundColorProperty';
 
 export const CircleCount = styled(Text)`
+  display: ${props => (props.children ? 'block' : 'none')};
   position: absolute;
   top: -3px;
   right: -3px;
