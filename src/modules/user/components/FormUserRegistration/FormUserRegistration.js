@@ -16,12 +16,14 @@ import { SvgArrowRight } from '@lib/ui/Icons/SvgArrowRight';
 import { SvgEmailIcon } from '@lib/ui/Icons/SvgEmailIcon';
 import { SvgPasswordIcon } from '@lib/ui/Icons/SvgPasswordIcon';
 import { SvgReloadIcon } from '@lib/ui/Icons/SvgReloadIcon';
+import { SvgUserField } from '@lib/ui/Icons/SvgUserField';
 
 import { Text } from '@lib/ui/Text/Text';
 import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
 import { PreloaderWrapper } from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
 import { ROLE_BANK, ROLE_CLIENT } from '@lib/shared/roles';
 import { SvgBank } from '@lib/ui/Icons/SvgBank';
+import { DayPickerBase } from '@lib/ui/DayPickerBase/DayPickerBase';
 import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
 
 import { required } from '../../../../utils/validation/required';
@@ -31,6 +33,8 @@ import minLength from '../../../../utils/validation/minLength';
 
 import CreateUserMutation from './CreateUserMutation.graphql';
 import { HelpText } from '../HelpText/HelpText';
+import { Wrapper } from '../Wrapper/Wrapper';
+import { Title } from '../Title/Title';
 import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
 const minLength8 = minLength(8);
@@ -48,6 +52,8 @@ const validate = values => {
     masterpassword,
     retypemasterpassword,
     privacy,
+    firstName,
+    lastName,
   } = values;
 
   if (!role) {
@@ -68,6 +74,14 @@ const validate = values => {
   }
   if (!privacy) {
     errors.privacy = 'Required';
+  }
+
+  if (!firstName) {
+    errors.firstName = 'Required';
+  }
+
+  if (!lastName) {
+    errors.lastName = 'Required';
   }
 
   if (!masterpassword) {
@@ -172,174 +186,251 @@ export class FormUserRegistration extends Component {
 
     return (
       <Form onSubmit={handleSubmit(this.submit)}>
-        <Flex justifyContent="center" width="100%" flexDirection="column">
-          {!submitSucceeded && (
-            <>
-              <Box width="100%" mb={6}>
-                <Field
-                  name="role"
-                  component={Select}
-                  placeholder="Role"
-                  labelKey="label"
-                  valueKey="value"
-                  options={[
-                    { value: ROLE_BANK, label: 'Bank' },
-                    { value: ROLE_CLIENT, label: 'Client' },
-                  ]}
-                />
-              </Box>
-              {values && values.role === ROLE_BANK && (
-                <Box width="100%" mb={6}>
-                  <Field
-                    name="bankName"
-                    component={TextFieldWithIcon}
-                    placeholder="Bank name"
-                    type="text"
-                    icon={
-                      <Text fontSize={11} lineHeight={0} stroke="inherit" fill="inherit">
-                        <SvgBank />
-                      </Text>
-                    }
-                  />
-                </Box>
+        <Wrapper
+          position="relative"
+          ml={['auto', 20, 100]}
+          mt={[10, 120]}
+          maxWidth={!submitSucceeded && values && values.role === ROLE_CLIENT ? '700px' : '360px'}>
+          <Title mb={6}>Sign up</Title>
+          <Box mb={6}>
+            <Flex>
+              <Flex
+                justifyContent="center"
+                width="100%"
+                flexDirection="column"
+                mr={values && values.role === ROLE_CLIENT ? '10px' : '0px'}>
+                {!submitSucceeded && (
+                  <>
+                    <Box width="100%" mb={6}>
+                      <Field
+                        name="role"
+                        component={Select}
+                        placeholder="Role"
+                        labelKey="label"
+                        valueKey="value"
+                        options={[
+                          { value: ROLE_BANK, label: 'Bank' },
+                          { value: ROLE_CLIENT, label: 'Client' },
+                        ]}
+                      />
+                    </Box>
+                    {values && values.role === ROLE_BANK && (
+                      <Box width="100%" mb={6}>
+                        <Field
+                          name="bankName"
+                          component={TextFieldWithIcon}
+                          placeholder="Bank name"
+                          type="text"
+                          icon={
+                            <Text fontSize={11} lineHeight={0} stroke="inherit" fill="inherit">
+                              <SvgBank />
+                            </Text>
+                          }
+                        />
+                      </Box>
+                    )}
+
+                    <Box width="100%" mb={6}>
+                      <Field
+                        name="email"
+                        component={TextFieldWithIcon}
+                        placeholder="Email address"
+                        type="email"
+                        icon={
+                          <Text fontSize={11} lineHeight={0} fill="inherit">
+                            <SvgEmailIcon />
+                          </Text>
+                        }
+                      />
+                    </Box>
+                    <Box width="100%" mb={6}>
+                      <Field
+                        name="password"
+                        component={TextFieldWithIcon}
+                        placeholder="Password"
+                        type="password"
+                        icon={
+                          <Text fontSize={11} lineHeight={0} fill="inherit">
+                            <SvgPasswordIcon />
+                          </Text>
+                        }
+                        validate={[required, minLength8]}
+                      />
+                    </Box>
+                    <Box width="100%" mb={6}>
+                      <Field
+                        name="confirmPassword"
+                        component={TextFieldWithIcon}
+                        placeholder="Password retype"
+                        type="password"
+                        icon={
+                          <Text fontSize={11} lineHeight={0} fill="inherit">
+                            <SvgPasswordIcon />
+                          </Text>
+                        }
+                      />
+                    </Box>
+                    <Box width="100%" mb={6}>
+                      <Field
+                        name="masterpassword"
+                        component={TextFieldWithIcon}
+                        placeholder="Master Password"
+                        type="password"
+                        icon={
+                          <Text fontSize={11} lineHeight={0} fill="inherit">
+                            <SvgPasswordIcon />
+                          </Text>
+                        }
+                      />
+                    </Box>
+                    <Box width="100%" mb={6}>
+                      <Field
+                        name="retypemasterpassword"
+                        component={TextFieldWithIcon}
+                        placeholder="Retype master Password"
+                        type="password"
+                        icon={
+                          <Text fontSize={11} lineHeight={0} fill="inherit">
+                            <SvgPasswordIcon />
+                          </Text>
+                        }
+                      />
+                    </Box>
+
+                    <Box width="100%" mb={8}>
+                      <Field
+                        name="privacy"
+                        checked={false}
+                        label={
+                          <HelpText width="90%">
+                            I accept the <Link to="/">terms of service</Link> and
+                            <Link to="/"> privacy policy</Link>.
+                          </HelpText>
+                        }
+                        component={Checkbox}
+                        type="text"
+                      />
+                    </Box>
+                    {!submitSucceeded && !submitFailed && (
+                      <Box width="100%">
+                        <ButtonWithImageError
+                          type="submit"
+                          variant="primary"
+                          size="medium"
+                          py={2}
+                          error={error}
+                          iconRight={
+                            <Text fontSize={11} lineHeight={0}>
+                              <SvgArrowRight />
+                            </Text>
+                          }
+                          disabled={pristine || submitting || invalid}>
+                          Get started
+                        </ButtonWithImageError>
+                      </Box>
+                    )}
+                    {submitFailed && (
+                      <Box width="100%">
+                        <ButtonWithImageError
+                          type="submit"
+                          variant="error"
+                          size="medium"
+                          py={2}
+                          error={error}
+                          iconRight={
+                            <Text fontSize={11} lineHeight={0}>
+                              <SvgReloadIcon />
+                            </Text>
+                          }>
+                          Try again
+                        </ButtonWithImageError>
+                      </Box>
+                    )}
+                  </>
+                )}
+
+                {submitSucceeded && (
+                  <Box width="100%" mb={6}>
+                    <Text fontSize={6} lineHeight={12} color="color1" fontFamily="medium">
+                      Account successfully registered. <br />
+                      Now you can sign in.
+                    </Text>
+                  </Box>
+                )}
+              </Flex>
+
+              {!submitSucceeded && values && values.role === ROLE_CLIENT && (
+                <Flex justifyContent="start" width="100%" flexDirection="column" ml="10px">
+                  <Box width="100%" mb={6}>
+                    <Field
+                      name="firstName"
+                      component={TextFieldWithIcon}
+                      placeholder="First Name"
+                      type="text"
+                      icon={
+                        <Text fontSize={11} lineHeight={0} fill="inherit">
+                          <SvgUserField />
+                        </Text>
+                      }
+                    />
+                  </Box>
+                  <Box width="100%" mb={6}>
+                    <Field
+                      name="lastName"
+                      component={TextFieldWithIcon}
+                      placeholder="Last Name"
+                      type="text"
+                      icon={
+                        <Text fontSize={11} lineHeight={0} fill="inherit">
+                          <SvgUserField />
+                        </Text>
+                      }
+                    />
+                  </Box>
+                  <Box width="100%" mb={6}>
+                    <Field
+                      name="patronymic"
+                      component={TextFieldWithIcon}
+                      placeholder="Patronymic"
+                      type="text"
+                      icon={
+                        <Text fontSize={11} lineHeight={0} fill="inherit">
+                          <SvgUserField />
+                        </Text>
+                      }
+                    />
+                  </Box>
+                  <Box width="100%" mb={6}>
+                    <Field
+                      name="birthdate"
+                      component={DayPickerBase}
+                      placeholder="Birthdate"
+                      type="date"
+                      icon={
+                        <Text fontSize={11} lineHeight={0} fill="inherit">
+                          <SvgEmailIcon />
+                        </Text>
+                      }
+                    />
+                  </Box>
+                </Flex>
               )}
+            </Flex>
 
-              <Box width="100%" mb={6}>
-                <Field
-                  name="email"
-                  component={TextFieldWithIcon}
-                  placeholder="Email address"
-                  type="email"
-                  icon={
-                    <Text fontSize={11} lineHeight={0} fill="inherit">
-                      <SvgEmailIcon />
-                    </Text>
-                  }
-                />
-              </Box>
-              <Box width="100%" mb={6}>
-                <Field
-                  name="password"
-                  component={TextFieldWithIcon}
-                  placeholder="Password"
-                  type="password"
-                  icon={
-                    <Text fontSize={11} lineHeight={0} fill="inherit">
-                      <SvgPasswordIcon />
-                    </Text>
-                  }
-                  validate={[required, minLength8]}
-                />
-              </Box>
-              <Box width="100%" mb={6}>
-                <Field
-                  name="confirmPassword"
-                  component={TextFieldWithIcon}
-                  placeholder="Password retype"
-                  type="password"
-                  icon={
-                    <Text fontSize={11} lineHeight={0} fill="inherit">
-                      <SvgPasswordIcon />
-                    </Text>
-                  }
-                />
-              </Box>
-              <Box width="100%" mb={6}>
-                <Field
-                  name="masterpassword"
-                  component={TextFieldWithIcon}
-                  placeholder="Master Password"
-                  type="password"
-                  icon={
-                    <Text fontSize={11} lineHeight={0} fill="inherit">
-                      <SvgPasswordIcon />
-                    </Text>
-                  }
-                />
-              </Box>
-              <Box width="100%" mb={6}>
-                <Field
-                  name="retypemasterpassword"
-                  component={TextFieldWithIcon}
-                  placeholder="Retype master Password"
-                  type="password"
-                  icon={
-                    <Text fontSize={11} lineHeight={0} fill="inherit">
-                      <SvgPasswordIcon />
-                    </Text>
-                  }
-                />
-              </Box>
-
-              <Box width="100%" mb={8}>
-                <Field
-                  name="privacy"
-                  checked={false}
-                  label={
-                    <HelpText width="90%">
-                      I accept the <Link to="/">terms of service</Link> and
-                      <Link to="/"> privacy policy</Link>.
-                    </HelpText>
-                  }
-                  component={Checkbox}
-                  type="text"
-                />
-              </Box>
-              {!submitSucceeded && !submitFailed && (
-                <Box width="100%">
-                  <ButtonWithImageError
-                    type="submit"
-                    variant="primary"
-                    size="medium"
-                    py={2}
-                    error={error}
-                    iconRight={
-                      <Text fontSize={11} lineHeight={0}>
-                        <SvgArrowRight />
-                      </Text>
-                    }
-                    disabled={pristine || submitting || invalid}>
-                    Get started
-                  </ButtonWithImageError>
-                </Box>
-              )}
-              {submitFailed && (
-                <Box width="100%">
-                  <ButtonWithImageError
-                    type="submit"
-                    variant="error"
-                    size="medium"
-                    py={2}
-                    error={error}
-                    iconRight={
-                      <Text fontSize={11} lineHeight={0}>
-                        <SvgReloadIcon />
-                      </Text>
-                    }>
-                    Try again
-                  </ButtonWithImageError>
-                </Box>
-              )}
-            </>
-          )}
-
-          {submitSucceeded && (
-            <Box width="100%" mb={6}>
-              <Text fontSize={6} lineHeight={12} color="color1" fontFamily="medium">
-                Account successfully registered. <br />
-                Now you can sign in.
-              </Text>
-            </Box>
-          )}
-        </Flex>
-
-        {submitting && (
-          <PreloaderWrapper>
-            <Text fontSize={13}>
-              <SpeedingWheel />
-            </Text>
-          </PreloaderWrapper>
-        )}
+            {submitting && (
+              <PreloaderWrapper>
+                <Text fontSize={13}>
+                  <SpeedingWheel />
+                </Text>
+              </PreloaderWrapper>
+            )}
+          </Box>
+          <Box>
+            <HelpText>
+              Already have an account? <Link to="/login">Sign in</Link>
+            </HelpText>
+          </Box>
+        </Wrapper>
       </Form>
     );
   }
