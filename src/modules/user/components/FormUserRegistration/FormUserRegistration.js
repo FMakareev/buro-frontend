@@ -17,13 +17,14 @@ import { SvgEmailIcon } from '@lib/ui/Icons/SvgEmailIcon';
 import { SvgPasswordIcon } from '@lib/ui/Icons/SvgPasswordIcon';
 import { SvgReloadIcon } from '@lib/ui/Icons/SvgReloadIcon';
 import { SvgUserField } from '@lib/ui/Icons/SvgUserField';
+import { SvgCircleCalendar } from '@lib/ui/Icons/SvgCircleCalendar';
 
 import { Text } from '@lib/ui/Text/Text';
 import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
 import { PreloaderWrapper } from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
 import { ROLE_BANK, ROLE_CLIENT } from '@lib/shared/roles';
 import { SvgBank } from '@lib/ui/Icons/SvgBank';
-import { DayPickerBase } from '@lib/ui/DayPickerBase/DayPickerBase';
+import { DayPickerBaseBig } from '@lib/ui/DayPickerBaseBig/DayPickerBaseBig';
 import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
 
 import { required } from '../../../../utils/validation/required';
@@ -54,6 +55,7 @@ const validate = values => {
     privacy,
     firstName,
     lastName,
+    birthdate,
   } = values;
 
   if (!role) {
@@ -74,6 +76,10 @@ const validate = values => {
   }
   if (!privacy) {
     errors.privacy = 'Required';
+  }
+
+  if (!birthdate) {
+    errors.birthdate = 'Required';
   }
 
   if (!firstName) {
@@ -184,6 +190,8 @@ export class FormUserRegistration extends Component {
       values,
     } = this.props;
 
+
+
     return (
       <Form onSubmit={handleSubmit(this.submit)}>
         <Wrapper
@@ -194,11 +202,7 @@ export class FormUserRegistration extends Component {
           <Title mb={6}>Sign up</Title>
           <Box mb={6}>
             <Flex>
-              <Flex
-                justifyContent="center"
-                width="100%"
-                flexDirection="column"
-              >
+              <Flex justifyContent="center" width="100%" flexDirection="column">
                 {!submitSucceeded && (
                   <>
                     <Box width="100%" mb={6}>
@@ -214,6 +218,7 @@ export class FormUserRegistration extends Component {
                         ]}
                       />
                     </Box>
+
                     {values && values.role === ROLE_BANK && (
                       <Box width="100%" mb={6}>
                         <Field
@@ -246,15 +251,15 @@ export class FormUserRegistration extends Component {
                       </Box>
 
                       {values && values.role === ROLE_CLIENT && (
-                        <Box width="100%" mb={6} pl={[0, '10px']}>
+                        <Box width="100%" mb={6} pl={[0, '15px']}>
                           <Field
                             name="birthdate"
-                            component={DayPickerBase}
+                            component={DayPickerBaseBig}
                             placeholder="Birthdate"
                             type="date"
                             icon={
                               <Text fontSize={11} lineHeight={0} fill="inherit">
-                                <SvgEmailIcon />
+                                <SvgCircleCalendar />
                               </Text>
                             }
                           />
@@ -385,8 +390,6 @@ export class FormUserRegistration extends Component {
                       </Box>
                     </Flex>
 
-                    <Flex />
-
                     <Box width="100%" mb={8}>
                       <Field
                         name="privacy"
@@ -448,13 +451,6 @@ export class FormUserRegistration extends Component {
                   </Box>
                 )}
               </Flex>
-
-              {/* {!submitSucceeded && values && values.role === ROLE_CLIENT && (
-                <Flex justifyContent="start" width="100%" flexDirection="column" ml="10px">
-
-
-                </Flex>
-              )} */}
             </Flex>
 
             {submitting && (
