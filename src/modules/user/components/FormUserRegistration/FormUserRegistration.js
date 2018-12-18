@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { Field, reduxForm, Form, SubmissionError, getFormValues } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
@@ -190,15 +191,14 @@ export class FormUserRegistration extends Component {
       values,
     } = this.props;
 
-
-
     return (
       <Form onSubmit={handleSubmit(this.submit)}>
         <Wrapper
           position="relative"
           ml={['auto', 20, 100]}
           mt={[10, 120]}
-          maxWidth={!submitSucceeded && values && values.role === ROLE_CLIENT ? '700px' : '360px'}>
+          regClient={!submitSucceeded && values && values.role === ROLE_CLIENT}
+        >
           <Title mb={6}>Sign up</Title>
           <Box mb={6}>
             <Flex>

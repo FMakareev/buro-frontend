@@ -10,6 +10,14 @@ export const Wrapper = styled(Container)`
   padding-bottom: 15px;
   ${props => BorderRadiusProperty({ ...props, borderRadius: 3 })};
   ${props => BoxShadowProperty({ ...props, boxShadow: 0 })};
+
+  @media (max-width: 576px) {
+    max-width: 320px;
+  }
+
+  @media (min-width: 576px) {
+    ${props => (props.regClient ? 'max-width: 700px' : 'max-width: 320px')}
+  }
 `;
 
 export default Wrapper;
