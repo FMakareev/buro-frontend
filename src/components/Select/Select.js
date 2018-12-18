@@ -85,6 +85,7 @@ const CustomStyles = {
 };
 
 const Wrapper = styled.div`
+  max-width: 320px;
   position: relative;
   text-align: left;
   ${(props) => FontFamilyProperty({...props, fontFamily: 'medium'})};
