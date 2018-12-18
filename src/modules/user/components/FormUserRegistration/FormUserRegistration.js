@@ -251,7 +251,7 @@ export class FormUserRegistration extends Component {
                       </Box>
 
                       {values && values.role === ROLE_CLIENT && (
-                        <Box width="100%" mb={6} ml={[0, '18px']}>
+                        <Box width="100%" mb={6} pl={[0, '15px']}>
                           <Field
                             name="birthdate"
                             component={DayPickerBaseBig}
