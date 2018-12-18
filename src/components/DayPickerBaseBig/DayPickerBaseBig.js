@@ -75,6 +75,18 @@ const Label = styled(Text)`
   ${props => color({ ...props, color: 'color1' })};
 `;
 
+const Placeholder = styled(Text)`
+  ${props => {
+    if (props.meta.touched && props.meta.error) {
+      return color({ ...props, color: 'color9' });
+    }
+    if (props.meta.dirty) {
+      return color({ ...props, color: 'color1' });
+    }
+    return color({ ...props, color: 'color5' });
+  }}
+`;
+
 const Error = styled.span`
   position: absolute;
   top: -16px;
@@ -143,7 +155,7 @@ export class DayPickerBaseBig extends Component {
   }
 
   render() {
-    const { placeholder, label, meta, icon, ...rest } = this.props;
+    const { placeholder, label, meta, icon, input, ...rest } = this.props;
 
     console.log('META DAY PICKER', meta);
 
@@ -158,7 +170,9 @@ export class DayPickerBaseBig extends Component {
           showYearDropdown
           dropdownMode="select"
           placeholderText={placeholder}
+          placeholder={<Placeholder />}
           dateFormat="dd/MM/yyyy"
+          {...input}
           {...rest}
         />
         <IconWrapper meta={meta}>{icon}</IconWrapper>
