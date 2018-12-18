@@ -39,7 +39,7 @@ export class HeaderNotification extends Component {
         query={NotificationListQuery}
         pollInterval={5000}
         variables={{
-          status:STATUS_PENDING,
+          // status:STATUS_PENDING,
           ...(user.role === ROLE_CLIENT ? { clientid: user.id } : { clientid: user.id }),
         }}>
         {({ error, loading, data }) => (
