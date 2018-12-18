@@ -16,7 +16,6 @@ import { FontSizeProperty } from '../../styles/styleProperty/FontSizeProperty';
 import { LineHeightProperty } from '../../styles/styleProperty/LineHeightProperty';
 import { FillSvgProperty } from '../../styles/styleProperty/FillSvgProperty';
 import { StrokeSvgProperty } from '../../styles/styleProperty/StrokeSvgProperty';
-import { BackgroundColorProperty } from '../../styles/styleProperty/BackgroundColorProperty';
 
 const StyledFlex = styled(Flex)`
   width: 100%;
@@ -49,19 +48,16 @@ const StyledFlex = styled(Flex)`
     return color({ ...props, color: 'color5' });
   }}
 
-  ::placeholder {
+ & input::placeholder {
     ${props => {
       if (props.meta.touched && props.meta.error) {
         return color({ ...props, color: 'color9' });
-      }
-      if (props.meta.dirty) {
-        return color({ ...props, color: 'color1' });
       }
       return color({ ...props, color: 'color5' });
     }}
   }
 
-  :focus {
+  & input:focus {
     ${props => BorderColorProperty({ ...props, borderColor: 'color1' })};
     ${props => BoxShadowProperty({ ...props, boxShadow: 2 })};
   }
@@ -73,18 +69,6 @@ const Label = styled(Text)`
   ${props => FontSizeProperty({ ...props, fontSize: 5 })};
   ${props => LineHeightProperty({ ...props, lineHeight: 8 })};
   ${props => color({ ...props, color: 'color1' })};
-`;
-
-const Placeholder = styled(Text)`
-  ${props => {
-    if (props.meta.touched && props.meta.error) {
-      return color({ ...props, color: 'color9' });
-    }
-    if (props.meta.dirty) {
-      return color({ ...props, color: 'color1' });
-    }
-    return color({ ...props, color: 'color5' });
-  }}
 `;
 
 const Error = styled.span`
@@ -144,6 +128,11 @@ export class DayPickerBaseBig extends Component {
     return { startDate: null };
   }
 
+  onBlur = date => {
+    const { input } = this.props;
+    input.onBlur(date, input);
+  };
+
   handleChange(date) {
     this.setState({ startDate: date });
 
@@ -155,24 +144,22 @@ export class DayPickerBaseBig extends Component {
   }
 
   render() {
-    const { placeholder, label, meta, icon, input, ...rest } = this.props;
-
-    console.log('META DAY PICKER', meta);
+    const { placeholder, label, meta, icon, ...rest } = this.props;
 
     return (
       <StyledFlex flexDirection="column" meta={meta}>
         {meta.touched && meta.error && <Error>{meta.error}</Error>}
         <DatePicker
+          autocomplete="off"
           selected={this.state.startDate}
           onChange={this.handleChange}
+          onBlur={this.onBlur}
           peekNextMonth
           showMonthDropdown
           showYearDropdown
           dropdownMode="select"
           placeholderText={placeholder}
-          placeholder={<Placeholder />}
           dateFormat="dd/MM/yyyy"
-          {...input}
           {...rest}
         />
         <IconWrapper meta={meta}>{icon}</IconWrapper>
