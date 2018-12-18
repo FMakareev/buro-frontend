@@ -198,7 +198,7 @@ export class FormUserRegistration extends Component {
                 justifyContent="center"
                 width="100%"
                 flexDirection="column"
-                mr={values && values.role === ROLE_CLIENT ? '10px' : '0px'}>
+              >
                 {!submitSucceeded && (
                   <>
                     <Box width="100%" mb={6}>
@@ -230,72 +230,162 @@ export class FormUserRegistration extends Component {
                       </Box>
                     )}
 
-                    <Box width="100%" mb={6}>
-                      <Field
-                        name="email"
-                        component={TextFieldWithIcon}
-                        placeholder="Email address"
-                        type="email"
-                        icon={
-                          <Text fontSize={11} lineHeight={0} fill="inherit">
-                            <SvgEmailIcon />
-                          </Text>
-                        }
-                      />
-                    </Box>
-                    <Box width="100%" mb={6}>
-                      <Field
-                        name="password"
-                        component={TextFieldWithIcon}
-                        placeholder="Password"
-                        type="password"
-                        icon={
-                          <Text fontSize={11} lineHeight={0} fill="inherit">
-                            <SvgPasswordIcon />
-                          </Text>
-                        }
-                        validate={[required, minLength8]}
-                      />
-                    </Box>
-                    <Box width="100%" mb={6}>
-                      <Field
-                        name="confirmPassword"
-                        component={TextFieldWithIcon}
-                        placeholder="Password retype"
-                        type="password"
-                        icon={
-                          <Text fontSize={11} lineHeight={0} fill="inherit">
-                            <SvgPasswordIcon />
-                          </Text>
-                        }
-                      />
-                    </Box>
-                    <Box width="100%" mb={6}>
-                      <Field
-                        name="masterpassword"
-                        component={TextFieldWithIcon}
-                        placeholder="Master Password"
-                        type="password"
-                        icon={
-                          <Text fontSize={11} lineHeight={0} fill="inherit">
-                            <SvgPasswordIcon />
-                          </Text>
-                        }
-                      />
-                    </Box>
-                    <Box width="100%" mb={6}>
-                      <Field
-                        name="retypemasterpassword"
-                        component={TextFieldWithIcon}
-                        placeholder="Retype master Password"
-                        type="password"
-                        icon={
-                          <Text fontSize={11} lineHeight={0} fill="inherit">
-                            <SvgPasswordIcon />
-                          </Text>
-                        }
-                      />
-                    </Box>
+                    <Flex flexDirection={['column', 'row']}>
+                      <Box width="100%" mb={6}>
+                        <Field
+                          name="email"
+                          component={TextFieldWithIcon}
+                          placeholder="Email address"
+                          type="email"
+                          icon={
+                            <Text fontSize={11} lineHeight={0} fill="inherit">
+                              <SvgEmailIcon />
+                            </Text>
+                          }
+                        />
+                      </Box>
+
+                      {values && values.role === ROLE_CLIENT && (
+                        <Box width="100%" mb={6} pl={[0, '10px']}>
+                          <Field
+                            name="birthdate"
+                            component={DayPickerBase}
+                            placeholder="Birthdate"
+                            type="date"
+                            icon={
+                              <Text fontSize={11} lineHeight={0} fill="inherit">
+                                <SvgEmailIcon />
+                              </Text>
+                            }
+                          />
+                        </Box>
+                      )}
+                    </Flex>
+
+                    {values && values.role === ROLE_CLIENT && (
+                      <Flex width="100%" flexWrap="wrap" flexDirection={['column', 'row']}>
+                        <Box width={['100%', '50%']} mb={6}>
+                          <Field
+                            name="firstName"
+                            component={TextFieldWithIcon}
+                            placeholder="First Name"
+                            type="text"
+                            icon={
+                              <Text fontSize={11} lineHeight={0} fill="inherit">
+                                <SvgUserField />
+                              </Text>
+                            }
+                          />
+                        </Box>
+                        <Box width={['100%', '50%']} mb={6} pl={[0, '10px']}>
+                          <Field
+                            name="lastName"
+                            component={TextFieldWithIcon}
+                            placeholder="Last Name"
+                            type="text"
+                            icon={
+                              <Text fontSize={11} lineHeight={0} fill="inherit">
+                                <SvgUserField />
+                              </Text>
+                            }
+                          />
+                        </Box>
+                        <Box width={['100%', '50%']} mb={6}>
+                          <Field
+                            name="patronymic"
+                            component={TextFieldWithIcon}
+                            placeholder="Patronymic"
+                            type="text"
+                            icon={
+                              <Text fontSize={11} lineHeight={0} fill="inherit">
+                                <SvgUserField />
+                              </Text>
+                            }
+                          />
+                        </Box>
+                      </Flex>
+                    )}
+
+                    <Flex
+                      width="100%"
+                      flexWrap="wrap"
+                      flexDirection={
+                        values && values.role === ROLE_CLIENT ? ['column', 'row'] : 'column'
+                      }>
+                      <Box
+                        width={values && values.role === ROLE_CLIENT ? ['100%', '50%'] : '100%'}
+                        mb={6}>
+                        <Field
+                          name="password"
+                          component={TextFieldWithIcon}
+                          placeholder="Password"
+                          type="password"
+                          icon={
+                            <Text fontSize={11} lineHeight={0} fill="inherit">
+                              <SvgPasswordIcon />
+                            </Text>
+                          }
+                          validate={[required, minLength8]}
+                        />
+                      </Box>
+                      <Box
+                        width={values && values.role === ROLE_CLIENT ? ['100%', '50%'] : '100%'}
+                        mb={6}
+                        pl={values && values.role === ROLE_CLIENT ? [0, '10px'] : 0}>
+                        <Field
+                          name="confirmPassword"
+                          component={TextFieldWithIcon}
+                          placeholder="Password retype"
+                          type="password"
+                          icon={
+                            <Text fontSize={11} lineHeight={0} fill="inherit">
+                              <SvgPasswordIcon />
+                            </Text>
+                          }
+                        />
+                      </Box>
+                    </Flex>
+
+                    <Flex
+                      width="100%"
+                      flexWrap="wrap"
+                      flexDirection={
+                        values && values.role === ROLE_CLIENT ? ['column', 'row'] : 'column'
+                      }>
+                      <Box
+                        width={values && values.role === ROLE_CLIENT ? ['100%', '50%'] : '100%'}
+                        mb={6}>
+                        <Field
+                          name="masterpassword"
+                          component={TextFieldWithIcon}
+                          placeholder="Master Password"
+                          type="password"
+                          icon={
+                            <Text fontSize={11} lineHeight={0} fill="inherit">
+                              <SvgPasswordIcon />
+                            </Text>
+                          }
+                        />
+                      </Box>
+                      <Box
+                        width={values && values.role === ROLE_CLIENT ? ['100%', '50%'] : '100%'}
+                        mb={6}
+                        pl={values && values.role === ROLE_CLIENT ? [0, '10px'] : 0}>
+                        <Field
+                          name="retypemasterpassword"
+                          component={TextFieldWithIcon}
+                          placeholder="Retype master Password"
+                          type="password"
+                          icon={
+                            <Text fontSize={11} lineHeight={0} fill="inherit">
+                              <SvgPasswordIcon />
+                            </Text>
+                          }
+                        />
+                      </Box>
+                    </Flex>
+
+                    <Flex />
 
                     <Box width="100%" mb={8}>
                       <Field
@@ -359,62 +449,12 @@ export class FormUserRegistration extends Component {
                 )}
               </Flex>
 
-              {!submitSucceeded && values && values.role === ROLE_CLIENT && (
+              {/* {!submitSucceeded && values && values.role === ROLE_CLIENT && (
                 <Flex justifyContent="start" width="100%" flexDirection="column" ml="10px">
-                  <Box width="100%" mb={6}>
-                    <Field
-                      name="firstName"
-                      component={TextFieldWithIcon}
-                      placeholder="First Name"
-                      type="text"
-                      icon={
-                        <Text fontSize={11} lineHeight={0} fill="inherit">
-                          <SvgUserField />
-                        </Text>
-                      }
-                    />
-                  </Box>
-                  <Box width="100%" mb={6}>
-                    <Field
-                      name="lastName"
-                      component={TextFieldWithIcon}
-                      placeholder="Last Name"
-                      type="text"
-                      icon={
-                        <Text fontSize={11} lineHeight={0} fill="inherit">
-                          <SvgUserField />
-                        </Text>
-                      }
-                    />
-                  </Box>
-                  <Box width="100%" mb={6}>
-                    <Field
-                      name="patronymic"
-                      component={TextFieldWithIcon}
-                      placeholder="Patronymic"
-                      type="text"
-                      icon={
-                        <Text fontSize={11} lineHeight={0} fill="inherit">
-                          <SvgUserField />
-                        </Text>
-                      }
-                    />
-                  </Box>
-                  <Box width="100%" mb={6}>
-                    <Field
-                      name="birthdate"
-                      component={DayPickerBase}
-                      placeholder="Birthdate"
-                      type="date"
-                      icon={
-                        <Text fontSize={11} lineHeight={0} fill="inherit">
-                          <SvgEmailIcon />
-                        </Text>
-                      }
-                    />
-                  </Box>
+                 
+                 
                 </Flex>
-              )}
+              )} */}
             </Flex>
 
             {submitting && (
