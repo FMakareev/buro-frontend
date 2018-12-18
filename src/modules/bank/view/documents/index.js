@@ -87,7 +87,7 @@ const columns = ({onFiltered}) => [
             variant={'transparent'}
             pl="3px"
             pr="5px">
-            {children}
+            Upload
           </ButtonWithImage>)
         }
       } catch (error) {
