@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import '../../assets/style/react-datepicker-big.css';
 
 import { color } from 'styled-system';
-import { Text } from '../Text/Text';
+// import { Text } from '../Text/Text';
 import { Flex } from '../Flex/Flex';
 
 import { BorderColorProperty } from '../../styles/styleProperty/BorderColorProperty';
@@ -20,8 +20,8 @@ import { StrokeSvgProperty } from '../../styles/styleProperty/StrokeSvgProperty'
 const StyledFlex = styled(Flex)`
   width: 100%;
   border: 1px solid;
-  max-width: 320px;
   position: relative;
+  box-sizing: border-box;
 
   ${props => FontFamilyProperty({ ...props, fontFamily: 'medium' })};
   ${props => FontSizeProperty({ ...props, fontSize: 6 })};
@@ -63,13 +63,13 @@ const StyledFlex = styled(Flex)`
   }
 `;
 
-const Label = styled(Text)`
-  margin-bottom: 8px;
-  ${props => FontFamilyProperty({ ...props, fontFamily: 'regular' })};
-  ${props => FontSizeProperty({ ...props, fontSize: 5 })};
-  ${props => LineHeightProperty({ ...props, lineHeight: 8 })};
-  ${props => color({ ...props, color: 'color1' })};
-`;
+// const Label = styled(Text)`
+//   margin-bottom: 8px;
+//   ${props => FontFamilyProperty({ ...props, fontFamily: 'regular' })};
+//   ${props => FontSizeProperty({ ...props, fontSize: 5 })};
+//   ${props => LineHeightProperty({ ...props, lineHeight: 8 })};
+//   ${props => color({ ...props, color: 'color1' })};
+// `;
 
 const Error = styled.span`
   position: absolute;
