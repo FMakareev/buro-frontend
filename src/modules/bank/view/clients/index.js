@@ -50,7 +50,7 @@ const columns = user => [
     accessor: props => {
       try {
         if (has.call(props, 'client')) {
-          return props.client ? dayjs(props.client.birthdate).format('DD.MM.YYYY') : null;
+          return props.client && props.client.birthdate ? dayjs(props.client.birthdate).format('DD.MM.YYYY') : null;
         }
       } catch (error) {
         console.log(error);

@@ -48,9 +48,12 @@ const columns = ({onOpenFormUpdateDoc}) => [
       </Text>
     ),
     accessor: props => {
-      if (props && props.birthdate) {
-        console.log(props.birthdate);
-        return dayjs(props.birthdate).format('DD.MM.YYYY');
+      try {
+        if (has.call(props, 'client')) {
+          return props.client && props.client.birthdate ? dayjs(props.client.birthdate).format('DD.MM.YYYY') : null;
+        }
+      } catch (error) {
+        console.log(error);
       }
       return null;
     },

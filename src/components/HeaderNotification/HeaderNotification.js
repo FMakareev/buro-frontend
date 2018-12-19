@@ -65,6 +65,8 @@ export class HeaderNotification extends Component {
     /** если пользователь есть, нет ошибок и он бюро то не рендерим компонент */
     if (user && !user.error && user.role === ROLE_BUREAU) {
       return null;
+    } else if(!user || user.error ){
+      return null;
     }
     return (
       <Query

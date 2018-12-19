@@ -33,7 +33,8 @@ if (langArray.length) {
     }),
   );
 }
-app.get(EXCEL_DOWNLOAD, function (req, response){
+app.get('/node'+EXCEL_DOWNLOAD, function (req, response){
+  console.log(EXCEL_DOWNLOAD);
   response.set('Content-Type', 'text/xml');
 
   response.send(`<toys>

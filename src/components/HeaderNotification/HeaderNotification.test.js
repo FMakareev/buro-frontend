@@ -25,9 +25,7 @@ test('HeaderNotification: пользователь не авторизован',
       <ProviderRedux store={store}>
         <MemoryRouter>
           <ApolloProvider client={mocksClient}>
-            <Header>
-              <HeaderNotification />
-            </Header>
+            <HeaderNotification />
           </ApolloProvider>
         </MemoryRouter>
       </ProviderRedux>
@@ -56,9 +54,7 @@ test('HeaderNotification: Загрузка', async () => {
       <ProviderRedux store={store}>
         <MemoryRouter>
           <ApolloProvider client={mocksClient}>
-            <Header>
-              <HeaderNotification />
-            </Header>
+            <HeaderNotification />
           </ApolloProvider>
         </MemoryRouter>
       </ProviderRedux>
@@ -87,9 +83,7 @@ test('HeaderNotification: ошибка', async () => {
       <ProviderRedux store={store}>
         <MemoryRouter>
           <ApolloProvider client={mocksClient}>
-            <Header>
-              <HeaderNotification />
-            </Header>
+            <HeaderNotification />
           </ApolloProvider>
         </MemoryRouter>
       </ProviderRedux>
@@ -118,9 +112,7 @@ test('HeaderNotification: загрузилось', async () => {
       <ProviderRedux store={store}>
         <MemoryRouter>
           <ApolloProvider client={mocksClient}>
-            <Header>
-              <HeaderNotification />
-            </Header>
+            <HeaderNotification />
           </ApolloProvider>
         </MemoryRouter>
       </ProviderRedux>
