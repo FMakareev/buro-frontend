@@ -4,6 +4,7 @@ import { Query } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
 import { STATUS_PENDING } from '@lib/shared/statuses';
 import { SvgBell } from '../Icons/SvgBell';
+import { SvgBellEmpty } from '../Icons/SvgBellEmpty';
 import { ROLE_BANK, ROLE_BUREAU, ROLE_CLIENT } from '../../shared/roles';
 import { CircleCount } from './HeaderNotificationStyled';
 import { ButtonStyled } from './HeaderNotificationStyled';
@@ -66,7 +67,15 @@ export class HeaderNotification extends Component {
                   : data.notificationlist.length}
               </CircleCount>
             )}
-            <SvgBell />
+            {(user.role === ROLE_CLIENT ? (
+              this.countClientsNotifications(data.notificationlist)
+            ) : (
+              data.notificationlist.length
+            )) ? (
+              <SvgBell />
+            ) : (
+              <SvgBellEmpty />
+            )}
           </ButtonStyled>
         )}
       </Query>
