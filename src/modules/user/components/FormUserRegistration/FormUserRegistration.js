@@ -197,27 +197,31 @@ export class FormUserRegistration extends Component {
           position="relative"
           ml={['auto', 20, 100]}
           mt={[10, 120]}
-          regClient={!submitSucceeded && values && values.role === ROLE_CLIENT}
-        >
+          regClient={!submitSucceeded && values && values.role === ROLE_CLIENT}>
           <Title mb={6}>Sign up</Title>
           <Box mb={6}>
             <Flex>
               <Flex justifyContent="center" width="100%" flexDirection="column">
                 {!submitSucceeded && (
                   <>
-                    <Box width="100%" mb={6}>
-                      <Field
-                        name="role"
-                        component={Select}
-                        placeholder="Role"
-                        labelKey="label"
-                        valueKey="value"
-                        options={[
-                          { value: ROLE_BANK, label: 'Bank' },
-                          { value: ROLE_CLIENT, label: 'Client' },
-                        ]}
-                      />
-                    </Box>
+                    <Flex flexDirection={['column', 'row']}>
+                      <Box width="100%" mb={6}>
+                        <Field
+                          name="role"
+                          component={Select}
+                          placeholder="Role"
+                          labelKey="label"
+                          valueKey="value"
+                          options={[
+                            { value: ROLE_BANK, label: 'Bank' },
+                            { value: ROLE_CLIENT, label: 'Client' },
+                          ]}
+                        />
+                      </Box>
+                      {values && values.role === ROLE_CLIENT && (
+                        <Box width="100%" mb={0} pl={[0, '10px']} />
+                      )}
+                    </Flex>
 
                     {values && values.role === ROLE_BANK && (
                       <Box width="100%" mb={6}>
@@ -251,7 +255,7 @@ export class FormUserRegistration extends Component {
                       </Box>
 
                       {values && values.role === ROLE_CLIENT && (
-                        <Box width="100%" mb={6} pl={[0, '15px']}>
+                        <Box width="100%" mb={6} pl={[0, '10px']}>
                           <Field
                             name="birthdate"
                             component={DayPickerBaseBig}
