@@ -12,7 +12,7 @@ import ReactTableStyled from '@lib/ui/ReactTableStyled/ReactTableStyled';
 import {FormDocumentUpload} from '../../components/FormDocumentUpload/FormDocumentUpload';
 import Modal from '@lib/ui/Modal/Modal';
 import UserListQuery from './UserListQuery.graphql';
-import {ROLE_BUREAU} from '@lib/shared/roles';
+import {ROLE_BUREAU, ROLE_CLIENT} from '@lib/shared/roles';
 import {getUserFromStore} from '../../../../store/reducers/user/selectors';
 import {Box} from '@lib/ui/Box/Box';
 import {CheckAuthorization} from "@lib/ui/CheckAuthorization/CheckAuthorization";
@@ -78,21 +78,10 @@ const columns = ({onOpenFormUpdateDoc}) => [
     id: 'Document',
     Header: 'Document',
     filterable: false,
-    Cell: props => {
-      if (props.value) {
-        return (
-          <ButtonBase
-            onClick={() => onOpenFormUpdateDoc(props.original.id)}
-            display="inline-block"
-            size="xsmall"
-            variant="transparent">
-            Update
-          </ButtonBase>
-        );
-      }
+    Cell: ({value}) => {
       return (
         <ButtonWithImage
-          onClick={() => onOpenFormUpdateDoc(props.original.id)}
+          onClick={() => onOpenFormUpdateDoc(value)}
           display="inline-block"
           iconRight={
             <Text fontSize={5} lineHeight={0} fill="inherit">
@@ -104,13 +93,9 @@ const columns = ({onOpenFormUpdateDoc}) => [
           Upload
         </ButtonWithImage>
       );
+
     },
-    accessor: props => {
-      if (props.document && props.document.length) {
-        return props.document;
-      }
-      return null;
-    },
+    accessor: props => props.id,
   },
 ];
 
@@ -128,7 +113,7 @@ export class DocumentsBureauPage extends Component {
     return {
       // статус открытия модального окна
       isOpen: false,
-      // id пользователя к которому крепится окумент
+      // id пользователя к которому крепится документ
       id: null,
     };
   }
@@ -137,7 +122,7 @@ export class DocumentsBureauPage extends Component {
 
   toggleModal = () => {
     console.log('toggleModal');
-    this.setState(state => ({isOpen: !state.isOpen}));
+    this.setState(state => ({isOpen: !state.isOpen, id: null}));
   };
 
   render() {
@@ -148,9 +133,14 @@ export class DocumentsBureauPage extends Component {
           Documents
         </Text>
         <Box backgroundColor="color0">
-          <Query query={UserListQuery}>
+          <Query
+            query={UserListQuery}
+            variables={{
+              role: ROLE_CLIENT
+            }}
+          >
             {({error, data, loading, refetch, ...rest}) => {
-              console.log(error, data, loading,rest);
+              console.log(error, data, loading, rest);
               return (
                 <ReactTableStyled
                   defaultFilterMethod={(filter, row) =>

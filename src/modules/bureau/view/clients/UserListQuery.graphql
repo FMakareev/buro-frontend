@@ -1,10 +1,10 @@
-query{
-  userlist{
+query($role: String){
+  userlist(role: $role){
     id
     firstName
     lastName
     patronymic
     birthdate
-    }    
+    }
 }
 
