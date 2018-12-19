@@ -48,3 +48,5 @@ src/modules/index.js
 .yarnrc
 ci/
 package-lock.json
+ssh.exe.stackdump
+*.stackdump
