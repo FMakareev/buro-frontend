@@ -54,7 +54,7 @@ export class DayPickerBase extends Component {
       input: { onChange },
     } = this.props;
 
-    onChange(date.toString());
+    onChange(date.toISOString());
   }
 
   render() {
