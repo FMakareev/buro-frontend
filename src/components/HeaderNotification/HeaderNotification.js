@@ -1,22 +1,22 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Query} from 'react-apollo';
-import {withRouter} from 'react-router-dom';
-import {STATUS_PENDING} from '@lib/shared/statuses';
-import {SvgBell} from '../Icons/SvgBell';
-import {SvgBellEmpty} from '../Icons/SvgBellEmpty';
-import {ROLE_BANK, ROLE_BUREAU, ROLE_CLIENT} from '../../shared/roles';
-import {CircleCount} from './HeaderNotificationStyled';
-import {ButtonStyled} from './HeaderNotificationStyled';
-import {CheckAuthorization} from '../CheckAuthorization/CheckAuthorization';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Query } from 'react-apollo';
+import { withRouter } from 'react-router-dom';
+import { STATUS_PENDING } from '@lib/shared/statuses';
+import { SvgBell } from '../Icons/SvgBell';
+import { SvgBellEmpty } from '../Icons/SvgBellEmpty';
+import { ROLE_BANK, ROLE_BUREAU, ROLE_CLIENT } from '../../shared/roles';
+import { CircleCount } from './HeaderNotificationStyled';
+import { ButtonStyled } from './HeaderNotificationStyled';
+import { CheckAuthorization } from '../CheckAuthorization/CheckAuthorization';
 import NotificationListQuery from './NotificationListQuery.graphql';
-import {getUserFromStore} from '../../store/reducers/user/selectors';
+import { getUserFromStore } from '../../store/reducers/user/selectors';
 
 const has = Object.prototype.hasOwnProperty;
 
 export class HeaderNotification extends Component {
   redirectToNotificationList = () => {
-    const {user, history} = this.props;
+    const { user, history } = this.props;
 
     try {
       if (user) {
@@ -31,22 +31,22 @@ export class HeaderNotification extends Component {
     }
   };
 
-  renderBell = ({error, loading, data, user}) => {
+  renderBell = ({ error, loading, data, user }) => {
     console.log(error, loading, data);
-    if ((!loading && !error && has.call(data, 'notificationlist') && data.notificationlist.length)) {
-      return (<>
-        <CircleCount>
-          {user.role === ROLE_CLIENT
-            ? this.countClientsNotifications(data.notificationlist)
-            : data.notificationlist.length}
-        </CircleCount>
-        <SvgBell/>
-      </>)
-    } else {
-      return (<SvgBellEmpty/>);
+    if (!loading && !error && has.call(data, 'notificationlist') && data.notificationlist.length) {
+      return (
+        <>
+          <CircleCount>
+            {user.role === ROLE_CLIENT
+              ? this.countClientsNotifications(data.notificationlist)
+              : data.notificationlist.length}
+          </CircleCount>
+          <SvgBell />
+        </>
+      );
     }
-  }
-
+    return <SvgBellEmpty />;
+  };
 
   countClientsNotifications = data => {
     let counter = 0;
@@ -61,11 +61,12 @@ export class HeaderNotification extends Component {
   };
 
   render() {
-    const {user} = this.props;
+    const { user } = this.props;
     /** если пользователь есть, нет ошибок и он бюро то не рендерим компонент */
     if (user && !user.error && user.role === ROLE_BUREAU) {
       return null;
-    } else if(!user || user.error ){
+    }
+    if (!user || user.error) {
       return null;
     }
     return (
@@ -74,18 +75,16 @@ export class HeaderNotification extends Component {
         pollInterval={5000}
         variables={{
           // status:STATUS_PENDING,
-          ...(user.role === ROLE_CLIENT ? {clientid: user.id} : {bankid: user.id}),
+          ...(user.role === ROLE_CLIENT ? { clientid: user.id } : { bankid: user.id }),
         }}>
-        {({error, loading, data}) => (
+        {({ error, loading, data }) => (
           <ButtonStyled
             onClick={this.redirectToNotificationList}
             disabled={loading || error}
             fill={loading ? 'color5' : 'color1'}
             as="button"
             fontSize="40px">
-            {
-              this.renderBell({error, loading, data, user})
-            }
+            {this.renderBell({ error, loading, data, user })}
           </ButtonStyled>
         )}
       </Query>

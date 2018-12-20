@@ -4,7 +4,6 @@ import { ApolloProvider } from 'react-apollo';
 import { MockedProvider } from 'react-apollo/test-utils';
 
 import wait from 'waait';
-import faker from 'faker';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider as ProviderRedux } from 'react-redux';
 import configureStore from 'redux-mock-store';
@@ -14,6 +13,10 @@ import { HeaderNotification } from './HeaderNotification';
 import { Header } from '../Header/Header';
 import { StyledThemeProvider } from '../../styles/StyledThemeProvider';
 import { ROLE_BANK } from '../../shared/roles';
+
+import HeaderNotificationList from './NotificationListQuery.graphql';
+
+import { fullNotifList } from '../../apollo/graphql/query/staticData';
 
 const mockStore = configureStore();
 
@@ -96,30 +99,87 @@ test('HeaderNotification: ошибка', async () => {
   expect(tree).toMatchSnapshot();
 });
 
-test('HeaderNotification: загрузилось', async () => {
+test('HeaderNotification: загрузилось нотификации есть', async () => {
   const store = mockStore({
     user: {
       error: null,
       initLoading: false,
       updateLoading: false,
       role: ROLE_BANK,
-      id: faker.random.uuid(),
+      id: 'full08bd-ac3c-4a97-bfd6-5bd8b042b336',
     },
   });
+
+  const dogMock = {
+    request: {
+      query: HeaderNotificationList,
+      variables: {
+        bankid: 'full08bd-ac3c-4a97-bfd6-5bd8b042b336',
+      },
+    },
+    result: {
+      data: {
+        notificationlist: fullNotifList,
+      },
+    },
+  };
 
   const output = renderer.create(
     <StyledThemeProvider>
       <ProviderRedux store={store}>
         <MemoryRouter>
-          <ApolloProvider client={mocksClient}>
+          <MockedProvider mocks={[dogMock]} addTypename={false}>
             <HeaderNotification />
-          </ApolloProvider>
+          </MockedProvider>
         </MemoryRouter>
       </ProviderRedux>
     </StyledThemeProvider>,
   );
 
-  await wait(3);
+  await wait(5);
+
+  const tree = output.toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+test('HeaderNotification: загрузилось нотификаций нет', async () => {
+  const store = mockStore({
+    user: {
+      error: null,
+      initLoading: false,
+      updateLoading: false,
+      role: ROLE_BANK,
+      id: 'full08bd-ac3c-4a97-bfd6-5bd8b042b336',
+    },
+  });
+
+  const dogMock = {
+    request: {
+      query: HeaderNotificationList,
+      variables: {
+        bankid: 'full08bd-ac3c-4a97-bfd6-5bd8b042b336',
+      },
+    },
+    result: {
+      data: {
+        notificationlist: [],
+      },
+    },
+  };
+
+  const output = renderer.create(
+    <StyledThemeProvider>
+      <ProviderRedux store={store}>
+        <MemoryRouter>
+          <MockedProvider mocks={[dogMock]} addTypename={false}>
+            <HeaderNotification />
+          </MockedProvider>
+        </MemoryRouter>
+      </ProviderRedux>
+    </StyledThemeProvider>,
+  );
+
+  await wait(5);
 
   const tree = output.toJSON();
   expect(tree).toMatchSnapshot();
