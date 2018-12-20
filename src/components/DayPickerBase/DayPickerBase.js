@@ -47,6 +47,18 @@ export class DayPickerBase extends Component {
     return { startDate: this.props.input.value ? new Date(this.props.input.value) : new Date() };
   }
 
+  componentDidCatch(error){
+    console.error(error);
+    if(error){
+      this.setState({ startDate: null });
+      const {
+        input: { onChange },
+      } = this.props;
+
+      onChange(null);
+    }
+  }
+
   handleChange(date) {
     this.setState({ startDate: date });
 
