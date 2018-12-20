@@ -114,6 +114,7 @@ export class ClientsPage extends Component {
             query={UserDocumentListQuery}
             variables={{
               excludeowner: user.id,
+              excludeownerrole: ROLE_BANK,
             }}>
             {({ error, data, loading }) => {
               console.log('UserListQuery: ', error, data, loading);

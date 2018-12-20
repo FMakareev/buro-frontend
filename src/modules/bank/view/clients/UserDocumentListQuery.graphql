@@ -1,5 +1,5 @@
-query($excludeowner: String!){
-  userdocumentlist(excludeowner: $excludeowner){
+query($excludeowner: String!,$excludeownerrole: String){
+  userdocumentlist(excludeowner: $excludeowner,excludeownerrole: $excludeownerrole){
     id
     client{
       id
