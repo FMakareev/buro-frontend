@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { Form, Field, reduxForm } from 'redux-form';
+import React, {Component} from 'react';
+import {Form, Field, reduxForm} from 'redux-form';
 import styled from 'styled-components';
 import fetch from 'isomorphic-fetch';
-import { FileUploader } from '@lib/ui/FileUploader/FileUploader';
+import {FileUploader} from '@lib/ui/FileUploader/FileUploader';
 
-import { TextFieldBase } from '@lib/ui/TextFieldBase/TextFieldBase';
+import {TextFieldBase} from '@lib/ui/TextFieldBase/TextFieldBase';
 
-import { Text } from '@lib/ui/Text/Text';
-import { ButtonBase } from '@lib/ui/ButtonBase/ButtonBase';
-import { EXCEL_DOWNLOAD } from '@lib/shared/endpoints';
-import { SvgCancelRequest } from '@lib/ui/Icons/SvgCancelRequest';
-import { MessageContentStyled, WrapperMessage } from './FormDocumentUploadStyled';
+import {Text} from '@lib/ui/Text/Text';
+import {ButtonBase} from '@lib/ui/ButtonBase/ButtonBase';
+import {EXCEL_DOWNLOAD} from '@lib/shared/endpoints';
+import {SvgCancelRequest} from '@lib/ui/Icons/SvgCancelRequest';
+import {MessageContentStyled, WrapperMessage} from './FormDocumentUploadStyled';
 
-import { required } from '../../../../utils/validation/required';
+import {required} from '../../../../utils/validation/required';
 
 const download = require('./download.js');
 
@@ -53,20 +53,25 @@ export class FormDocumentUpload extends Component {
     };
   }
 
-   submit(value) {
-    const { id } = this.state;
-    const querys = Object.assign({}, value, { id });
+  submit(value) {
+    const {id} = this.state;
+    const querys = Object.assign({}, value, {id});
 
+
+    const formData = new FormData();
+    formData.append('documentid',querys.id);
+    formData.append('key',querys.code);
     const options = {
-      method: 'get',
+      method: 'post',
+      body: formData,
     };
-    this.setState(() => ({ isLoading: true, reject: null }));
+    this.setState(() => ({isLoading: true, reject: null}));
 
-    fetch(`${EXCEL_DOWNLOAD}?document_id=${querys.id}&key=${querys.code}`, options)
+    fetch(`${EXCEL_DOWNLOAD}`, options)
       .then(response => {
         console.log(response);
         if (response.status === 200) {
-          this.setState(() => ({ isLoading: false, submitSucceeded: true }));
+          this.setState(() => ({isLoading: false, submitSucceeded: true}));
           return response.blob();
         }
         if (response.status === 500) {
@@ -78,14 +83,14 @@ export class FormDocumentUpload extends Component {
         download(blob);
       })
       .catch(error => {
-        this.setState(() => ({ isLoading: false, submitFailed: true }));
+        this.setState(() => ({isLoading: false, submitFailed: true}));
         console.log(error);
       });
   }
 
   render() {
-    const { toggleModal, pristine, submitting, invalid, handleSubmit } = this.props;
-    const { isLoading, reject, submitFailed, submitSucceeded } = this.state;
+    const {toggleModal, pristine, submitting, invalid, handleSubmit} = this.props;
+    const {isLoading, reject, submitFailed, submitSucceeded} = this.state;
     console.log('this:', this);
     return (
       <StyledForm onSubmit={handleSubmit(this.submit)}>
@@ -133,7 +138,7 @@ export class FormDocumentUpload extends Component {
           </WrapperMessage>
         )}
         <CancelWrapper onClick={toggleModal}>
-          <SvgCancelRequest />
+          <SvgCancelRequest/>
         </CancelWrapper>
       </StyledForm>
     );
