@@ -59,11 +59,10 @@ export class FormDocumentUpload extends Component {
 
     const options = {
       method: 'get',
-      // body: formData,
     };
     this.setState(() => ({ isLoading: true, reject: null }));
 
-    fetch(`/node${EXCEL_DOWNLOAD}/?${querys.id}&${querys.code}`, options)
+    fetch(`/node${EXCEL_DOWNLOAD}?document_id=${querys.id}&keys=${querys.code}`, options)
       .then(response => {
         console.log(response);
         if (response.status === 200) {
