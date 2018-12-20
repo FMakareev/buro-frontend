@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import faker from 'faker';
+
 import styled from 'styled-components';
 
 import { color } from 'styled-system';
@@ -6,13 +9,12 @@ import { Box } from '@lib/ui/Box/Box';
 import { Flex } from '@lib/ui/Flex/Flex';
 import { Text } from '@lib/ui/Text/Text';
 
-import FormSendQuestion from './FormSendQuestion';
-
 import TabController from '@lib/ui/TabController/TabController';
 import { Tabs } from '@lib/ui/Tabs/Tabs';
 import { TabContent } from '@lib/ui/TabContent/TabContent';
 
 import { SvgDropdownIndicator } from '@lib/ui/Icons/SvgDropdownIndicator';
+import FormSendQuestion from './FormSendQuestion';
 
 import { StyledContainer } from './styled';
 import { FontFamilyProperty } from '../../../../styles/styleProperty/FontFamilyProperty';
@@ -79,7 +81,9 @@ export class HelpPage extends Component {
     return {};
   }
 
+
   render() {
+    // console.dir(faker);
     return (
       <StyledContainer backgroundColor="transparent">
         <Box>

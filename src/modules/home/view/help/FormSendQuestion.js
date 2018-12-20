@@ -4,8 +4,6 @@ import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
 
 // import { TextFieldBase } from '@lib/ui/TextFieldBase/TextFieldBase';
 
-import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
-
 import { Box } from '@lib/ui/Box/Box';
 // import { Flex } from '@lib/ui/Flex/Flex';
 
@@ -13,6 +11,7 @@ import { Text } from '@lib/ui/Text/Text';
 
 import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
 import { PreloaderWrapper } from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
+import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
 
 // import { ButtonWithImageError } from '../../../user/components/ButtonWithImageError/ButtonWithImageError';
 
