@@ -14,7 +14,7 @@ import { Header } from '../Header/Header';
 import { StyledThemeProvider } from '../../styles/StyledThemeProvider';
 import { ROLE_BANK } from '../../shared/roles';
 
-import HeaderNotificationList from './NotificationListQuery.graphql';
+import NotificationListQuery from './NotificationListQuery.graphql';
 
 import { fullNotifList } from '../../apollo/graphql/query/staticData';
 
@@ -112,7 +112,7 @@ test('HeaderNotification: загрузилось нотификации есть
 
   const dogMock = {
     request: {
-      query: HeaderNotificationList,
+      query: NotificationListQuery,
       variables: {
         bankid: 'full08bd-ac3c-4a97-bfd6-5bd8b042b336',
       },
@@ -155,7 +155,7 @@ test('HeaderNotification: загрузилось нотификаций нет',
 
   const dogMock = {
     request: {
-      query: HeaderNotificationList,
+      query: NotificationListQuery,
       variables: {
         bankid: 'full08bd-ac3c-4a97-bfd6-5bd8b042b336',
       },
