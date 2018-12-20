@@ -1,33 +1,34 @@
 import React, { Component } from 'react';
-import { Form, Field, reduxForm } from 'redux-form';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { Field, reduxForm } from 'redux-form';
 import fetch from 'isomorphic-fetch';
-import { FileUploader } from '@lib/ui/FileUploader/FileUploader';
-
-import { TextFieldBase } from '@lib/ui/TextFieldBase/TextFieldBase';
+import { EXCEL_DOWNLOAD } from '@lib/shared/endpoints';
 
 import { Text } from '@lib/ui/Text/Text';
+import { Flex } from '@lib/ui/Flex/Flex';
+import { Box } from '@lib/ui/Box/Box';
 import { ButtonBase } from '@lib/ui/ButtonBase/ButtonBase';
-import { EXCEL_DOWNLOAD } from '@lib/shared/endpoints';
+import { FileUploader } from '@lib/ui/FileUploader/FileUploader';
+
 import { SvgCancelRequest } from '@lib/ui/Icons/SvgCancelRequest';
-import { MessageContentStyled, WrapperMessage } from './FormDocumentUploadStyled';
+import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
+import {
+  MessageContentStyled,
+  WrapperMessage,
+  StyledForm,
+  CancelWrapper,
+  TextFieldBaseStyled,
+} from './FormDocumentUploadStyled';
 
 import { required } from '../../../../utils/validation/required';
 
 const download = require('./download.js');
 
-const StyledForm = styled(Form)`
-  position: relative;
-`;
-const CancelWrapper = styled.span`
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  cursor: pointer;
-`;
-
 export class FormDocumentUpload extends Component {
-  static propTypes = {};
+  static propTypes = {
+    ...formPropTypes,
+    id: PropTypes.string,
+  };
 
   static defaultProps = {
     id: null,
@@ -40,6 +41,7 @@ export class FormDocumentUpload extends Component {
   }
 
   get initialState() {
+    const { id } = this.props;
     return {
       /** загрузка */
       isLoading: false,
@@ -49,11 +51,12 @@ export class FormDocumentUpload extends Component {
       submitFailed: false,
       /** ошибка валидации файла */
       reject: null,
-      id: this.props.id,
+      /** id документа */
+      id,
     };
   }
 
-   submit(value) {
+  submit(value) {
     const { id } = this.state;
     const querys = Object.assign({}, value, { id });
 
@@ -94,23 +97,27 @@ export class FormDocumentUpload extends Component {
             reject={reject || submitFailed}
             isLoading={isLoading}
             onDropAccepted={this.submit}>
-            <div>
-              <Field
-                name="code"
-                component={TextFieldBase}
-                label="Code"
-                placeholder="Code"
-                type="text"
-                validate={[required]}
-              />
-              <ButtonBase
-                type="submit"
-                display="inline-block"
-                size="small"
-                disabled={pristine || submitting || invalid}>
-                Download the file
-              </ButtonBase>
-            </div>
+            <Flex flexDirection="column" alignItems="center">
+              <Box width="100%" mb={6}>
+                <Field
+                  name="code"
+                  component={TextFieldBaseStyled}
+                  label="code"
+                  placeholder="code"
+                  type="text"
+                  validate={[required]}
+                />
+              </Box>
+              <Box width="70%">
+                <ButtonBase
+                  type="submit"
+                  display="inline-block"
+                  size="small"
+                  disabled={pristine || submitting || invalid}>
+                  Download the file
+                </ButtonBase>
+              </Box>
+            </Flex>
           </FileUploader>
         )}
         {(submitSucceeded || submitFailed) && (
