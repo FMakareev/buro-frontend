@@ -1,6 +1,11 @@
 import { color } from 'styled-system';
+import { Form } from 'redux-form';
 import styled from 'styled-components';
+import { TextFieldBase } from '@lib/ui/TextFieldBase/TextFieldBase';
 import { BorderColorProperty } from '../../../../styles/styleProperty/BorderColorProperty';
+import { BorderRadiusProperty } from '../../../../styles/styleProperty/BorderRadiusProperty';
+import { LineHeightProperty } from '../../../../styles/styleProperty/LineHeightProperty';
+import { FillSvgProperty } from '../../../../styles/styleProperty/FillSvgProperty';
 
 export const WrapperMessage = styled.div`
   position: relative;
@@ -32,4 +37,27 @@ export const MessageContentStyled = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+`;
+
+export const StyledForm = styled(Form)`
+  position: relative;
+`;
+export const CancelWrapper = styled.span`
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+
+  & svg {
+    ${props => FillSvgProperty({ ...props, fill: 'color1' })};
+
+    :hover {
+      ${props => FillSvgProperty({ ...props, fill: 'color6' })};
+    }
+  }
+`;
+
+export const TextFieldBaseStyled = styled(TextFieldBase)`
+  ${props => LineHeightProperty({ ...props, lineHeight: 6 })};
+  ${props => BorderRadiusProperty({ ...props, borderRadius: 2 })};
 `;
