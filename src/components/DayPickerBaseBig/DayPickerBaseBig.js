@@ -107,9 +107,7 @@ const IconWrapper = styled.div`
 `;
 
 export class DayPickerBaseBig extends Component {
-  static propTypes = {
-    label: PropTypes.string,
-  };
+  static propTypes = {};
 
   static defaultProps = {
     input: {
@@ -145,7 +143,7 @@ export class DayPickerBaseBig extends Component {
 
   render() {
     const { startDate } = this.state;
-    const { placeholder, label, meta, icon, ...rest } = this.props;
+    const { placeholder, meta, icon, ...rest } = this.props;
 
     return (
       <StyledFlex flexDirection="column" meta={meta}>
