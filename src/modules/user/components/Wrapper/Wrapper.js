@@ -12,11 +12,11 @@ export const Wrapper = styled(Container)`
   ${props => BoxShadowProperty({ ...props, boxShadow: 0 })};
 
   @media (max-width: 576px) {
-    max-width: 320px;
+    max-width: 360px;
   }
 
   @media (min-width: 576px) {
-    ${props => (props.regClient ? 'max-width: 700px' : 'max-width: 320px')}
+    ${props => (props.regClient ? 'max-width: 700px' : 'max-width: 360px')}
   }
 `;
 

@@ -57,19 +57,24 @@ export class FormDocumentUpload extends Component {
   }
 
   submit(value) {
-    const { id } = this.state;
-    const querys = Object.assign({}, value, { id });
+    const {id} = this.state;
+    const querys = Object.assign({}, value, {id});
 
+
+    const formData = new FormData();
+    formData.append('documentid',querys.id);
+    formData.append('key',querys.code);
     const options = {
-      method: 'get',
+      method: 'post',
+      body: formData,
     };
-    this.setState(() => ({ isLoading: true, reject: null }));
+    this.setState(() => ({isLoading: true, reject: null}));
 
-    fetch(`/node${EXCEL_DOWNLOAD}?document_id=${querys.id}&keys=${querys.code}`, options)
+    fetch(`${EXCEL_DOWNLOAD}`, options)
       .then(response => {
         console.log(response);
         if (response.status === 200) {
-          this.setState(() => ({ isLoading: false, submitSucceeded: true }));
+          this.setState(() => ({isLoading: false, submitSucceeded: true}));
           return response.blob();
         }
         if (response.status === 500) {
@@ -81,14 +86,14 @@ export class FormDocumentUpload extends Component {
         download(blob);
       })
       .catch(error => {
-        this.setState(() => ({ isLoading: false, submitFailed: true }));
+        this.setState(() => ({isLoading: false, submitFailed: true}));
         console.log(error);
       });
   }
 
   render() {
-    const { toggleModal, pristine, submitting, invalid, handleSubmit } = this.props;
-    const { isLoading, reject, submitFailed, submitSucceeded } = this.state;
+    const {toggleModal, pristine, submitting, invalid, handleSubmit} = this.props;
+    const {isLoading, reject, submitFailed, submitSucceeded} = this.state;
     console.log('this:', this);
     return (
       <StyledForm onSubmit={handleSubmit(this.submit)}>
@@ -140,7 +145,7 @@ export class FormDocumentUpload extends Component {
           </WrapperMessage>
         )}
         <CancelWrapper onClick={toggleModal}>
-          <SvgCancelRequest />
+          <SvgCancelRequest/>
         </CancelWrapper>
       </StyledForm>
     );
