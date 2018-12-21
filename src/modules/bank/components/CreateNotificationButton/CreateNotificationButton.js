@@ -25,7 +25,7 @@ export const CreateNotificationButton = ({ children, clientid, bankid }) => (
       return (
         <ButtonWithImage
           disabled={loading}
-          onClick={() => mutation({ variables: { clientid, bankid, status: STATUS_PENDING } })}
+          onClick={() => mutation({ variables: { clientid, bankid} })}
           display="inline-block"
           iconRight={
             loading ? (
