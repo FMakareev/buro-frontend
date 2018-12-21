@@ -14,12 +14,18 @@ import { StyledThemeProvider } from '../../../../styles/StyledThemeProvider';
 
 import CreateNotificationMutation from './CreateNotificationMutation.graphql';
 
+const props = {
+  client: '7865f87e-9ed8-4bad-aa51-771a0b2ed197',
+  bank: 'ee850dd9-db5a-4d67-a22f-2a516e7d44e7',
+  status: 'wait',
+};
+
 test('CreateNotificationButton: обычное состояние', () => {
   const output = renderer.create(
     <StyledThemeProvider>
       <MemoryRouter>
         <ApolloProvider client={mocksClient}>
-          <CreateNotificationButton>Request</CreateNotificationButton>
+          <CreateNotificationButton {...props}>Request</CreateNotificationButton>
         </ApolloProvider>
       </MemoryRouter>
     </StyledThemeProvider>,
@@ -33,7 +39,7 @@ test('CreateNotificationButton: вызов запроса', () => {
     <StyledThemeProvider>
       <MemoryRouter>
         <ApolloProvider client={mocksClient}>
-          <CreateNotificationButton>Request</CreateNotificationButton>
+          <CreateNotificationButton {...props}>Request</CreateNotificationButton>
         </ApolloProvider>
       </MemoryRouter>
     </StyledThemeProvider>,
@@ -45,11 +51,6 @@ test('CreateNotificationButton: вызов запроса', () => {
 });
 
 test('CreateNotificationButton: запрос завершен', async () => {
-  const props = {
-    clientid: '7865f87e-9ed8-4bad-aa51-771a0b2ed197',
-    bankid: 'ee850dd9-db5a-4d67-a22f-2a516e7d44e7',
-  };
-
   const mocks = [
     {
       request: {
@@ -60,7 +61,7 @@ test('CreateNotificationButton: запрос завершен', async () => {
         data: {
           createnotification: {
             notification: {
-              status: 'resolve',
+              status: 'wait',
             },
           },
         },
@@ -71,7 +72,7 @@ test('CreateNotificationButton: запрос завершен', async () => {
   const output = renderer.create(
     <StyledThemeProvider>
       <MockedProvider mocks={mocks} addTypename={false}>
-        <CreateNotificationButton {...props} />
+        <CreateNotificationButton {...props}>Request</CreateNotificationButton>
       </MockedProvider>
     </StyledThemeProvider>,
   );
@@ -86,11 +87,6 @@ test('CreateNotificationButton: запрос завершен', async () => {
 });
 
 test('CreateNotificationButton: запрос завершен ошибкой сети', async () => {
-  const props = {
-    clientid: '7865f87e-9ed8-4bad-aa51-771a0b2ed197',
-    bankid: 'ee850dd9-db5a-4d67-a22f-2a516e7d44e7',
-  };
-
   const mocks = [
     {
       request: {
@@ -104,7 +100,7 @@ test('CreateNotificationButton: запрос завершен ошибкой с�
   const output = renderer.create(
     <StyledThemeProvider>
       <MockedProvider mocks={mocks} addTypename={false}>
-        <CreateNotificationButton {...props} />
+        <CreateNotificationButton {...props}>Request</CreateNotificationButton>
       </MockedProvider>
     </StyledThemeProvider>,
   );
@@ -112,18 +108,14 @@ test('CreateNotificationButton: запрос завершен ошибкой с�
   const button = output.root.findByType('button');
   button.props.onClick();
 
-  await wait(6);
+  await wait(5);
 
-  const tree = output.toJSON();
-  expect(tree).toMatchSnapshot();
+  // const tree = output.toJSON();
+  // expect(tree).toMatchSnapshot();
+  expect(output.root.findByProps({ children: 'Request' }).props.variant).toBe('error');
 });
 
 test('CreateNotificationButton: запрос завершен ошибкой GraphQL', async () => {
-  const props = {
-    clientid: '7865f87e-9ed8-4bad-aa51-771a0b2ed197',
-    bankid: 'ee850dd9-db5a-4d67-a22f-2a516e7d44e7',
-  };
-
   const mocks = [
     {
       request: {
@@ -131,7 +123,7 @@ test('CreateNotificationButton: запрос завершен ошибкой Gra
         variables: props,
       },
       result: {
-        errors: [{ message: 'GraphQLError!' }],
+        error: [{ message: 'GraphQLError!' }],
       },
     },
   ];
@@ -139,7 +131,7 @@ test('CreateNotificationButton: запрос завершен ошибкой Gra
   const output = renderer.create(
     <StyledThemeProvider>
       <MockedProvider mocks={mocks} addTypename={false}>
-        <CreateNotificationButton {...props} />
+        <CreateNotificationButton {...props}>Request</CreateNotificationButton>
       </MockedProvider>
     </StyledThemeProvider>,
   );
