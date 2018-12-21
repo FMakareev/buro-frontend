@@ -240,7 +240,9 @@ export class FormUserRegistration extends Component {
                     )}
 
                     <Flex flexDirection={['column', 'row']}>
-                      <Box width="100%" mb={6}>
+                      <Box
+                        width={values && values.role === ROLE_CLIENT ? ['100%', '50%'] : '100%'}
+                        mb={6}>
                         <Field
                           name="email"
                           component={TextFieldWithIcon}
@@ -255,7 +257,7 @@ export class FormUserRegistration extends Component {
                       </Box>
 
                       {values && values.role === ROLE_CLIENT && (
-                        <Box width="100%" mb={6} pl={[0, '10px']}>
+                        <Box width={['100%', '50%']} mb={6} pl={[0, '10px']}>
                           <Field
                             name="birthdate"
                             component={DayPickerBaseBig}
