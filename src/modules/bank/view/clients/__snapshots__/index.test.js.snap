@@ -233,7 +233,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     fontFamily="medium"
                     fontSize={6}
                   >
-                    Cicero Morar Beatty
+                    Armand Champlin Hauck
                   </div>
                 </div>
                 <div
@@ -254,7 +254,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     fontFamily="medium"
                     fontSize={6}
                   >
-                    14.08.2018
+                    13.01.2018
                   </div>
                 </div>
                 <div
@@ -319,7 +319,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     fontFamily="medium"
                     fontSize={6}
                   >
-                    Otilia Hegmann McKenzie
+                    Armand Dach Hauck
                   </div>
                 </div>
                 <div
@@ -340,7 +340,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     fontFamily="medium"
                     fontSize={6}
                   >
-                    31.05.2018
+                    29.07.2018
                   </div>
                 </div>
                 <div
@@ -405,7 +405,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     fontFamily="medium"
                     fontSize={6}
                   >
-                    Milton Rutherford Reinger
+                    Armand Champlin Hauck
                   </div>
                 </div>
                 <div
@@ -426,7 +426,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     fontFamily="medium"
                     fontSize={6}
                   >
-                    25.09.2018
+                    13.01.2018
                   </div>
                 </div>
                 <div
@@ -491,7 +491,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     fontFamily="medium"
                     fontSize={6}
                   >
-                    Luella Kemmer Brakus
+                    Armand Champlin Hauck
                   </div>
                 </div>
                 <div
@@ -512,7 +512,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     fontFamily="medium"
                     fontSize={6}
                   >
-                    28.08.2018
+                    13.01.2018
                   </div>
                 </div>
                 <div
@@ -577,7 +577,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     fontFamily="medium"
                     fontSize={6}
                   >
-                    Marvin Schamberger Doyle
+                    Armand Champlin Hauck
                   </div>
                 </div>
                 <div
@@ -598,7 +598,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     fontFamily="medium"
                     fontSize={6}
                   >
-                    22.03.2018
+                    13.01.2018
                   </div>
                 </div>
                 <div
@@ -663,7 +663,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     fontFamily="medium"
                     fontSize={6}
                   >
-                    Jorge King Nader
+                    Armand Champlin Hauck
                   </div>
                 </div>
                 <div
@@ -684,7 +684,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     fontFamily="medium"
                     fontSize={6}
                   >
-                    08.06.2018
+                    13.01.2018
                   </div>
                 </div>
                 <div
@@ -749,7 +749,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     fontFamily="medium"
                     fontSize={6}
                   >
-                    Eula Maggio Considine
+                    Armand Champlin Hauck
                   </div>
                 </div>
                 <div
@@ -770,7 +770,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     fontFamily="medium"
                     fontSize={6}
                   >
-                    18.05.2018
+                    13.01.2018
                   </div>
                 </div>
                 <div
@@ -814,12 +814,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
               role="rowgroup"
             >
               <div
-                className="rt-tr -even"
+                className="rt-tr -padRow -even"
                 role="row"
+                style={Object {}}
               >
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -829,18 +829,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Dora Schultz Stamm
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -850,18 +844,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    23.11.2018
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -871,27 +859,9 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <button
-                    className="mxzgdr-0 bYJcNk"
-                    disabled={false}
-                    display="inline-block"
-                    onClick={[Function]}
-                    size="xsmall"
-                    type="button"
-                  >
-                    <div
-                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-                      width="100%"
-                    >
-                      <div />
-                      <div
-                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
-                      >
-                        Request
-                      </div>
-                      <div />
-                    </div>
-                  </button>
+                  <span>
+                     
+                  </span>
                 </div>
               </div>
             </div>
@@ -900,12 +870,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
               role="rowgroup"
             >
               <div
-                className="rt-tr -odd"
+                className="rt-tr -padRow -odd"
                 role="row"
+                style={Object {}}
               >
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -915,18 +885,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Leone Hirthe Carroll
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -936,18 +900,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    26.08.2018
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -957,27 +915,9 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <button
-                    className="mxzgdr-0 bYJcNk"
-                    disabled={false}
-                    display="inline-block"
-                    onClick={[Function]}
-                    size="xsmall"
-                    type="button"
-                  >
-                    <div
-                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-                      width="100%"
-                    >
-                      <div />
-                      <div
-                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
-                      >
-                        Request
-                      </div>
-                      <div />
-                    </div>
-                  </button>
+                  <span>
+                     
+                  </span>
                 </div>
               </div>
             </div>
@@ -986,12 +926,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
               role="rowgroup"
             >
               <div
-                className="rt-tr -even"
+                className="rt-tr -padRow -even"
                 role="row"
+                style={Object {}}
               >
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -1001,18 +941,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Crystel Funk Hackett
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -1022,18 +956,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    08.03.2018
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -1043,27 +971,9 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <button
-                    className="mxzgdr-0 bYJcNk"
-                    disabled={false}
-                    display="inline-block"
-                    onClick={[Function]}
-                    size="xsmall"
-                    type="button"
-                  >
-                    <div
-                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-                      width="100%"
-                    >
-                      <div />
-                      <div
-                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
-                      >
-                        Request
-                      </div>
-                      <div />
-                    </div>
-                  </button>
+                  <span>
+                     
+                  </span>
                 </div>
               </div>
             </div>
@@ -1167,7 +1077,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                 >
                   of
                    
-                  8
+                  1
                 </div>
               </div>
               <div
@@ -1235,7 +1145,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
             >
               <button
                 className="mxzgdr-0 euDJBk"
-                disabled={false}
+                disabled={true}
                 onClick={[Function]}
                 size="large"
                 type="button"

@@ -433,4 +433,117 @@ export const fullNotifList = [
   },
 ];
 
-export const emptyNotifList = [];
+export const staticUserDocumentList = [
+  {
+    id: '73103916-0df9-4a23-8623-77441de6c02a',
+    client: {
+      birthdate: 'Fri, 12 Jan 2018 23:11:41 GMT',
+      firstName: 'Armand',
+      id: '3f01d669-b26f-4495-bf40-a28cf2137bc7',
+      lastName: 'Champlin',
+      patronymic: 'Hauck',
+    },
+    owner: {
+      bankName: 'Senior Research Specialist',
+      id: '39bb2f26-474c-4ea5-b06a-e4d441bfc593',
+    },
+    status: 'wait',
+    date: 'Mon, 01 Oct 2018 12:50:54 GMT',
+  },
+  {
+    id: 'e054bcad-f040-4428-8a7b-e8ab8ea29d5a',
+    client: {
+      birthdate: 'Sun, 29 Jul 2018 04:17:31 GMT',
+      firstName: 'Armand',
+      id: '3f01d669-b26f-4495-bf40-a28cf2137bc7',
+      lastName: 'Dach',
+      patronymic: 'Hauck',
+    },
+    owner: {
+      bankName: 'Senior Research Specialist',
+      id: '39bb2f26-474c-4ea5-b06a-e4d441bfc593',
+    },
+    status: 'resolve',
+    date: 'Mon, 01 Oct 2018 12:50:54 GMT',
+  },
+  {
+    id: '73103916-0df9-4a23-8623-77441de6c02a',
+    client: {
+      birthdate: 'Fri, 12 Jan 2018 23:11:41 GMT',
+      firstName: 'Armand',
+      id: '3f01d669-b26f-4495-bf40-a28cf2137bc7',
+      lastName: 'Champlin',
+      patronymic: 'Hauck',
+    },
+    owner: {
+      bankName: 'Senior Research Specialist',
+      id: '39bb2f26-474c-4ea5-b06a-e4d441bfc593',
+    },
+    status: 'reject',
+    date: 'Mon, 01 Oct 2018 12:50:54 GMT',
+  },
+  {
+    id: '73103916-0df9-4a23-8623-77441de6c02a',
+    client: {
+      birthdate: 'Fri, 12 Jan 2018 23:11:41 GMT',
+      firstName: 'Armand',
+      id: '3f01d669-b26f-4495-bf40-a28cf2137bc7',
+      lastName: 'Champlin',
+      patronymic: 'Hauck',
+    },
+    owner: {
+      bankName: 'Senior Research Specialist',
+      id: '39bb2f26-474c-4ea5-b06a-e4d441bfc593',
+    },
+    status: 'wait',
+    date: 'Mon, 01 Oct 2018 12:50:54 GMT',
+  },
+  {
+    id: '73103916-0df9-4a23-8623-77441de6c02a',
+    client: {
+      birthdate: 'Fri, 12 Jan 2018 23:11:41 GMT',
+      firstName: 'Armand',
+      id: '3f01d669-b26f-4495-bf40-a28cf2137bc7',
+      lastName: 'Champlin',
+      patronymic: 'Hauck',
+    },
+    owner: {
+      bankName: 'Senior Research Specialist',
+      id: '39bb2f26-474c-4ea5-b06a-e4d441bfc593',
+    },
+    status: 'reject',
+    date: 'Mon, 01 Oct 2018 12:50:54 GMT',
+  },
+  {
+    id: '73103916-0df9-4a23-8623-77441de6c02a',
+    client: {
+      birthdate: 'Fri, 12 Jan 2018 23:11:41 GMT',
+      firstName: 'Armand',
+      id: '3f01d669-b26f-4495-bf40-a28cf2137bc7',
+      lastName: 'Champlin',
+      patronymic: 'Hauck',
+    },
+    owner: {
+      bankName: 'Senior Research Specialist',
+      id: '39bb2f26-474c-4ea5-b06a-e4d441bfc593',
+    },
+    status: 'wait',
+    date: 'Mon, 01 Oct 2018 12:50:54 GMT',
+  },
+  {
+    id: '73103916-0df9-4a23-8623-77441de6c02a',
+    client: {
+      birthdate: 'Fri, 12 Jan 2018 23:11:41 GMT',
+      firstName: 'Armand',
+      id: '3f01d669-b26f-4495-bf40-a28cf2137bc7',
+      lastName: 'Champlin',
+      patronymic: 'Hauck',
+    },
+    owner: {
+      bankName: 'Senior Research Specialist',
+      id: '39bb2f26-474c-4ea5-b06a-e4d441bfc593',
+    },
+    status: 'wait',
+    date: 'Mon, 01 Oct 2018 12:50:54 GMT',
+  },
+];

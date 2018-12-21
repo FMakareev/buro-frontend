@@ -1,39 +1,41 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {ApolloProvider} from 'react-apollo';
-import {MockedProvider} from 'react-apollo/test-utils';
+import { ApolloProvider } from 'react-apollo';
+import { MockedProvider } from 'react-apollo/test-utils';
 
 import wait from 'waait';
 import faker from 'faker';
-import mocksClient from "../../../../apollo/mocksClient";
 
-import {MemoryRouter, Redirect} from 'react-router-dom';
-import {ClientsPage} from './index';
-import {StyledThemeProvider} from "../../../../styles/StyledThemeProvider";
-import {Provider as ProviderRedux} from 'react-redux';
-import configureStore from 'redux-mock-store'
-import {ROLE_BANK} from "@lib/shared/roles";
-import UserListQuery from './UserListQuery.graphql'
+import { MemoryRouter, Redirect } from 'react-router-dom';
+import { Provider as ProviderRedux } from 'react-redux';
+import configureStore from 'redux-mock-store';
+import { ROLE_BANK } from '@lib/shared/roles';
+import { StyledThemeProvider } from '../../../../styles/StyledThemeProvider';
+import { ClientsPage } from './index';
+import mocksClient from '../../../../apollo/mocksClient';
+// import UserListQuery from './UserListQuery.graphql';
+import UserDocumentListQuery from './UserDocumentListQuery.graphql';
+
+import { staticUserDocumentList } from '../../../../apollo/graphql/query/staticData';
 
 const mockStore = configureStore();
 
-
 test('ClientsPage: пользователь не авторизован', () => {
-
   const store = mockStore({});
 
-  const output = renderer.create(<StyledThemeProvider>
-    <ProviderRedux store={store}>
-      <MemoryRouter>
-        <ApolloProvider client={mocksClient}>
-          <ClientsPage/>
-        </ApolloProvider>
-      </MemoryRouter>
-    </ProviderRedux>
-  </StyledThemeProvider>);
+  const output = renderer.create(
+    <StyledThemeProvider>
+      <ProviderRedux store={store}>
+        <MemoryRouter>
+          <ApolloProvider client={mocksClient}>
+            <ClientsPage />
+          </ApolloProvider>
+        </MemoryRouter>
+      </ProviderRedux>
+    </StyledThemeProvider>,
+  );
   expect(output.root.findByType(Redirect).props.to).toBe('/logout');
 });
-
 
 test('ClientsPage: загрузка пользовательских данных', () => {
   const store = mockStore({
@@ -43,18 +45,20 @@ test('ClientsPage: загрузка пользовательских данны�
       updateLoading: false,
       role: ROLE_BANK,
       id: faker.random.uuid(),
-    }
+    },
   });
 
-  const output = renderer.create(<StyledThemeProvider>
-    <ProviderRedux store={store}>
-      <MemoryRouter>
-        <ApolloProvider client={mocksClient}>
-          <ClientsPage/>
-        </ApolloProvider>
-      </MemoryRouter>
-    </ProviderRedux>
-  </StyledThemeProvider>);
+  const output = renderer.create(
+    <StyledThemeProvider>
+      <ProviderRedux store={store}>
+        <MemoryRouter>
+          <ApolloProvider client={mocksClient}>
+            <ClientsPage />
+          </ApolloProvider>
+        </MemoryRouter>
+      </ProviderRedux>
+    </StyledThemeProvider>,
+  );
   expect(output).toMatchSnapshot();
 });
 
@@ -66,32 +70,38 @@ test('ClientsPage: ошибка во время загрузки пользов�
       updateLoading: false,
       role: ROLE_BANK,
       id: faker.random.uuid(),
-    }
+    },
   };
   const store = mockStore(initialValue);
   const dogMock = {
     request: {
-      query: UserListQuery,
+      query: UserDocumentListQuery,
       variables: {
-        id: initialValue.user.id,
+        excludeowner: initialValue.user.id,
+        excludeownerrole: initialValue.user.role,
       },
     },
-    error: new Error(JSON.stringify({
-      error: [{
-        message: 'Error!'
-      }
-      ]
-    })),
+    error: new Error(
+      JSON.stringify({
+        error: [
+          {
+            message: 'Error!',
+          },
+        ],
+      }),
+    ),
   };
-  const output = renderer.create(<StyledThemeProvider>
-    <ProviderRedux store={store}>
-      <MemoryRouter>
-        <MockedProvider mocks={[dogMock]} addTypename={true}>
-          <ClientsPage/>
-        </MockedProvider>
-      </MemoryRouter>
-    </ProviderRedux>
-  </StyledThemeProvider>);
+  const output = renderer.create(
+    <StyledThemeProvider>
+      <ProviderRedux store={store}>
+        <MemoryRouter>
+          <MockedProvider mocks={[dogMock]} addTypename={false}>
+            <ClientsPage />
+          </MockedProvider>
+        </MemoryRouter>
+      </ProviderRedux>
+    </StyledThemeProvider>,
+  );
   await wait(0); // небольшая задержка
 
   const tree = output.toJSON();
@@ -99,26 +109,43 @@ test('ClientsPage: ошибка во время загрузки пользов�
 });
 
 test('ClientsPage: загруженный список клиентов', async () => {
-  const store = mockStore({
+  const initialValue = {
     user: {
       error: null,
       initLoading: false,
       updateLoading: false,
       role: ROLE_BANK,
       id: faker.random.uuid(),
-    }
-  });
-
-  const output = renderer.create(<StyledThemeProvider>
-    <ProviderRedux store={store}>
-      <MemoryRouter>
-        <ApolloProvider client={mocksClient}>
-          <ClientsPage/>
-        </ApolloProvider>
-      </MemoryRouter>
-    </ProviderRedux>
-  </StyledThemeProvider>);
+    },
+  };
+  const store = mockStore(initialValue);
+  const dogMock = {
+    request: {
+      query: UserDocumentListQuery,
+      variables: {
+        excludeowner: initialValue.user.id,
+        excludeownerrole: initialValue.user.role,
+      },
+    },
+    result: {
+      data: {
+        userdocumentlist: staticUserDocumentList,
+      },
+    },
+  };
+  const output = renderer.create(
+    <StyledThemeProvider>
+      <ProviderRedux store={store}>
+        <MemoryRouter>
+          <MockedProvider mocks={[dogMock]} addTypename={false}>
+            <ClientsPage />
+          </MockedProvider>
+        </MemoryRouter>
+      </ProviderRedux>
+    </StyledThemeProvider>,
+  );
   await wait(5); // небольшая задержка
 
-  expect(output).toMatchSnapshot();
+  const tree = output.toJSON();
+  expect(tree).toMatchSnapshot();
 });
