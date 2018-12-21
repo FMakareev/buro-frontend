@@ -91,7 +91,6 @@ const columns = ({ onFiltered, onOpenFormUploadDoc }) => [
         /** TODO: тут будет ссылка или запрос на скачивание документа */
         return (
           <ButtonWithImage
-            // href={`${EXCEL_DOWNLOAD}/${props.original.id}`}
             onClick={() => onOpenFormUploadDoc(props.original.id)}
             download
             as="button"
@@ -100,7 +99,7 @@ const columns = ({ onFiltered, onOpenFormUploadDoc }) => [
             variant="transparent"
             pl="3px"
             pr="5px">
-            Upload
+            Download
           </ButtonWithImage>
         );
       } catch (error) {
