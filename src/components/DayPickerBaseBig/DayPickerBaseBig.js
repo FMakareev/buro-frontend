@@ -128,6 +128,12 @@ export class DayPickerBaseBig extends Component {
     return { startDate: null };
   }
 
+  onBlur = date => {
+    // with this method working errors lighting
+    const { input } = this.props;
+    input.onBlur(date, input);
+  };
+
   handleChange(date) {
     this.setState({ startDate: date });
 
@@ -138,6 +144,7 @@ export class DayPickerBaseBig extends Component {
   }
 
   render() {
+    const { startDate } = this.state;
     const { placeholder, label, meta, icon, ...rest } = this.props;
 
     return (
@@ -145,8 +152,9 @@ export class DayPickerBaseBig extends Component {
         {meta.touched && meta.error && <Error>{meta.error}</Error>}
         <DatePicker
           autocomplete="off"
-          selected={this.state.startDate}
+          selected={startDate}
           onChange={this.handleChange}
+          onBlur={this.onBlur}
           peekNextMonth
           showMonthDropdown
           showYearDropdown
