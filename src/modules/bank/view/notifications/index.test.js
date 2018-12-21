@@ -8,12 +8,14 @@ import faker from 'faker';
 import { MemoryRouter, Redirect } from 'react-router-dom';
 import { Provider as ProviderRedux } from 'react-redux';
 import configureStore from 'redux-mock-store';
+import { ROLE_BANK } from '@lib/shared/roles';
 import mocksClient from '../../../../apollo/mocksClient';
 
 import { NotificationsPage } from './index';
 import { StyledThemeProvider } from '../../../../styles/StyledThemeProvider';
-import { ROLE_BANK } from '@lib/shared/roles';
 import NotificationListQuery from './NotificationListQuery.graphql';
+
+import { fullNotifList } from '../../../../apollo/graphql/query/staticData';
 
 const mockStore = configureStore();
 
@@ -105,7 +107,7 @@ test('NotificationsPage: ошибка во время загрузки поль�
 });
 
 test('NotificationsPage: загруженный список нотификаций', async () => {
-  const store = mockStore({
+  const initialValue = {
     user: {
       error: null,
       initLoading: false,
@@ -113,20 +115,34 @@ test('NotificationsPage: загруженный список нотификац�
       role: ROLE_BANK,
       id: faker.random.uuid(),
     },
-  });
-
+  };
+  const store = mockStore(initialValue);
+  const dogMock = {
+    request: {
+      query: NotificationListQuery,
+      variables: {
+        bankid: initialValue.user.id,
+      },
+    },
+    result: {
+      data: {
+        notificationlist: fullNotifList,
+      },
+    },
+  };
   const output = renderer.create(
     <StyledThemeProvider>
       <ProviderRedux store={store}>
         <MemoryRouter>
-          <ApolloProvider client={mocksClient}>
+          <MockedProvider mocks={[dogMock]} addTypename={false}>
             <NotificationsPage />
-          </ApolloProvider>
+          </MockedProvider>
         </MemoryRouter>
       </ProviderRedux>
     </StyledThemeProvider>,
   );
   await wait(5); // небольшая задержка
 
-  expect(output).toMatchSnapshot();
+  const tree = output.toJSON();
+  expect(tree).toMatchSnapshot();
 });

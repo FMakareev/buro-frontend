@@ -212,12 +212,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
               role="rowgroup"
             >
               <div
-                className="rt-tr -padRow -odd"
+                className="rt-tr -odd"
                 role="row"
-                style={Object {}}
               >
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -227,12 +227,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    Cicero Morar Beatty
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -242,12 +248,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    14.08.2018
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -257,9 +269,27 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <button
+                    className="mxzgdr-0 bYJcNk"
+                    disabled={false}
+                    display="inline-block"
+                    onClick={[Function]}
+                    size="xsmall"
+                    type="button"
+                  >
+                    <div
+                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+                      width="100%"
+                    >
+                      <div />
+                      <div
+                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
+                      >
+                        Request
+                      </div>
+                      <div />
+                    </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -268,12 +298,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
               role="rowgroup"
             >
               <div
-                className="rt-tr -padRow -even"
+                className="rt-tr -even"
                 role="row"
-                style={Object {}}
               >
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -283,12 +313,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    Otilia Hegmann McKenzie
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -298,12 +334,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    31.05.2018
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -313,9 +355,27 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <button
+                    className="mxzgdr-0 bYJcNk"
+                    disabled={false}
+                    display="inline-block"
+                    onClick={[Function]}
+                    size="xsmall"
+                    type="button"
+                  >
+                    <div
+                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+                      width="100%"
+                    >
+                      <div />
+                      <div
+                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
+                      >
+                        Request
+                      </div>
+                      <div />
+                    </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -324,12 +384,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
               role="rowgroup"
             >
               <div
-                className="rt-tr -padRow -odd"
+                className="rt-tr -odd"
                 role="row"
-                style={Object {}}
               >
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -339,12 +399,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    Milton Rutherford Reinger
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -354,12 +420,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    25.09.2018
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -369,9 +441,27 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <button
+                    className="mxzgdr-0 bYJcNk"
+                    disabled={false}
+                    display="inline-block"
+                    onClick={[Function]}
+                    size="xsmall"
+                    type="button"
+                  >
+                    <div
+                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+                      width="100%"
+                    >
+                      <div />
+                      <div
+                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
+                      >
+                        Request
+                      </div>
+                      <div />
+                    </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -380,12 +470,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
               role="rowgroup"
             >
               <div
-                className="rt-tr -padRow -even"
+                className="rt-tr -even"
                 role="row"
-                style={Object {}}
               >
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -395,12 +485,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    Luella Kemmer Brakus
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -410,12 +506,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    28.08.2018
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -425,9 +527,27 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <button
+                    className="mxzgdr-0 bYJcNk"
+                    disabled={false}
+                    display="inline-block"
+                    onClick={[Function]}
+                    size="xsmall"
+                    type="button"
+                  >
+                    <div
+                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+                      width="100%"
+                    >
+                      <div />
+                      <div
+                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
+                      >
+                        Request
+                      </div>
+                      <div />
+                    </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -436,12 +556,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
               role="rowgroup"
             >
               <div
-                className="rt-tr -padRow -odd"
+                className="rt-tr -odd"
                 role="row"
-                style={Object {}}
               >
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -451,12 +571,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    Marvin Schamberger Doyle
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -466,12 +592,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    22.03.2018
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -481,9 +613,27 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <button
+                    className="mxzgdr-0 bYJcNk"
+                    disabled={false}
+                    display="inline-block"
+                    onClick={[Function]}
+                    size="xsmall"
+                    type="button"
+                  >
+                    <div
+                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+                      width="100%"
+                    >
+                      <div />
+                      <div
+                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
+                      >
+                        Request
+                      </div>
+                      <div />
+                    </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -492,12 +642,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
               role="rowgroup"
             >
               <div
-                className="rt-tr -padRow -even"
+                className="rt-tr -even"
                 role="row"
-                style={Object {}}
               >
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -507,12 +657,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    Jorge King Nader
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -522,12 +678,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    08.06.2018
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -537,9 +699,27 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <button
+                    className="mxzgdr-0 bYJcNk"
+                    disabled={false}
+                    display="inline-block"
+                    onClick={[Function]}
+                    size="xsmall"
+                    type="button"
+                  >
+                    <div
+                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+                      width="100%"
+                    >
+                      <div />
+                      <div
+                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
+                      >
+                        Request
+                      </div>
+                      <div />
+                    </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -548,12 +728,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
               role="rowgroup"
             >
               <div
-                className="rt-tr -padRow -odd"
+                className="rt-tr -odd"
                 role="row"
-                style={Object {}}
               >
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -563,12 +743,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    Eula Maggio Considine
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -578,12 +764,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    18.05.2018
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -593,9 +785,27 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <button
+                    className="mxzgdr-0 bYJcNk"
+                    disabled={false}
+                    display="inline-block"
+                    onClick={[Function]}
+                    size="xsmall"
+                    type="button"
+                  >
+                    <div
+                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+                      width="100%"
+                    >
+                      <div />
+                      <div
+                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
+                      >
+                        Request
+                      </div>
+                      <div />
+                    </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -604,12 +814,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
               role="rowgroup"
             >
               <div
-                className="rt-tr -padRow -even"
+                className="rt-tr -even"
                 role="row"
-                style={Object {}}
               >
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -619,12 +829,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    Dora Schultz Stamm
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -634,12 +850,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    23.11.2018
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -649,9 +871,27 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <button
+                    className="mxzgdr-0 bYJcNk"
+                    disabled={false}
+                    display="inline-block"
+                    onClick={[Function]}
+                    size="xsmall"
+                    type="button"
+                  >
+                    <div
+                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+                      width="100%"
+                    >
+                      <div />
+                      <div
+                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
+                      >
+                        Request
+                      </div>
+                      <div />
+                    </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -660,12 +900,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
               role="rowgroup"
             >
               <div
-                className="rt-tr -padRow -odd"
+                className="rt-tr -odd"
                 role="row"
-                style={Object {}}
               >
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -675,12 +915,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    Leone Hirthe Carroll
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -690,12 +936,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    26.08.2018
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -705,9 +957,27 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <button
+                    className="mxzgdr-0 bYJcNk"
+                    disabled={false}
+                    display="inline-block"
+                    onClick={[Function]}
+                    size="xsmall"
+                    type="button"
+                  >
+                    <div
+                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+                      width="100%"
+                    >
+                      <div />
+                      <div
+                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
+                      >
+                        Request
+                      </div>
+                      <div />
+                    </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -716,12 +986,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
               role="rowgroup"
             >
               <div
-                className="rt-tr -padRow -even"
+                className="rt-tr -even"
                 role="row"
-                style={Object {}}
               >
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -731,12 +1001,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    Crystel Funk Hackett
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -746,12 +1022,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <div
+                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
+                    color="color1"
+                    fontFamily="medium"
+                    fontSize={6}
+                  >
+                    08.03.2018
+                  </div>
                 </div>
                 <div
                   className="rt-td"
+                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -761,9 +1043,27 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <span>
-                     
-                  </span>
+                  <button
+                    className="mxzgdr-0 bYJcNk"
+                    disabled={false}
+                    display="inline-block"
+                    onClick={[Function]}
+                    size="xsmall"
+                    type="button"
+                  >
+                    <div
+                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+                      width="100%"
+                    >
+                      <div />
+                      <div
+                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
+                      >
+                        Request
+                      </div>
+                      <div />
+                    </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -867,7 +1167,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                 >
                   of
                    
-                  1
+                  8
                 </div>
               </div>
               <div
@@ -935,7 +1235,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
             >
               <button
                 className="mxzgdr-0 euDJBk"
-                disabled={true}
+                disabled={false}
                 onClick={[Function]}
                 size="large"
                 type="button"
@@ -980,17 +1280,6 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                 </div>
               </button>
             </div>
-          </div>
-        </div>
-        <div
-          className="sc-1jxwge6-0 d5w2g7-0 sc7u3f-0 iZkmDs"
-        >
-          <div
-            className="sc-1jxwge6-0 sc-18ch56c-0 fFWriT"
-            color="color1"
-            fontSize={8}
-          >
-            No data
           </div>
         </div>
         <div

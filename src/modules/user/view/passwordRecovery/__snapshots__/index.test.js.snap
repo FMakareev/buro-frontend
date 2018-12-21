@@ -11,7 +11,7 @@ exports[`PasswordRecovery: рендер с параметрами строки 1
   className="sc-bxivhb dUiVDW"
 >
   <div
-    className="sc-1jxwge6-0 sc-14k9gvj-0 sc-10559ym-0 iCJxjZ"
+    className="sc-1jxwge6-0 sc-14k9gvj-0 sc-10559ym-0 ifGcls"
   >
     <div
       className="sc-1jxwge6-0 jHDLGC"
@@ -235,7 +235,7 @@ exports[`PasswordRecovery: рендер с параметрами строки 1
                 <input
                   aria-required={false}
                   className="sc-1tlq1yi-2 fRLrXW wsrc07-0 kZIRDH"
-                  name="password"
+                  name="newPassword"
                   onBlur={[Function]}
                   onChange={[Function]}
                   onDragStart={[Function]}

@@ -81,51 +81,22 @@ exports[`ProfilePage: загруженный профиль 1`] = `
         </div>
       </div>
     </form>
-  </div>
-</div>
-`;
-
-exports[`ProfilePage: загрузка пользовательских данных 1`] = `
-<div
-  className="sc-bxivhb dUiVDW"
->
-  <div
-    className="sc-1jxwge6-0 sc-14k9gvj-0 mQmih"
-  >
-    Loading..,
-  </div>
-</div>
-`;
-
-exports[`ProfilePage: ошибка во время загрузки пользовательских данных 1`] = `
-<div
-  className="sc-bxivhb dUiVDW"
->
-  <div
-    className="sc-1jxwge6-0 sc-14k9gvj-0 mQmih"
-  >
     <form
       onSubmit={[Function]}
     >
       <h2
-        className="sc-1jxwge6-0 sc-18ch56c-0 jEovzQ"
+        className="sc-1jxwge6-0 sc-18ch56c-0 gQJYko"
         color="color1"
         fontFamily="bold"
         fontSize={9}
       >
-        Main data:
+        Change password:
       </h2>
       <div
-        className="sc-1jxwge6-0 wterhv-0 bBNfoQ"
+        className="sc-1jxwge6-0 wterhv-0 jLThhd"
       >
         <div
-          className="sc-1jxwge6-0 iDrvMd"
-          order={
-            Array [
-              5,
-              0,
-            ]
-          }
+          className="sc-1jxwge6-0 ekfykU"
           width={
             Array [
               "100%",
@@ -143,41 +114,333 @@ exports[`ProfilePage: ошибка во время загрузки пользо
               fontFamily="regular"
               fontSize={5}
             >
-              Telephone:
+              Old Password:
             </div>
             <input
               aria-required={false}
               className="uh5600-1 hRLQUv wsrc07-0 kZIRDH"
-              label="Telephone:"
-              name="phone"
+              label="Old Password:"
+              name="password"
               onBlur={[Function]}
               onChange={[Function]}
               onDragStart={[Function]}
               onDrop={[Function]}
               onFocus={[Function]}
-              type="text"
+              type="password"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="sc-1jxwge6-0 ekfykU"
+          width={
+            Array [
+              "100%",
+              "100%",
+              "50%",
+            ]
+          }
+        >
+          <div
+            className="uh5600-0 bTQmIh"
+          >
+            <div
+              className="sc-1jxwge6-0 sc-18ch56c-0 sc-1hfdosk-0 cNcynQ"
+              color="color1"
+              fontFamily="regular"
+              fontSize={5}
+            >
+              New password:
+            </div>
+            <input
+              aria-required={false}
+              className="uh5600-1 hRLQUv wsrc07-0 kZIRDH"
+              label="New password:"
+              name="newPassword"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="password"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="sc-1jxwge6-0 jZaAlL"
+          width={
+            Array [
+              "100%",
+              "100%",
+              "50%",
+            ]
+          }
+        >
+          <div
+            className="uh5600-0 bTQmIh"
+          >
+            <div
+              className="sc-1jxwge6-0 sc-18ch56c-0 sc-1hfdosk-0 cNcynQ"
+              color="color1"
+              fontFamily="regular"
+              fontSize={5}
+            >
+              Confirm new password:
+            </div>
+            <input
+              aria-required={false}
+              className="uh5600-1 hRLQUv wsrc07-0 kZIRDH"
+              label="Confirm new password:"
+              name="confirmPassword"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="password"
               value=""
             />
           </div>
         </div>
       </div>
       <div
-        className="sc-1jxwge6-0 wterhv-0 eLvilD"
+        className="sc-1jxwge6-0 wterhv-0 budtLR"
       >
         <div
-          className="sc-1jxwge6-0 gl5g86-0 cUSPHQ"
+          className="sc-1jxwge6-0 sc-6ivhj6-0 bbKauW"
+          width={
+            Array [
+              "100%",
+              "100%",
+              "50%",
+            ]
+          }
         >
           <button
-            className="mxzgdr-0 hhHYBZ"
+            className="mxzgdr-0 dypMfz"
             disabled={true}
+            display="inline-block"
             size="medium"
             type="submit"
           >
-            Save
+            Confirm
           </button>
         </div>
       </div>
     </form>
+  </div>
+</div>
+`;
+
+exports[`ProfilePage: загрузка пользовательских данных 1`] = `
+<div
+  className="sc-bxivhb dUiVDW"
+>
+  <div
+    className="sc-1jxwge6-0 sc-14k9gvj-0 mQmih"
+  >
+    Loading..,
+    <form
+      onSubmit={[Function]}
+    >
+      <h2
+        className="sc-1jxwge6-0 sc-18ch56c-0 gQJYko"
+        color="color1"
+        fontFamily="bold"
+        fontSize={9}
+      >
+        Change password:
+      </h2>
+      <div
+        className="sc-1jxwge6-0 wterhv-0 jLThhd"
+      >
+        <div
+          className="sc-1jxwge6-0 ekfykU"
+          width={
+            Array [
+              "100%",
+              "100%",
+              "50%",
+            ]
+          }
+        >
+          <div
+            className="uh5600-0 bTQmIh"
+          >
+            <div
+              className="sc-1jxwge6-0 sc-18ch56c-0 sc-1hfdosk-0 cNcynQ"
+              color="color1"
+              fontFamily="regular"
+              fontSize={5}
+            >
+              Old Password:
+            </div>
+            <input
+              aria-required={false}
+              className="uh5600-1 hRLQUv wsrc07-0 kZIRDH"
+              label="Old Password:"
+              name="password"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="password"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="sc-1jxwge6-0 ekfykU"
+          width={
+            Array [
+              "100%",
+              "100%",
+              "50%",
+            ]
+          }
+        >
+          <div
+            className="uh5600-0 bTQmIh"
+          >
+            <div
+              className="sc-1jxwge6-0 sc-18ch56c-0 sc-1hfdosk-0 cNcynQ"
+              color="color1"
+              fontFamily="regular"
+              fontSize={5}
+            >
+              New password:
+            </div>
+            <input
+              aria-required={false}
+              className="uh5600-1 hRLQUv wsrc07-0 kZIRDH"
+              label="New password:"
+              name="newPassword"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="password"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="sc-1jxwge6-0 jZaAlL"
+          width={
+            Array [
+              "100%",
+              "100%",
+              "50%",
+            ]
+          }
+        >
+          <div
+            className="uh5600-0 bTQmIh"
+          >
+            <div
+              className="sc-1jxwge6-0 sc-18ch56c-0 sc-1hfdosk-0 cNcynQ"
+              color="color1"
+              fontFamily="regular"
+              fontSize={5}
+            >
+              Confirm new password:
+            </div>
+            <input
+              aria-required={false}
+              className="uh5600-1 hRLQUv wsrc07-0 kZIRDH"
+              label="Confirm new password:"
+              name="confirmPassword"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="password"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="sc-1jxwge6-0 wterhv-0 budtLR"
+      >
+        <div
+          className="sc-1jxwge6-0 sc-6ivhj6-0 bbKauW"
+          width={
+            Array [
+              "100%",
+              "100%",
+              "50%",
+            ]
+          }
+        >
+          <button
+            className="mxzgdr-0 dypMfz"
+            disabled={true}
+            display="inline-block"
+            size="medium"
+            type="submit"
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`ProfilePage: ошибка во время загрузки пользовательских данных 1`] = `
+<div
+  className="sc-bxivhb dUiVDW"
+>
+  <div
+    className="sc-1jxwge6-0 dgupjs-0 r6fvyg-0 eIdhcX"
+  >
+    <div
+      className="r6fvyg-1 frQDoI"
+      color="color6"
+      fill="currentColor"
+      style={
+        Object {
+          "display": "inline-block",
+        }
+      }
+    >
+      <svg
+        fill="currentColor"
+        height={64}
+        style={
+          Object {
+            "display": "inline-block",
+            "verticalAlign": "middle",
+          }
+        }
+        viewBox="0 0 24 24"
+        width={64}
+      >
+        <path
+          d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+        />
+      </svg>
+    </div>
+    <div
+      className="sc-1jxwge6-0 sc-18ch56c-0 bghFjN"
+      color="color1"
+      fontSize={7}
+    >
+      error_unexpected_error_title
+    </div>
+    <div
+      className="sc-1jxwge6-0 sc-18ch56c-0 dQGQvl"
+      color="#000"
+      fontSize={5}
+    >
+      unexpected error
+    </div>
   </div>
 </div>
 `;

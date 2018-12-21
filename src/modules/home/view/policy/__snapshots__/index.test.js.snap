@@ -4,8 +4,18 @@ exports[`PolicyPage: рендер без ошибок 1`] = `
 <div
   className="sc-bxivhb dUiVDW"
 >
-  <div>
-    PolicyPage
+  <div
+    className="sc-1jxwge6-0 sc-14k9gvj-0 haaFGH"
+  >
+    <div
+      className="sc-1jxwge6-0 sc-18ch56c-0 jIipSW"
+      color="color1"
+      fontFamily="bold"
+      fontSize={9}
+      fontWeight="bold"
+    >
+      Private policy
+    </div>
   </div>
 </div>
 `;
