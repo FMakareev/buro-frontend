@@ -56,9 +56,14 @@ const columns = () => [
   {
     id: 'Request Status',
     Header: 'Status',
-    Cell: props => (
-      <Text>{props.value}</Text>
-    ),
+    Cell: props => {
+      if (props.original.status !== STATUS_PENDING) {
+        return (
+          <Text>{props.original.status === STATUS_APPROVAL ? 'Approved' : 'Not approved'}</Text>
+        );
+      }
+      return <UpdateNotificationButtons id={props.original ? props.original.id : null} />;
+    },
     accessor: props => {
       switch(props.status){
         case(STATUS_NOT_APPROVAL):{
