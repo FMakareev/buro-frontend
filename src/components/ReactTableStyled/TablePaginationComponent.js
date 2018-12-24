@@ -95,7 +95,6 @@ export class TablePaginationComponent extends Component {
       PreviousComponent = defaultButton,
       NextComponent = defaultButton,
     } = this.props;
-    console.log(this.props);
     return (
       <WrapperStyled flexDirection={['column', 'column', 'row', 'row', 'row']}>
         <Box p={3} width="256px">
@@ -107,7 +106,6 @@ export class TablePaginationComponent extends Component {
             }
             onClick={() => {
               if (!canPrevious) return;
-              console.log('onClick; prev');
 
               this.changePage(page - 1);
             }}
@@ -185,7 +183,6 @@ export class TablePaginationComponent extends Component {
               </Text>
             }
             onClick={() => {
-              console.log('onClick; next');
               if (!canNext) return;
               this.changePage(page + 1);
             }}

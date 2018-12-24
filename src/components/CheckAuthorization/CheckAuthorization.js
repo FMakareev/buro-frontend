@@ -21,7 +21,7 @@ export const CheckAuthorization = (role = [], AccessDeniedCallback = null) => Wr
         return AccessDeniedCallback;
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
     return (<WrappedComponent {...props} />);
   }

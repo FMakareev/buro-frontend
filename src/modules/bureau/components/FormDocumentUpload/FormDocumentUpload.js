@@ -35,7 +35,6 @@ export class FormDocumentUpload extends Component {
   }
 
   submit(value) {
-    console.log(value);
     const formData = new FormData();
     formData.append('excel', value[0]);
     const options = {
@@ -45,7 +44,6 @@ export class FormDocumentUpload extends Component {
     this.setState(() => ({isLoading: true, reject: null}));
 
     fetch(`${EXCEL_UPLOAD}/${this.props.id}`, options).then(response => {
-      console.log(response);
       if(response.status < 300){
         this.setState(() => ({isLoading: false, submitSucceeded: true}));
         return true;
@@ -56,19 +54,17 @@ export class FormDocumentUpload extends Component {
     }).catch(error => {
       this.setState(() => ({isLoading: false, submitFailed: true}));
 
-      console.log(error);
+      console.error(error);
     })
   }
 
   onDropRejected = (error) => {
-    console.log('onDropRejected: ', error);
     this.setState(() => ({reject: error}));
   };
 
   render() {
     const {toggleModal} = this.props;
     const {isLoading, reject, submitFailed, submitSucceeded} = this.state;
-    console.log('this:', this);
     return (<form>
       {
         !submitSucceeded && !submitFailed &&

@@ -5,8 +5,8 @@
 export const getUserFromStore = store => {
   try {
     return store.user;
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    console.error(error);
     return null;
   }
 };

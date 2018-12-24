@@ -31,10 +31,6 @@ export class UpdateNotificationButtons extends Component {
     return (
       <Mutation mutation={UpdateNotificationMutation}>
         {(updatenotification, { called, data, error, loading }) => {
-          console.log('Mutation: called', called);
-          console.log('Mutation: data', data);
-          console.log('Mutation: loading', loading);
-          console.log('Mutation: error', error);
           /** появляется если called - запрос был вызван, !loading - загрузка не идет, !error - нет ошибок */
           if (called && !loading && !error && data) {
             if (data.updatenotification.notification.status === STATUS_APPROVAL) {

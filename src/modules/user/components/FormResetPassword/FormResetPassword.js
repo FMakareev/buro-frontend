@@ -54,7 +54,6 @@ export class FormResetPassword extends Component {
   };
 
   submit = value => {
-    console.log(value);
     return this.props['@apollo/update']({
       variables: Object.assign({}, value),
     })
@@ -63,10 +62,10 @@ export class FormResetPassword extends Component {
         return response;
       })
       .catch(({graphQLErrors, message, networkError, ...rest}) => {
-        console.log('graphQLErrors: ', graphQLErrors);
-        console.log('message: ', message);
-        console.log('networkError: ', networkError);
-        console.log('rest: ', rest);
+        console.error('graphQLErrors: ', graphQLErrors);
+        console.error('message: ', message);
+        console.error('networkError: ', networkError);
+        console.error('rest: ', rest);
         if(graphQLErrors){
           throw new SubmissionError({
             ...this.getNetworkError(graphQLErrors),

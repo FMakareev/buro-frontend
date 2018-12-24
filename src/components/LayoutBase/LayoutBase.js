@@ -81,7 +81,7 @@ export class LayoutBase extends Component {
         routes: routes[indexRoute],
         loading: false,
       }),
-      () => console.log(`Run: layout - (${indexRoute}), path - ${location.pathname} `),
+      () => console.error(`Run: layout - (${indexRoute}), path - ${location.pathname} `),
     );
   };
 

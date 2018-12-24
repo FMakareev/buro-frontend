@@ -76,14 +76,13 @@ export class FormChangePassword extends Component {
       variables: Object.assign({}, value, { id: this.props.user.id }),
     })
       .then(response => {
-        console.log(response);
         this.props.reset();
       })
       .catch(({ graphQLErrors, message, networkError, ...rest }) => {
-        console.log('graphQLErrors: ', graphQLErrors);
-        console.log('message: ', message);
-        console.log('networkError: ', networkError);
-        console.log('rest: ', rest);
+        console.error('graphQLErrors: ', graphQLErrors);
+        console.error('message: ', message);
+        console.error('networkError: ', networkError);
+        console.error('rest: ', rest);
         if (networkError) {
           throw new SubmissionError({ _error: networkError.message });
         }

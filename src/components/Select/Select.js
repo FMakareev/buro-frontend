@@ -212,7 +212,6 @@ export class Select extends Component {
       placeholder,
     } = this.props;
 
-    console.log(this.props);
     return (
       <Wrapper mb={mb} className={className} meta={meta}>
         {

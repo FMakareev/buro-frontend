@@ -23,11 +23,8 @@ class DayPickerField extends Component {
   render() {
     const {
       placeholder,
-      input: { onChange },
       input,
     } = this.props;
-
-    console.log(2, this.props);
 
     return (
       <FlexStyled justifyContent="space-between" width="100%">

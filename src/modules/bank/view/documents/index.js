@@ -40,18 +40,18 @@ const columns = ({ onFiltered, onOpenFormUploadDoc }) => [
       try {
         if (has.call(props, 'client')) {
           return props.client
-            ? `${props.client.firstName} ${props.client.lastName} ${props.client.patronymic}`
+            ? `${props.client.firstName || ''} ${props.client.lastName || ''} ${props.client.patronymic || ''}`
             : null;
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
       return null;
     },
   },
   {
-    id: 'birthDate',
-    Header: 'Date of birth',
+    id: 'UploadDate',
+    Header: 'Upload date',
     Cell: props => (
       <Text fontFamily="medium" fontSize={6} lineHeight={9} color="color1">
         {props.value}
@@ -59,15 +59,16 @@ const columns = ({ onFiltered, onOpenFormUploadDoc }) => [
     ),
     accessor: props => {
       try {
-        if (has.call(props, 'client')) {
-          return props.client && props.client.birthdate
-            ? dayjs(props.client.birthdate).format('DD.MM.YYYY')
-            : null;
+        if (has.call(props, 'date')) {
+          const date = dayjs(props.date).format('DD.MM.YYYY HH:mm:ss');
+          if(date.indexOf('NaN') === -1){
+            return date
+          }
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
-      return null;
+      return '';
     },
     filterMethod: (filter, row) =>
       row[filter.id].startsWith(filter.value) && row[filter.id].endsWith(filter.value),
@@ -103,7 +104,7 @@ const columns = ({ onFiltered, onOpenFormUploadDoc }) => [
           </ButtonWithImage>
         );
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
       return null;
     },
@@ -139,15 +140,12 @@ export class DocumentsPage extends Component {
   onOpenFormUploadDoc = id => this.setState(() => ({ id, isOpen: true }));
 
   toggleModal = () => {
-    console.log('toggleModal');
-    console.log(this.state.id);
     this.setState(state => ({ isOpen: !state.isOpen, id: null }));
   };
 
   render() {
     const { isOpen, id } = this.state;
     const { user } = this.props;
-    console.log(this.props);
     return (
       <Container backgroundColor="transparent" px={6}>
         <Text fontFamily="bold" fontWeight="bold" fontSize={9} lineHeight={9} mb={7}>
@@ -161,7 +159,6 @@ export class DocumentsPage extends Component {
               bankid: user.id,
             }}>
             {({ error, data, loading }) => {
-              console.log('UserListQuery: ', error, data, loading);
               return (
                 <ReactTableStyled
                   defaultFilterMethod={(filter, row) =>

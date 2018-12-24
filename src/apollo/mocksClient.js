@@ -15,7 +15,6 @@ const defaultMocks = {
     userlist,
     useritem,
     useremailitem: (query, { email }) => {
-      console.log(query, email);
       switch (email) {
         case 'client@test.com': {
           return {
@@ -54,7 +53,6 @@ const defaultMocks = {
       }
     },
     userdocumentlist: () => {
-      console.log('userdocumentlist');
       return userdocumentlist();
     },
     notificationlist,

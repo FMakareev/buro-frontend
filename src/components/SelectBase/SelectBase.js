@@ -57,8 +57,6 @@ export class SelectBase extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    // console.log('shouldComponentUpdate nextProps', nextProps);
-    // console.log('shouldComponentUpdate this.props', this.props);
     if (
       nextProps.input.value !== this.props.input.value ||
       nextProps.options.length !== this.props.options.length ||
@@ -82,8 +80,6 @@ export class SelectBase extends Component {
   onChange = event => {
     const {input, valueKey} = this.props;
     input.onChange(event ? event[valueKey] : null);
-
-    console.log(event[valueKey]);
   };
 
   render() {

@@ -26,13 +26,12 @@ export class HeaderNotification extends Component {
           history.push('/app/client/notifications');
         }
       }
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.error(error);
     }
   };
 
   renderBell = ({ error, loading, data, user }) => {
-    console.log(error, loading, data);
     if (!loading && !error && has.call(data, 'notificationlist') && data.notificationlist.length) {
       return (
         <>

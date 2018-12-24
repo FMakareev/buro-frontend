@@ -2,14 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { space } from 'styled-system';
-import checkboxOn from '../../assets/icons/multicolor/checkboxOn.multicolor.svg';
-import checkboxOff from '../../assets/icons/multicolor/checkboxOff.multicolor.svg';
 import { BackgroundColorProperty } from '../../styles/styleProperty/BackgroundColorProperty';
 
 const Wrapper = styled.div`
   ${space};
 `;
-console.log('checkboxOff: ', checkboxOn);
 const Input = styled.input`
   position: absolute; // take it out of document flow
   opacity: 0; // hide it

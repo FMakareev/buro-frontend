@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import dayjs from 'dayjs';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import { Query } from 'react-apollo';
-import { Container } from '@lib/ui/Container/Container';
-import { Text } from '@lib/ui/Text/Text';
-import { ReactTableStyled } from '@lib/ui/ReactTableStyled/ReactTableStyled';
-import { CheckAuthorization } from '@lib/ui/CheckAuthorization/CheckAuthorization';
-import { ROLE_BANK } from '@lib/shared/roles';
+import {Query} from 'react-apollo';
+import {Container} from '@lib/ui/Container/Container';
+import {Text} from '@lib/ui/Text/Text';
+import {ReactTableStyled} from '@lib/ui/ReactTableStyled/ReactTableStyled';
+import {CheckAuthorization} from '@lib/ui/CheckAuthorization/CheckAuthorization';
+import {ROLE_BANK} from '@lib/shared/roles';
 
-import { STATUS_APPROVAL, STATUS_NOT_APPROVAL } from '@lib/shared/statuses';
-import { Box } from '@lib/ui/Box/Box';
+import {STATUS_APPROVAL, STATUS_NOT_APPROVAL, STATUS_PENDING} from '@lib/shared/statuses';
+import {Box} from '@lib/ui/Box/Box';
 import NotificationListQuery from './NotificationListQuery.graphql';
 
-import { getUserFromStore } from '../../../../store/reducers/user/selectors';
+import {getUserFromStore} from '../../../../store/reducers/user/selectors';
 
 const has = Object.prototype.hasOwnProperty;
 
@@ -26,10 +26,18 @@ const columns = () => [
         {props.value}
       </Text>
     ),
-    accessor: props =>
-      props.client
-        ? `${props.client.firstName} ${props.client.lastName} ${props.client.patronymic}`
-        : null,
+    accessor: props => {
+      try {
+        if (has.call(props, 'client')) {
+          return props.client
+            ? `${props.client.firstName || ''} ${props.client.lastName || ''} ${props.client.patronymic || ''}`
+            : null;
+        }
+      } catch (error) {
+        console.error(error);
+      }
+      return null;
+    },
   },
   {
     id: 'reqDate',
@@ -39,36 +47,69 @@ const columns = () => [
         {props.value}
       </Text>
     ),
-    accessor: props => props.date ? dayjs(props.date).format('DD.MM.YYYY HH:mm:ss') : null,
+    accessor: props => {
+     try{
+       if (has.call(props, 'date')) {
+         const date = dayjs(props.date).format('DD.MM.YYYY HH:mm:ss');
+         if (date.indexOf('NaN') === -1) {
+           return date
+         }
+       }
+       return '';
+     } catch(error){
+       console.error(error);
+       return '';
+     }
+    },
     filterMethod: (filter, row) =>
       row[filter.id].startsWith(filter.value) && row[filter.id].endsWith(filter.value),
   },
   {
-    id: 'Request Status',
+    id: 'RequestStatus',
     Header: 'Status',
-    // filterable: true,
-    Cell: props => {
-      if (props.original.status !== STATUS_APPROVAL) {
-        return (
-          <Text>{props.original.status === STATUS_NOT_APPROVAL ? 'Not answered' : 'Pending'}</Text>
-        );
+    Cell: props => (
+      <Text>{props.value}</Text>
+    ),
+    accessor: props => {
+      switch(props.status){
+        case(STATUS_NOT_APPROVAL):{
+          return 'Not approval';
+        }
+        case(STATUS_APPROVAL):{
+          return 'Approval';
+        }
+        case(STATUS_PENDING):{
+          return 'Pending';
+        }
       }
-      return (
-        // TO DO link to table of clients with init state table with this client
-
-        <Text>Answered</Text>
-        // <ButtonWithImage
-        //   // onClick={() => onOpenFormUpdateDoc(props.original.id)}
-        //   display="inline-block"
-        //   size="xsmall"
-        //   variant="transparent"
-        //   pl="3px"
-        //   pr="5px">
-        //   Download
-        // </ButtonWithImage>
-      );
     },
-    accessor: props => props.reqStatus,
+    filterMethod: (filter, row) => {
+      switch(filter.value){
+        case(STATUS_NOT_APPROVAL):{
+          return row._original.status === STATUS_NOT_APPROVAL;
+        }
+        case(STATUS_APPROVAL):{
+          return row._original.status === STATUS_APPROVAL;
+        }
+        case(STATUS_PENDING):{
+          return row._original.status === STATUS_PENDING;
+        }
+        case('all'):{
+          return true;
+        }
+      }
+    },
+    Filter: ({ filter, onChange }) =>
+      <select
+        onChange={event => onChange(event.target.value)}
+        style={{ width: "100%" }}
+        value={filter ? filter.value : "all"}
+      >
+        <option value="all">Show All</option>
+        <option value={STATUS_NOT_APPROVAL}>Not approval</option>
+        <option value={STATUS_APPROVAL}>Approval</option>
+        <option value={STATUS_PENDING}>Pending</option>
+      </select>,
   },
 ];
 
@@ -87,7 +128,7 @@ export class NotificationsPage extends Component {
   }
 
   render() {
-    const { user } = this.props;
+    const {user} = this.props;
     return (
       <Container backgroundColor="transparent" px={6}>
         <Text fontFamily="bold" fontWeight="bold" fontSize={9} lineHeight={9} mb={7}>
@@ -99,8 +140,7 @@ export class NotificationsPage extends Component {
             variables={{
               bankid: user.id,
             }}>
-            {({ error, data, loading }) => {
-              console.log(error, data, loading);
+            {({error, data, loading}) => {
               return (
                 <ReactTableStyled
                   defaultFilterMethod={(filter, row) =>

@@ -31,16 +31,16 @@ const columns = ({onOpenFormUpdateDoc}) => [
     accessor: props => {
       try {
         if (props) {
-          return `${props.firstName} ${props.lastName} ${props.patronymic}`;
+          return `${props.firstName || ''} ${props.lastName || ''} ${props.patronymic || ''}`;
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
       return null;
     },
   },
   {
-    id: 'dob',
+    id: 'birthdate',
     Header: 'Date of birth',
     Cell: props => (
       <Text fontFamily="medium" fontSize={6} lineHeight={9} color="color1">
@@ -49,11 +49,11 @@ const columns = ({onOpenFormUpdateDoc}) => [
     ),
     accessor: props => {
       try {
-        if (has.call(props, 'client')) {
-          return props.client && props.client.birthdate ? dayjs(props.client.birthdate).format('DD.MM.YYYY') : null;
+        if (has.call(props, 'birthdate')) {
+          return dayjs(props.birthdate).format('DD.MM.YYYY') || '';
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
       return null;
     },
@@ -124,7 +124,6 @@ export class DocumentsBureauPage extends Component {
   onOpenFormUpdateDoc = id => this.setState(() => ({id, isOpen: true}));
 
   toggleModal = () => {
-    console.log('toggleModal');
     this.setState(state => ({isOpen: !state.isOpen, id: null}));
   };
 
@@ -143,7 +142,6 @@ export class DocumentsBureauPage extends Component {
             }}
           >
             {({error, data, loading, refetch, ...rest}) => {
-              console.log(error, data, loading, rest);
               return (
                 <ReactTableStyled
                   defaultFilterMethod={(filter, row) =>
