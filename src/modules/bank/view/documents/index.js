@@ -150,13 +150,13 @@ export class DocumentsPage extends Component {
     const query = QueryString.parse(location.search);
     return {
       // статус открытия модального окна
-      isOpen: !!query.documentid,
+      isOpen: !!query.document,
       // id пользователя документ которого качаем
-      id: query.documentid,
+      id: query.document,
       filtered: [
-        (query.documentid ? {
+        (query.document ? {
           id: "DocumentID",
-          value: query.documentid,
+          value: query.document,
         } : {}),
 
       ],
