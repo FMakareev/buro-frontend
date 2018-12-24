@@ -124,9 +124,9 @@ export class ClientsPage extends Component {
 
     return {
       filtered: [
-        (query.clientid ? {
+        (query.client ? {
           id: "ClientID",
-          value: query.clientid,
+          value: query.client,
         } : {})
       ]
     };
