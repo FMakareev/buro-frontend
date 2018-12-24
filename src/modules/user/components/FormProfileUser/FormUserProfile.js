@@ -26,6 +26,7 @@ import UpdateUserMutation from './UpdateUserMutation.graphql';
 import { getUserFromStore } from '../../../../store/reducers/user/selectors';
 import { ROLE_BANK, ROLE_CLIENT } from '@lib/shared/roles';
 import { userUpdate } from '../../../../store/reducers/user/actions';
+import UserLinkClickboard from "../UserLinkClickboard/UserLinkClickboard";
 
 const StyledBox = styled(Box)`
   text-align: center;
@@ -197,6 +198,9 @@ export class FormProfileUser extends Component {
               </Box>
             </Fragment>
           )}
+          {user.role === ROLE_CLIENT && (<Box width={['100%', '100%', '50%']} px={6} mb={7} order={[5, 0]}>
+            <UserLinkClickboard/>
+          </Box>)}
         </Flex>
         <Flex justifyContent="center">
           <StyledBox>
