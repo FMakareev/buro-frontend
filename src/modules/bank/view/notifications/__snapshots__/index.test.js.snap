@@ -186,16 +186,36 @@ exports[`NotificationsPage: загруженный список нотифика
                 }
                 tabIndex="-1"
               >
-                <input
+                <select
                   onChange={[Function]}
                   style={
                     Object {
                       "width": "100%",
                     }
                   }
-                  type="text"
-                  value=""
-                />
+                  value="all"
+                >
+                  <option
+                    value="all"
+                  >
+                    Show All
+                  </option>
+                  <option
+                    value="reject"
+                  >
+                    Not approval
+                  </option>
+                  <option
+                    value="resolve"
+                  >
+                    Approval
+                  </option>
+                  <option
+                    value="wait"
+                  >
+                    Pending
+                  </option>
+                </select>
               </div>
             </div>
           </div>
@@ -344,7 +364,7 @@ exports[`NotificationsPage: загруженный список нотифика
                     className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
                     color="color1"
                   >
-                    Answered
+                    Approval
                   </div>
                 </div>
               </div>
@@ -415,7 +435,7 @@ exports[`NotificationsPage: загруженный список нотифика
                     className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
                     color="color1"
                   >
-                    Answered
+                    Approval
                   </div>
                 </div>
               </div>
@@ -486,7 +506,7 @@ exports[`NotificationsPage: загруженный список нотифика
                     className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
                     color="color1"
                   >
-                    Answered
+                    Approval
                   </div>
                 </div>
               </div>
@@ -557,7 +577,7 @@ exports[`NotificationsPage: загруженный список нотифика
                     className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
                     color="color1"
                   >
-                    Not answered
+                    Not approval
                   </div>
                 </div>
               </div>
@@ -628,7 +648,7 @@ exports[`NotificationsPage: загруженный список нотифика
                     className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
                     color="color1"
                   >
-                    Not answered
+                    Not approval
                   </div>
                 </div>
               </div>
@@ -699,7 +719,7 @@ exports[`NotificationsPage: загруженный список нотифика
                     className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
                     color="color1"
                   >
-                    Not answered
+                    Not approval
                   </div>
                 </div>
               </div>
@@ -841,7 +861,7 @@ exports[`NotificationsPage: загруженный список нотифика
                     className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
                     color="color1"
                   >
-                    Not answered
+                    Not approval
                   </div>
                 </div>
               </div>
@@ -1337,16 +1357,36 @@ exports[`NotificationsPage: загрузка пользовательских д
                 }
                 tabIndex="-1"
               >
-                <input
+                <select
                   onChange={[Function]}
                   style={
                     Object {
                       "width": "100%",
                     }
                   }
-                  type="text"
-                  value=""
-                />
+                  value="all"
+                >
+                  <option
+                    value="all"
+                  >
+                    Show All
+                  </option>
+                  <option
+                    value="reject"
+                  >
+                    Not approval
+                  </option>
+                  <option
+                    value="resolve"
+                  >
+                    Approval
+                  </option>
+                  <option
+                    value="wait"
+                  >
+                    Pending
+                  </option>
+                </select>
               </div>
             </div>
           </div>
@@ -2349,16 +2389,36 @@ exports[`NotificationsPage: ошибка во время загрузки пол
                 }
                 tabIndex="-1"
               >
-                <input
+                <select
                   onChange={[Function]}
                   style={
                     Object {
                       "width": "100%",
                     }
                   }
-                  type="text"
-                  value=""
-                />
+                  value="all"
+                >
+                  <option
+                    value="all"
+                  >
+                    Show All
+                  </option>
+                  <option
+                    value="reject"
+                  >
+                    Not approval
+                  </option>
+                  <option
+                    value="resolve"
+                  >
+                    Approval
+                  </option>
+                  <option
+                    value="wait"
+                  >
+                    Pending
+                  </option>
+                </select>
               </div>
             </div>
           </div>
