@@ -1,18 +1,19 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import dayjs from 'dayjs';
-import { Query } from 'react-apollo';
-import { connect } from 'react-redux';
-import { Container } from '@lib/ui/Container/Container';
-import { Text } from '@lib/ui/Text/Text';
-import { ReactTableStyled } from '@lib/ui/ReactTableStyled/ReactTableStyled';
+import {Query} from 'react-apollo';
+import {connect} from 'react-redux';
+import QueryString from 'query-string';
+import {Container} from '@lib/ui/Container/Container';
+import {Text} from '@lib/ui/Text/Text';
+import {ReactTableStyled} from '@lib/ui/ReactTableStyled/ReactTableStyled';
 
-import { CheckAuthorization } from '@lib/ui/CheckAuthorization/CheckAuthorization';
-import { ROLE_BANK } from '@lib/shared/roles';
-import { Box } from '@lib/ui/Box/Box';
+import {CheckAuthorization} from '@lib/ui/CheckAuthorization/CheckAuthorization';
+import {ROLE_BANK} from '@lib/shared/roles';
+import {Box} from '@lib/ui/Box/Box';
 import UserDocumentListQuery from './UserDocumentListQuery.graphql';
 
-import { getUserFromStore } from '../../../../store/reducers/user/selectors';
-import { CreateNotificationButton } from '../../components/CreateNotificationButton/CreateNotificationButton';
+import {getUserFromStore} from '../../../../store/reducers/user/selectors';
+import {CreateNotificationButton} from '../../components/CreateNotificationButton/CreateNotificationButton';
 
 const has = Object.prototype.hasOwnProperty;
 
@@ -35,7 +36,7 @@ const columns = user => [
       }
       return null;
     },
-  },  {
+  }, {
     id: 'Client',
     Header: 'Client',
     Cell: props => (
@@ -69,7 +70,7 @@ const columns = user => [
       try {
         if (has.call(props, 'client') && has.call(props.client, 'birthdate')) {
           const date = dayjs(props.client.birthdate).format('DD.MM.YYYY');
-          if(date.indexOf('NaN') === -1){
+          if (date.indexOf('NaN') === -1) {
             return date
           }
         }
@@ -117,11 +118,22 @@ export class ClientsPage extends Component {
   }
 
   get initialState() {
-    return {};
+    const {location} = this.props;
+    console.log('location.search: ', location.search);
+    const query = QueryString.parse(location.search);
+
+    return {
+      filtered: [
+        (query.clientid ? {
+          id: "ClientID",
+          value: query.clientid,
+        } : {})
+      ]
+    };
   }
 
   render() {
-    const { user } = this.props;
+    const {user} = this.props;
 
     return (
       <Container backgroundColor="transparent" px={6}>
@@ -136,12 +148,14 @@ export class ClientsPage extends Component {
               excludeowner: user.id,
               excludeownerrole: ROLE_BANK,
             }}>
-            {({ error, data, loading }) => {
+            {({error, data, loading}) => {
               return (
                 <ReactTableStyled
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
+                  filtered={this.state.filtered}
+                  onFilteredChange={filtered => this.setState({filtered})}
                   data={
                     loading
                       ? []

@@ -1,34 +1,52 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import dayjs from 'dayjs';
-import { Query } from 'react-apollo';
-import { connect } from 'react-redux';
-import { Container } from '@lib/ui/Container/Container';
-import { Text } from '@lib/ui/Text/Text';
-import { ReactTableStyled } from '@lib/ui/ReactTableStyled/ReactTableStyled';
+import {Query} from 'react-apollo';
+import QueryString from 'query-string';
 
-import { CheckAuthorization } from '@lib/ui/CheckAuthorization/CheckAuthorization';
-import { ROLE_BANK } from '@lib/shared/roles';
-import { Box } from '@lib/ui/Box/Box';
-import { STATUS_NEED_UPDATE } from '@lib/shared/statuses';
-import { EXCEL_DOWNLOAD } from '@lib/shared/endpoints';
-import { ButtonWithImage } from '@lib/ui/ButtonWithImage/ButtonWithImage';
+import {connect} from 'react-redux';
+import {Container} from '@lib/ui/Container/Container';
+import {Text} from '@lib/ui/Text/Text';
+import {ReactTableStyled} from '@lib/ui/ReactTableStyled/ReactTableStyled';
+
+import {CheckAuthorization} from '@lib/ui/CheckAuthorization/CheckAuthorization';
+import {ROLE_BANK} from '@lib/shared/roles';
+import {Box} from '@lib/ui/Box/Box';
+import {STATUS_NEED_UPDATE} from '@lib/shared/statuses';
+import {ButtonWithImage} from '@lib/ui/ButtonWithImage/ButtonWithImage';
 
 import Modal from '@lib/ui/Modal/Modal';
-import { CreateNotificationButton } from '../../components/CreateNotificationButton/CreateNotificationButton';
-import { getUserFromStore } from '../../../../store/reducers/user/selectors';
+import {CreateNotificationButton} from '../../components/CreateNotificationButton/CreateNotificationButton';
+import {getUserFromStore} from '../../../../store/reducers/user/selectors';
 import UserDocumentListQuery from './UserDocumentListQuery.graphql';
 
 import FormDocumentUpload from '../../components/FormDocumentUpload/FromDocumentUpload';
 
 const has = Object.prototype.hasOwnProperty;
 
-const columns = ({ onFiltered, onOpenFormUploadDoc }) => [
+const columns = ({onFiltered, onOpenFormUploadDoc}) => [
+  {
+    id: 'DocumentID',
+    Header: 'Document ID',
+    Cell: props => (
+      <Text fontFamily="medium" fontSize={6} lineHeight={9} color="color1">
+        {props.value}
+      </Text>
+    ),
+    accessor: props => {
+      try {
+        return props.id
+      } catch (error) {
+        console.error(error);
+      }
+      return null;
+    },
+  },
   {
     id: 'Client',
     Header: 'Client',
     Cell: props => (
       <Text
-        onClick={() => onFiltered({ id: 'Client', value: props.value })}
+        onClick={() => onFiltered({id: 'Client', value: props.value})}
         fontFamily="medium"
         fontSize={6}
         lineHeight={9}
@@ -61,7 +79,7 @@ const columns = ({ onFiltered, onOpenFormUploadDoc }) => [
       try {
         if (has.call(props, 'date')) {
           const date = dayjs(props.date).format('DD.MM.YYYY HH:mm:ss');
-          if(date.indexOf('NaN') === -1){
+          if (date.indexOf('NaN') === -1) {
             return date
           }
         }
@@ -128,24 +146,33 @@ export class DocumentsPage extends Component {
   }
 
   get initialState() {
+    const {location} = this.props;
+    const query = QueryString.parse(location.search);
     return {
       // статус открытия модального окна
-      isOpen: false,
+      isOpen: !!query.documentid,
       // id пользователя документ которого качаем
-      id: null,
-      filtered: [],
+      id: query.documentid,
+      filtered: [
+        (query.documentid ? {
+          id: "DocumentID",
+          value: query.documentid,
+        } : {}),
+
+      ],
     };
   }
 
-  onOpenFormUploadDoc = id => this.setState(() => ({ id, isOpen: true }));
+  onOpenFormUploadDoc = id => this.setState(() => ({id, isOpen: true}));
 
   toggleModal = () => {
-    this.setState(state => ({ isOpen: !state.isOpen, id: null }));
+    this.setState(state => ({isOpen: !state.isOpen, id: null}));
   };
 
   render() {
-    const { isOpen, id } = this.state;
-    const { user } = this.props;
+    const {isOpen, id} = this.state;
+    const {user} = this.props;
+    console.log(this.state);
     return (
       <Container backgroundColor="transparent" px={6}>
         <Text fontFamily="bold" fontWeight="bold" fontSize={9} lineHeight={9} mb={7}>
@@ -158,7 +185,7 @@ export class DocumentsPage extends Component {
             variables={{
               bankid: user.id,
             }}>
-            {({ error, data, loading }) => {
+            {({error, data, loading}) => {
               return (
                 <ReactTableStyled
                   defaultFilterMethod={(filter, row) =>
@@ -196,7 +223,7 @@ export class DocumentsPage extends Component {
         </Box>
         {isOpen && (
           <Modal toggleModal={this.toggleModal}>
-            <FormDocumentUpload toggleModal={this.toggleModal} id={id} />
+            <FormDocumentUpload toggleModal={this.toggleModal} id={id}/>
           </Modal>
         )}
       </Container>
