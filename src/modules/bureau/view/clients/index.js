@@ -68,7 +68,7 @@ const columns = ({onOpenFormUpdateDoc, user}) => [
   },
   {
     id: 'DocumentUploadDate',
-    Header: 'Document',
+    Header: 'Upload date',
     filterable: false,
     Cell: (props) => {
       const {original} = props;
