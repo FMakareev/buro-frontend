@@ -146,21 +146,32 @@ export class DocumentsPage extends Component {
   }
 
   get initialState() {
-    const {location} = this.props;
-    const query = QueryString.parse(location.search);
-    return {
-      // статус открытия модального окна
-      isOpen: !!query.document,
-      // id пользователя документ которого качаем
-      id: query.document,
-      filtered: [
-        (query.document ? {
-          id: "DocumentID",
-          value: query.document,
-        } : {}),
+   try{
+     const {location} = this.props;
+     const query = QueryString.parse(location.search);
+     return {
+       // статус открытия модального окна
+       isOpen: !!query.document,
+       // id пользователя документ которого качаем
+       id: query.document,
+       filtered: [
+         (query.document ? {
+           id: "DocumentID",
+           value: query.document.substring(0, query.document.indexOf('?')),
+         } : {}),
 
-      ],
-    };
+       ],
+     };
+   } catch(error){
+     console.error(error);
+     return {
+       // статус открытия модального окна
+       isOpen: false,
+       // id пользователя документ которого качаем
+       id: null,
+       filtered: [],
+     };
+   }
   }
 
   onOpenFormUploadDoc = id => this.setState(() => ({id, isOpen: true}));
