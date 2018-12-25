@@ -20,7 +20,7 @@ import {CreateNotificationButton} from '../../components/CreateNotificationButto
 import {getUserFromStore} from '../../../../store/reducers/user/selectors';
 import UserDocumentListQuery from './UserDocumentListQuery.graphql';
 
-import FormDocumentUpload from '../../components/FormDocumentUpload/FromDocumentUpload';
+import FormDocumentDownload from '../../components/FormDocumentDownload/FormDocumentDownload';
 
 const has = Object.prototype.hasOwnProperty;
 
@@ -234,7 +234,7 @@ export class DocumentsPage extends Component {
         </Box>
         {isOpen && (
           <Modal toggleModal={this.toggleModal}>
-            <FormDocumentUpload toggleModal={this.toggleModal} id={id}/>
+            <FormDocumentDownload toggleModal={this.toggleModal} id={id}/>
           </Modal>
         )}
       </Container>
