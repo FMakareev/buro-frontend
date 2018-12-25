@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import {Query} from 'react-apollo';
 import {connect} from 'react-redux';
 import QueryString from 'query-string';
+import md5 from 'md5';
 import {Container} from '@lib/ui/Container/Container';
 import {Text} from '@lib/ui/Text/Text';
 import {ReactTableStyled} from '@lib/ui/ReactTableStyled/ReactTableStyled';
@@ -20,7 +21,7 @@ const has = Object.prototype.hasOwnProperty;
 const columns = user => [
   {
     id: 'ClientID',
-    Header: 'Client ID',
+    Header: 'Client token',
     Cell: props => (
       <Text fontFamily="medium" fontSize={6} lineHeight={9} color="color1">
         {props.value}
@@ -29,7 +30,7 @@ const columns = user => [
     accessor: props => {
       try {
         if (has.call(props, 'client')) {
-          return props.client.id
+          return md5(props.client.id);
         }
       } catch (error) {
         console.error(error);
