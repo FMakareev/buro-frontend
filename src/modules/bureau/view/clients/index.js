@@ -101,9 +101,6 @@ const columns = ({onOpenFormUpdateDoc, user}) => [
     Header: '',
     filterable: false,
     Cell: (props) => {
-      /** @desc свойство props.original.status изначально нет в модели пользователя и оно добавляется
-       * в свойстве Cell колонки DocumentUploadDate в результате запроса
-       * */
       const {value, original} = props;
       return (<Query
           query={UserDocumentItemQuery}
