@@ -1,23 +1,43 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import dayjs from 'dayjs';
-import { Query } from 'react-apollo';
-import { connect } from 'react-redux';
-import { Container } from '@lib/ui/Container/Container';
-import { Text } from '@lib/ui/Text/Text';
-import { ReactTableStyled } from '@lib/ui/ReactTableStyled/ReactTableStyled';
+import {Query} from 'react-apollo';
+import {connect} from 'react-redux';
+import QueryString from 'query-string';
+import md5 from 'md5';
+import {Container} from '@lib/ui/Container/Container';
+import {Text} from '@lib/ui/Text/Text';
+import {ReactTableStyled} from '@lib/ui/ReactTableStyled/ReactTableStyled';
 
-import { CheckAuthorization } from '@lib/ui/CheckAuthorization/CheckAuthorization';
-import { ROLE_BANK } from '@lib/shared/roles';
-import { Box } from '@lib/ui/Box/Box';
+import {CheckAuthorization} from '@lib/ui/CheckAuthorization/CheckAuthorization';
+import {ROLE_BANK} from '@lib/shared/roles';
+import {Box} from '@lib/ui/Box/Box';
 import UserDocumentListQuery from './UserDocumentListQuery.graphql';
 
-import { getUserFromStore } from '../../../../store/reducers/user/selectors';
-import { CreateNotificationButton } from '../../components/CreateNotificationButton/CreateNotificationButton';
+import {getUserFromStore} from '../../../../store/reducers/user/selectors';
+import {CreateNotificationButton} from '../../components/CreateNotificationButton/CreateNotificationButton';
 
 const has = Object.prototype.hasOwnProperty;
 
 const columns = user => [
   {
+    id: 'ClientID',
+    Header: 'Client token',
+    Cell: props => (
+      <Text fontFamily="medium" fontSize={6} lineHeight={9} color="color1">
+        {props.value}
+      </Text>
+    ),
+    accessor: props => {
+      try {
+        if (has.call(props, 'client')) {
+          return md5(props.client.id);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+      return null;
+    },
+  }, {
     id: 'Client',
     Header: 'Client',
     Cell: props => (
@@ -29,11 +49,11 @@ const columns = user => [
       try {
         if (has.call(props, 'client')) {
           return props.client
-            ? `${props.client.firstName} ${props.client.lastName} ${props.client.patronymic}`
+            ? `${props.client.firstName || ''} ${props.client.lastName || ''} ${props.client.patronymic || ''}`
             : null;
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
       return null;
     },
@@ -49,13 +69,17 @@ const columns = user => [
 
     accessor: props => {
       try {
-        if (has.call(props, 'client')) {
-          return props.client && props.client.birthdate ? dayjs(props.client.birthdate).format('DD.MM.YYYY') : null;
+        if (has.call(props, 'client') && has.call(props.client, 'birthdate')) {
+          const date = dayjs(props.client.birthdate).format('DD.MM.YYYY');
+          if (date.indexOf('NaN') === -1) {
+            return date
+          }
         }
+        return '';
       } catch (error) {
-        console.log(error);
+        console.error(error);
+        return '';
       }
-      return null;
     },
     filterMethod: (filter, row) =>
       row[filter.id].startsWith(filter.value) && row[filter.id].endsWith(filter.value),
@@ -63,9 +87,7 @@ const columns = user => [
   {
     id: 'Request Status',
     Header: 'Status',
-    // filterable: true,
     Cell: props => {
-      console.log('Status', props);
       try {
         return (
           <CreateNotificationButton bankid={user.id} clientid={props.value}>
@@ -73,7 +95,7 @@ const columns = user => [
           </CreateNotificationButton>
         );
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
       return null;
     },
@@ -97,11 +119,22 @@ export class ClientsPage extends Component {
   }
 
   get initialState() {
-    return {};
+    const {location} = this.props;
+    console.log('location.search: ', location.search);
+    const query = QueryString.parse(location.search);
+
+    return {
+      filtered: [
+        (query.client ? {
+          id: "ClientID",
+          value: query.client,
+        } : {})
+      ]
+    };
   }
 
   render() {
-    const { user } = this.props;
+    const {user} = this.props;
 
     return (
       <Container backgroundColor="transparent" px={6}>
@@ -116,13 +149,14 @@ export class ClientsPage extends Component {
               excludeowner: user.id,
               excludeownerrole: ROLE_BANK,
             }}>
-            {({ error, data, loading }) => {
-              console.log('UserListQuery: ', error, data, loading);
+            {({error, data, loading}) => {
               return (
                 <ReactTableStyled
                   defaultFilterMethod={(filter, row) =>
                     String(row[filter.id]).indexOf(filter.value) >= 0
                   }
+                  filtered={this.state.filtered}
+                  onFilteredChange={filtered => this.setState({filtered})}
                   data={
                     loading
                       ? []

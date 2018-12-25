@@ -21,13 +21,11 @@ export class ProfilePage extends Component {
 
   render() {
     const { user } = this.props;
-    console.log('ProfilePage: ', this.props);
     return (
       <ErrorCatch>
         <Container px={6} mt={[10, 100]} backgroundColor="transparent">
           <Query query={UserEmailItemQuery} variables={{ email: user.email }}>
             {({ data, loading, error }) => {
-              console.log(data, loading, error);
               if (error) {
                 throw error;
               }

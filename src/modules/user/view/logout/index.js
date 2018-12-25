@@ -51,7 +51,6 @@ export class LogOut extends Component {
           },
         })
           .then(response => {
-            console.log(response);
             this.setState(() => ({
               redirect: '/login',
             }));

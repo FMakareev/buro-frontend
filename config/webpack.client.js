@@ -3,12 +3,15 @@
 import path from 'path';
 import webpack from 'webpack';
 import ManifestPlugin from 'webpack-manifest-plugin';
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
+
 import WriteFileWebpackPlugin from 'write-file-webpack-plugin';
 import {fileLoaderConfig} from './fileLoaderConfig';
 import {graphqlLoaderConfig} from './graphqlLoaderConfig';
 import {styleLoaderConfig} from './styleLoaderConfig';
 import {scriptsLoaderConfig} from './scriptsLoaderConfig';
 import webpackResolve from '../webpack.config';
+
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 
@@ -79,8 +82,32 @@ export const browserConfigGenerator = () => {
       }),
 
       ...(process.env.ANALYSE ? [new BundleAnalyzerPlugin()] : []),
+
     ],
     ...webpackResolve,
+    ...(process.env.NODE_ENV === 'production' ?
+      {
+        optimization: {
+          minimizer: [
+            new UglifyJsPlugin({
+              uglifyOptions: {
+                compress: {
+                  unsafe: true,
+                  inline: true,
+                  passes: 2,
+                  drop_console: true,
+                  keep_fargs: false,
+                },
+                output: {
+                  beautify: false,
+                  comments: false,
+                },
+                mangle: true,
+              },
+            }),
+          ]
+        }
+      } : {}),
     stats: {
       cached: false,
       cachedAssets: false,

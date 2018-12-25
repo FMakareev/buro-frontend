@@ -30,16 +30,12 @@ export class PasswordRecovery extends Component {
     const {
       match: { params },
     } = this.props;
-    console.log(this.props);
-    console.log(params);
     if (!params || !params.token) {
       return <Redirect to="/" />;
     }
-    console.log(params);
     const initialValues = {
       token: params.token,
     };
-    console.log(initialValues);
     return (
       <Wrapper position="relative" ml={['auto', 20, 100]} mt={[10, 120]} maxWidth="360px">
         <Box mb={6}>

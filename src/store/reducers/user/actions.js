@@ -25,11 +25,10 @@ export const userInit = () => dispatch => {
           type: USER_INIT_LOADING_START,
         });
         const user = JSON.parse(localStorage.getItem('user'));
-        console.log(user);
         if (user) {
           /** TODO : Заменить mocksClient на обычный client и убрать setTimeout */
           // setTimeout(()=>{
-          client.query({
+          client().query({
               query: UserEmailItemQuery,
               variables: {
                 email: user.email,
@@ -48,7 +47,7 @@ export const userInit = () => dispatch => {
               })
               .catch(error => {
                 localStorage.clear();
-                console.log(error);
+                console.error(error);
                 /** */
                 dispatch({
                   type: USER_INIT_LOADING_ERROR,
@@ -111,7 +110,7 @@ export const userUpdate = () => dispatch => {
         if (user) {
           /** TODO : Заменить mocksClient на обычный client и убрать setTimeout */
          // setTimeout(()=>{
-          client.query({
+          client().query({
              query: UserEmailItemQuery,
              variables: {
                email: user.email,
@@ -129,7 +128,7 @@ export const userUpdate = () => dispatch => {
                resolve(useremailitem);
              })
              .catch(error => {
-               console.log(error);
+               console.error(error);
                localStorage.clear();
                /** */
                dispatch({

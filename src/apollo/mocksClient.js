@@ -9,13 +9,13 @@ import { ROLE_BANK, ROLE_BUREAU, ROLE_CLIENT } from '../shared/roles';
 import { notificationitem } from './graphql/query/notificationitem';
 import { STATUS_PENDING } from '../shared/statuses';
 import { notificationlist } from './graphql/query/notificationlist';
+import {userdocumentitem} from "./graphql/query/userdocumentitem";
 
 const defaultMocks = {
   Query: () => ({
     userlist,
     useritem,
     useremailitem: (query, { email }) => {
-      console.log(query, email);
       switch (email) {
         case 'client@test.com': {
           return {
@@ -53,8 +53,15 @@ const defaultMocks = {
         }
       }
     },
+    userdocumentitem: ()=>{
+      return new Promise((resolve, reject) => {
+        setTimeout(()=>{
+          return faker.random.number(1)? resolve(userdocumentitem()): resolve(null);
+        }, faker.random.number(2000))
+      })
+
+    },
     userdocumentlist: () => {
-      console.log('userdocumentlist');
       return userdocumentlist();
     },
     notificationlist,

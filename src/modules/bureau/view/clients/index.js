@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import dayjs from 'dayjs';
 import {connect} from 'react-redux';
-
 import {Query} from 'react-apollo';
 import {Container} from '@lib/ui/Container/Container';
 import {Text} from '@lib/ui/Text/Text';
-import {ButtonBase} from '@lib/ui/ButtonBase/ButtonBase';
 import {SvgUpload} from '@lib/ui/Icons/SvgUpload';
 import {ButtonWithImage} from '@lib/ui/ButtonWithImage/ButtonWithImage';
 import ReactTableStyled from '@lib/ui/ReactTableStyled/ReactTableStyled';
@@ -16,10 +14,18 @@ import {ROLE_BUREAU, ROLE_CLIENT} from '@lib/shared/roles';
 import {getUserFromStore} from '../../../../store/reducers/user/selectors';
 import {Box} from '@lib/ui/Box/Box';
 import {CheckAuthorization} from "@lib/ui/CheckAuthorization/CheckAuthorization";
+import UserDocumentItemQuery from './UserDocumentItemQuery.graphql';
+import {userdocumentitem} from "../../../../apollo/graphql/query/userdocumentitem";
 
 const has = Object.prototype.hasOwnProperty;
 
-const columns = ({onOpenFormUpdateDoc}) => [
+
+/**
+ * @params {object} props
+ * @params {func} props.onOpenFormUpdateDoc
+ * @params {object} props.user
+ * */
+const columns = ({onOpenFormUpdateDoc, user}) => [
   {
     id: 'Client',
     Header: 'Client',
@@ -31,16 +37,16 @@ const columns = ({onOpenFormUpdateDoc}) => [
     accessor: props => {
       try {
         if (props) {
-          return `${props.firstName} ${props.lastName} ${props.patronymic}`;
+          return `${props.firstName || ''} ${props.lastName || ''} ${props.patronymic || ''}`;
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
       return null;
     },
   },
   {
-    id: 'dob',
+    id: 'birthdate',
     Header: 'Date of birth',
     Cell: props => (
       <Text fontFamily="medium" fontSize={6} lineHeight={9} color="color1">
@@ -49,58 +55,86 @@ const columns = ({onOpenFormUpdateDoc}) => [
     ),
     accessor: props => {
       try {
-        if (has.call(props, 'client')) {
-          return props.client && props.client.birthdate ? dayjs(props.client.birthdate).format('DD.MM.YYYY') : null;
+        if (has.call(props, 'birthdate')) {
+          return dayjs(props.birthdate).format('DD.MM.YYYY') || '';
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
       return null;
     },
     filterMethod: (filter, row) =>
       row[filter.id].startsWith(filter.value) && row[filter.id].endsWith(filter.value),
   },
-  // {
-  //   id: 'updateDate',
-  //   Header: 'Date of download',
-  //   Cell: props => (
-  //     <Text fontFamily="medium" fontSize={6} lineHeight={9} color="color1">
-  //       {props.value}
-  //     </Text>
-  //   ),
-  //   accessor: props => {
-  //     if (Array.isArray(props.document) && props.document.length) {
-  //       return dayjs(props.document[props.document.length - 1].date).format('DD.MM.YYYY HH:mm:ss');
-  //     }
-  //     return null;
-  //   },
-  //   filterMethod: (filter, row) =>
-  //     row[filter.id].startsWith(filter.value) && row[filter.id].endsWith(filter.value),
-  // },
   {
-    id: 'Document',
-    Header: 'Document',
+    id: 'DocumentUploadDate',
+    Header: 'Upload date',
     filterable: false,
-    Cell: ({value}) => {
-      return (
-        <ButtonWithImage
-          onClick={() => onOpenFormUpdateDoc(value)}
-          display="inline-block"
-          iconRight={
-            <Text fontSize={5} lineHeight={0} fill="inherit">
-              <SvgUpload/>
-            </Text>
+    Cell: (props) => {
+      const {original} = props;
+      return <Query
+        query={UserDocumentItemQuery}
+        variables={{
+          client: original.id,
+          owner: user.id,
+        }}
+      >
+        {({error, data, loading}) => {
+          if (loading) {
+            return 'Loading...';
           }
-          size="xsmall"
-          variant="transparent">
-          Upload
-        </ButtonWithImage>
+          if (error) {
+            return 'Error.';
+          }
+          if (has.call(data, 'userdocumentitem') && data.userdocumentitem && has.call(data.userdocumentitem, 'date')) {
+            return dayjs(data.userdocumentitem.date).format('DD.MM.YYYY') || 'Not loaded';
+          } else {
+            return 'Not loaded';
+          }
+        }}
+      </Query>
+    },
+    accessor: (props) => props.id,
+  },
+  {
+    id: 'DocumentAction',
+    Header: '',
+    filterable: false,
+    Cell: (props) => {
+      const {value, original} = props;
+      return (<Query
+          query={UserDocumentItemQuery}
+          variables={{
+            client: original.id,
+            owner: user.id,
+          }}
+        >
+          {({error, data, loading, refetch, ...rest}) => {
+            return (
+              <ButtonWithImage
+                onClick={() => onOpenFormUpdateDoc(value)}
+                display={"inline-block"}
+                disabled={loading}
+                iconRight={
+                  <Text fontSize={5} lineHeight={0} fill="inherit">
+                    <SvgUpload/>
+                  </Text>
+                }
+                size="xsmall"
+                variant="transparent">
+                {
+                  has.call(data, 'userdocumentitem') && data.userdocumentitem ? 'Update' : 'Upload'
+                }
+              </ButtonWithImage>)
+          }}
+        </Query>
       );
 
     },
     accessor: props => props.id,
   },
 ];
+
 
 export class DocumentsBureauPage extends Component {
   static propTypes = {};
@@ -110,6 +144,8 @@ export class DocumentsBureauPage extends Component {
   constructor(props) {
     super(props);
     this.state = this.initialState;
+    // this.createUsers = this.createUsers.bind(this);
+    // this.createUsers();
   }
 
   get initialState() {
@@ -118,17 +154,49 @@ export class DocumentsBureauPage extends Component {
       isOpen: false,
       // id пользователя к которому крепится документ
       id: null,
+      userDocumentList: {},
     };
   }
+
+  //
+  // createUsers(){
+  //   console.log(this.props.client);
+  //   let usersPromises = range(10).map(d => {
+  //     let password = faker.internet.email();
+  //
+  //     return this.props.client.mutate({
+  //       mutation: CreateUserMutation,
+  //       variables: {
+  //         firstName: faker.name.firstName(),
+  //         lastName: faker.name.lastName(),
+  //         patronymic: faker.name.lastName(),
+  //         birthdate: faker.date.past().toISOString(),
+  //         gender: faker.random.arrayElement(['male', 'female']),
+  //         email: password,
+  //         phone: faker.phone.phoneNumber(),
+  //         masterpassword: faker.random.uuid(),
+  //         password: password,
+  //         confirmPassword: password,
+  //         role: ROLE_CLIENT,
+  //       }
+  //     })
+  //   });
+  //   console.log(usersPromises);
+  //   Promise.all(usersPromises).then(value => {
+  //     console.log(value);
+  //   }, reason => {
+  //     console.log(reason)
+  //   });
+  // }
 
   onOpenFormUpdateDoc = id => this.setState(() => ({id, isOpen: true}));
 
   toggleModal = () => {
-    console.log('toggleModal');
     this.setState(state => ({isOpen: !state.isOpen, id: null}));
   };
 
   render() {
+    const {user} = this.props;
     const {isOpen, id} = this.state;
     return (
       <Container backgroundColor="transparent" px={6}>
@@ -143,7 +211,6 @@ export class DocumentsBureauPage extends Component {
             }}
           >
             {({error, data, loading, refetch, ...rest}) => {
-              console.log(error, data, loading, rest);
               return (
                 <ReactTableStyled
                   defaultFilterMethod={(filter, row) =>
@@ -153,7 +220,9 @@ export class DocumentsBureauPage extends Component {
                   error={error}
                   filterable
                   loading={loading}
+
                   columns={columns({
+                    user: user,
                     onOpenFormUpdateDoc: this.onOpenFormUpdateDoc,
                   })}
                 />
@@ -172,7 +241,6 @@ export class DocumentsBureauPage extends Component {
 }
 
 DocumentsBureauPage = CheckAuthorization([ROLE_BUREAU])(DocumentsBureauPage);
-
 DocumentsBureauPage = connect(state => ({
   user: getUserFromStore(state),
 }))(DocumentsBureauPage);

@@ -42,14 +42,13 @@ export class FormUserPasswordRecovery extends Component {
   }
 
   submit = value => {
-    console.log(value);
     return this.props['@apollo/update']({
       variables: Object.assign({}, value),
     })
       .then((response) => {
-        console.log(response);
+        return response;
       }).catch(error => {
-        console.log(error);
+        console.error(error);
         throw new SubmissionError({
           _error: 'Connection error!',
         });

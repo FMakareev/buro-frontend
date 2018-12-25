@@ -1,0 +1,5 @@
+query($client: String!, $owner: String!){
+  userdocumentitem(client: $client, owner: $owner){
+    date
+  }
+}

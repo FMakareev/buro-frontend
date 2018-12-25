@@ -33,9 +33,9 @@ if (langArray.length) {
     }),
   );
 }
-app.get('/node'+EXCEL_DOWNLOAD, function (req, response){
-  console.log(EXCEL_DOWNLOAD);
+app.post('/node'+EXCEL_DOWNLOAD, function (req, response){
   response.set('Content-Type', 'text/xml');
+  response.set('Content-Disposition', 'form-data; filename="download.xml"');
 
   response.send(`<toys>
     <toy>Transformers</toy>
@@ -44,7 +44,6 @@ app.get('/node'+EXCEL_DOWNLOAD, function (req, response){
 </toys>`);
 });
 app.post(EXCEL_UPLOAD, function (req, res){
-  console.log('/doc/upload', req);
   form.parse(req);
 
   form.on('fileBegin', function (name, file){

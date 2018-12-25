@@ -26,6 +26,7 @@ import UpdateUserMutation from './UpdateUserMutation.graphql';
 import { getUserFromStore } from '../../../../store/reducers/user/selectors';
 import { ROLE_BANK, ROLE_CLIENT } from '@lib/shared/roles';
 import { userUpdate } from '../../../../store/reducers/user/actions';
+import UserLinkClickboard from "../UserLinkClickboard/UserLinkClickboard";
 
 const StyledBox = styled(Box)`
   text-align: center;
@@ -78,14 +79,13 @@ export class FormProfileUser extends Component {
       variables: Object.assign({}, value),
     })
       .then(response => {
-        console.log(response);
         this.props.userUpdate();
       })
       .catch(({ graphQLErrors, message, networkError, ...rest }) => {
-        console.log('graphQLErrors: ', graphQLErrors);
-        console.log('message: ', message);
-        console.log('networkError: ', networkError);
-        console.log('rest: ', rest);
+        console.error('graphQLErrors: ', graphQLErrors);
+        console.error('message: ', message);
+        console.error('networkError: ', networkError);
+        console.error('rest: ', rest);
         if (graphQLErrors) {
           throw new SubmissionError({
             ...this.getNetworkError(graphQLErrors),
@@ -198,6 +198,9 @@ export class FormProfileUser extends Component {
               </Box>
             </Fragment>
           )}
+          {user.role === ROLE_CLIENT && (<Box width={['100%', '100%', '50%']} px={6} mb={7} order={[5, 0]}>
+            <UserLinkClickboard/>
+          </Box>)}
         </Flex>
         <Flex justifyContent="center">
           <StyledBox>

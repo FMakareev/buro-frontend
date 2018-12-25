@@ -87,8 +87,6 @@ export class FormUserLogin extends Component {
       body: jsonToUrlEncoded(value),
     })
       .then(response => {
-        console.log(response);
-        console.log(document.cookie);
         if (response.status >= 400 || !document.cookie) {
           throw response;
         } else {
@@ -96,9 +94,6 @@ export class FormUserLogin extends Component {
         }
       })
       .catch(({status, statusText}) => {
-        console.log('statusText', statusText);
-        console.log('status', status);
-
         this.setState(() => ({
           submitting: false,
           apolloError: null,
@@ -115,7 +110,6 @@ export class FormUserLogin extends Component {
   };
 
   setUser = props => {
-    console.log('setUser: ', props);
     const {
       data: {useremailitem},
     } = props;
@@ -135,7 +129,6 @@ export class FormUserLogin extends Component {
         },
       })
       .then(result => {
-        console.log(result);
         if (result.errors || result.data.useremailitem === null) {
           // TO DO change this
           throw result;
@@ -150,10 +143,10 @@ export class FormUserLogin extends Component {
         }
       })
       .catch(({graphQLErrors, message, networkError, ...rest}) => {
-        console.log('graphQLErrors: ', graphQLErrors);
-        console.log('message: ', message);
-        console.log('networkError: ', networkError);
-        console.log('rest: ', rest);
+        console.error('graphQLErrors: ', graphQLErrors);
+        console.error('message: ', message);
+        console.error('networkError: ', networkError);
+        console.error('rest: ', rest);
         this.setState(() => ({
           submitting: false,
           apolloError: graphQLErrors[0].message,

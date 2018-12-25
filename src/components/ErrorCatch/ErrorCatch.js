@@ -29,7 +29,7 @@ export class ErrorCatch extends Component {
   }
 
   componentDidCatch(error, info) {
-    console.log(error, info);
+    console.error(error, info);
 
     const Error = this.findOfTheTypeError(error);
     this.setState(() => ({

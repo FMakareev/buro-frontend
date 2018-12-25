@@ -53,7 +53,9 @@ export class TextFieldWithLabel extends PureComponent {
     disabled: PropTypes.bool,
   };
 
-  static defaultProps = {};
+  static defaultProps = {
+    meta: null,
+  };
 
   render() {
     const {
@@ -72,7 +74,7 @@ export class TextFieldWithLabel extends PureComponent {
       <Wrapper>
         <Label>
           {label}
-          {meta.error && meta.touched && <Error>{meta.error}</Error>}
+          {meta && meta.error && meta.touched && <Error>{meta.error}</Error>}
         </Label>
 
         <TextField

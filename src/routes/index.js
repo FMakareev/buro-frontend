@@ -51,7 +51,7 @@ const createRoutes = (modulesRoutes, newRoutes, moduleName) => {
               </Text>
             </PreloaderWrapper>),
             ErrorComponent: (error) => {
-              console.log('ErrorComponent: ',error);
+              console.error('ErrorComponent: ',error);
               return <ErrorCatch>{error.message}</ErrorCatch>
             },
           }),
@@ -160,7 +160,7 @@ const layoutSorting = routes => {
         return item;
       }
       default: {
-        console.log(`Warning: для маршрута ${item.path} не задан layout либо задан неверно.`);
+        console.error(`Warning: для маршрута ${item.path} не задан layout либо задан неверно.`);
         break;
       }
     }

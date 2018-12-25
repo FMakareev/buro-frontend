@@ -72,7 +72,6 @@ export class FormDocumentUpload extends Component {
 
     fetch(`${EXCEL_DOWNLOAD}`, options)
       .then(response => {
-        console.log(response);
         if (response.status === 200) {
           this.setState(() => ({isLoading: false, submitSucceeded: true}));
           return response.blob();
@@ -87,14 +86,13 @@ export class FormDocumentUpload extends Component {
       })
       .catch(error => {
         this.setState(() => ({isLoading: false, submitFailed: true}));
-        console.log(error);
+        console.error(error);
       });
   }
 
   render() {
     const {toggleModal, pristine, submitting, invalid, handleSubmit} = this.props;
     const {isLoading, reject, submitFailed, submitSucceeded} = this.state;
-    console.log('this:', this);
     return (
       <StyledForm onSubmit={handleSubmit(this.submit)}>
         {!submitSucceeded && !submitFailed && (

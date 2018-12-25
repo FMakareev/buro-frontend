@@ -1,34 +1,53 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import dayjs from 'dayjs';
-import { Query } from 'react-apollo';
-import { connect } from 'react-redux';
-import { Container } from '@lib/ui/Container/Container';
-import { Text } from '@lib/ui/Text/Text';
-import { ReactTableStyled } from '@lib/ui/ReactTableStyled/ReactTableStyled';
+import {Query} from 'react-apollo';
+import QueryString from 'query-string';
+import md5 from 'md5';
 
-import { CheckAuthorization } from '@lib/ui/CheckAuthorization/CheckAuthorization';
-import { ROLE_BANK } from '@lib/shared/roles';
-import { Box } from '@lib/ui/Box/Box';
-import { STATUS_NEED_UPDATE } from '@lib/shared/statuses';
-import { EXCEL_DOWNLOAD } from '@lib/shared/endpoints';
-import { ButtonWithImage } from '@lib/ui/ButtonWithImage/ButtonWithImage';
+import {connect} from 'react-redux';
+import {Container} from '@lib/ui/Container/Container';
+import {Text} from '@lib/ui/Text/Text';
+import {ReactTableStyled} from '@lib/ui/ReactTableStyled/ReactTableStyled';
+
+import {CheckAuthorization} from '@lib/ui/CheckAuthorization/CheckAuthorization';
+import {ROLE_BANK} from '@lib/shared/roles';
+import {Box} from '@lib/ui/Box/Box';
+import {STATUS_NEED_UPDATE} from '@lib/shared/statuses';
+import {ButtonWithImage} from '@lib/ui/ButtonWithImage/ButtonWithImage';
 
 import Modal from '@lib/ui/Modal/Modal';
-import { CreateNotificationButton } from '../../components/CreateNotificationButton/CreateNotificationButton';
-import { getUserFromStore } from '../../../../store/reducers/user/selectors';
+import {CreateNotificationButton} from '../../components/CreateNotificationButton/CreateNotificationButton';
+import {getUserFromStore} from '../../../../store/reducers/user/selectors';
 import UserDocumentListQuery from './UserDocumentListQuery.graphql';
 
 import FormDocumentUpload from '../../components/FormDocumentUpload/FromDocumentUpload';
 
 const has = Object.prototype.hasOwnProperty;
 
-const columns = ({ onFiltered, onOpenFormUploadDoc }) => [
+const columns = ({onFiltered, onOpenFormUploadDoc}) => [
+  {
+    id: 'DocumentID',
+    Header: 'Document token',
+    Cell: props => (
+      <Text fontFamily="medium" fontSize={6} lineHeight={9} color="color1">
+        {props.value}
+      </Text>
+    ),
+    accessor: props => {
+      try {
+        return md5(props.id);
+      } catch (error) {
+        console.error(error);
+      }
+      return null;
+    },
+  },
   {
     id: 'Client',
     Header: 'Client',
     Cell: props => (
       <Text
-        onClick={() => onFiltered({ id: 'Client', value: props.value })}
+        onClick={() => onFiltered({id: 'Client', value: props.value})}
         fontFamily="medium"
         fontSize={6}
         lineHeight={9}
@@ -40,18 +59,18 @@ const columns = ({ onFiltered, onOpenFormUploadDoc }) => [
       try {
         if (has.call(props, 'client')) {
           return props.client
-            ? `${props.client.firstName} ${props.client.lastName} ${props.client.patronymic}`
+            ? `${props.client.firstName || ''} ${props.client.lastName || ''} ${props.client.patronymic || ''}`
             : null;
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
       return null;
     },
   },
   {
-    id: 'birthDate',
-    Header: 'Date of birth',
+    id: 'UploadDate',
+    Header: 'Upload date',
     Cell: props => (
       <Text fontFamily="medium" fontSize={6} lineHeight={9} color="color1">
         {props.value}
@@ -59,15 +78,16 @@ const columns = ({ onFiltered, onOpenFormUploadDoc }) => [
     ),
     accessor: props => {
       try {
-        if (has.call(props, 'client')) {
-          return props.client && props.client.birthdate
-            ? dayjs(props.client.birthdate).format('DD.MM.YYYY')
-            : null;
+        if (has.call(props, 'date')) {
+          const date = dayjs(props.date).format('DD.MM.YYYY HH:mm:ss');
+          if (date.indexOf('NaN') === -1) {
+            return date
+          }
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
-      return null;
+      return '';
     },
     filterMethod: (filter, row) =>
       row[filter.id].startsWith(filter.value) && row[filter.id].endsWith(filter.value),
@@ -75,7 +95,6 @@ const columns = ({ onFiltered, onOpenFormUploadDoc }) => [
   {
     id: 'Request Status',
     Header: 'Status',
-    // filterable: true,
     Cell: props => {
       try {
         /** TODO: если статус `need update` значит документ был обновлен и его нужно перезапросить */
@@ -91,7 +110,6 @@ const columns = ({ onFiltered, onOpenFormUploadDoc }) => [
         /** TODO: тут будет ссылка или запрос на скачивание документа */
         return (
           <ButtonWithImage
-            // href={`${EXCEL_DOWNLOAD}/${props.original.id}`}
             onClick={() => onOpenFormUploadDoc(props.original.id)}
             download
             as="button"
@@ -100,11 +118,11 @@ const columns = ({ onFiltered, onOpenFormUploadDoc }) => [
             variant="transparent"
             pl="3px"
             pr="5px">
-            Upload
+            Download
           </ButtonWithImage>
         );
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
       return null;
     },
@@ -128,27 +146,44 @@ export class DocumentsPage extends Component {
   }
 
   get initialState() {
-    return {
-      // статус открытия модального окна
-      isOpen: false,
-      // id пользователя документ которого качаем
-      id: null,
-      filtered: [],
-    };
+   try{
+     const {location} = this.props;
+     const query = QueryString.parse(location.search);
+     return {
+       // статус открытия модального окна
+       isOpen: !!query.document,
+       // id пользователя документ которого качаем
+       id: query.document,
+       filtered: [
+         (query.document ? {
+           id: "DocumentID",
+           value: query.document.substring(0, query.document.indexOf('?')),
+         } : {}),
+
+       ],
+     };
+   } catch(error){
+     console.error(error);
+     return {
+       // статус открытия модального окна
+       isOpen: false,
+       // id пользователя документ которого качаем
+       id: null,
+       filtered: [],
+     };
+   }
   }
 
-  onOpenFormUploadDoc = id => this.setState(() => ({ id, isOpen: true }));
+  onOpenFormUploadDoc = id => this.setState(() => ({id, isOpen: true}));
 
   toggleModal = () => {
-    console.log('toggleModal');
-    console.log(this.state.id);
-    this.setState(state => ({ isOpen: !state.isOpen, id: null }));
+    this.setState(state => ({isOpen: !state.isOpen, id: null}));
   };
 
   render() {
-    const { isOpen, id } = this.state;
-    const { user } = this.props;
-    console.log(this.props);
+    const {isOpen, id} = this.state;
+    const {user} = this.props;
+    console.log(this.state);
     return (
       <Container backgroundColor="transparent" px={6}>
         <Text fontFamily="bold" fontWeight="bold" fontSize={9} lineHeight={9} mb={7}>
@@ -161,8 +196,7 @@ export class DocumentsPage extends Component {
             variables={{
               bankid: user.id,
             }}>
-            {({ error, data, loading }) => {
-              console.log('UserListQuery: ', error, data, loading);
+            {({error, data, loading}) => {
               return (
                 <ReactTableStyled
                   defaultFilterMethod={(filter, row) =>
@@ -200,7 +234,7 @@ export class DocumentsPage extends Component {
         </Box>
         {isOpen && (
           <Modal toggleModal={this.toggleModal}>
-            <FormDocumentUpload toggleModal={this.toggleModal} id={id} />
+            <FormDocumentUpload toggleModal={this.toggleModal} id={id}/>
           </Modal>
         )}
       </Container>

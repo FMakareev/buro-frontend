@@ -12,7 +12,7 @@ const TextField = styled.input`
   width: 100%;
   border: 1px solid;
   ${props => {
-    if ((props.meta && props.meta.active) || props.meta.dirty) {
+    if ((props.meta && props.meta.active) || (props.meta && props.meta.dirty)) {
       return BorderRadiusProperty({...props, borderColor: 'color7'})
     }
     return BorderRadiusProperty({...props, borderColor: 'color5'});

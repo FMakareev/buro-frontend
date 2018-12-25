@@ -36,6 +36,7 @@ type Query {
   useritem(id: String): User,
   useremailitem(email: String): User,
   userdocumentlist(bankid: String, excludeowner: String): [UserDocument],
+  userdocumentitem(owner: String!, client: String!): UserDocument,
   notificationlist(clientid: String, bankid: String): [Notification]
 }
 type Mutation {

@@ -51,7 +51,7 @@ export class LayoutApp extends Component {
         match: result[0].match,
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

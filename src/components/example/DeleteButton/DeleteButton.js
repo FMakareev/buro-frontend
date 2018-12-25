@@ -15,7 +15,6 @@ export const DELETE_PRODUCT_MUTATION = gql`
 export const DeleteButton = () => (
   <Mutation mutation={DELETE_PRODUCT_MUTATION}>
     {(mutate, { loading, error, data }) => {
-      console.log(loading, error, data);
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error!</p>;
       if (data) return <p>Deleted!</p>;
