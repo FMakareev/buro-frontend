@@ -11,7 +11,7 @@ import { STATUS_PENDING } from '../../../../shared/statuses';
 /**
  * @desc Кнопка для вызова мутации создания уведомления к пользователю
  * */
-export const CreateNotificationButton = ({ children, clientid, bankid }) => (
+export const CreateNotificationButton = ({ children, client, bank }) => (
   <Mutation mutation={CreateNotificationMutation}>
     {(mutation, { called, data, error, loading }) => {
       /** появляется если called - запрос был вызван, !loading - загрузка не идет, !error - нет ошибок */
@@ -25,7 +25,7 @@ export const CreateNotificationButton = ({ children, clientid, bankid }) => (
       return (
         <ButtonWithImage
           disabled={loading}
-          onClick={() => mutation({ variables: { clientid, bankid} })}
+          onClick={() => mutation({ variables: { client, bank, status: STATUS_PENDING } })}
           display="inline-block"
           iconRight={
             loading ? (
@@ -46,8 +46,8 @@ export const CreateNotificationButton = ({ children, clientid, bankid }) => (
 );
 CreateNotificationButton.propTypes = {
   /** id банка */
-  bankid: PropTypes.string.isRequired,
+  bank: PropTypes.string.isRequired,
   /** id клиента */
-  clientid: PropTypes.string.isRequired,
+  client: PropTypes.string.isRequired,
 };
 export default CreateNotificationButton;
