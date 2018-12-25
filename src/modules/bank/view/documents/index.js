@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import dayjs from 'dayjs';
 import {Query} from 'react-apollo';
 import QueryString from 'query-string';
+import md5 from 'md5';
 
 import {connect} from 'react-redux';
 import {Container} from '@lib/ui/Container/Container';
@@ -26,7 +27,7 @@ const has = Object.prototype.hasOwnProperty;
 const columns = ({onFiltered, onOpenFormUploadDoc}) => [
   {
     id: 'DocumentID',
-    Header: 'Document ID',
+    Header: 'Document token',
     Cell: props => (
       <Text fontFamily="medium" fontSize={6} lineHeight={9} color="color1">
         {props.value}
@@ -34,7 +35,7 @@ const columns = ({onFiltered, onOpenFormUploadDoc}) => [
     ),
     accessor: props => {
       try {
-        return props.id
+        return md5(props.id);
       } catch (error) {
         console.error(error);
       }
@@ -94,7 +95,6 @@ const columns = ({onFiltered, onOpenFormUploadDoc}) => [
   {
     id: 'Request Status',
     Header: 'Status',
-    // filterable: true,
     Cell: props => {
       try {
         /** TODO: если статус `need update` значит документ был обновлен и его нужно перезапросить */
