@@ -15,6 +15,7 @@ import {FontSizeProperty} from "@lib/styles/styleProperty/FontSizeProperty";
 import {TextFieldBase} from "@lib/ui/TextFieldBase/TextFieldBase";
 import {LineHeightProperty} from "@lib/styles/styleProperty/LineHeightProperty";
 import {BoxShadowProperty} from "@lib/styles/styleProperty/BoxShadowProperty";
+import md5 from 'md5';
 
 
 const TextField = styled(TextFieldBase)`
@@ -52,7 +53,7 @@ export class UserLinkClickboard extends Component {
       return {};
     }
     return {
-      value: `${window.location.origin}/app/bank/clients?client=${user.id}`,
+      value: `${window.location.origin}/app/bank/clients?client=${md5(user.id)}`,
       copied: false
     }
   }
