@@ -24,7 +24,7 @@ import FormDocumentDownload from '../../components/FormDocumentDownload/FormDocu
 
 const has = Object.prototype.hasOwnProperty;
 
-const columns = ({onFiltered, onOpenFormUploadDoc}) => [
+const columns = ({onFiltered,state, onOpenFormUploadDoc}) => [
   {
     id: 'DocumentID',
     Header: 'Document token',
@@ -128,6 +128,11 @@ const columns = ({onFiltered, onOpenFormUploadDoc}) => [
     },
     accessor: props => {
       if (has.call(props, 'client')) {
+        /** @desc если окно закрыто и хеш id равен хешу id в state то открываем окно */
+        /** @desc нужно для того чтобы передавать коректный id в форму т.к. из querystring нам приходит хеш md5 */
+        if(!state.isOpen && md5(props.id) === state.id){
+           onOpenFormUploadDoc(props.id);
+        }
         return props;
       }
       return null;
@@ -151,7 +156,7 @@ export class DocumentsPage extends Component {
      const query = QueryString.parse(location.search);
      return {
        // статус открытия модального окна
-       isOpen: !!query.document,
+       isOpen: false,
        // id пользователя документ которого качаем
        id: query.document,
        filtered: [
@@ -174,7 +179,10 @@ export class DocumentsPage extends Component {
    }
   }
 
-  onOpenFormUploadDoc = id => this.setState(() => ({id, isOpen: true}));
+  onOpenFormUploadDoc = id => {
+    console.log('onOpenFormUploadDoc: ', id);
+    return this.setState(() => ({id, isOpen: true}));
+  };
 
   toggleModal = () => {
     this.setState(state => ({isOpen: !state.isOpen, id: null}));
@@ -221,6 +229,7 @@ export class DocumentsPage extends Component {
                   }}
                   columns={columns({
                     onOpenFormUploadDoc: this.onOpenFormUploadDoc,
+                    state: this.state,
                     onFiltered: props => {
                       this.setState(() => ({
                         filtered: [props],

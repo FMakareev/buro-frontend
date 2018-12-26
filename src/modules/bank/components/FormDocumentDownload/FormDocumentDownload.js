@@ -81,7 +81,7 @@ export class FormDocumentDownload extends Component {
       method: 'post',
       body: jsonToUrlEncoded({
         documentid: querys.id,
-        key: querys.code,
+        key: querys.code.replace(' ', ''),
       }),
       headers: {
         'Accept-Charset': Charset,
