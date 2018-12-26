@@ -20,6 +20,7 @@ export const CircleCount = styled(Text)`
   color: #ffffff;
 `;
 export const ButtonStyled = styled(Text)`
+  display: flex;
   position: relative;
   background-color: transparent;
   border: none;
