@@ -90,7 +90,7 @@ const columns = user => [
     Cell: props => {
       try {
         return (
-          <CreateNotificationButton bankid={user.id} clientid={props.value}>
+          <CreateNotificationButton bank={user.id} client={props.value}>
             Request
           </CreateNotificationButton>
         );

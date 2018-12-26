@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form';
+import {Field, reduxForm} from 'redux-form';
 import fetch from 'isomorphic-fetch';
-import { EXCEL_DOWNLOAD } from '@lib/shared/endpoints';
+import {EXCEL_DOWNLOAD} from '@lib/shared/endpoints';
 
-import { Text } from '@lib/ui/Text/Text';
-import { Flex } from '@lib/ui/Flex/Flex';
-import { Box } from '@lib/ui/Box/Box';
-import { ButtonBase } from '@lib/ui/ButtonBase/ButtonBase';
-import { FileUploader } from '@lib/ui/FileUploader/FileUploader';
+import {Text} from '@lib/ui/Text/Text';
+import {Flex} from '@lib/ui/Flex/Flex';
+import {Box} from '@lib/ui/Box/Box';
+import {ButtonBase} from '@lib/ui/ButtonBase/ButtonBase';
+import {FileUploader} from '@lib/ui/FileUploader/FileUploader';
 
-import { SvgCancelRequest } from '@lib/ui/Icons/SvgCancelRequest';
-import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
+import {SvgCancelRequest} from '@lib/ui/Icons/SvgCancelRequest';
+import {formPropTypes} from '../../../../propTypes/Forms/FormPropTypes';
 import {
   MessageContentStyled,
   WrapperMessage,
@@ -20,11 +20,12 @@ import {
   TextFieldBaseStyled,
 } from './FormDocumentUploadStyled';
 
-import { required } from '../../../../utils/validation/required';
+import {required} from '../../../../utils/validation/required';
+import {jsonToUrlEncoded} from "@lib/utils/jsontools/jsonToUrlEncoded";
 
 const download = require('./download.js');
 
-export class FormDocumentUpload extends Component {
+export class FormDocumentDownload extends Component {
   static propTypes = {
     ...formPropTypes,
     id: PropTypes.string,
@@ -41,7 +42,7 @@ export class FormDocumentUpload extends Component {
   }
 
   get initialState() {
-    const { id } = this.props;
+    const {id} = this.props;
     return {
       /** загрузка */
       isLoading: false,
@@ -56,17 +57,36 @@ export class FormDocumentUpload extends Component {
     };
   }
 
+  /** @desc метод для определения пользовательской OS для получения коректной кодировки файла */
+  getUserPlatformCharset = () => {
+    try{
+      const platform = window.navigator.platform;
+
+      if(platform === 'Windows' || platform === 'Win16'|| platform === 'Win32'|| platform === 'WinCE'){
+        return 'cp1251';
+      } else {
+        return 'utf-8';
+      }
+    } catch(error){
+      return 'cp1251';
+    }
+  };
+
   submit(value) {
     const {id} = this.state;
     const querys = Object.assign({}, value, {id});
 
-
-    const formData = new FormData();
-    formData.append('documentid',querys.id);
-    formData.append('key',querys.code);
+    const Charset = this.getUserPlatformCharset();
     const options = {
       method: 'post',
-      body: formData,
+      body: jsonToUrlEncoded({
+        documentid: querys.id,
+        key: querys.code.replace(' ', ''),
+      }),
+      headers: {
+        'Accept-Charset': Charset,
+        'Content-Type': `application/x-www-form-urlencoded;charset=${Charset}`,
+      }
     };
     this.setState(() => ({isLoading: true, reject: null}));
 
@@ -150,8 +170,8 @@ export class FormDocumentUpload extends Component {
   }
 }
 
-FormDocumentUpload = reduxForm({
-  form: 'FormDocumentUpload',
-})(FormDocumentUpload);
+FormDocumentDownload = reduxForm({
+  form: 'FormDocumentDownload',
+})(FormDocumentDownload);
 
-export default FormDocumentUpload;
+export default FormDocumentDownload;
