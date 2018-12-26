@@ -106,7 +106,8 @@ export class HelpPage extends Component {
             ))}
           </Box>
         </Box>
-        <FormSendQuestion />
+        {/** Пока скрываем т.к. не реализован бек для этого */}
+        {/*<FormSendQuestion />*/}
       </StyledContainer>
     );
   }
