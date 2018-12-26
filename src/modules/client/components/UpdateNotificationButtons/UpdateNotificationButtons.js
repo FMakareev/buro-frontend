@@ -99,7 +99,7 @@ export class UpdateNotificationButtons extends Component {
               </Box>
               {
                 error && <Text whiteSpace={'normal'} fontFamily={'medium'} fontSize={'12px'} lineHeight={'16px'} color={'color9'}>
-                  Retry the request later, file not has been uploaded to the blockchain.
+                  Repeat the request in 10 minutes, file not has been uploaded to the blockchain.
                 </Text>
               }
 

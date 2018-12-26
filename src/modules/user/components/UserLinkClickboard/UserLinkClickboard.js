@@ -66,7 +66,7 @@ export class UserLinkClickboard extends Component {
     return (
       <Flex flexDirection={'column'}>
         <Label>
-          You are Link for bank
+          You are token for bank
         </Label>
         <Flex flexDirection={'row'}>
           <Box width={'calc(100% - 34px)'}>
