@@ -154,15 +154,16 @@ export class DocumentsPage extends Component {
    try{
      const {location} = this.props;
      const query = QueryString.parse(location.search);
+     const id = query.document.substring(0, query.document.indexOf('?'));
      return {
        // статус открытия модального окна
        isOpen: false,
        // id пользователя документ которого качаем
-       id: query.document,
+       id: id,
        filtered: [
          (query.document ? {
            id: "DocumentID",
-           value: query.document.substring(0, query.document.indexOf('?')),
+           value: id,
          } : {}),
 
        ],
