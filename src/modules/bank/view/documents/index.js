@@ -24,7 +24,7 @@ import FormDocumentDownload from '../../components/FormDocumentDownload/FormDocu
 
 const has = Object.prototype.hasOwnProperty;
 
-const columns = ({onFiltered,state, onOpenFormUploadDoc}) => [
+const columns = ({onFiltered, state, onOpenFormUploadDoc}) => [
   {
     id: 'DocumentID',
     Header: 'Document token',
@@ -130,8 +130,8 @@ const columns = ({onFiltered,state, onOpenFormUploadDoc}) => [
       if (has.call(props, 'client')) {
         /** @desc если окно закрыто и хеш id равен хешу id в state то открываем окно */
         /** @desc нужно для того чтобы передавать коректный id в форму т.к. из querystring нам приходит хеш md5 */
-        if(!state.isOpen && md5(props.id) === state.id){
-           onOpenFormUploadDoc(props.id);
+        if (!state.isOpen && md5(props.id) === state.id) {
+          onOpenFormUploadDoc(props.id);
         }
         return props;
       }
@@ -151,33 +151,33 @@ export class DocumentsPage extends Component {
   }
 
   get initialState() {
-   try{
-     const {location} = this.props;
-     const query = QueryString.parse(location.search);
-     const id = query.document.substring(0, query.document.indexOf('?'));
-     return {
-       // статус открытия модального окна
-       isOpen: false,
-       // id пользователя документ которого качаем
-       id: id,
-       filtered: [
-         (query.document ? {
-           id: "DocumentID",
-           value: id,
-         } : {}),
+    try {
+      const {location} = this.props;
+      const query = QueryString.parse(location.search);
+      const id = query.document ? query.document.substring(0, query.document.indexOf('?')) : null;
+      return {
+        // статус открытия модального окна
+        isOpen: false,
+        // id пользователя документ которого качаем
+        id: id,
+        filtered: [
+          (query.document ? {
+            id: "DocumentID",
+            value: id,
+          } : {}),
 
-       ],
-     };
-   } catch(error){
-     console.error(error);
-     return {
-       // статус открытия модального окна
-       isOpen: false,
-       // id пользователя документ которого качаем
-       id: null,
-       filtered: [],
-     };
-   }
+        ],
+      };
+    } catch (error) {
+      console.error(error);
+      return {
+        // статус открытия модального окна
+        isOpen: false,
+        // id пользователя документ которого качаем
+        id: null,
+        filtered: [],
+      };
+    }
   }
 
   onOpenFormUploadDoc = id => {
