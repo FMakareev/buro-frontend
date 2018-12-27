@@ -110,9 +110,9 @@ test('CreateNotificationButton: запрос завершен ошибкой с�
 
   await wait(5);
 
-  // const tree = output.toJSON();
-  // expect(tree).toMatchSnapshot();
-  expect(output.root.findByProps({ children: 'Request' }).props.variant).toBe('error');
+  const tree = output.toJSON();
+  expect(tree).toMatchSnapshot();
+  // expect(output.root.findByProps({ children: 'Request' }).props.variant).toBe('error');
 });
 
 test('CreateNotificationButton: запрос завершен ошибкой GraphQL', async () => {

@@ -268,61 +268,6 @@ exports[`HelpPage: рендер без ошибок 1`] = `
         </div>
       </div>
     </div>
-    <form
-      onSubmit={[Function]}
-    >
-      <div
-        className="sc-1jxwge6-0 jjyzlr-1 dFoFxw"
-      >
-        Ask the question
-      </div>
-      <div
-        className="sc-1jxwge6-0 wterhv-0 jjyzlr-2 hsfyOR"
-        width="100%"
-      >
-        <div
-          className="sc-1jxwge6-0 hZdxoY"
-          width="100%"
-        >
-          <input
-            aria-required={false}
-            className="jjyzlr-3 hbKOwz wsrc07-0 kZIRDH"
-            name="question"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onDragStart={[Function]}
-            onDrop={[Function]}
-            onFocus={[Function]}
-            type="text"
-            value=""
-          />
-        </div>
-        <div
-          className="sc-1jxwge6-0 cFISfs"
-          width="20%"
-        >
-          <button
-            className="jjyzlr-4 ehpPoL sc-72db93-0 bWXyHX mxzgdr-0 jnGqiP"
-            disabled={true}
-            size="small"
-            type="submit"
-          >
-            <div
-              className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-              width="100%"
-            >
-              <div />
-              <div
-                className="sc-1jxwge6-0 wterhv-0 irkFkV"
-              >
-                Send
-              </div>
-              <div />
-            </div>
-          </button>
-        </div>
-      </div>
-    </form>
   </div>
 </div>
 `;

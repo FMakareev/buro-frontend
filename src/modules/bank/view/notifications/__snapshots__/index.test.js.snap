@@ -374,12 +374,12 @@ exports[`NotificationsPage: загруженный список нотифика
               role="rowgroup"
             >
               <div
-                className="rt-tr -odd"
+                className="rt-tr -padRow -odd"
                 role="row"
+                style={Object {}}
               >
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -389,18 +389,12 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Armand Champlin Hauck
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -410,18 +404,12 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    01.10.2018 15:50:54
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -431,12 +419,9 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
-                    color="color1"
-                  >
-                    Approval
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
               </div>
             </div>
@@ -445,12 +430,12 @@ exports[`NotificationsPage: загруженный список нотифика
               role="rowgroup"
             >
               <div
-                className="rt-tr -even"
+                className="rt-tr -padRow -even"
                 role="row"
+                style={Object {}}
               >
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -460,18 +445,12 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Armand Champlin Hauck
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -481,18 +460,12 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    01.10.2018 15:50:54
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -502,12 +475,9 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
-                    color="color1"
-                  >
-                    Approval
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
               </div>
             </div>
@@ -516,12 +486,12 @@ exports[`NotificationsPage: загруженный список нотифика
               role="rowgroup"
             >
               <div
-                className="rt-tr -odd"
+                className="rt-tr -padRow -odd"
                 role="row"
+                style={Object {}}
               >
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -531,18 +501,12 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Armand Champlin Hauck
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -552,18 +516,12 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    01.10.2018 15:50:54
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -573,12 +531,9 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
-                    color="color1"
-                  >
-                    Not approval
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
               </div>
             </div>
@@ -587,12 +542,12 @@ exports[`NotificationsPage: загруженный список нотифика
               role="rowgroup"
             >
               <div
-                className="rt-tr -even"
+                className="rt-tr -padRow -even"
                 role="row"
+                style={Object {}}
               >
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -602,18 +557,12 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Armand Champlin Hauck
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -623,18 +572,12 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    01.10.2018 15:50:54
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -644,12 +587,9 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
-                    color="color1"
-                  >
-                    Not approval
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
               </div>
             </div>
@@ -658,12 +598,12 @@ exports[`NotificationsPage: загруженный список нотифика
               role="rowgroup"
             >
               <div
-                className="rt-tr -odd"
+                className="rt-tr -padRow -odd"
                 role="row"
+                style={Object {}}
               >
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -673,18 +613,12 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Armand Champlin Hauck
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -694,18 +628,12 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    01.10.2018 15:50:54
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -715,12 +643,9 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
-                    color="color1"
-                  >
-                    Not approval
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
               </div>
             </div>
@@ -729,12 +654,12 @@ exports[`NotificationsPage: загруженный список нотифика
               role="rowgroup"
             >
               <div
-                className="rt-tr -even"
+                className="rt-tr -padRow -even"
                 role="row"
+                style={Object {}}
               >
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -744,18 +669,12 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Armand Champlin Hauck
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -765,18 +684,12 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    01.10.2018 15:50:54
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -786,12 +699,9 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
-                    color="color1"
-                  >
-                    Pending
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
               </div>
             </div>
@@ -800,12 +710,12 @@ exports[`NotificationsPage: загруженный список нотифика
               role="rowgroup"
             >
               <div
-                className="rt-tr -odd"
+                className="rt-tr -padRow -odd"
                 role="row"
+                style={Object {}}
               >
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -815,18 +725,12 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Armand Champlin Hauck
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -836,18 +740,12 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    01.10.2018 15:50:54
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -857,12 +755,9 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
-                    color="color1"
-                  >
-                    Not approval
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
               </div>
             </div>
@@ -871,12 +766,12 @@ exports[`NotificationsPage: загруженный список нотифика
               role="rowgroup"
             >
               <div
-                className="rt-tr -even"
+                className="rt-tr -padRow -even"
                 role="row"
+                style={Object {}}
               >
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -886,18 +781,12 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Armand Champlin Hauck
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -907,18 +796,12 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    01.10.2018 15:50:54
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -928,12 +811,9 @@ exports[`NotificationsPage: загруженный список нотифика
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
-                    color="color1"
-                  >
-                    Pending
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
               </div>
             </div>
@@ -1037,7 +917,7 @@ exports[`NotificationsPage: загруженный список нотифика
                 >
                   of
                    
-                  2
+                  1
                 </div>
               </div>
               <div
@@ -1105,7 +985,7 @@ exports[`NotificationsPage: загруженный список нотифика
             >
               <button
                 className="mxzgdr-0 euDJBk"
-                disabled={false}
+                disabled={true}
                 onClick={[Function]}
                 size="large"
                 type="button"
@@ -1153,7 +1033,7 @@ exports[`NotificationsPage: загруженный список нотифика
           </div>
         </div>
         <div
-          className="sc-1jxwge6-0 d5w2g7-0 sc-1mb6nwv-0 dkqukC"
+          className="sc-1jxwge6-0 d5w2g7-0 sc-1mb6nwv-0 eDeYkT"
         >
           <div
             className="sc-1jxwge6-0 sc-18ch56c-0 fzRVpo"
@@ -2174,7 +2054,7 @@ exports[`NotificationsPage: загрузка пользовательских д
           </div>
         </div>
         <div
-          className="sc-1jxwge6-0 d5w2g7-0 sc7u3f-0 iZkmDs"
+          className="sc-1jxwge6-0 d5w2g7-0 sc7u3f-0 hrhNNE"
         >
           <div
             className="sc-1jxwge6-0 sc-18ch56c-0 fFWriT"
@@ -2185,7 +2065,7 @@ exports[`NotificationsPage: загрузка пользовательских д
           </div>
         </div>
         <div
-          className="sc-1jxwge6-0 d5w2g7-0 sc-1mb6nwv-0 koaxEZ"
+          className="sc-1jxwge6-0 d5w2g7-0 sc-1mb6nwv-0 eJUTlp"
         >
           <div
             className="sc-1jxwge6-0 sc-18ch56c-0 fzRVpo"
@@ -3206,7 +3086,7 @@ exports[`NotificationsPage: ошибка во время загрузки пол
           </div>
         </div>
         <div
-          className="sc-1jxwge6-0 d5w2g7-0 sc-7kykx0-0 etgRnG"
+          className="sc-1jxwge6-0 d5w2g7-0 sc-7kykx0-0 fYRoBJ"
         >
           <div
             className="sc-1jxwge6-0 wterhv-0 sc-7kykx0-1 gabwNl"
@@ -3233,7 +3113,7 @@ exports[`NotificationsPage: ошибка во время загрузки пол
           </div>
         </div>
         <div
-          className="sc-1jxwge6-0 d5w2g7-0 sc-1mb6nwv-0 dkqukC"
+          className="sc-1jxwge6-0 d5w2g7-0 sc-1mb6nwv-0 eDeYkT"
         >
           <div
             className="sc-1jxwge6-0 sc-18ch56c-0 fzRVpo"

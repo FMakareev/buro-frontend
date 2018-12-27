@@ -4,61 +4,65 @@ exports[`UpdateNotificationButtons: вызов запроса запрета 1`]
 <div
   className="sc-bxivhb dUiVDW"
 >
-  <button
-    className="mxzgdr-0 faeagD"
-    disabled={true}
-    display="inline-block"
-    onClick={[Function]}
-    size="xsmall"
-    type="button"
+  <div
+    className="sc-1jxwge6-0 gHyFgL"
   >
-    <div
-      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-      width="100%"
+    <button
+      className="mxzgdr-0 faeagD"
+      disabled={true}
+      display="inline-block"
+      onClick={[Function]}
+      size="xsmall"
+      type="button"
     >
-      <div />
       <div
-        className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+        width="100%"
       >
-        Approve
-      </div>
-      <div />
-    </div>
-  </button>
-  <button
-    className="mxzgdr-0 faeagD"
-    disabled={true}
-    display="inline-block"
-    onClick={[Function]}
-    size="xsmall"
-    type="button"
-  >
-    <div
-      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-      width="100%"
-    >
-      <div />
-      <div
-        className="sc-1jxwge6-0 wterhv-0 irkFkV"
-      >
-        Not approve
-      </div>
-      <div
-        className="sc-1jxwge6-0 wterhv-0 irkFkV"
-      >
+        <div />
         <div
-          className="sc-1jxwge6-0 sc-18ch56c-0 dKrLvQ"
-          color="color1"
-          fill="inherit"
-          fontSize={5}
+          className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        >
+          Approve
+        </div>
+        <div />
+      </div>
+    </button>
+    <button
+      className="mxzgdr-0 faeagD"
+      disabled={true}
+      display="inline-block"
+      onClick={[Function]}
+      size="xsmall"
+      type="button"
+    >
+      <div
+        className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+        width="100%"
+      >
+        <div />
+        <div
+          className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        >
+          Not approve
+        </div>
+        <div
+          className="sc-1jxwge6-0 wterhv-0 irkFkV"
         >
           <div
-            className="sc-181m7t4-0 ckrlTX"
-          />
+            className="sc-1jxwge6-0 sc-18ch56c-0 dKrLvQ"
+            color="color1"
+            fill="inherit"
+            fontSize={5}
+          >
+            <div
+              className="sc-181m7t4-0 ckrlTX"
+            />
+          </div>
         </div>
       </div>
-    </div>
-  </button>
+    </button>
+  </div>
 </div>
 `;
 
@@ -80,48 +84,60 @@ exports[`UpdateNotificationButtons: вызов запроса запрета с 
 <div
   className="sc-bxivhb dUiVDW"
 >
-  <button
-    className="mxzgdr-0 cWBUJc"
-    disabled={false}
-    display="inline-block"
-    onClick={[Function]}
-    size="xsmall"
-    type="button"
+  <div
+    className="sc-1jxwge6-0 gHyFgL"
   >
-    <div
-      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-      width="100%"
+    <button
+      className="mxzgdr-0 cWBUJc"
+      disabled={false}
+      display="inline-block"
+      onClick={[Function]}
+      size="xsmall"
+      type="button"
     >
-      <div />
       <div
-        className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+        width="100%"
       >
-        Approve
+        <div />
+        <div
+          className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        >
+          Approve
+        </div>
+        <div />
       </div>
-      <div />
-    </div>
-  </button>
-  <button
-    className="mxzgdr-0 faeagD"
-    disabled={false}
-    display="inline-block"
-    onClick={[Function]}
-    size="xsmall"
-    type="button"
+    </button>
+    <button
+      className="mxzgdr-0 faeagD"
+      disabled={false}
+      display="inline-block"
+      onClick={[Function]}
+      size="xsmall"
+      type="button"
+    >
+      <div
+        className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+        width="100%"
+      >
+        <div />
+        <div
+          className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        >
+          Not approve
+        </div>
+        <div />
+      </div>
+    </button>
+  </div>
+  <div
+    className="sc-1jxwge6-0 sc-18ch56c-0 gbKleW"
+    color="color9"
+    fontFamily="medium"
+    fontSize="12px"
   >
-    <div
-      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-      width="100%"
-    >
-      <div />
-      <div
-        className="sc-1jxwge6-0 wterhv-0 irkFkV"
-      >
-        Not approve
-      </div>
-      <div />
-    </div>
-  </button>
+    Repeat the request in 10 minutes, file not has been uploaded to the blockchain.
+  </div>
 </div>
 `;
 
@@ -129,61 +145,65 @@ exports[`UpdateNotificationButtons: вызов запроса подтвержд
 <div
   className="sc-bxivhb dUiVDW"
 >
-  <button
-    className="mxzgdr-0 faeagD"
-    disabled={true}
-    display="inline-block"
-    onClick={[Function]}
-    size="xsmall"
-    type="button"
+  <div
+    className="sc-1jxwge6-0 gHyFgL"
   >
-    <div
-      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-      width="100%"
+    <button
+      className="mxzgdr-0 faeagD"
+      disabled={true}
+      display="inline-block"
+      onClick={[Function]}
+      size="xsmall"
+      type="button"
     >
-      <div />
       <div
-        className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+        width="100%"
       >
-        Approve
-      </div>
-      <div
-        className="sc-1jxwge6-0 wterhv-0 irkFkV"
-      >
+        <div />
         <div
-          className="sc-1jxwge6-0 sc-18ch56c-0 dKrLvQ"
-          color="color1"
-          fill="inherit"
-          fontSize={5}
+          className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        >
+          Approve
+        </div>
+        <div
+          className="sc-1jxwge6-0 wterhv-0 irkFkV"
         >
           <div
-            className="sc-181m7t4-0 ckrlTX"
-          />
+            className="sc-1jxwge6-0 sc-18ch56c-0 dKrLvQ"
+            color="color1"
+            fill="inherit"
+            fontSize={5}
+          >
+            <div
+              className="sc-181m7t4-0 ckrlTX"
+            />
+          </div>
         </div>
       </div>
-    </div>
-  </button>
-  <button
-    className="mxzgdr-0 faeagD"
-    disabled={true}
-    display="inline-block"
-    onClick={[Function]}
-    size="xsmall"
-    type="button"
-  >
-    <div
-      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-      width="100%"
+    </button>
+    <button
+      className="mxzgdr-0 faeagD"
+      disabled={true}
+      display="inline-block"
+      onClick={[Function]}
+      size="xsmall"
+      type="button"
     >
-      <div />
       <div
-        className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+        width="100%"
       >
-        Not approve
+        <div />
+        <div
+          className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        >
+          Not approve
+        </div>
+        <div />
       </div>
-      <div />
-    </div>
-  </button>
+    </button>
+  </div>
 </div>
 `;
 
@@ -205,47 +225,51 @@ exports[`UpdateNotificationButtons: обычное состояние 1`] = `
 <div
   className="sc-bxivhb dUiVDW"
 >
-  <button
-    className="mxzgdr-0 faeagD"
-    disabled={false}
-    display="inline-block"
-    onClick={[Function]}
-    size="xsmall"
-    type="button"
+  <div
+    className="sc-1jxwge6-0 gHyFgL"
   >
-    <div
-      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-      width="100%"
+    <button
+      className="mxzgdr-0 faeagD"
+      disabled={false}
+      display="inline-block"
+      onClick={[Function]}
+      size="xsmall"
+      type="button"
     >
-      <div />
       <div
-        className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+        width="100%"
       >
-        Approve
+        <div />
+        <div
+          className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        >
+          Approve
+        </div>
+        <div />
       </div>
-      <div />
-    </div>
-  </button>
-  <button
-    className="mxzgdr-0 faeagD"
-    disabled={false}
-    display="inline-block"
-    onClick={[Function]}
-    size="xsmall"
-    type="button"
-  >
-    <div
-      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-      width="100%"
+    </button>
+    <button
+      className="mxzgdr-0 faeagD"
+      disabled={false}
+      display="inline-block"
+      onClick={[Function]}
+      size="xsmall"
+      type="button"
     >
-      <div />
       <div
-        className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+        width="100%"
       >
-        Not approve
+        <div />
+        <div
+          className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        >
+          Not approve
+        </div>
+        <div />
       </div>
-      <div />
-    </div>
-  </button>
+    </button>
+  </div>
 </div>
 `;

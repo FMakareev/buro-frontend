@@ -31,7 +31,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
             className="rt-thead -header"
             style={
               Object {
-                "minWidth": "300px",
+                "minWidth": "400px",
               }
             }
           >
@@ -39,6 +39,30 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
               className="rt-tr"
               role="row"
             >
+              <div
+                className="rt-th rt-resizable-header -cursor-pointer"
+                onClick={[Function]}
+                role="columnheader"
+                style={
+                  Object {
+                    "flex": "100 0 auto",
+                    "maxWidth": null,
+                    "width": "100px",
+                  }
+                }
+                tabIndex="-1"
+              >
+                <div
+                  className="rt-resizable-header-content"
+                >
+                  Client token
+                </div>
+                <div
+                  className="rt-resizer"
+                  onMouseDown={[Function]}
+                  onTouchStart={[Function]}
+                />
+              </div>
               <div
                 className="rt-th rt-resizable-header -cursor-pointer"
                 onClick={[Function]}
@@ -117,7 +141,7 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
             className="rt-thead -filters"
             style={
               Object {
-                "minWidth": "300px",
+                "minWidth": "400px",
               }
             }
           >
@@ -197,13 +221,37 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                   value=""
                 />
               </div>
+              <div
+                className="rt-th"
+                onClick={[Function]}
+                role="columnheader"
+                style={
+                  Object {
+                    "flex": "100 0 auto",
+                    "maxWidth": null,
+                    "width": "100px",
+                  }
+                }
+                tabIndex="-1"
+              >
+                <input
+                  onChange={[Function]}
+                  style={
+                    Object {
+                      "width": "100%",
+                    }
+                  }
+                  type="text"
+                  value=""
+                />
+              </div>
             </div>
           </div>
           <div
             className="rt-tbody"
             style={
               Object {
-                "minWidth": "300px",
+                "minWidth": "400px",
               }
             }
           >
@@ -212,12 +260,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
               role="rowgroup"
             >
               <div
-                className="rt-tr -odd"
+                className="rt-tr -padRow -odd"
                 role="row"
+                style={Object {}}
               >
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -227,18 +275,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Armand Champlin Hauck
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -248,18 +290,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    13.01.2018
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -269,62 +305,12 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <button
-                    className="mxzgdr-0 bYJcNk"
-                    disabled={false}
-                    display="inline-block"
-                    onClick={[Function]}
-                    size="xsmall"
-                    type="button"
-                  >
-                    <div
-                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-                      width="100%"
-                    >
-                      <div />
-                      <div
-                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
-                      >
-                        Request
-                      </div>
-                      <div />
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div
-              className="rt-tr-group"
-              role="rowgroup"
-            >
-              <div
-                className="rt-tr -even"
-                role="row"
-              >
-                <div
-                  className="rt-td"
-                  onClick={[Function]}
-                  role="gridcell"
-                  style={
-                    Object {
-                      "flex": "100 0 auto",
-                      "maxWidth": null,
-                      "width": "100px",
-                    }
-                  }
-                >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Armand Dach Hauck
-                  </div>
+                  <span>
+                     
+                  </span>
                 </div>
                 <div
                   className="rt-td"
-                  onClick={[Function]}
                   role="gridcell"
                   style={
                     Object {
@@ -334,478 +320,9 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                     }
                   }
                 >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    29.07.2018
-                  </div>
-                </div>
-                <div
-                  className="rt-td"
-                  onClick={[Function]}
-                  role="gridcell"
-                  style={
-                    Object {
-                      "flex": "100 0 auto",
-                      "maxWidth": null,
-                      "width": "100px",
-                    }
-                  }
-                >
-                  <button
-                    className="mxzgdr-0 bYJcNk"
-                    disabled={false}
-                    display="inline-block"
-                    onClick={[Function]}
-                    size="xsmall"
-                    type="button"
-                  >
-                    <div
-                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-                      width="100%"
-                    >
-                      <div />
-                      <div
-                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
-                      >
-                        Request
-                      </div>
-                      <div />
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div
-              className="rt-tr-group"
-              role="rowgroup"
-            >
-              <div
-                className="rt-tr -odd"
-                role="row"
-              >
-                <div
-                  className="rt-td"
-                  onClick={[Function]}
-                  role="gridcell"
-                  style={
-                    Object {
-                      "flex": "100 0 auto",
-                      "maxWidth": null,
-                      "width": "100px",
-                    }
-                  }
-                >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Armand Champlin Hauck
-                  </div>
-                </div>
-                <div
-                  className="rt-td"
-                  onClick={[Function]}
-                  role="gridcell"
-                  style={
-                    Object {
-                      "flex": "100 0 auto",
-                      "maxWidth": null,
-                      "width": "100px",
-                    }
-                  }
-                >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    13.01.2018
-                  </div>
-                </div>
-                <div
-                  className="rt-td"
-                  onClick={[Function]}
-                  role="gridcell"
-                  style={
-                    Object {
-                      "flex": "100 0 auto",
-                      "maxWidth": null,
-                      "width": "100px",
-                    }
-                  }
-                >
-                  <button
-                    className="mxzgdr-0 bYJcNk"
-                    disabled={false}
-                    display="inline-block"
-                    onClick={[Function]}
-                    size="xsmall"
-                    type="button"
-                  >
-                    <div
-                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-                      width="100%"
-                    >
-                      <div />
-                      <div
-                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
-                      >
-                        Request
-                      </div>
-                      <div />
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div
-              className="rt-tr-group"
-              role="rowgroup"
-            >
-              <div
-                className="rt-tr -even"
-                role="row"
-              >
-                <div
-                  className="rt-td"
-                  onClick={[Function]}
-                  role="gridcell"
-                  style={
-                    Object {
-                      "flex": "100 0 auto",
-                      "maxWidth": null,
-                      "width": "100px",
-                    }
-                  }
-                >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Armand Champlin Hauck
-                  </div>
-                </div>
-                <div
-                  className="rt-td"
-                  onClick={[Function]}
-                  role="gridcell"
-                  style={
-                    Object {
-                      "flex": "100 0 auto",
-                      "maxWidth": null,
-                      "width": "100px",
-                    }
-                  }
-                >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    13.01.2018
-                  </div>
-                </div>
-                <div
-                  className="rt-td"
-                  onClick={[Function]}
-                  role="gridcell"
-                  style={
-                    Object {
-                      "flex": "100 0 auto",
-                      "maxWidth": null,
-                      "width": "100px",
-                    }
-                  }
-                >
-                  <button
-                    className="mxzgdr-0 bYJcNk"
-                    disabled={false}
-                    display="inline-block"
-                    onClick={[Function]}
-                    size="xsmall"
-                    type="button"
-                  >
-                    <div
-                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-                      width="100%"
-                    >
-                      <div />
-                      <div
-                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
-                      >
-                        Request
-                      </div>
-                      <div />
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div
-              className="rt-tr-group"
-              role="rowgroup"
-            >
-              <div
-                className="rt-tr -odd"
-                role="row"
-              >
-                <div
-                  className="rt-td"
-                  onClick={[Function]}
-                  role="gridcell"
-                  style={
-                    Object {
-                      "flex": "100 0 auto",
-                      "maxWidth": null,
-                      "width": "100px",
-                    }
-                  }
-                >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Armand Champlin Hauck
-                  </div>
-                </div>
-                <div
-                  className="rt-td"
-                  onClick={[Function]}
-                  role="gridcell"
-                  style={
-                    Object {
-                      "flex": "100 0 auto",
-                      "maxWidth": null,
-                      "width": "100px",
-                    }
-                  }
-                >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    13.01.2018
-                  </div>
-                </div>
-                <div
-                  className="rt-td"
-                  onClick={[Function]}
-                  role="gridcell"
-                  style={
-                    Object {
-                      "flex": "100 0 auto",
-                      "maxWidth": null,
-                      "width": "100px",
-                    }
-                  }
-                >
-                  <button
-                    className="mxzgdr-0 bYJcNk"
-                    disabled={false}
-                    display="inline-block"
-                    onClick={[Function]}
-                    size="xsmall"
-                    type="button"
-                  >
-                    <div
-                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-                      width="100%"
-                    >
-                      <div />
-                      <div
-                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
-                      >
-                        Request
-                      </div>
-                      <div />
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div
-              className="rt-tr-group"
-              role="rowgroup"
-            >
-              <div
-                className="rt-tr -even"
-                role="row"
-              >
-                <div
-                  className="rt-td"
-                  onClick={[Function]}
-                  role="gridcell"
-                  style={
-                    Object {
-                      "flex": "100 0 auto",
-                      "maxWidth": null,
-                      "width": "100px",
-                    }
-                  }
-                >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Armand Champlin Hauck
-                  </div>
-                </div>
-                <div
-                  className="rt-td"
-                  onClick={[Function]}
-                  role="gridcell"
-                  style={
-                    Object {
-                      "flex": "100 0 auto",
-                      "maxWidth": null,
-                      "width": "100px",
-                    }
-                  }
-                >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    13.01.2018
-                  </div>
-                </div>
-                <div
-                  className="rt-td"
-                  onClick={[Function]}
-                  role="gridcell"
-                  style={
-                    Object {
-                      "flex": "100 0 auto",
-                      "maxWidth": null,
-                      "width": "100px",
-                    }
-                  }
-                >
-                  <button
-                    className="mxzgdr-0 bYJcNk"
-                    disabled={false}
-                    display="inline-block"
-                    onClick={[Function]}
-                    size="xsmall"
-                    type="button"
-                  >
-                    <div
-                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-                      width="100%"
-                    >
-                      <div />
-                      <div
-                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
-                      >
-                        Request
-                      </div>
-                      <div />
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div
-              className="rt-tr-group"
-              role="rowgroup"
-            >
-              <div
-                className="rt-tr -odd"
-                role="row"
-              >
-                <div
-                  className="rt-td"
-                  onClick={[Function]}
-                  role="gridcell"
-                  style={
-                    Object {
-                      "flex": "100 0 auto",
-                      "maxWidth": null,
-                      "width": "100px",
-                    }
-                  }
-                >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    Armand Champlin Hauck
-                  </div>
-                </div>
-                <div
-                  className="rt-td"
-                  onClick={[Function]}
-                  role="gridcell"
-                  style={
-                    Object {
-                      "flex": "100 0 auto",
-                      "maxWidth": null,
-                      "width": "100px",
-                    }
-                  }
-                >
-                  <div
-                    className="sc-1jxwge6-0 sc-18ch56c-0 eiPgyn"
-                    color="color1"
-                    fontFamily="medium"
-                    fontSize={6}
-                  >
-                    13.01.2018
-                  </div>
-                </div>
-                <div
-                  className="rt-td"
-                  onClick={[Function]}
-                  role="gridcell"
-                  style={
-                    Object {
-                      "flex": "100 0 auto",
-                      "maxWidth": null,
-                      "width": "100px",
-                    }
-                  }
-                >
-                  <button
-                    className="mxzgdr-0 bYJcNk"
-                    disabled={false}
-                    display="inline-block"
-                    onClick={[Function]}
-                    size="xsmall"
-                    type="button"
-                  >
-                    <div
-                      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-                      width="100%"
-                    >
-                      <div />
-                      <div
-                        className="sc-1jxwge6-0 wterhv-0 irkFkV"
-                      >
-                        Request
-                      </div>
-                      <div />
-                    </div>
-                  </button>
+                  <span>
+                     
+                  </span>
                 </div>
               </div>
             </div>
@@ -818,6 +335,21 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                 role="row"
                 style={Object {}}
               >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
                 <div
                   className="rt-td"
                   role="gridcell"
@@ -919,6 +451,21 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                      
                   </span>
                 </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
               </div>
             </div>
             <div
@@ -930,6 +477,447 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
                 role="row"
                 style={Object {}}
               >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              className="rt-tr-group"
+              role="rowgroup"
+            >
+              <div
+                className="rt-tr -padRow -odd"
+                role="row"
+                style={Object {}}
+              >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              className="rt-tr-group"
+              role="rowgroup"
+            >
+              <div
+                className="rt-tr -padRow -even"
+                role="row"
+                style={Object {}}
+              >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              className="rt-tr-group"
+              role="rowgroup"
+            >
+              <div
+                className="rt-tr -padRow -odd"
+                role="row"
+                style={Object {}}
+              >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              className="rt-tr-group"
+              role="rowgroup"
+            >
+              <div
+                className="rt-tr -padRow -even"
+                role="row"
+                style={Object {}}
+              >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              className="rt-tr-group"
+              role="rowgroup"
+            >
+              <div
+                className="rt-tr -padRow -odd"
+                role="row"
+                style={Object {}}
+              >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              className="rt-tr-group"
+              role="rowgroup"
+            >
+              <div
+                className="rt-tr -padRow -even"
+                role="row"
+                style={Object {}}
+              >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
                 <div
                   className="rt-td"
                   role="gridcell"
@@ -1193,7 +1181,18 @@ exports[`ClientsPage: загруженный список клиентов 1`] =
           </div>
         </div>
         <div
-          className="sc-1jxwge6-0 d5w2g7-0 sc-1mb6nwv-0 dkqukC"
+          className="sc-1jxwge6-0 d5w2g7-0 sc7u3f-0 hrhNNE"
+        >
+          <div
+            className="sc-1jxwge6-0 sc-18ch56c-0 fFWriT"
+            color="color1"
+            fontSize={8}
+          >
+            No data
+          </div>
+        </div>
+        <div
+          className="sc-1jxwge6-0 d5w2g7-0 sc-1mb6nwv-0 eDeYkT"
         >
           <div
             className="sc-1jxwge6-0 sc-18ch56c-0 fzRVpo"
@@ -1242,7 +1241,7 @@ exports[`ClientsPage: загрузка пользовательских данн
             className="rt-thead -header"
             style={
               Object {
-                "minWidth": "300px",
+                "minWidth": "400px",
               }
             }
           >
@@ -1250,6 +1249,30 @@ exports[`ClientsPage: загрузка пользовательских данн
               className="rt-tr"
               role="row"
             >
+              <div
+                className="rt-th rt-resizable-header -cursor-pointer"
+                onClick={[Function]}
+                role="columnheader"
+                style={
+                  Object {
+                    "flex": "100 0 auto",
+                    "maxWidth": null,
+                    "width": "100px",
+                  }
+                }
+                tabIndex="-1"
+              >
+                <div
+                  className="rt-resizable-header-content"
+                >
+                  Client token
+                </div>
+                <div
+                  className="rt-resizer"
+                  onMouseDown={[Function]}
+                  onTouchStart={[Function]}
+                />
+              </div>
               <div
                 className="rt-th rt-resizable-header -cursor-pointer"
                 onClick={[Function]}
@@ -1328,7 +1351,7 @@ exports[`ClientsPage: загрузка пользовательских данн
             className="rt-thead -filters"
             style={
               Object {
-                "minWidth": "300px",
+                "minWidth": "400px",
               }
             }
           >
@@ -1408,13 +1431,37 @@ exports[`ClientsPage: загрузка пользовательских данн
                   value=""
                 />
               </div>
+              <div
+                className="rt-th"
+                onClick={[Function]}
+                role="columnheader"
+                style={
+                  Object {
+                    "flex": "100 0 auto",
+                    "maxWidth": null,
+                    "width": "100px",
+                  }
+                }
+                tabIndex="-1"
+              >
+                <input
+                  onChange={[Function]}
+                  style={
+                    Object {
+                      "width": "100%",
+                    }
+                  }
+                  type="text"
+                  value=""
+                />
+              </div>
             </div>
           </div>
           <div
             className="rt-tbody"
             style={
               Object {
-                "minWidth": "300px",
+                "minWidth": "400px",
               }
             }
           >
@@ -1472,6 +1519,21 @@ exports[`ClientsPage: загрузка пользовательских данн
                      
                   </span>
                 </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
               </div>
             </div>
             <div
@@ -1483,6 +1545,21 @@ exports[`ClientsPage: загрузка пользовательских данн
                 role="row"
                 style={Object {}}
               >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
                 <div
                   className="rt-td"
                   role="gridcell"
@@ -1584,6 +1661,21 @@ exports[`ClientsPage: загрузка пользовательских данн
                      
                   </span>
                 </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
               </div>
             </div>
             <div
@@ -1595,6 +1687,21 @@ exports[`ClientsPage: загрузка пользовательских данн
                 role="row"
                 style={Object {}}
               >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
                 <div
                   className="rt-td"
                   role="gridcell"
@@ -1696,6 +1803,21 @@ exports[`ClientsPage: загрузка пользовательских данн
                      
                   </span>
                 </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
               </div>
             </div>
             <div
@@ -1707,6 +1829,21 @@ exports[`ClientsPage: загрузка пользовательских данн
                 role="row"
                 style={Object {}}
               >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
                 <div
                   className="rt-td"
                   role="gridcell"
@@ -1808,6 +1945,21 @@ exports[`ClientsPage: загрузка пользовательских данн
                      
                   </span>
                 </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
               </div>
             </div>
             <div
@@ -1819,6 +1971,21 @@ exports[`ClientsPage: загрузка пользовательских данн
                 role="row"
                 style={Object {}}
               >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
                 <div
                   className="rt-td"
                   role="gridcell"
@@ -1920,6 +2087,21 @@ exports[`ClientsPage: загрузка пользовательских данн
                      
                   </span>
                 </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
               </div>
             </div>
             <div
@@ -1931,6 +2113,21 @@ exports[`ClientsPage: загрузка пользовательских данн
                 role="row"
                 style={Object {}}
               >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
                 <div
                   className="rt-td"
                   role="gridcell"
@@ -2194,7 +2391,7 @@ exports[`ClientsPage: загрузка пользовательских данн
           </div>
         </div>
         <div
-          className="sc-1jxwge6-0 d5w2g7-0 sc7u3f-0 iZkmDs"
+          className="sc-1jxwge6-0 d5w2g7-0 sc7u3f-0 hrhNNE"
         >
           <div
             className="sc-1jxwge6-0 sc-18ch56c-0 fFWriT"
@@ -2205,7 +2402,7 @@ exports[`ClientsPage: загрузка пользовательских данн
           </div>
         </div>
         <div
-          className="sc-1jxwge6-0 d5w2g7-0 sc-1mb6nwv-0 koaxEZ"
+          className="sc-1jxwge6-0 d5w2g7-0 sc-1mb6nwv-0 eJUTlp"
         >
           <div
             className="sc-1jxwge6-0 sc-18ch56c-0 fzRVpo"
@@ -2254,7 +2451,7 @@ exports[`ClientsPage: ошибка во время загрузки пользо
             className="rt-thead -header"
             style={
               Object {
-                "minWidth": "300px",
+                "minWidth": "400px",
               }
             }
           >
@@ -2262,6 +2459,30 @@ exports[`ClientsPage: ошибка во время загрузки пользо
               className="rt-tr"
               role="row"
             >
+              <div
+                className="rt-th rt-resizable-header -cursor-pointer"
+                onClick={[Function]}
+                role="columnheader"
+                style={
+                  Object {
+                    "flex": "100 0 auto",
+                    "maxWidth": null,
+                    "width": "100px",
+                  }
+                }
+                tabIndex="-1"
+              >
+                <div
+                  className="rt-resizable-header-content"
+                >
+                  Client token
+                </div>
+                <div
+                  className="rt-resizer"
+                  onMouseDown={[Function]}
+                  onTouchStart={[Function]}
+                />
+              </div>
               <div
                 className="rt-th rt-resizable-header -cursor-pointer"
                 onClick={[Function]}
@@ -2340,7 +2561,7 @@ exports[`ClientsPage: ошибка во время загрузки пользо
             className="rt-thead -filters"
             style={
               Object {
-                "minWidth": "300px",
+                "minWidth": "400px",
               }
             }
           >
@@ -2420,13 +2641,37 @@ exports[`ClientsPage: ошибка во время загрузки пользо
                   value=""
                 />
               </div>
+              <div
+                className="rt-th"
+                onClick={[Function]}
+                role="columnheader"
+                style={
+                  Object {
+                    "flex": "100 0 auto",
+                    "maxWidth": null,
+                    "width": "100px",
+                  }
+                }
+                tabIndex="-1"
+              >
+                <input
+                  onChange={[Function]}
+                  style={
+                    Object {
+                      "width": "100%",
+                    }
+                  }
+                  type="text"
+                  value=""
+                />
+              </div>
             </div>
           </div>
           <div
             className="rt-tbody"
             style={
               Object {
-                "minWidth": "300px",
+                "minWidth": "400px",
               }
             }
           >
@@ -2484,6 +2729,21 @@ exports[`ClientsPage: ошибка во время загрузки пользо
                      
                   </span>
                 </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
               </div>
             </div>
             <div
@@ -2495,6 +2755,21 @@ exports[`ClientsPage: ошибка во время загрузки пользо
                 role="row"
                 style={Object {}}
               >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
                 <div
                   className="rt-td"
                   role="gridcell"
@@ -2596,6 +2871,21 @@ exports[`ClientsPage: ошибка во время загрузки пользо
                      
                   </span>
                 </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
               </div>
             </div>
             <div
@@ -2607,6 +2897,21 @@ exports[`ClientsPage: ошибка во время загрузки пользо
                 role="row"
                 style={Object {}}
               >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
                 <div
                   className="rt-td"
                   role="gridcell"
@@ -2708,6 +3013,21 @@ exports[`ClientsPage: ошибка во время загрузки пользо
                      
                   </span>
                 </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
               </div>
             </div>
             <div
@@ -2719,6 +3039,21 @@ exports[`ClientsPage: ошибка во время загрузки пользо
                 role="row"
                 style={Object {}}
               >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
                 <div
                   className="rt-td"
                   role="gridcell"
@@ -2820,6 +3155,21 @@ exports[`ClientsPage: ошибка во время загрузки пользо
                      
                   </span>
                 </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
               </div>
             </div>
             <div
@@ -2831,6 +3181,21 @@ exports[`ClientsPage: ошибка во время загрузки пользо
                 role="row"
                 style={Object {}}
               >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
                 <div
                   className="rt-td"
                   role="gridcell"
@@ -2932,6 +3297,21 @@ exports[`ClientsPage: ошибка во время загрузки пользо
                      
                   </span>
                 </div>
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
               </div>
             </div>
             <div
@@ -2943,6 +3323,21 @@ exports[`ClientsPage: ошибка во время загрузки пользо
                 role="row"
                 style={Object {}}
               >
+                <div
+                  className="rt-td"
+                  role="gridcell"
+                  style={
+                    Object {
+                      "flex": "100 0 auto",
+                      "maxWidth": null,
+                      "width": "100px",
+                    }
+                  }
+                >
+                  <span>
+                     
+                  </span>
+                </div>
                 <div
                   className="rt-td"
                   role="gridcell"
@@ -3206,7 +3601,7 @@ exports[`ClientsPage: ошибка во время загрузки пользо
           </div>
         </div>
         <div
-          className="sc-1jxwge6-0 d5w2g7-0 sc-7kykx0-0 etgRnG"
+          className="sc-1jxwge6-0 d5w2g7-0 sc-7kykx0-0 fYRoBJ"
         >
           <div
             className="sc-1jxwge6-0 wterhv-0 sc-7kykx0-1 gabwNl"
@@ -3233,7 +3628,7 @@ exports[`ClientsPage: ошибка во время загрузки пользо
           </div>
         </div>
         <div
-          className="sc-1jxwge6-0 d5w2g7-0 sc-1mb6nwv-0 dkqukC"
+          className="sc-1jxwge6-0 d5w2g7-0 sc-1mb6nwv-0 eDeYkT"
         >
           <div
             className="sc-1jxwge6-0 sc-18ch56c-0 fzRVpo"

@@ -42,6 +42,20 @@ exports[`CreateNotificationButton: запрос завершен ошибкой 
 </div>
 `;
 
+exports[`CreateNotificationButton: запрос завершен ошибкой сети 1`] = `
+<div
+  className="sc-bxivhb dUiVDW"
+>
+  <div
+    className="sc-1jxwge6-0 sc-18ch56c-0 hxjSXI"
+    color="color1"
+    fontSize={6}
+  >
+    Pending approval
+  </div>
+</div>
+`;
+
 exports[`CreateNotificationButton: обычное состояние 1`] = `
 <div
   className="sc-bxivhb dUiVDW"
