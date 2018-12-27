@@ -1,39 +1,49 @@
-export const dummyData = [
+
+
+export const otherHelp = [
   {
-    sentence: 'Suscipit voluptatem et quibusdam ut',
-    paragraph:
-      'Esse atque voluptas. Sunt voluptate eligendi odit. Voluptatibus nemo iusto rerum reiciendis recusandae molestiae. Ipsa facilis vitae ut incidunt dolor ducimus aliquid.Et neque sit error voluptatem aperiam veniam qui.Aliquam vel vel qui quos expedita sint accusantium aut.Animi sed nam cum veritatis perferendis.Amet cum quos.Sit fuga voluptatum amet quo.Facere accusamus dignissimos qui est. Ad et nihil.Laborum voluptatem beatae reiciendis odit nisi quia laborum autem.Eos impedit magnam sed natus dolorem.Dolores facere in autem vel.Vel sunt earum enim autem voluptatem.Perspiciatis omnis ad harum perspiciatis commodi.',
-  },
-  {
-    sentence: 'Hic dolor necessitatibus dolore sit rem.',
-    paragraph:
-      'Ullam earum dolore.Dignissimos reiciendis ratione quos qui.Expedita dolore quisquam cum sit quia.In ut tempora omnis minus doloribus.Ab qui et nemo quo sunt velit nihil unde. Neque corrupti odit sequi dolorem nam.Cupiditate aut possimus eos minima qui rem asperiores velit.Quibusdam ut ab id.Inventore porro assumenda.Dolorem quod ut molestiae deserunt voluptatibus fugit. Autem ea sint et illo qui est.Aut qui explicabo ut.Error illum et officia alias sunt.Numquam quam libero eaque aut natus dolores natus voluptate.Illum alias quo quo.Placeat pariatur possimus.',
-  },
-  {
-    sentence: 'Et dolore in adipisci alias qui nisi magnam ex.',
-    paragraph:
-      'Sed quasi est atque omnis qui et molestiae quae qui.Qui asperiores aliquid ducimus reiciendis esse cum vel.Repellendus sint necessitatibus optio.Facilis in voluptatem sequi.Voluptas ut qui rerum harum eum qui sint nihil.Saepe soluta rerum dicta doloribus veritatis. Deserunt vero enim neque omnis fugiat quas repellat necessitatibus.Dolor tempora eum aut voluptas voluptatum inventore autem exercitationem repellat.Ullam reiciendis explicabo.Dolor eveniet quasi numquam. Distinctio asperiores itaque ratione.Occaecati hic id.Adipisci consequatur corrupti.Magni aut tempore praesentium aut sit quisquam ipsum.Perferendis aut voluptatibus consequatur ducimus dicta.At voluptates qui repudiandae qui consequatur.',
-  },
-  {
-    sentence: 'Et voluptatem laudantium aut vero.',
-    paragraph:
-      ' Voluptatem eligendi maxime vel consequuntur ipsa et.Enim enim reiciendis quia occaecati necessitatibus ducimus nostrum nostrum perferendis.Et dolores consequatur dolore laudantium aut quia. Magnam est porro cupiditate qui magnam animi facere quo.Ut voluptatem laborum molestias.Ut eos dolor et libero optio recusandae. Ea vitae vero eos.Autem sint ipsa repudiandae eos est.Quo quo non omnis iusto cumque totam ut ipsa.Accusamus assumenda numquam provident molestias reiciendis sed dolorem vel.',
-  },
-  {
-    sentence: 'Aliquid quas enim dolore occaecati debitis rerum culpa voluptatibus.',
-    paragraph:
-      'Id porro earum ipsa omnis rerum est laborum. Commodi similique est autem. Vitae aliquam dolorem aliquam aut. Et debitis vero.Qui quae asperiores.Non laboriosam cum quibusdam.Voluptatum mollitia nostrum dolor magni deserunt sed eum animi aut.Eos non eligendi ea.Nihil ut molestiae dolorum ratione laborum architecto non. Rerum quas neque architecto eos veniam.Maxime numquam explicabo repellat.Esse explicabo quia voluptas.',
-  },
-  {
-    sentence: 'Autem libero quo repellendus expedita sequi fugit.',
-    paragraph:
-      'Velit neque autem voluptas suscipit non quia ut quae. Molestiae delectus illum qui id sed tenetur qui velit ea. Quaerat soluta dolores error et ut rerum non. Voluptatem ut itaque velit numquam eum aut sed nam. Dmnis voluptatibus sed officia ipsam sit quam.Deleniti odio sunt qui aliquid aut dolores.Et nihil ipsam qui earum quia at dolorem corrupti.Consequuntur ea maxime. Et omnis quisquam.Ipsa ut molestiae debitis sunt neque qui.Qui maxime totam non sed labore maiores sed quas.Voluptatem ut aperiam quis quod.Sint fugit in repudiandae doloribus dolorem.',
-  },
-  {
-    sentence: 'Ipsa qui est ut odit qui nemo ut ea.',
-    paragraph:
-      'Ut autem quia expedita. Qui nemo eaque ad sit consequatur ratione dolor accusantium. Molestias et et sed quis non non eum. Cum quod ad rerum.Omnis minima voluptatibus quibusdam et quibusdam.Quae id odit eveniet labore similique.Sit maiores et et deleniti dolores.Et quia ad aut.Est reprehenderit ut quasi perferendis quidem natus deserunt sint. Cum ipsum quis aut quidem repudiandae beatae veniam.Est facere hic culpa deleniti.Totam quaerat repudiandae amet rerum dolorem hic.Velit vero fugiat autem et.Ea veniam omnis animi et.Molestiae temporibus reiciendis rerum voluptatem delectus ducimus a cum optio.',
+    title: 'How to log in?',
+    description: 'On the main page, enter your username and password and click “Sign in”.'
+  }, {
+    title: 'I forgot my password, what should I do?',
+    description: 'On the login page, click “Forgot your password?”. After the transition, enter the email address to which your account is registered. A letter will come to your mail, with an indication of the link, clicking on which you will be required to enter a new password with repetition.'
   },
 ];
 
-export default dummyData;
+
+export const clientHelp = [
+  {
+    title: 'How to create a client account?',
+    description: `To register a user account, you need to click “Create an account” on the login page. Next you need to enter all your data (full name, date of birth, email address, password and master password) specifying the role “Client”. Please note that the password and master password must consist of Latin letters and numbers. After entering all the data you need to click “Get started”.`
+  }, {
+    title: 'I have changed personal data (name, email address, etc.), how do I make changes?',
+    description: 'On your profile page you can make all necessary changes.'
+  }, {
+    title: 'Where does my credit history come from?',
+    description: 'Your Credit History is loaded with the Credit History Bureau, taking into account all your loans and borrowings. History is constantly updated.'
+  }, {
+    title: 'Which banks will be able to see my credit history?',
+    description: 'Only those banks to whom you have granted access will see your credit history.'
+  },{
+    title: 'How can I give the bank access to my credit history?',
+    description: 'First of all, the bank must send you a request for access to credit history. You can provide him with a link to your credit history. The link is in your profile in the “You are a token for a bank” window. Further in the notification section, you confirm the request of the bank, thereby giving it access to your credit history.\n' +
+    'Attention! If your credit history is updated after you have granted access to the bank, it will already have an old (irrelevant) version of credit history. To provide an updated (current) version of credit history, the bank must repeat the request.'
+  },{
+    title: 'What happens if my credit history is updated?',
+    description: 'If your credit history has been updated, then all banks to which you have granted access will have the old (irrelevant) version of your credit history. To provide an updated (specified) version of credit history, the bank must repeat the request.'
+  },
+];
+export const bankHelp = [
+  {
+    title: 'How do I get a bank account?',
+    description: 'In order to register a bank account, you need to click “Create an account” on the login page. Next, you need to enter all the necessary data (name of the bank, e-mail address) indicating the role “Bank”. Please note that the password and master password must consist of Latin letters and numbers. After entering all the data you need to click “Get started”.'
+  },  {
+    title: 'How do I get access to user`s credit history?',
+    description: 'First of all, you need to get a request to access to user`s credit history. After the user`s request approval, you need to check your e-mail and follow the link in it. Furthermore, you need to enter the code from e-mail in a field. The client can get access only to his own credit history.'
+  }, {
+    title: 'Customer credit history has been updated. How do I find out about this?',
+    description: 'Changes to the user\'s credit history will be displayed in the "Documents" tab. They will be marked with the status "need updated."'
+  },
+];
+
+export default {bankHelp, clientHelp};
