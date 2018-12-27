@@ -90,9 +90,15 @@ const start = async () => {
     if (stats.hasErrors()) {
       const info = stats.toJson();
       const errors = info.errors[0].split('\n');
-      logMessage(errors[0], 'error');
-      logMessage(errors[1], 'error');
-      logMessage(errors[2], 'error');
+      if(Array.isArray(errors)){
+        errors.forEach(item=>{
+          logMessage(item, 'error');
+        })
+      } else {
+        logMessage(errors[0], 'error');
+        logMessage(errors[1], 'error');
+        logMessage(errors[2], 'error');
+      }
     }
   });
 
