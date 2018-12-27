@@ -119,18 +119,22 @@ export class ClientsPage extends Component {
   }
 
   get initialState() {
-    const {location} = this.props;
-    console.log('location.search: ', location.search);
-    const query = QueryString.parse(location.search);
+    try {
+      const {location} = this.props;
+      const query = QueryString.parse(location.search);
 
-    return {
-      filtered: [
-        (query.client ? {
-          id: "ClientID",
-          value: query.client,
-        } : {})
-      ]
-    };
+      return {
+        filtered: [
+          (query.client ? {
+            id: "ClientID",
+            value: query.client,
+          } : {})
+        ]
+      };
+    } catch (error) {
+      console.error(error);
+      return {};
+    }
   }
 
   render() {
