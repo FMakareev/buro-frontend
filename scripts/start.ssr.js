@@ -20,6 +20,14 @@ import {
 import { assetsMove } from '../tools/assetsMove';
 
 // https://github.com/manuelbieh/react-ssr-setup
+var argv = require('yargs')
+  .option('inspect-node', {
+    type: 'boolean',
+    describe: 'Remotely inspect the Node.js instance with Chrome devtools (adds the `--inspect` flag to the Node.js process)'
+  })
+  .help('help')
+  .argv;
+
 
 const start = async () => {
   await clear();
@@ -111,6 +119,9 @@ const start = async () => {
   }
 
   const script = nodemon({
+    "verbose": true,
+    nodeArgs: ['--inspect'],
+    // nodeArgs: argv.inspectNode ? ['--inspect'] : [],
     script: `public/server.js`,
     ignore: ['src', 'scripts', 'config', './*.*', 'build/client'],
   });
