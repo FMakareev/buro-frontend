@@ -44,6 +44,7 @@ export class HeaderNotification extends Component {
         </>
       );
     }
+    return <SvgBellEmpty />;
   };
 
   countClientsNotifications = data => {
