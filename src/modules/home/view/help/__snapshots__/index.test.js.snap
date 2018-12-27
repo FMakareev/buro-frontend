@@ -11,259 +11,435 @@ exports[`HelpPage: рендер без ошибок 1`] = `
       className="sc-1jxwge6-0 gHyFgL"
     >
       <div
-        className="sc-1jxwge6-0 sc-18ch56c-0 dVmHqH"
-        color="color1"
-        fontFamily="bold"
-        fontSize={9}
+        className="sc-1jxwge6-0 ekFNTq"
       >
-        FAQ
+        <div
+          className="sc-1jxwge6-0 sc-18ch56c-0 dVmHqH"
+          color="color1"
+          fontFamily="bold"
+          fontSize={9}
+        >
+          FAQ: Client
+        </div>
+        <div
+          className="sc-1jxwge6-0 jHDLGC"
+        >
+          <div
+            className="y2tw4m-0 gzOhJN"
+            onClick={[Function]}
+          />
+          <div
+            className="sc-7zx66l-0 eXlZbJ"
+          >
+            <div
+              className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 fyczoT"
+              onClick={[Function]}
+            >
+              <div
+                className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
+                color="color1"
+              >
+                How to create a client account?
+              </div>
+              <svg
+                fill="inherit"
+                height="20px"
+                viewBox="0 0 32 32"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
+                  fill="inherit"
+                />
+                <path
+                  d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
+                  fill="inherit"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            className="y2tw4m-0 gzOhJN"
+            onClick={[Function]}
+          />
+          <div
+            className="sc-7zx66l-0 eXlZbJ"
+          >
+            <div
+              className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 fyczoT"
+              onClick={[Function]}
+            >
+              <div
+                className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
+                color="color1"
+              >
+                I have changed personal data (name, email address, etc.), how do I make changes?
+              </div>
+              <svg
+                fill="inherit"
+                height="20px"
+                viewBox="0 0 32 32"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
+                  fill="inherit"
+                />
+                <path
+                  d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
+                  fill="inherit"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            className="y2tw4m-0 gzOhJN"
+            onClick={[Function]}
+          />
+          <div
+            className="sc-7zx66l-0 eXlZbJ"
+          >
+            <div
+              className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 fyczoT"
+              onClick={[Function]}
+            >
+              <div
+                className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
+                color="color1"
+              >
+                Where does my credit history come from?
+              </div>
+              <svg
+                fill="inherit"
+                height="20px"
+                viewBox="0 0 32 32"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
+                  fill="inherit"
+                />
+                <path
+                  d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
+                  fill="inherit"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            className="y2tw4m-0 gzOhJN"
+            onClick={[Function]}
+          />
+          <div
+            className="sc-7zx66l-0 eXlZbJ"
+          >
+            <div
+              className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 fyczoT"
+              onClick={[Function]}
+            >
+              <div
+                className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
+                color="color1"
+              >
+                Which banks will be able to see my credit history?
+              </div>
+              <svg
+                fill="inherit"
+                height="20px"
+                viewBox="0 0 32 32"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
+                  fill="inherit"
+                />
+                <path
+                  d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
+                  fill="inherit"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            className="y2tw4m-0 gzOhJN"
+            onClick={[Function]}
+          />
+          <div
+            className="sc-7zx66l-0 eXlZbJ"
+          >
+            <div
+              className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 fyczoT"
+              onClick={[Function]}
+            >
+              <div
+                className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
+                color="color1"
+              >
+                How can I give the bank access to my credit history?
+              </div>
+              <svg
+                fill="inherit"
+                height="20px"
+                viewBox="0 0 32 32"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
+                  fill="inherit"
+                />
+                <path
+                  d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
+                  fill="inherit"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            className="y2tw4m-0 gzOhJN"
+            onClick={[Function]}
+          />
+          <div
+            className="sc-7zx66l-0 eXlZbJ"
+          >
+            <div
+              className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 fyczoT"
+              onClick={[Function]}
+            >
+              <div
+                className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
+                color="color1"
+              >
+                What happens if my credit history is updated?
+              </div>
+              <svg
+                fill="inherit"
+                height="20px"
+                viewBox="0 0 32 32"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
+                  fill="inherit"
+                />
+                <path
+                  d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
+                  fill="inherit"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
       <div
-        className="sc-1jxwge6-0 jHDLGC"
+        className="sc-1jxwge6-0 gHyFgL"
       >
         <div
-          className="y2tw4m-0 gzOhJN"
-          onClick={[Function]}
-        />
-        <div
-          className="sc-7zx66l-0 eXlZbJ"
+          className="sc-1jxwge6-0 sc-18ch56c-0 dVmHqH"
+          color="color1"
+          fontFamily="bold"
+          fontSize={9}
         >
-          <div
-            className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 bZsOMn"
-            onClick={[Function]}
-          >
-            <div
-              className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
-              color="color1"
-            >
-              Suscipit voluptatem et quibusdam ut
-            </div>
-            <svg
-              fill="inherit"
-              height="20px"
-              viewBox="0 0 32 32"
-              width="20px"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
-                fill="inherit"
-              />
-              <path
-                d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
-                fill="inherit"
-              />
-            </svg>
-          </div>
+          FAQ: Bank
         </div>
         <div
-          className="y2tw4m-0 gzOhJN"
-          onClick={[Function]}
-        />
-        <div
-          className="sc-7zx66l-0 eXlZbJ"
+          className="sc-1jxwge6-0 jHDLGC"
         >
           <div
-            className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 bZsOMn"
+            className="y2tw4m-0 gzOhJN"
             onClick={[Function]}
+          />
+          <div
+            className="sc-7zx66l-0 eXlZbJ"
           >
             <div
-              className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
-              color="color1"
+              className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 fyczoT"
+              onClick={[Function]}
             >
-              Hic dolor necessitatibus dolore sit rem.
+              <div
+                className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
+                color="color1"
+              >
+                How do I get a bank account?
+              </div>
+              <svg
+                fill="inherit"
+                height="20px"
+                viewBox="0 0 32 32"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
+                  fill="inherit"
+                />
+                <path
+                  d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
+                  fill="inherit"
+                />
+              </svg>
             </div>
-            <svg
-              fill="inherit"
-              height="20px"
-              viewBox="0 0 32 32"
-              width="20px"
-              xmlns="http://www.w3.org/2000/svg"
+          </div>
+          <div
+            className="y2tw4m-0 gzOhJN"
+            onClick={[Function]}
+          />
+          <div
+            className="sc-7zx66l-0 eXlZbJ"
+          >
+            <div
+              className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 fyczoT"
+              onClick={[Function]}
             >
-              <path
-                d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
+              <div
+                className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
+                color="color1"
+              >
+                How do I get access to user\`s credit history?
+              </div>
+              <svg
                 fill="inherit"
-              />
-              <path
-                d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
+                height="20px"
+                viewBox="0 0 32 32"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
+                  fill="inherit"
+                />
+                <path
+                  d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
+                  fill="inherit"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            className="y2tw4m-0 gzOhJN"
+            onClick={[Function]}
+          />
+          <div
+            className="sc-7zx66l-0 eXlZbJ"
+          >
+            <div
+              className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 fyczoT"
+              onClick={[Function]}
+            >
+              <div
+                className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
+                color="color1"
+              >
+                Customer credit history has been updated. How do I find out about this?
+              </div>
+              <svg
                 fill="inherit"
-              />
-            </svg>
+                height="20px"
+                viewBox="0 0 32 32"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
+                  fill="inherit"
+                />
+                <path
+                  d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
+                  fill="inherit"
+                />
+              </svg>
+            </div>
           </div>
         </div>
+      </div>
+      <div
+        className="sc-1jxwge6-0 ekFNTq"
+      >
         <div
-          className="y2tw4m-0 gzOhJN"
-          onClick={[Function]}
-        />
-        <div
-          className="sc-7zx66l-0 eXlZbJ"
+          className="sc-1jxwge6-0 sc-18ch56c-0 dVmHqH"
+          color="color1"
+          fontFamily="bold"
+          fontSize={9}
         >
-          <div
-            className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 bZsOMn"
-            onClick={[Function]}
-          >
-            <div
-              className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
-              color="color1"
-            >
-              Et dolore in adipisci alias qui nisi magnam ex.
-            </div>
-            <svg
-              fill="inherit"
-              height="20px"
-              viewBox="0 0 32 32"
-              width="20px"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
-                fill="inherit"
-              />
-              <path
-                d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
-                fill="inherit"
-              />
-            </svg>
-          </div>
+          FAQ: other
         </div>
         <div
-          className="y2tw4m-0 gzOhJN"
-          onClick={[Function]}
-        />
-        <div
-          className="sc-7zx66l-0 eXlZbJ"
+          className="sc-1jxwge6-0 jHDLGC"
         >
           <div
-            className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 bZsOMn"
+            className="y2tw4m-0 gzOhJN"
             onClick={[Function]}
+          />
+          <div
+            className="sc-7zx66l-0 eXlZbJ"
           >
             <div
-              className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
-              color="color1"
+              className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 fyczoT"
+              onClick={[Function]}
             >
-              Et voluptatem laudantium aut vero.
+              <div
+                className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
+                color="color1"
+              >
+                How to log in?
+              </div>
+              <svg
+                fill="inherit"
+                height="20px"
+                viewBox="0 0 32 32"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
+                  fill="inherit"
+                />
+                <path
+                  d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
+                  fill="inherit"
+                />
+              </svg>
             </div>
-            <svg
-              fill="inherit"
-              height="20px"
-              viewBox="0 0 32 32"
-              width="20px"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
-                fill="inherit"
-              />
-              <path
-                d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
-                fill="inherit"
-              />
-            </svg>
           </div>
-        </div>
-        <div
-          className="y2tw4m-0 gzOhJN"
-          onClick={[Function]}
-        />
-        <div
-          className="sc-7zx66l-0 eXlZbJ"
-        >
           <div
-            className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 bZsOMn"
+            className="y2tw4m-0 gzOhJN"
             onClick={[Function]}
+          />
+          <div
+            className="sc-7zx66l-0 eXlZbJ"
           >
             <div
-              className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
-              color="color1"
+              className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 fyczoT"
+              onClick={[Function]}
             >
-              Aliquid quas enim dolore occaecati debitis rerum culpa voluptatibus.
+              <div
+                className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
+                color="color1"
+              >
+                I forgot my password, what should I do?
+              </div>
+              <svg
+                fill="inherit"
+                height="20px"
+                viewBox="0 0 32 32"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
+                  fill="inherit"
+                />
+                <path
+                  d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
+                  fill="inherit"
+                />
+              </svg>
             </div>
-            <svg
-              fill="inherit"
-              height="20px"
-              viewBox="0 0 32 32"
-              width="20px"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
-                fill="inherit"
-              />
-              <path
-                d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
-                fill="inherit"
-              />
-            </svg>
-          </div>
-        </div>
-        <div
-          className="y2tw4m-0 gzOhJN"
-          onClick={[Function]}
-        />
-        <div
-          className="sc-7zx66l-0 eXlZbJ"
-        >
-          <div
-            className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 bZsOMn"
-            onClick={[Function]}
-          >
-            <div
-              className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
-              color="color1"
-            >
-              Autem libero quo repellendus expedita sequi fugit.
-            </div>
-            <svg
-              fill="inherit"
-              height="20px"
-              viewBox="0 0 32 32"
-              width="20px"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
-                fill="inherit"
-              />
-              <path
-                d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
-                fill="inherit"
-              />
-            </svg>
-          </div>
-        </div>
-        <div
-          className="y2tw4m-0 gzOhJN"
-          onClick={[Function]}
-        />
-        <div
-          className="sc-7zx66l-0 eXlZbJ"
-        >
-          <div
-            className="sc-1jxwge6-0 wterhv-0 sc-185hykj-0 bZsOMn"
-            onClick={[Function]}
-          >
-            <div
-              className="sc-1jxwge6-0 sc-18ch56c-0 fxqvUH"
-              color="color1"
-            >
-              Ipsa qui est ut odit qui nemo ut ea.
-            </div>
-            <svg
-              fill="inherit"
-              height="20px"
-              viewBox="0 0 32 32"
-              width="20px"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.94652 14.8535C8.75117 14.6582 8.75117 14.3418 8.94652 14.1465C9.14181 13.9512 9.45821 13.9512 9.65351 14.1465L16.3 20.7929L22.9465 14.1465C23.1418 13.9512 23.4582 13.9512 23.6535 14.1465C23.7511 14.2441 23.8 14.3721 23.8 14.5C23.8 14.6279 23.7511 14.7558 23.6535 14.8535L16.6535 21.8535C16.4582 22.0488 16.1418 22.0488 15.9465 21.8535L8.94652 14.8535Z"
-                fill="inherit"
-              />
-              <path
-                d="M16 32C24.8365 32 32 24.8365 32 16C32 7.16345 24.8365 0 16 0C7.1634 0 0 7.16345 0 16C0 24.8366 7.1634 32 16 32ZM16 31C7.72895 31 1 24.271 1 16C1 7.729 7.72895 1 16 1C24.271 1 31 7.729 31 16C31 24.271 24.271 31 16 31Z"
-                fill="inherit"
-              />
-            </svg>
           </div>
         </div>
       </div>
