@@ -144,8 +144,6 @@ export class DocumentsBureauPage extends Component {
   constructor(props) {
     super(props);
     this.state = this.initialState;
-    // this.createUsers = this.createUsers.bind(this);
-    // this.createUsers();
   }
 
   get initialState() {
@@ -157,37 +155,6 @@ export class DocumentsBureauPage extends Component {
       userDocumentList: {},
     };
   }
-
-  //
-  // createUsers(){
-  //   console.log(this.props.client);
-  //   let usersPromises = range(10).map(d => {
-  //     let password = faker.internet.email();
-  //
-  //     return this.props.client.mutate({
-  //       mutation: CreateUserMutation,
-  //       variables: {
-  //         firstName: faker.name.firstName(),
-  //         lastName: faker.name.lastName(),
-  //         patronymic: faker.name.lastName(),
-  //         birthdate: faker.date.past().toISOString(),
-  //         gender: faker.random.arrayElement(['male', 'female']),
-  //         email: password,
-  //         phone: faker.phone.phoneNumber(),
-  //         masterpassword: faker.random.uuid(),
-  //         password: password,
-  //         confirmPassword: password,
-  //         role: ROLE_CLIENT,
-  //       }
-  //     })
-  //   });
-  //   console.log(usersPromises);
-  //   Promise.all(usersPromises).then(value => {
-  //     console.log(value);
-  //   }, reason => {
-  //     console.log(reason)
-  //   });
-  // }
 
   onOpenFormUpdateDoc = id => this.setState(() => ({id, isOpen: true}));
 
