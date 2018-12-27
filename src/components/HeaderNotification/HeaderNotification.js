@@ -33,18 +33,17 @@ export class HeaderNotification extends Component {
 
   renderBell = ({ error, loading, data, user }) => {
     if (!loading && !error && has.call(data, 'notificationlist') && data.notificationlist.length) {
+      const numberUnreadNotifications =
+        user.role === ROLE_CLIENT
+          ? this.countClientsNotifications(data.notificationlist)
+          : data.notificationlist.length;
       return (
         <>
-          <CircleCount>
-            {user.role === ROLE_CLIENT
-              ? this.countClientsNotifications(data.notificationlist)
-              : data.notificationlist.length}
-          </CircleCount>
-          <SvgBell />
+          <CircleCount>{numberUnreadNotifications}</CircleCount>
+          {numberUnreadNotifications ? <SvgBell /> : <SvgBellEmpty />}
         </>
       );
     }
-    return <SvgBellEmpty />;
   };
 
   countClientsNotifications = data => {
