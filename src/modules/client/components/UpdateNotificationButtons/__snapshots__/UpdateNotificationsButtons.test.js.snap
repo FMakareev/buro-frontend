@@ -1,6 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`UpdateNotificationButtons: вызов запроса запрета 1`] = `
+exports[`UpdateNotificationButtons: вызов запроса запрета завершен 1`] = `
+<div
+  className="sc-bxivhb dUiVDW"
+>
+  <div
+    className="sc-1jxwge6-0 sc-18ch56c-0 hxjSXI"
+    color="color1"
+    fontSize={6}
+  >
+    Not approved
+  </div>
+</div>
+`;
+
+exports[`UpdateNotificationButtons: вызов запроса запрета с ошибкой 1`] = `
 <div
   className="sc-bxivhb dUiVDW"
 >
@@ -9,7 +23,7 @@ exports[`UpdateNotificationButtons: вызов запроса запрета 1`]
   >
     <button
       className="mxzgdr-0 faeagD"
-      disabled={true}
+      disabled={false}
       display="inline-block"
       onClick={[Function]}
       size="xsmall"
@@ -29,8 +43,8 @@ exports[`UpdateNotificationButtons: вызов запроса запрета 1`]
       </div>
     </button>
     <button
-      className="mxzgdr-0 faeagD"
-      disabled={true}
+      className="mxzgdr-0 cWBUJc"
+      disabled={false}
       display="inline-block"
       onClick={[Function]}
       size="xsmall"
@@ -46,27 +60,22 @@ exports[`UpdateNotificationButtons: вызов запроса запрета 1`]
         >
           Not approve
         </div>
-        <div
-          className="sc-1jxwge6-0 wterhv-0 irkFkV"
-        >
-          <div
-            className="sc-1jxwge6-0 sc-18ch56c-0 dKrLvQ"
-            color="color1"
-            fill="inherit"
-            fontSize={5}
-          >
-            <div
-              className="sc-181m7t4-0 ckrlTX"
-            />
-          </div>
-        </div>
+        <div />
       </div>
     </button>
+  </div>
+  <div
+    className="sc-1jxwge6-0 sc-18ch56c-0 gbKleW"
+    color="color9"
+    fontFamily="medium"
+    fontSize="12px"
+  >
+    Repeat the request in 10 minutes, file not has been uploaded to the blockchain.
   </div>
 </div>
 `;
 
-exports[`UpdateNotificationButtons: вызов запроса запрета завершен 1`] = `
+exports[`UpdateNotificationButtons: вызов запроса подтверждения завершен 1`] = `
 <div
   className="sc-bxivhb dUiVDW"
 >
@@ -75,12 +84,12 @@ exports[`UpdateNotificationButtons: вызов запроса запрета з�
     color="color1"
     fontSize={6}
   >
-    Not approved
+    Approved
   </div>
 </div>
 `;
 
-exports[`UpdateNotificationButtons: вызов запроса запрета с ошибкой 1`] = `
+exports[`UpdateNotificationButtons: вызов запроса подтверждения с ошибкой 1`] = `
 <div
   className="sc-bxivhb dUiVDW"
 >
@@ -137,86 +146,6 @@ exports[`UpdateNotificationButtons: вызов запроса запрета с 
     fontSize="12px"
   >
     Repeat the request in 10 minutes, file not has been uploaded to the blockchain.
-  </div>
-</div>
-`;
-
-exports[`UpdateNotificationButtons: вызов запроса подтверждения 1`] = `
-<div
-  className="sc-bxivhb dUiVDW"
->
-  <div
-    className="sc-1jxwge6-0 gHyFgL"
-  >
-    <button
-      className="mxzgdr-0 faeagD"
-      disabled={true}
-      display="inline-block"
-      onClick={[Function]}
-      size="xsmall"
-      type="button"
-    >
-      <div
-        className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-        width="100%"
-      >
-        <div />
-        <div
-          className="sc-1jxwge6-0 wterhv-0 irkFkV"
-        >
-          Approve
-        </div>
-        <div
-          className="sc-1jxwge6-0 wterhv-0 irkFkV"
-        >
-          <div
-            className="sc-1jxwge6-0 sc-18ch56c-0 dKrLvQ"
-            color="color1"
-            fill="inherit"
-            fontSize={5}
-          >
-            <div
-              className="sc-181m7t4-0 ckrlTX"
-            />
-          </div>
-        </div>
-      </div>
-    </button>
-    <button
-      className="mxzgdr-0 faeagD"
-      disabled={true}
-      display="inline-block"
-      onClick={[Function]}
-      size="xsmall"
-      type="button"
-    >
-      <div
-        className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-        width="100%"
-      >
-        <div />
-        <div
-          className="sc-1jxwge6-0 wterhv-0 irkFkV"
-        >
-          Not approve
-        </div>
-        <div />
-      </div>
-    </button>
-  </div>
-</div>
-`;
-
-exports[`UpdateNotificationButtons: вызов запроса подтверждения завершен 1`] = `
-<div
-  className="sc-bxivhb dUiVDW"
->
-  <div
-    className="sc-1jxwge6-0 sc-18ch56c-0 hxjSXI"
-    color="color1"
-    fontSize={6}
-  >
-    Approved
   </div>
 </div>
 `;

@@ -20,7 +20,10 @@ test('UpdateNotificationButtons: обычное состояние', () => {
     <StyledThemeProvider>
       <MemoryRouter>
         <ApolloProvider client={mocksClient}>
-          <UpdateNotificationButtons />
+          <UpdateNotificationButtons {...{
+            id: '5c110dda9add292473c000c6',
+            status: STATUS_APPROVAL,
+          }} />
         </ApolloProvider>
       </MemoryRouter>
     </StyledThemeProvider>,
@@ -53,6 +56,7 @@ test('UpdateNotificationButtons: вызов запроса подтвержде�
     },
   ];
 
+
   const output = renderer.create(
     <StyledThemeProvider>
       <MockedProvider mocks={mocks} addTypename={false}>
@@ -60,13 +64,29 @@ test('UpdateNotificationButtons: вызов запроса подтвержде�
       </MockedProvider>
     </StyledThemeProvider>,
   );
+  // Базовый класс
+  const Wrapper = output.root.findByType(UpdateNotificationButtons).instance;
 
-  const buttons = output.root.findAllByType('button');
+  // Кнопки
+  const ButtonApprove = output.root.findByProps({ testID: 'ButtonApprove' });
+  const ButtonNotApprove = output.root.findByProps({ testID: 'ButtonNotApprove' });
 
-  buttons[0].props.onClick();
+  // Вызов события
+  ButtonApprove.props.onClick();
 
-  const tree = output.toJSON();
-  expect(tree).toMatchSnapshot();
+  // проверяем state и props Класса
+  expect(Wrapper.props.id).toBe(props.id);
+  expect(Wrapper.state.status).toBe(STATUS_APPROVAL);
+
+  // Проверяем пропсы обеих кнопок
+  expect(ButtonApprove.props.disabled).toBe(true);
+  expect(ButtonApprove.props.disabled).toBe(true);
+  expect(ButtonApprove.props.iconRight).not.toBe(null);
+
+  expect(ButtonNotApprove.props.variant).toBe('transparent');
+  expect(ButtonNotApprove.props.disabled).toBe(true);
+  expect(ButtonNotApprove.props.iconRight).toBe(null);
+
 });
 
 test('UpdateNotificationButtons: вызов запроса запрета', async () => {
@@ -101,12 +121,25 @@ test('UpdateNotificationButtons: вызов запроса запрета', asyn
     </StyledThemeProvider>,
   );
 
-  const buttons = output.root.findAllByType('button');
+  // Базовый класс
+  const Wrapper = output.root.findByType(UpdateNotificationButtons).instance;
 
-  buttons[1].props.onClick();
+  const ButtonApprove = output.root.findByProps({ testID: 'ButtonApprove' });
+  const ButtonNotApprove = output.root.findByProps({ testID: 'ButtonNotApprove' });
 
-  const tree = output.toJSON();
-  expect(tree).toMatchSnapshot();
+  ButtonNotApprove.props.onClick();
+
+  // проверяем state и props Класса
+  expect(Wrapper.props.id).toBe(props.id);
+  expect(Wrapper.state.status).toBe(STATUS_NOT_APPROVAL);
+
+  expect(ButtonNotApprove.props.variant).toBe('transparent');
+  expect(ButtonNotApprove.props.disabled).toBe(true);
+  expect(ButtonNotApprove.props.iconRight).not.toBe(null);
+
+  expect(ButtonApprove.props.variant).toBe('transparent');
+  expect(ButtonApprove.props.disabled).toBe(true);
+  expect(ButtonApprove.props.iconRight).toBe(null);
 });
 
 test('UpdateNotificationButtons: вызов запроса подтверждения завершен', async () => {
@@ -186,6 +219,8 @@ test('UpdateNotificationButtons: вызов запроса запрета зав
   expect(tree).toMatchSnapshot();
 });
 
+
+
 test('UpdateNotificationButtons: вызов запроса подтверждения с ошибкой', async () => {
   const props = { id: '5c110dda9adb492473c414c6', status: STATUS_APPROVAL };
 
@@ -195,7 +230,9 @@ test('UpdateNotificationButtons: вызов запроса подтвержде�
         query: UpdateNotificationMutation,
         variables: props,
       },
-      error: new Error('Connection Error!'),
+      result: {
+        errors: [{ message: "Error!" }],
+      },
     },
   ];
 
@@ -207,10 +244,15 @@ test('UpdateNotificationButtons: вызов запроса подтвержде�
     </StyledThemeProvider>,
   );
 
-  const buttons = output.root.findAllByType('button');
+  const ButtonApprove = output.root.findByProps({ testID: 'ButtonApprove' });
 
-  buttons[0].props.onClick();
+
+  ButtonApprove.props.onClick();
   await wait(6);
+
+  const UpdateNotificationError = output.root.findByProps({ testID: 'UpdateNotificationError' });
+
+  expect(UpdateNotificationError).not.toBe(null);
 
   const tree = output.toJSON();
   expect(tree).toMatchSnapshot();
@@ -225,7 +267,9 @@ test('UpdateNotificationButtons: вызов запроса запрета с о�
         query: UpdateNotificationMutation,
         variables: props,
       },
-      error: new Error('Connection Error!'),
+      result: {
+        errors: [{ message: "Error!" }],
+      },
     },
   ];
 
@@ -237,11 +281,15 @@ test('UpdateNotificationButtons: вызов запроса запрета с о�
     </StyledThemeProvider>,
   );
 
-  const buttons = output.root.findAllByType('button');
 
-  buttons[1].props.onClick();
+  const ButtonNotApprove = output.root.findByProps({ testID: 'ButtonNotApprove' });
 
+  ButtonNotApprove.props.onClick();
   await wait(6);
+
+  const UpdateNotificationError = output.root.findByProps({ testID: 'UpdateNotificationError' });
+
+  expect(UpdateNotificationError).not.toBe(null);
 
   const tree = output.toJSON();
   expect(tree).toMatchSnapshot();
