@@ -14,48 +14,6 @@ exports[`CreateNotificationButton: запрос завершен 1`] = `
 </div>
 `;
 
-exports[`CreateNotificationButton: запрос завершен ошибкой GraphQL 1`] = `
-<div
-  className="sc-bxivhb dUiVDW"
->
-  <button
-    className="mxzgdr-0 jWFxKy"
-    disabled={false}
-    display="inline-block"
-    onClick={[Function]}
-    size="xsmall"
-    type="button"
-  >
-    <div
-      className="sc-1jxwge6-0 wterhv-0 eZGOHC"
-      width="100%"
-    >
-      <div />
-      <div
-        className="sc-1jxwge6-0 wterhv-0 irkFkV"
-      >
-        Request
-      </div>
-      <div />
-    </div>
-  </button>
-</div>
-`;
-
-exports[`CreateNotificationButton: запрос завершен ошибкой сети 1`] = `
-<div
-  className="sc-bxivhb dUiVDW"
->
-  <div
-    className="sc-1jxwge6-0 sc-18ch56c-0 hxjSXI"
-    color="color1"
-    fontSize={6}
-  >
-    Pending approval
-  </div>
-</div>
-`;
-
 exports[`CreateNotificationButton: обычное состояние 1`] = `
 <div
   className="sc-bxivhb dUiVDW"
