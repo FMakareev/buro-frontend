@@ -43,8 +43,6 @@ export const Text = styled(Box)`
 `;
 
 Text.propTypes = {
-  /**  children React element  */
-  children: PropTypes.string,
   /** CSS: mb - margin - bottom */
   mb: PropTypes.any,
   /** CSS : color */
