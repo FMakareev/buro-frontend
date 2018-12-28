@@ -23,14 +23,14 @@ export class UpdateNotificationButtons extends Component {
   }
 
   get initialState() {
-    return { status: STATUS_PENDING };
+    return { status: null };
   }
 
   render() {
     const { status } = this.state;
     const { id } = this.props;
     return (
-      <Mutation mutation={UpdateNotificationMutation}>
+      <Mutation mutation={UpdateNotificationMutation} onError={()=>{}}>
         {(updatenotification, { called, data, error, loading }) => {
           /** появляется если called - запрос был вызван, !loading - загрузка не идет, !error - нет ошибок */
           if (called && !loading && !error && data) {
@@ -67,6 +67,7 @@ export class UpdateNotificationButtons extends Component {
                   }
                   display="inline-block"
                   size="xsmall"
+                  testID={'ButtonApprove'}
                   variant={error && status === STATUS_APPROVAL ? 'error' : 'transparent'}
                   mr="5px"
                   ml="5px"
@@ -87,6 +88,7 @@ export class UpdateNotificationButtons extends Component {
                       </Text>
                     ) : null
                   }
+                  testID={'ButtonNotApprove'}
                   display="inline-block"
                   size="xsmall"
                   variant={error && status === STATUS_NOT_APPROVAL ? 'error' : 'transparent'}
@@ -98,7 +100,7 @@ export class UpdateNotificationButtons extends Component {
                 </ButtonWithImage>
               </Box>
               {
-                error && <Text whiteSpace={'normal'} fontFamily={'medium'} fontSize={'12px'} lineHeight={'16px'} color={'color9'}>
+                error && <Text testID={'UpdateNotificationError'} whiteSpace={'normal'} fontFamily={'medium'} fontSize={'12px'} lineHeight={'16px'} color={'color9'}>
                   Repeat the request in 10 minutes, file not has been uploaded to the blockchain.
                 </Text>
               }
