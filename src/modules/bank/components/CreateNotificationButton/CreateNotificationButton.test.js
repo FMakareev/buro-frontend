@@ -17,7 +17,6 @@ import CreateNotificationMutation from './CreateNotificationMutation.graphql';
 const props = {
   client: '7865f87e-9ed8-4bad-aa51-771a0b2ed197',
   bank: 'ee850dd9-db5a-4d67-a22f-2a516e7d44e7',
-  status: 'wait',
 };
 
 test('CreateNotificationButton: обычное состояние', () => {
@@ -35,7 +34,7 @@ test('CreateNotificationButton: обычное состояние', () => {
 });
 
 test('CreateNotificationButton: вызов запроса', () => {
-  const output = mount(
+  const output = renderer.create(
     <StyledThemeProvider>
       <MemoryRouter>
         <ApolloProvider client={mocksClient}>
@@ -44,10 +43,12 @@ test('CreateNotificationButton: вызов запроса', () => {
       </MemoryRouter>
     </StyledThemeProvider>,
   );
+  const button = output.root.findByProps({ testID: 'CreateNotificationButton' });
+  button.props.onClick();
 
-  output.find('button').simulate('click');
-
-  expect(output.find('button').props().disabled).toBe(true);
+  expect(button.props.variant).toBe('transparent');
+  expect(button.props.disabled).toBe(true);
+  expect(button.props.iconRight).not.toBe(null);
 });
 
 test('CreateNotificationButton: запрос завершен', async () => {
@@ -86,36 +87,7 @@ test('CreateNotificationButton: запрос завершен', async () => {
   expect(tree).toMatchSnapshot();
 });
 
-test('CreateNotificationButton: запрос завершен ошибкой сети', async () => {
-  const mocks = [
-    {
-      request: {
-        query: CreateNotificationMutation,
-        variables: props,
-      },
-      error: new Error('Connection Error!'),
-    },
-  ];
-
-  const output = renderer.create(
-    <StyledThemeProvider>
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <CreateNotificationButton {...props}>Request</CreateNotificationButton>
-      </MockedProvider>
-    </StyledThemeProvider>,
-  );
-
-  const button = output.root.findByType('button');
-  button.props.onClick();
-
-  await wait(5);
-
-  const tree = output.toJSON();
-  expect(tree).toMatchSnapshot();
-  // expect(output.root.findByProps({ children: 'Request' }).props.variant).toBe('error');
-});
-
-test('CreateNotificationButton: запрос завершен ошибкой GraphQL', async () => {
+test('CreateNotificationButton: запрос завершен с ошибкой сети', async () => {
   const mocks = [
     {
       request: {
@@ -123,7 +95,7 @@ test('CreateNotificationButton: запрос завершен ошибкой Gra
         variables: props,
       },
       result: {
-        error: [{ message: 'GraphQLError!' }],
+        errors: [{ message: "Error!" }],
       },
     },
   ];
@@ -131,16 +103,19 @@ test('CreateNotificationButton: запрос завершен ошибкой Gra
   const output = renderer.create(
     <StyledThemeProvider>
       <MockedProvider mocks={mocks} addTypename={false}>
-        <CreateNotificationButton {...props}>Request</CreateNotificationButton>
+        <CreateNotificationButton {...props}>
+          Request
+        </CreateNotificationButton>
       </MockedProvider>
     </StyledThemeProvider>,
   );
 
-  const button = output.root.findByType('button');
+  const button = output.root.findByProps({ testID: 'CreateNotificationButton' });
   button.props.onClick();
 
-  await wait(6);
+  await wait(5);
 
-  const tree = output.toJSON();
-  expect(tree).toMatchSnapshot();
+  expect(button.props.variant).toBe('error');
+  expect(button.props.disabled).toBe(false);
+  expect(button.props.iconRight).toBe(null);
 });
