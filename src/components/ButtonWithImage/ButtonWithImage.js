@@ -34,7 +34,7 @@ ButtonWithImage.propTypes = {
   /** right icon */
   iconRight: PropTypes.any,
   /** variant button */
-  variant: PropTypes.string,
+  variant: PropTypes.oneOf(['primary', 'secondary', 'transparent', 'error' ]),
   /** size button */
   size: PropTypes.string,
   /** css value - margin-right */
