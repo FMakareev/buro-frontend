@@ -23,12 +23,10 @@ const ErrorHandler = styled.span`
 `;
 
 export const ButtonWithImageError = ({ children, error, ...props }) => (
-  <React.Fragment>
-    <ButtonWithImageStyled error={error} {...props}>
-      {error && <ErrorHandler>{error}</ErrorHandler>}
-      {children}
-    </ButtonWithImageStyled>
-  </React.Fragment>
+  <ButtonWithImageStyled error={error} {...props}>
+    {error && <ErrorHandler>{error}</ErrorHandler>}
+    {children}
+  </ButtonWithImageStyled>
 );
 
 export default ButtonWithImageError;
