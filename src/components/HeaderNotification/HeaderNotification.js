@@ -75,7 +75,8 @@ export class HeaderNotification extends Component {
         variables={{
           // status:STATUS_PENDING,
           ...(user.role === ROLE_CLIENT ? { clientid: user.id } : { bankid: user.id }),
-        }}>
+        }}
+        onError={() => {}}>
         {({ error, loading, data }) => (
           <ButtonStyled
             onClick={this.redirectToNotificationList}

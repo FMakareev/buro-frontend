@@ -129,7 +129,7 @@ export class ClientsNotificationsPage extends Component {
           Notifications
         </Text>
         <Box backgroundColor="color0">
-          <Query query={NotificationListQuery} variables={{ clientid: user.id }}>
+          <Query query={NotificationListQuery} variables={{ clientid: user.id }} onError={() => {}}>
             {({ error, data, loading }) => {
               return (
                 <ReactTableStyled

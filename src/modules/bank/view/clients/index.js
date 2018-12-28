@@ -1,20 +1,20 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import dayjs from 'dayjs';
-import {Query} from 'react-apollo';
-import {connect} from 'react-redux';
+import { Query } from 'react-apollo';
+import { connect } from 'react-redux';
 import QueryString from 'query-string';
 import md5 from 'md5';
-import {Container} from '@lib/ui/Container/Container';
-import {Text} from '@lib/ui/Text/Text';
-import {ReactTableStyled} from '@lib/ui/ReactTableStyled/ReactTableStyled';
+import { Container } from '@lib/ui/Container/Container';
+import { Text } from '@lib/ui/Text/Text';
+import { ReactTableStyled } from '@lib/ui/ReactTableStyled/ReactTableStyled';
 
-import {CheckAuthorization} from '@lib/ui/CheckAuthorization/CheckAuthorization';
-import {ROLE_BANK} from '@lib/shared/roles';
-import {Box} from '@lib/ui/Box/Box';
+import { CheckAuthorization } from '@lib/ui/CheckAuthorization/CheckAuthorization';
+import { ROLE_BANK } from '@lib/shared/roles';
+import { Box } from '@lib/ui/Box/Box';
 import UserDocumentListQuery from './UserDocumentListQuery.graphql';
 
-import {getUserFromStore} from '../../../../store/reducers/user/selectors';
-import {CreateNotificationButton} from '../../components/CreateNotificationButton/CreateNotificationButton';
+import { getUserFromStore } from '../../../../store/reducers/user/selectors';
+import { CreateNotificationButton } from '../../components/CreateNotificationButton/CreateNotificationButton';
 
 const has = Object.prototype.hasOwnProperty;
 
@@ -37,7 +37,8 @@ const columns = user => [
       }
       return null;
     },
-  }, {
+  },
+  {
     id: 'Client',
     Header: 'Client',
     Cell: props => (
@@ -49,7 +50,8 @@ const columns = user => [
       try {
         if (has.call(props, 'client')) {
           return props.client
-            ? `${props.client.firstName || ''} ${props.client.lastName || ''} ${props.client.patronymic || ''}`
+            ? `${props.client.firstName || ''} ${props.client.lastName || ''} ${props.client
+                .patronymic || ''}`
             : null;
         }
       } catch (error) {
@@ -72,7 +74,7 @@ const columns = user => [
         if (has.call(props, 'client') && has.call(props.client, 'birthdate')) {
           const date = dayjs(props.client.birthdate).format('DD.MM.YYYY');
           if (date.indexOf('NaN') === -1) {
-            return date
+            return date;
           }
         }
         return '';
@@ -120,16 +122,18 @@ export class ClientsPage extends Component {
 
   get initialState() {
     try {
-      const {location} = this.props;
+      const { location } = this.props;
       const query = QueryString.parse(location.search);
 
       return {
         filtered: [
-          (query.client ? {
-            id: "ClientID",
-            value: query.client,
-          } : {})
-        ]
+          query.client
+            ? {
+                id: 'ClientID',
+                value: query.client,
+              }
+            : {},
+        ],
       };
     } catch (error) {
       console.error(error);
@@ -138,7 +142,7 @@ export class ClientsPage extends Component {
   }
 
   render() {
-    const {user} = this.props;
+    const { user } = this.props;
 
     return (
       <Container backgroundColor="transparent" px={6}>
@@ -152,30 +156,29 @@ export class ClientsPage extends Component {
             variables={{
               excludeowner: user.id,
               excludeownerrole: ROLE_BANK,
-            }}>
-            {({error, data, loading}) => {
-              return (
-                <ReactTableStyled
-                  defaultFilterMethod={(filter, row) =>
-                    String(row[filter.id]).indexOf(filter.value) >= 0
-                  }
-                  filtered={this.state.filtered}
-                  onFilteredChange={filtered => this.setState({filtered})}
-                  data={
-                    loading
-                      ? []
-                      : data && has.call(data, 'userdocumentlist')
-                      ? data.userdocumentlist
-                      : []
-                  }
-                  loadingText={loading ? 'Loading...' : error ? 'Error...' : 'Loading...'}
-                  loading={loading}
-                  error={error}
-                  filterable
-                  columns={columns(user)}
-                />
-              );
             }}
+            onError={() => {}}>
+            {({ error, data, loading }) => (
+              <ReactTableStyled
+                defaultFilterMethod={(filter, row) =>
+                  String(row[filter.id]).indexOf(filter.value) >= 0
+                }
+                filtered={this.state.filtered}
+                onFilteredChange={filtered => this.setState({ filtered })}
+                data={
+                  loading
+                    ? []
+                    : data && has.call(data, 'userdocumentlist')
+                    ? data.userdocumentlist
+                    : []
+                }
+                loadingText={loading ? 'Loading...' : error ? 'Error...' : 'Loading...'}
+                loading={loading}
+                error={error}
+                filterable
+                columns={columns(user)}
+              />
+            )}
           </Query>
         </Box>
       </Container>

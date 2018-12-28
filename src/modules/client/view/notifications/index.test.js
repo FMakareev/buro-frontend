@@ -8,11 +8,11 @@ import faker from 'faker';
 import { MemoryRouter, Redirect } from 'react-router-dom';
 import { Provider as ProviderRedux } from 'react-redux';
 import configureStore from 'redux-mock-store';
+import { ROLE_BANK } from '@lib/shared/roles';
 import mocksClient from '../../../../apollo/mocksClient';
 
 import { ClientsNotificationsPage } from './index';
 import { StyledThemeProvider } from '../../../../styles/StyledThemeProvider';
-import { ROLE_BANK } from '@lib/shared/roles';
 import NotificationListQuery from './NotificationListQuery.graphql';
 
 const mockStore = configureStore();
@@ -77,15 +77,9 @@ test('ClientsNotificationsPage: ошибка во время загрузки п
         id: initialValue.user.id,
       },
     },
-    error: new Error(
-      JSON.stringify({
-        error: [
-          {
-            message: 'Error!',
-          },
-        ],
-      }),
-    ),
+    result: {
+      errors: [{ message: 'Error!' }],
+    },
   };
   const output = renderer.create(
     <StyledThemeProvider>

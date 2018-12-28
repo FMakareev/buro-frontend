@@ -184,3 +184,44 @@ test('HeaderNotification: загрузилось нотификаций нет',
   const tree = output.toJSON();
   expect(tree).toMatchSnapshot();
 });
+
+test('HeaderNotification: ошибка загрузки', async () => {
+  const store = mockStore({
+    user: {
+      error: null,
+      initLoading: false,
+      updateLoading: false,
+      role: ROLE_BANK,
+      id: 'full08bd-ac3c-4a97-bfd6-5bd8b042b336',
+    },
+  });
+
+  const dogMock = {
+    request: {
+      query: NotificationListQuery,
+      variables: {
+        bankid: 'full08bd-ac3c-4a97-bfd6-5bd8b042b336',
+      },
+    },
+    result: {
+      errors: [{ message: 'Error!' }],
+    },
+  };
+
+  const output = renderer.create(
+    <StyledThemeProvider>
+      <ProviderRedux store={store}>
+        <MemoryRouter>
+          <MockedProvider mocks={[dogMock]} addTypename={false}>
+            <HeaderNotification />
+          </MockedProvider>
+        </MemoryRouter>
+      </ProviderRedux>
+    </StyledThemeProvider>,
+  );
+
+  await wait(5);
+
+  const tree = output.toJSON();
+  expect(tree).toMatchSnapshot();
+});
