@@ -6,14 +6,13 @@ import { Text } from '@lib/ui/Text/Text';
 import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
 import CreateNotificationMutation from './CreateNotificationMutation.graphql';
 
-import { STATUS_PENDING } from '../../../../shared/statuses';
 
 /**
  * @desc Кнопка для вызова мутации создания уведомления к пользователю
  * */
 export const CreateNotificationButton = ({ children, client, bank }) => (
-  <Mutation mutation={CreateNotificationMutation}>
-    {(mutation, { called, data, error, loading }) => {
+  <Mutation mutation={CreateNotificationMutation} onError={()=>{}}>
+    {(mutate, { called, data, error, loading }) => {
       /** появляется если called - запрос был вызван, !loading - загрузка не идет, !error - нет ошибок */
       if (called && !loading && !error) {
         return (
@@ -25,7 +24,7 @@ export const CreateNotificationButton = ({ children, client, bank }) => (
       return (
         <ButtonWithImage
           disabled={loading}
-          onClick={() => mutation({ variables: { client, bank, status: STATUS_PENDING } })}
+          onClick={() => mutate({ variables: { client, bank } })}
           display="inline-block"
           iconRight={
             loading ? (
@@ -35,6 +34,7 @@ export const CreateNotificationButton = ({ children, client, bank }) => (
             ) : null
           }
           size="xsmall"
+          testID={'CreateNotificationButton'}
           variant={error ? 'error' : 'transparent'}
           pl="3px"
           pr="5px">
