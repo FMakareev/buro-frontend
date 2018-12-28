@@ -33,13 +33,13 @@ it('Должен быть в состоянии загрузки', () => {
 
   // найти кнопку и имитировать клик
   const button = component.root.findByType('button');
-  button.props.onClick(); //срабатывает мутация
+  button.props.onClick(); // срабатывает мутация
 
   const tree = component.toJSON();
   expect(tree).toMatchSnapshot();
 });
 
-it('Проверка визуализации после удоления.', async () => {
+it('Проверка визуализации после удаления.', async () => {
   const deleteProduct = { name: 'Buck', breed: 'Poodle', id: 1 };
   const mocks = [
     {
@@ -59,9 +59,9 @@ it('Проверка визуализации после удоления.', asy
 
   // найти кнопку и имитировать клик
   const button = component.root.findByType('button');
-  button.props.onClick(); //срабатывает мутация
+  button.props.onClick(); // срабатывает мутация
 
-  await wait(0);
+  await wait(10);
 
   const tree = component.toJSON();
   expect(tree).toMatchSnapshot();
