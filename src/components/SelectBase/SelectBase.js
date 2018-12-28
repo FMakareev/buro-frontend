@@ -15,6 +15,18 @@ const DropdownIndicator = (props) => {
     </components.DropdownIndicator>
   );
 };
+const Option = ({children, ...props}) => (
+  <components.Option  {...props} className={`react-select-option-${props.selectProps.name}-${props.value}`}>
+    {children}
+  </components.Option>
+);
+
+const Menu = ({children, ...props}) =>  (
+  <components.Menu {...props} className={`react-select-menu-${props.selectProps.name}`}>
+    {children}
+  </components.Menu>
+);
+
 
 /**
  * Компонент селекта (SelectBase)
@@ -97,13 +109,15 @@ export class SelectBase extends Component {
       meta
     } = this.props;
     return (
-      <Relative>
+      <Relative
+        data-test-id={`select-name-${input.name}`}
+      >
         <Select
           defaultOptions={defaultOptions}
           selectValue={selectValue}
           name={input.name}
           meta={meta}
-          components={{ DropdownIndicator }}
+          components={{DropdownIndicator, Option, Menu}}
           onBlur={(event) => input.onBlur(event[valueKey])}
           onFocus={input.onFocus}
           options={options}
@@ -113,6 +127,7 @@ export class SelectBase extends Component {
           disabled={disabled}
           placeholder={placeholder}
           styles={styles}
+          // menuIsOpen={true}
         />
       </Relative>
     );
