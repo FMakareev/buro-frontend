@@ -38,9 +38,9 @@ ButtonWithImage.propTypes = {
   /** size button */
   size: PropTypes.string,
   /** css value - margin-right */
-  mr: PropTypes.number,
+  mr: PropTypes.any,
   /** css value - margin-left */
-  ml: PropTypes.number,
+  ml: PropTypes.any,
 };
 
 export default ButtonWithImage;
