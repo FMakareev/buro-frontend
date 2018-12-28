@@ -1,6 +1,6 @@
 # Bureau
 
-## Geting start
+## Getting start
 
 1. yarn - установка пакетов
 2. yarn start:ssr - запуск в режиме разработки 
