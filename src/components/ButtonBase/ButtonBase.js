@@ -43,6 +43,7 @@ export const ButtonBase = styled.button`
 `;
 
 ButtonBase.propTypes = {
+  variant: PropTypes.oneOf(['primary', 'secondary', 'transparent', 'error' ]),
   /** Background color alias. */
   bgc: PropTypes.string,
   /** Border color alias. */
@@ -53,8 +54,6 @@ ButtonBase.propTypes = {
   px: PropTypes.number,
   /** Description of prop "py". */
   py: PropTypes.number,
-  /** children. */
-  children: PropTypes.any,
   /** disabled. */
   disabled: PropTypes.bool,
   active: PropTypes.bool,
