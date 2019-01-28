@@ -68,6 +68,15 @@ export class HeaderNav extends Component {
                 Clients
               </NavItem>
             }
+
+            {/** этот путь только для клиента */}
+            {
+              user && !user.error && user.role === ROLE_BUREAU &&
+              <NavItem to={'/app/bureau/notifications'} icon={<SvgRequests/>}>
+                Notifications
+              </NavItem>
+            }
+
             <NavItem to={'/logout'}>
               Logout
             </NavItem>
