@@ -16,6 +16,8 @@ import {Box} from '@lib/ui/Box/Box';
 import {CheckAuthorization} from "@lib/ui/CheckAuthorization/CheckAuthorization";
 import UserDocumentItemQuery from './UserDocumentItemQuery.graphql';
 import {userdocumentitem} from "../../../../apollo/graphql/query/userdocumentitem";
+import QueryString from 'query-string';
+import md5 from "md5";
 
 const has = Object.prototype.hasOwnProperty;
 
@@ -27,6 +29,29 @@ const has = Object.prototype.hasOwnProperty;
  * */
 const columns = ({onOpenFormUpdateDoc, user}) => [
   {
+    id: 'ClientID',
+    Header: 'Client token',
+    Cell: props => {
+      console.log(props);
+      return (
+        <Text fontFamily="medium" fontSize={6} lineHeight={9} color="color1">
+          {props.value}
+        </Text>
+      )
+    },
+    accessor: props => {
+      console.log(props);
+      try {
+        if (has.call(props, 'id')) {
+          console.log('md5(props.id): ', md5(props.id));
+          return md5(props.id);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+      return null;
+    },
+  },{
     id: 'Client',
     Header: 'Client',
     Cell: props => (
@@ -147,13 +172,24 @@ export class DocumentsBureauPage extends Component {
   }
 
   get initialState() {
+    const {location} = this.props;
+    const query = QueryString.parse(location.search);
+
     return {
+
       // статус открытия модального окна
       isOpen: false,
       // id пользователя к которому крепится документ
       id: null,
       userDocumentList: {},
+      filtered: [
+        (query.client ? {
+          id: "ClientID",
+          value: query.client,
+        } : {})
+      ]
     };
+
   }
 
   onOpenFormUpdateDoc = id => this.setState(() => ({id, isOpen: true}));
@@ -185,6 +221,8 @@ export class DocumentsBureauPage extends Component {
                   }
                   data={loading ? [] : data && has.call(data, 'userlist') ? data.userlist : []}
                   error={error}
+                  filtered={this.state.filtered}
+                  onFilteredChange={filtered => this.setState({filtered})}
                   filterable
                   loading={loading}
 
