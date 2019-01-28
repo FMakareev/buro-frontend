@@ -1,0 +1,7 @@
+mutation ($client: String, $message: String){
+  requestdocumentfrombureau(client: $client,  message: $message) {
+    notification {
+      status
+    }
+  }
+}
