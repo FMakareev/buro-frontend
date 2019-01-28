@@ -10,7 +10,6 @@ import {
 } from 'styled-system';
 import styled from 'styled-components';
 import { Box } from '../Box/Box';
-import { OrderProperty } from '../../styles/styleProperty/OrderProperty';
 
 export const Flex = styled(Box)`
   display: flex;
@@ -22,7 +21,6 @@ export const Flex = styled(Box)`
   ${flexDirection};
   ${flexWrap};
   ${display};
-  ${OrderProperty};
 `;
 
 Flex.propTypes = {

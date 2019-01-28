@@ -10,7 +10,6 @@ export const Box = styled.div`
   ${height};
   ${fontSize};
   ${color};
-  ${OrderProperty};
   ${BackgroundColorProperty};
 `;
 
