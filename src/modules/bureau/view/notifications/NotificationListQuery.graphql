@@ -1,0 +1,14 @@
+query($bureau: String){
+  notificationlist(bureau: $bureau){
+      id
+      status
+      date
+      message
+      client{
+        id
+        firstName
+        lastName
+        patronymic
+      }
+  }
+}
