@@ -1,21 +1,21 @@
 import faker from 'faker';
-import { GraphQLError } from 'graphql';
+import {GraphQLError} from 'graphql';
 import setupClient from './helpers/apolloClientMock';
 import schema from './schema.graphqls';
-import { userdocumentlist } from './graphql/query/userdocumentlist';
-import { userlist } from './graphql/query/userlist';
-import { useritem } from './graphql/query/userItem';
-import { ROLE_BANK, ROLE_BUREAU, ROLE_CLIENT } from '../shared/roles';
-import { notificationitem } from './graphql/query/notificationitem';
-import { STATUS_PENDING } from '../shared/statuses';
-import { notificationlist } from './graphql/query/notificationlist';
+import {userdocumentlist} from './graphql/query/userdocumentlist';
+import {userlist} from './graphql/query/userlist';
+import {useritem} from './graphql/query/userItem';
+import {ROLE_BANK, ROLE_BUREAU, ROLE_CLIENT} from '../shared/roles';
+import {notificationitem} from './graphql/query/notificationitem';
+import {STATUS_PENDING} from '../shared/statuses';
+import {notificationlist} from './graphql/query/notificationlist';
 import {userdocumentitem} from "./graphql/query/userdocumentitem";
 
 const defaultMocks = {
   Query: () => ({
     userlist,
     useritem,
-    useremailitem: (query, { email }) => {
+    useremailitem: (query, {email}) => {
       switch (email) {
         case 'client@test.com': {
           return {
@@ -53,10 +53,10 @@ const defaultMocks = {
         }
       }
     },
-    userdocumentitem: ()=>{
+    userdocumentitem: () => {
       return new Promise((resolve, reject) => {
-        setTimeout(()=>{
-          return faker.random.number(1)? resolve(userdocumentitem()): resolve(null);
+        setTimeout(() => {
+          return faker.random.number(1) ? resolve(userdocumentitem()) : resolve(null);
         }, faker.random.number(2000))
       })
 
@@ -65,6 +65,13 @@ const defaultMocks = {
       return userdocumentlist();
     },
     notificationlist,
+    checkuserdocument: () => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          return resolve(null);
+        }, faker.random.number(5000))
+      })
+    }
   }),
   Mutation: () => ({
     /**
@@ -85,16 +92,16 @@ const defaultMocks = {
       new Promise((resolve, reject) => {
         setTimeout(() => {
           faker.random.number(1)
-            ? resolve({ ...useritem() })
+            ? resolve({...useritem()})
             : reject(
-                JSON.stringify({
-                  errors: [
-                    {
-                      message: 'error!',
-                    },
-                  ],
-                }),
-              );
+            JSON.stringify({
+              errors: [
+                {
+                  message: 'error!',
+                },
+              ],
+            }),
+            );
         }, faker.random.number(2000));
       }),
     resetpass: (mutation, props) => {
@@ -111,18 +118,18 @@ const defaultMocks = {
           () =>
             faker.random.number(1)
               ? resolve({
-                  ...notificationitem(),
-                  status: STATUS_PENDING,
-                })
+                ...notificationitem(),
+                status: STATUS_PENDING,
+              })
               : reject(
-                  JSON.stringify({
-                    errors: [
-                      {
-                        message: 'error!',
-                      },
-                    ],
-                  }),
-                ),
+              JSON.stringify({
+                errors: [
+                  {
+                    message: 'error!',
+                  },
+                ],
+              }),
+              ),
           faker.random.number(2000),
         ),
       ),
@@ -132,19 +139,19 @@ const defaultMocks = {
         setTimeout(
           () =>
             faker.random.number(1)
-              ? resolve({ ...notificationitem(), status: props.status })
+              ? resolve({...notificationitem(), status: props.status})
               : reject(
-                  JSON.stringify({
-                    data: {
-                      updatenotification: null,
-                    },
-                    errors: [
-                      {
-                        message: 'error!',
-                      },
-                    ],
-                  }),
-                ),
+              JSON.stringify({
+                data: {
+                  updatenotification: null,
+                },
+                errors: [
+                  {
+                    message: 'error!',
+                  },
+                ],
+              }),
+              ),
           faker.random.number(2000),
         );
       }),

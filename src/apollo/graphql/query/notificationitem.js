@@ -7,6 +7,7 @@ export const notificationitem = () => ({
   status: faker.random.arrayElement([STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL]),
   date: faker.date.past().toUTCString(),
   bank: useritem(),
+  message: 'Client requested a credit history.',
   client: useritem(),
 });
 

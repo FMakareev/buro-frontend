@@ -27,7 +27,9 @@ type Notification {
   id: String,
   date: String,
   status: String,
+  message: String,
   bank: User,
+  bureau: User,
   client: User,
 }
 
@@ -37,8 +39,10 @@ type Query {
   useremailitem(email: String): User,
   userdocumentlist(bankid: String, excludeowner: String): [UserDocument],
   userdocumentitem(owner: String!, client: String!): UserDocument,
-  notificationlist(clientid: String, bankid: String): [Notification]
+  checkuserdocument(client: String!): UserDocument,
+  notificationlist(clientid: String, bankid: String, bureauid: String): [Notification]
 }
+
 type Mutation {
 
   createuser(
@@ -77,5 +81,6 @@ type Mutation {
   updatenotification(id: String!, status: String!): Notification,
 
   createuserdocument(client: String!): UserDocument
+  requestdocumentfrombureau(client: String!, message: String): Notification
   updateuserdocument(client: String!, bank: String!): UserDocument
 }
