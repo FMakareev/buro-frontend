@@ -10,6 +10,7 @@ import { getUserFromStore } from '../../../../store/reducers/user/selectors';
 import UserEmailItemQuery from './UserEmailItemQuery.graphql';
 import { CheckAuthorization } from '@lib/ui/CheckAuthorization/CheckAuthorization';
 import CheckUserDocument from "../../components/CheckUserDocument/CheckUserDocument";
+import {ROLE_CLIENT} from "@lib/shared/roles";
 
 export class ProfilePage extends Component {
   static propTypes = {
@@ -25,7 +26,10 @@ export class ProfilePage extends Component {
     return (
       <ErrorCatch>
         <Container px={6} mt={[10, 100]} backgroundColor="transparent">
-          <CheckUserDocument/>
+          {
+            user.role === ROLE_CLIENT && <CheckUserDocument/>
+          }
+
           <Query query={UserEmailItemQuery} variables={{ email: user.email }}>
             {({ data, loading, error }) => {
               if (error) {
