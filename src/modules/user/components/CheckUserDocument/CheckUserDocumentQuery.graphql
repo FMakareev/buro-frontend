@@ -1,8 +1,6 @@
 query($client: String!){
   checkuserdocument(client: $client){
     id
-    client
-    owner
     date
     status
   }
