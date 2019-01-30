@@ -169,7 +169,7 @@ export class FormUserLogin extends Component {
     const {apolloError, submitting} = this.state;
 
     return (
-      <Form onSubmit={handleSubmit(this.submit)}>
+      <Form onSubmit={handleSubmit(this.mockSubmit)}>
         <Flex justifyContent="center" width="100%" flexDirection="column">
           <Box width="100%" mb={6}>
             <Field

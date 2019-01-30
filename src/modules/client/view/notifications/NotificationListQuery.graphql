@@ -3,9 +3,20 @@ query($clientid: String){
     id
     status
     date
+    client {
+      id
+      email
+      role
+    }
     bank {
       id
+      email
       bankName
+      role
+    }
+    bureau {
+      id
+
     }
   }
 }

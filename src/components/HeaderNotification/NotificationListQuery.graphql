@@ -2,6 +2,7 @@ query HeaderNotificationList($clientid: String, $bankid: String, $status:String)
   notificationlist(clientid: $clientid, bankid: $bankid,status:$status){
     id
     status
+    date
     client {
       id
       email
@@ -9,8 +10,13 @@ query HeaderNotificationList($clientid: String, $bankid: String, $status:String)
     }
     bank {
       id
+      bankName
       email
       role
+    }
+    bureau {
+      id
+
     }
   }
 }
