@@ -211,7 +211,7 @@ export class FormUserLogin extends Component {
           </Box>
 
           {!submitFailed && !apolloError && (
-            <Box width="100%">
+            <Box width="100%" mb={8}>
               <ButtonWithImageError
                 type="submit"
                 variant="primary"
@@ -229,7 +229,7 @@ export class FormUserLogin extends Component {
           )}
           {(submitFailed ||
           apolloError || error) && (
-            <Box width="100%">
+            <Box width="100%" mb={8}>
               <ButtonWithImageError
                 type="submit"
                 variant="error"
@@ -244,6 +244,9 @@ export class FormUserLogin extends Component {
               </ButtonWithImageError>
             </Box>
           )}
+          <HelpText>
+            <Link to="/help">How does this work?</Link>
+          </HelpText>
         </Flex>
 
         {submitting && (
@@ -253,6 +256,7 @@ export class FormUserLogin extends Component {
             </Text>
           </PreloaderWrapper>
         )}
+
       </Form>
     );
   }
