@@ -1,5 +1,5 @@
-query($bureau: String){
-  notificationlist(bureau: $bureau){
+query($bureauid: String){
+  notificationlist(bureauid: $bureauid){
       id
       status
       date

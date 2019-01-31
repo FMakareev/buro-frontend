@@ -119,7 +119,7 @@ export class NotificationsPage extends Component {
           <Query
             query={NotificationListQuery}
             variables={{
-              bureau: user.id,
+              bureauid: user.id,
             }}>
             {({error, data, loading}) => {
               return (
