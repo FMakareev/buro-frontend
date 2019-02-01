@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 
-import { Wrapper } from '../../components/Wrapper/Wrapper';
-import { Title } from '../../components/Title/Title';
+import {Wrapper} from '../../components/Wrapper/Wrapper';
+import {Title} from '../../components/Title/Title';
 
-import FormUserLogin  from '../../components/FormUserLogin/FormUserLogin';
-import { Box } from '@lib/ui/Box/Box';
+import FormUserLogin from '../../components/FormUserLogin/FormUserLogin';
+import {Box} from '@lib/ui/Box/Box';
+
+import {PopUp} from "./PopUp";
 
 export class LoginPage extends Component {
   static propTypes = {};
@@ -22,12 +24,15 @@ export class LoginPage extends Component {
 
   render() {
     return (
-      <Wrapper position="relative" ml={['auto', 20, 100]} mt={[10, 120]} maxWidth={'360px'}>
-        <Box mb={6}>
-          <Title>Sign in</Title>
-        </Box>
-        <FormUserLogin />
-      </Wrapper>
+      <Fragment>
+        <Wrapper position="relative" ml={['auto', 20, 100]} mt={[10, 120]} maxWidth={'360px'}>
+          <Box mb={6}>
+            <Title>Sign in</Title>
+          </Box>
+          <FormUserLogin/>
+        </Wrapper>
+        <PopUp/>
+      </Fragment>
     );
   }
 }
