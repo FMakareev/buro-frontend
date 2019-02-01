@@ -61,7 +61,7 @@ export class PopUp extends Component {
       this.setState({
         active: true,
       })
-    }, 3000)
+    }, 1000)
   }
 
   render() {
