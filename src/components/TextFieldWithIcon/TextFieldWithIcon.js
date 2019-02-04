@@ -29,6 +29,7 @@ const FieldIconWrapper = styled(Box)`
 const TextField = styled(TextFieldBase)`
   position: relative;
   padding-left: 20px;
+  padding-right: 50px;
   padding-top: 8px;
   padding-bottom: 8px;
   ${(props) => FontFamilyProperty({...props, fontFamily: 'medium'})};
@@ -78,6 +79,7 @@ const IconWrapper = styled.div`
   position: absolute;
   top: 10px;
   right: 10px;
+  background-color: #fff;
   ${(props) => FillSvgProperty({...props, fill: 'color9'})};
   ${props => {
     if (props.meta.touched && props.meta.error) {
