@@ -1,31 +1,31 @@
-import React, { Component, Fragment } from 'react';
+import React, {Component, Fragment} from 'react';
 import styled from 'styled-components';
-import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
-import { connect } from 'react-redux';
-import { graphql } from 'react-apollo';
-import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
+import {Field, reduxForm, Form, SubmissionError} from 'redux-form';
+import {connect} from 'react-redux';
+import {graphql} from 'react-apollo';
+import {formPropTypes} from '../../../../propTypes/Forms/FormPropTypes';
 
-import { TextFieldWithLabel } from '@lib/ui/TextFieldWithLabel/TextFieldWithLabel';
+import {TextFieldWithLabel} from '@lib/ui/TextFieldWithLabel/TextFieldWithLabel';
 
-import { Box } from '@lib/ui/Box/Box';
-import { Flex } from '@lib/ui/Flex/Flex';
-import { Text } from '@lib/ui/Text/Text';
-import { ButtonBase } from '@lib/ui/ButtonBase/ButtonBase';
-import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
-import { DayPickerBase } from '@lib/ui/DayPickerBase/DayPickerBase';
-import { ButtonTriggerGroup } from '@lib/ui/ButtonTriggerGroup/ButtonTriggerGroup';
+import {Box} from '@lib/ui/Box/Box';
+import {Flex} from '@lib/ui/Flex/Flex';
+import {Text} from '@lib/ui/Text/Text';
+import {ButtonBase} from '@lib/ui/ButtonBase/ButtonBase';
+import {ButtonWithImageError} from '../ButtonWithImageError/ButtonWithImageError';
+import {DayPickerBase} from '@lib/ui/DayPickerBase/DayPickerBase';
+import {ButtonTriggerGroup} from '@lib/ui/ButtonTriggerGroup/ButtonTriggerGroup';
 
-import { SvgReloadIcon } from '@lib/ui/Icons/SvgReloadIcon';
+import {SvgReloadIcon} from '@lib/ui/Icons/SvgReloadIcon';
 
-import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
-import { PreloaderWrapper } from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
+import {SpeedingWheel} from '@lib/ui/SmallPreloader/SmallPreloader';
+import {PreloaderWrapper} from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
 
-import { required } from '../../../../utils/validation/required';
-import { phoneNumber } from '../../../../utils/validation/phoneNumber';
+import {required} from '../../../../utils/validation/required';
+import {phoneNumber} from '../../../../utils/validation/phoneNumber';
 import UpdateUserMutation from './UpdateUserMutation.graphql';
-import { getUserFromStore } from '../../../../store/reducers/user/selectors';
-import { ROLE_BANK, ROLE_CLIENT } from '@lib/shared/roles';
-import { userUpdate } from '../../../../store/reducers/user/actions';
+import {getUserFromStore} from '../../../../store/reducers/user/selectors';
+import {ROLE_BANK, ROLE_CLIENT} from '@lib/shared/roles';
+import {userUpdate} from '../../../../store/reducers/user/actions';
 import UserLinkClickboard from "../UserLinkClickboard/UserLinkClickboard";
 
 const StyledBox = styled(Box)`
@@ -81,7 +81,7 @@ export class FormProfileUser extends Component {
       .then(response => {
         this.props.userUpdate();
       })
-      .catch(({ graphQLErrors, message, networkError, ...rest }) => {
+      .catch(({graphQLErrors, message, networkError, ...rest}) => {
         console.error('graphQLErrors: ', graphQLErrors);
         console.error('message: ', message);
         console.error('networkError: ', networkError);
@@ -146,17 +146,15 @@ export class FormProfileUser extends Component {
             </Fragment>
           )}
           {user.role === ROLE_BANK && (
-            <Fragment>
-              <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[1, 0]}>
-                <Field
-                  name="bankName"
-                  component={TextFieldWithLabel}
-                  label="Bank name"
-                  type="text"
-                  disabled
-                />
-              </Box>
-            </Fragment>
+            <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[1, 0]}>
+              <Field
+                name="bankName"
+                component={TextFieldWithLabel}
+                label="Bank name"
+                type="text"
+                disabled
+              />
+            </Box>
           )}
           <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[5, 0]}>
             <Field
@@ -168,6 +166,7 @@ export class FormProfileUser extends Component {
               normalize={normalizePhoneNumber}
             />
           </Box>
+
           {user.role === ROLE_CLIENT && (
             <Fragment>
               <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[3, 0]}>
@@ -198,9 +197,21 @@ export class FormProfileUser extends Component {
               </Box>
             </Fragment>
           )}
-          {user.role === ROLE_CLIENT && (<Box width={['100%', '100%', '50%']} px={6} mb={7} order={[5, 0]}>
-            <UserLinkClickboard/>
-          </Box>)}
+
+
+          {user.role === ROLE_CLIENT && (<Fragment>
+            <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[5, 0]}>
+              <UserLinkClickboard/>
+            </Box>
+            <Box width={['100%', '100%', '50%']} px={6} mb={7} order={[1, 0]}>
+              <Field
+                name="tin"
+                component={TextFieldWithLabel}
+                label="TIN"
+                type="text"
+              />
+            </Box>
+          </Fragment>)}
         </Flex>
         <Flex justifyContent="center">
           <StyledBox>
@@ -225,7 +236,7 @@ export class FormProfileUser extends Component {
                 error={error}
                 iconRight={
                   <Text fontSize={11} lineHeight={0}>
-                    <SvgReloadIcon />
+                    <SvgReloadIcon/>
                   </Text>
                 }>
                 Try again
@@ -243,7 +254,7 @@ export class FormProfileUser extends Component {
         {submitting && (
           <PreloaderWrapper>
             <Text fontSize={13}>
-              <SpeedingWheel />
+              <SpeedingWheel/>
             </Text>
           </PreloaderWrapper>
         )}

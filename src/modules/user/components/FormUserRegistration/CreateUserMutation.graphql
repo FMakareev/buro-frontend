@@ -10,6 +10,7 @@ $firstName: String,
 $lastName: String,
 $patronymic: String,
 $birthdate: String,
+$tin: String!,
 ) {
   createuser(
     email :$email ,
@@ -23,12 +24,14 @@ $birthdate: String,
     lastName:$lastName,
     patronymic:$patronymic,
     birthdate:$birthdate,
+    tin:$tin,
   ){
     user{
       id
       email
       bankName
       role
+      tin
     }
   }
 }

@@ -1,43 +1,43 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
-import { Field, reduxForm, Form, SubmissionError, getFormValues } from 'redux-form';
-import { Link } from 'react-router-dom';
-import { graphql } from 'react-apollo';
-import { connect } from 'react-redux';
+import {Field, reduxForm, Form, SubmissionError, getFormValues} from 'redux-form';
+import {Link} from 'react-router-dom';
+import {graphql} from 'react-apollo';
+import {connect} from 'react-redux';
 
-import { Select } from '@lib/ui/Select/Select';
-import { Checkbox } from '@lib/ui/Checkbox/Checkbox';
+import {Select} from '@lib/ui/Select/Select';
+import {Checkbox} from '@lib/ui/Checkbox/Checkbox';
 
-import { TextFieldWithIcon } from '@lib/ui/TextFieldWithIcon/TextFieldWithIcon';
+import {TextFieldWithIcon} from '@lib/ui/TextFieldWithIcon/TextFieldWithIcon';
 
-import { Box } from '@lib/ui/Box/Box';
-import { Flex } from '@lib/ui/Flex/Flex';
+import {Box} from '@lib/ui/Box/Box';
+import {Flex} from '@lib/ui/Flex/Flex';
 
-import { SvgArrowRight } from '@lib/ui/Icons/SvgArrowRight';
-import { SvgEmailIcon } from '@lib/ui/Icons/SvgEmailIcon';
-import { SvgPasswordIcon } from '@lib/ui/Icons/SvgPasswordIcon';
-import { SvgReloadIcon } from '@lib/ui/Icons/SvgReloadIcon';
-import { SvgUserField } from '@lib/ui/Icons/SvgUserField';
-import { SvgCircleCalendar } from '@lib/ui/Icons/SvgCircleCalendar';
+import {SvgArrowRight} from '@lib/ui/Icons/SvgArrowRight';
+import {SvgEmailIcon} from '@lib/ui/Icons/SvgEmailIcon';
+import {SvgPasswordIcon} from '@lib/ui/Icons/SvgPasswordIcon';
+import {SvgReloadIcon} from '@lib/ui/Icons/SvgReloadIcon';
+import {SvgUserField} from '@lib/ui/Icons/SvgUserField';
+import {SvgCircleCalendar} from '@lib/ui/Icons/SvgCircleCalendar';
 
-import { Text } from '@lib/ui/Text/Text';
-import { SpeedingWheel } from '@lib/ui/SmallPreloader/SmallPreloader';
-import { PreloaderWrapper } from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
-import { ROLE_BANK, ROLE_CLIENT } from '@lib/shared/roles';
-import { SvgBank } from '@lib/ui/Icons/SvgBank';
-import { DayPickerBaseBig } from '@lib/ui/DayPickerBaseBig/DayPickerBaseBig';
-import { ButtonWithImageError } from '../ButtonWithImageError/ButtonWithImageError';
+import {Text} from '@lib/ui/Text/Text';
+import {SpeedingWheel} from '@lib/ui/SmallPreloader/SmallPreloader';
+import {PreloaderWrapper} from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
+import {ROLE_BANK, ROLE_CLIENT} from '@lib/shared/roles';
+import {SvgBank} from '@lib/ui/Icons/SvgBank';
+import {DayPickerBaseBig} from '@lib/ui/DayPickerBaseBig/DayPickerBaseBig';
+import {ButtonWithImageError} from '../ButtonWithImageError/ButtonWithImageError';
 
-import { required } from '../../../../utils/validation/required';
+import {required} from '../../../../utils/validation/required';
 
 import isEmail from '../../../../utils/validation/isEmail';
 import minLength from '../../../../utils/validation/minLength';
 
 import CreateUserMutation from './CreateUserMutation.graphql';
-import { HelpText } from '../HelpText/HelpText';
-import { Wrapper } from '../Wrapper/Wrapper';
-import { Title } from '../Title/Title';
-import { formPropTypes } from '../../../../propTypes/Forms/FormPropTypes';
+import {HelpText} from '../HelpText/HelpText';
+import {Wrapper} from '../Wrapper/Wrapper';
+import {Title} from '../Title/Title';
+import {formPropTypes} from '../../../../propTypes/Forms/FormPropTypes';
 
 const minLength8 = minLength(8);
 const minLength12 = minLength(12);
@@ -57,6 +57,7 @@ const validate = values => {
     firstName,
     lastName,
     birthdate,
+    tin
   } = values;
 
   if (!role) {
@@ -64,6 +65,9 @@ const validate = values => {
   }
   if (!bankName) {
     errors.bankName = 'Required';
+  }
+  if (!tin) {
+    errors.tin = 'Required';
   }
 
   if (!password) {
@@ -158,10 +162,10 @@ export class FormUserRegistration extends Component {
 
   submit = value => {
     return this.props['@apollo/create']({
-      variables: Object.assign({}, value, { confirmPassword: value.password, phone: '000000' }),
+      variables: Object.assign({}, value, {confirmPassword: value.password, phone: '000000'}),
     })
       .then(response => response)
-      .catch(({ graphQLErrors, message, networkError, ...rest }) => {
+      .catch(({graphQLErrors, message, networkError, ...rest}) => {
         console.error('graphQLErrors: ', graphQLErrors);
         console.error('message: ', message);
         console.error('networkError: ', networkError);
@@ -212,13 +216,13 @@ export class FormUserRegistration extends Component {
                           labelKey="label"
                           valueKey="value"
                           options={[
-                            { value: ROLE_BANK, label: 'Bank' },
-                            { value: ROLE_CLIENT, label: 'Client' },
+                            {value: ROLE_BANK, label: 'Bank'},
+                            {value: ROLE_CLIENT, label: 'Client'},
                           ]}
                         />
                       </Box>
                       {values && values.role === ROLE_CLIENT && (
-                        <Box width="100%" mb={0} pl={[0, '10px']} />
+                        <Box width="100%" mb={0} pl={[0, '10px']}/>
                       )}
                     </Flex>
 
@@ -231,7 +235,7 @@ export class FormUserRegistration extends Component {
                           type="text"
                           icon={
                             <Text fontSize={11} lineHeight={0} stroke="inherit" fill="inherit">
-                              <SvgBank />
+                              <SvgBank/>
                             </Text>
                           }
                         />
@@ -249,7 +253,7 @@ export class FormUserRegistration extends Component {
                           type="email"
                           icon={
                             <Text fontSize={11} lineHeight={0} fill="inherit">
-                              <SvgEmailIcon />
+                              <SvgEmailIcon/>
                             </Text>
                           }
                         />
@@ -264,7 +268,7 @@ export class FormUserRegistration extends Component {
                             type="date"
                             icon={
                               <Text fontSize={11} lineHeight={0} fill="inherit">
-                                <SvgCircleCalendar />
+                                <SvgCircleCalendar/>
                               </Text>
                             }
                           />
@@ -282,7 +286,7 @@ export class FormUserRegistration extends Component {
                             type="text"
                             icon={
                               <Text fontSize={11} lineHeight={0} fill="inherit">
-                                <SvgUserField />
+                                <SvgUserField/>
                               </Text>
                             }
                           />
@@ -295,7 +299,7 @@ export class FormUserRegistration extends Component {
                             type="text"
                             icon={
                               <Text fontSize={11} lineHeight={0} fill="inherit">
-                                <SvgUserField />
+                                <SvgUserField/>
                               </Text>
                             }
                           />
@@ -308,7 +312,27 @@ export class FormUserRegistration extends Component {
                             type="text"
                             icon={
                               <Text fontSize={11} lineHeight={0} fill="inherit">
-                                <SvgUserField />
+                                <SvgUserField/>
+                              </Text>
+                            }
+                          />
+                        </Box>
+                      </Flex>
+                    )}
+
+                    {values && values.role === ROLE_CLIENT && (
+                      <Flex
+                        width="100%"
+                        flexWrap="wrap">
+                        <Box width={'100%'} mb={6}>
+                          <Field
+                            name="tin"
+                            component={TextFieldWithIcon}
+                            placeholder="TIN"
+                            type="text"
+                            icon={
+                              <Text fontSize={11} lineHeight={0} fill="inherit">
+                                <SvgUserField/>
                               </Text>
                             }
                           />
@@ -332,7 +356,7 @@ export class FormUserRegistration extends Component {
                           type="password"
                           icon={
                             <Text fontSize={11} lineHeight={0} fill="inherit">
-                              <SvgPasswordIcon />
+                              <SvgPasswordIcon/>
                             </Text>
                           }
                           validate={[required, minLength8]}
@@ -349,7 +373,7 @@ export class FormUserRegistration extends Component {
                           type="password"
                           icon={
                             <Text fontSize={11} lineHeight={0} fill="inherit">
-                              <SvgPasswordIcon />
+                              <SvgPasswordIcon/>
                             </Text>
                           }
                         />
@@ -372,7 +396,7 @@ export class FormUserRegistration extends Component {
                           type="password"
                           icon={
                             <Text fontSize={11} lineHeight={0} fill="inherit">
-                              <SvgPasswordIcon />
+                              <SvgPasswordIcon/>
                             </Text>
                           }
                         />
@@ -388,7 +412,7 @@ export class FormUserRegistration extends Component {
                           type="password"
                           icon={
                             <Text fontSize={11} lineHeight={0} fill="inherit">
-                              <SvgPasswordIcon />
+                              <SvgPasswordIcon/>
                             </Text>
                           }
                         />
@@ -419,7 +443,7 @@ export class FormUserRegistration extends Component {
                           error={error}
                           iconRight={
                             <Text fontSize={11} lineHeight={0}>
-                              <SvgArrowRight />
+                              <SvgArrowRight/>
                             </Text>
                           }
                           disabled={pristine || submitting || invalid}>
@@ -437,7 +461,7 @@ export class FormUserRegistration extends Component {
                           error={error}
                           iconRight={
                             <Text fontSize={11} lineHeight={0}>
-                              <SvgReloadIcon />
+                              <SvgReloadIcon/>
                             </Text>
                           }>
                           Try again
@@ -450,7 +474,7 @@ export class FormUserRegistration extends Component {
                 {submitSucceeded && (
                   <Box width="100%" mb={6}>
                     <Text fontSize={6} lineHeight={12} color="color1" fontFamily="medium">
-                      Account successfully registered. <br />
+                      Account successfully registered. <br/>
                       Now you can sign in.
                     </Text>
                   </Box>
@@ -461,7 +485,7 @@ export class FormUserRegistration extends Component {
             {submitting && (
               <PreloaderWrapper>
                 <Text fontSize={13}>
-                  <SpeedingWheel />
+                  <SpeedingWheel/>
                 </Text>
               </PreloaderWrapper>
             )}
