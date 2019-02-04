@@ -22,6 +22,6 @@ export const client = (req) => {
     connectToDevTools: true,
     cache: new InMemoryCache(),
   });
-}
+};
 
 export default client;
