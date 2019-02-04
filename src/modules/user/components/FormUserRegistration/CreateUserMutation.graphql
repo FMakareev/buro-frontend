@@ -10,7 +10,7 @@ $firstName: String,
 $lastName: String,
 $patronymic: String,
 $birthdate: String,
-$tin: String!,
+$tin: String,
 ) {
   createuser(
     email :$email ,
