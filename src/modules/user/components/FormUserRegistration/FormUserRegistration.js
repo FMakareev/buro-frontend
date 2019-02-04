@@ -66,8 +66,23 @@ const validate = values => {
   if (!bankName) {
     errors.bankName = 'Required';
   }
-  if (!tin) {
-    errors.tin = 'Required';
+  if (role === ROLE_CLIENT) {
+    if (!tin) {
+      errors.tin = 'Required';
+    } else if (tin && Number.isNaN(Number(tin))) {
+      errors.tin = 'Must be a number.';
+    } else if (tin && tin.length < 10) {
+      errors.tin = 'Minimum number of characters 10.';
+    }
+    if (!birthdate) {
+      errors.birthdate = 'Required';
+    }
+    if (!firstName) {
+      errors.firstName = 'Required';
+    }
+    if (!lastName) {
+      errors.lastName = 'Required';
+    }
   }
 
   if (!password) {
@@ -83,17 +98,6 @@ const validate = values => {
     errors.privacy = 'Required';
   }
 
-  if (!birthdate) {
-    errors.birthdate = 'Required';
-  }
-
-  if (!firstName) {
-    errors.firstName = 'Required';
-  }
-
-  if (!lastName) {
-    errors.lastName = 'Required';
-  }
 
   if (!masterpassword) {
     errors.masterpassword = 'Required';
