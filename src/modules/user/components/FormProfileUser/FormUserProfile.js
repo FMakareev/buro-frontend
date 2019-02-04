@@ -209,6 +209,7 @@ export class FormProfileUser extends Component {
                 component={TextFieldWithLabel}
                 label="TIN"
                 type="text"
+                disabled
               />
             </Box>
           </Fragment>)}
