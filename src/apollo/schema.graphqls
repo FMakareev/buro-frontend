@@ -13,6 +13,7 @@ type User {
   confirmPassword: String
   role: String
   token: String
+  tin: String
 }
 
 type UserDocument {
@@ -58,6 +59,7 @@ type Mutation {
     password: String!,
     confirmPassword: String!,
     role: String!
+    tin: String!
   ): User,
 
   updateuser(
@@ -72,7 +74,8 @@ type Mutation {
     phone: String,
     password: String,
     confirmPassword: String,
-    role: String
+    role: String,
+    tin: String!
   ): User,
 
   resetpass(email: String!): User,
