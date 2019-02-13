@@ -21,4 +21,14 @@ export const routes = [
     load: () => import(/* webpackChunkName: 'requestsRequestsBank'  */ './view/notifications'),
     resolvers: [],
   },
+  {
+    layout: LAYOUT_APP,
+    exact: true,
+    name: 'Create bank',
+    path: '/bureau/createbank',
+    order: 0,
+    hidden: false,
+    load: () => import(/* webpackChunkName: 'requestsCreateBank'  */ './view/createbank'),
+    resolvers: [],
+  },
 ];

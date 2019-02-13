@@ -1,0 +1,7 @@
+mutation($email: String!, $bankName: String){
+  createbank(email: $email,bankName:$bankName){
+    user{
+      id
+    }
+  }
+}

@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 
 import FormUserRegistration from '../../components/FormUserRegistration/FormUserRegistration';
+import {ROLE_CLIENT} from "@lib/shared/roles";
 
 export class RegistrationPage extends Component {
   static propTypes = {};
@@ -18,7 +19,11 @@ export class RegistrationPage extends Component {
   }
 
   render() {
-    return <FormUserRegistration />;
+    return <FormUserRegistration
+      initialValues={{
+        role: ROLE_CLIENT,
+      }}
+    />;
   }
 }
 

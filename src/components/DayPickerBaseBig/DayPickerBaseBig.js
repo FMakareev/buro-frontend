@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import DatePicker from 'react-datepicker';
+
 import styled from 'styled-components';
 import '../../assets/style/react-datepicker-big.css';
 
 import { color } from 'styled-system';
-// import { Text } from '../Text/Text';
 import { Flex } from '../Flex/Flex';
 
 import { BorderColorProperty } from '../../styles/styleProperty/BorderColorProperty';
@@ -16,6 +14,17 @@ import { FontSizeProperty } from '../../styles/styleProperty/FontSizeProperty';
 import { LineHeightProperty } from '../../styles/styleProperty/LineHeightProperty';
 import { FillSvgProperty } from '../../styles/styleProperty/FillSvgProperty';
 import { StrokeSvgProperty } from '../../styles/styleProperty/StrokeSvgProperty';
+
+import { asyncComponent } from 'react-async-component';
+
+
+const DatePicker = asyncComponent({
+  resolve: () => import('react-datepicker'),
+  LoadingComponent: () => <div style={{height: '48px'}}/>,
+  serverMode: 'defer',
+});
+
+
 
 const StyledFlex = styled(Flex)`
   width: 100%;
@@ -62,14 +71,6 @@ const StyledFlex = styled(Flex)`
     ${props => BoxShadowProperty({ ...props, boxShadow: 2 })};
   }
 `;
-
-// const Label = styled(Text)`
-//   margin-bottom: 8px;
-//   ${props => FontFamilyProperty({ ...props, fontFamily: 'regular' })};
-//   ${props => FontSizeProperty({ ...props, fontSize: 5 })};
-//   ${props => LineHeightProperty({ ...props, lineHeight: 8 })};
-//   ${props => color({ ...props, color: 'color1' })};
-// `;
 
 const Error = styled.span`
   position: absolute;
@@ -127,7 +128,6 @@ export class DayPickerBaseBig extends Component {
   }
 
   onBlur = date => {
-    // with this method working errors lighting
     const { input } = this.props;
     input.onBlur(date, input);
   };

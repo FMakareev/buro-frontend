@@ -87,6 +87,15 @@ const defaultMocks = {
         return props;
       }
     },
+    createbank: (mutation, props) => {
+      if (props.email === 'erroremail@test.com') {
+        throw new GraphQLError('Email already exists');
+      } else if (props.bankName ==='errorbank@test.com') {
+        throw new GraphQLError('Bank name already exists');
+      } else {
+        return props;
+      }
+    },
     updateuser: (mutation, props) =>
       // для имитации запроса к серверу с рандомной задержкой и результатом.
       new Promise((resolve, reject) => {

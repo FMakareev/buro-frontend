@@ -1,0 +1,7 @@
+mutation($email: String!, $password: String!, $masterpassword: String!, $token: String) {
+  activatebank(email: $email, password: $password, masterpassword: $masterpassword, token: $token){
+    user{
+      email
+    }
+  }
+}

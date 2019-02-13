@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 import {graphql} from 'react-apollo';
 import {connect} from 'react-redux';
 
-import {Select} from '@lib/ui/Select/Select';
 import {Checkbox} from '@lib/ui/Checkbox/Checkbox';
 
 import {TextFieldWithIcon} from '@lib/ui/TextFieldWithIcon/TextFieldWithIcon';
@@ -23,8 +22,7 @@ import {SvgCircleCalendar} from '@lib/ui/Icons/SvgCircleCalendar';
 import {Text} from '@lib/ui/Text/Text';
 import {SpeedingWheel} from '@lib/ui/SmallPreloader/SmallPreloader';
 import {PreloaderWrapper} from '@lib/ui/PreloaderWrapper/PreloaderWrapper';
-import {ROLE_BANK, ROLE_CLIENT} from '@lib/shared/roles';
-import {SvgBank} from '@lib/ui/Icons/SvgBank';
+import {ROLE_CLIENT} from '@lib/shared/roles';
 import {DayPickerBaseBig} from '@lib/ui/DayPickerBaseBig/DayPickerBaseBig';
 import {ButtonWithImageError} from '../ButtonWithImageError/ButtonWithImageError';
 
@@ -35,12 +33,32 @@ import minLength from '../../../../utils/validation/minLength';
 
 import CreateUserMutation from './CreateUserMutation.graphql';
 import {HelpText} from '../HelpText/HelpText';
-import {Wrapper} from '../Wrapper/Wrapper';
 import {Title} from '../Title/Title';
 import {formPropTypes} from '../../../../propTypes/Forms/FormPropTypes';
+import {BorderRadiusProperty} from "@lib/styles/styleProperty/BorderRadiusProperty";
+import {Container} from "@lib/ui/Container/Container";
+import styled from "styled-components";
+import {BoxShadowProperty} from "@lib/styles/styleProperty/BoxShadowProperty";
+
+const Wrapper = styled(Container)`
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-right: 20px;
+  padding-bottom: 15px;
+  ${props => BorderRadiusProperty({ ...props, borderRadius: 3 })};
+  ${props => BoxShadowProperty({ ...props, boxShadow: 0 })};
+
+  @media (max-width: 576px) {
+    max-width: 360px;
+  }
+
+  @media (min-width: 576px) {
+    max-width: 700px;
+  }
+`;
+
 
 const minLength8 = minLength(8);
-const minLength12 = minLength(12);
 
 const validate = values => {
   const errors = {};
@@ -204,7 +222,7 @@ export class FormUserRegistration extends Component {
           position="relative"
           ml={['auto', 20, 100]}
           mt={[10, 120]}
-          regClient={!submitSucceeded && values && values.role === ROLE_CLIENT}>
+          >
           <Title mb={6}>Sign up</Title>
           <Box mb={6}>
             <Flex>
@@ -212,43 +230,8 @@ export class FormUserRegistration extends Component {
                 {!submitSucceeded && (
                   <>
                     <Flex flexDirection={['column', 'row']}>
-                      <Box width="100%" mb={6}>
-                        <Field
-                          name="role"
-                          component={Select}
-                          placeholder="Role"
-                          labelKey="label"
-                          valueKey="value"
-                          options={[
-                            {value: ROLE_BANK, label: 'Bank'},
-                            {value: ROLE_CLIENT, label: 'Client'},
-                          ]}
-                        />
-                      </Box>
-                      {values && values.role === ROLE_CLIENT && (
-                        <Box width="100%" mb={0} pl={[0, '10px']}/>
-                      )}
-                    </Flex>
-
-                    {values && values.role === ROLE_BANK && (
-                      <Box width="100%" mb={6}>
-                        <Field
-                          name="bankName"
-                          component={TextFieldWithIcon}
-                          placeholder="Bank name"
-                          type="text"
-                          icon={
-                            <Text fontSize={11} lineHeight={0} stroke="inherit" fill="inherit">
-                              <SvgBank/>
-                            </Text>
-                          }
-                        />
-                      </Box>
-                    )}
-
-                    <Flex flexDirection={['column', 'row']}>
                       <Box
-                        width={values && values.role === ROLE_CLIENT ? ['100%', '50%'] : '100%'}
+                        width={['100%', '50%']}
                         mb={6}>
                         <Field
                           name="email"
@@ -263,95 +246,90 @@ export class FormUserRegistration extends Component {
                         />
                       </Box>
 
-                      {values && values.role === ROLE_CLIENT && (
-                        <Box width={['100%', '50%']} mb={6} pl={[0, '10px']}>
-                          <Field
-                            name="birthdate"
-                            component={DayPickerBaseBig}
-                            placeholder="Birthdate"
-                            type="date"
-                            icon={
-                              <Text fontSize={11} lineHeight={0} fill="inherit">
-                                <SvgCircleCalendar/>
-                              </Text>
-                            }
-                          />
-                        </Box>
-                      )}
+                      <Box width={['100%', '50%']} mb={6} pl={[0, '10px']}>
+                        <Field
+                          name="birthdate"
+                          component={DayPickerBaseBig}
+                          placeholder="Birthdate"
+                          type="date"
+                          icon={
+                            <Text fontSize={11} lineHeight={0} fill="inherit">
+                              <SvgCircleCalendar/>
+                            </Text>
+                          }
+                        />
+                      </Box>
+
                     </Flex>
 
-                    {values && values.role === ROLE_CLIENT && (
-                      <Flex width="100%" flexWrap="wrap" flexDirection={['column', 'row']}>
-                        <Box width={['100%', '50%']} mb={6}>
-                          <Field
-                            name="firstName"
-                            component={TextFieldWithIcon}
-                            placeholder="First Name"
-                            type="text"
-                            icon={
-                              <Text fontSize={11} lineHeight={0} fill="inherit">
-                                <SvgUserField/>
-                              </Text>
-                            }
-                          />
-                        </Box>
-                        <Box width={['100%', '50%']} mb={6} pl={[0, '10px']}>
-                          <Field
-                            name="lastName"
-                            component={TextFieldWithIcon}
-                            placeholder="Last Name"
-                            type="text"
-                            icon={
-                              <Text fontSize={11} lineHeight={0} fill="inherit">
-                                <SvgUserField/>
-                              </Text>
-                            }
-                          />
-                        </Box>
-                        <Box width={['100%', '50%']} mb={6}>
-                          <Field
-                            name="patronymic"
-                            component={TextFieldWithIcon}
-                            placeholder="Patronymic"
-                            type="text"
-                            icon={
-                              <Text fontSize={11} lineHeight={0} fill="inherit">
-                                <SvgUserField/>
-                              </Text>
-                            }
-                          />
-                        </Box>
-                      </Flex>
-                    )}
+                    <Flex width="100%" flexWrap="wrap" flexDirection={['column', 'row']}>
+                      <Box width={['100%', '50%']} mb={6}>
+                        <Field
+                          name="firstName"
+                          component={TextFieldWithIcon}
+                          placeholder="First Name"
+                          type="text"
+                          icon={
+                            <Text fontSize={11} lineHeight={0} fill="inherit">
+                              <SvgUserField/>
+                            </Text>
+                          }
+                        />
+                      </Box>
+                      <Box width={['100%', '50%']} mb={6} pl={[0, '10px']}>
+                        <Field
+                          name="lastName"
+                          component={TextFieldWithIcon}
+                          placeholder="Last Name"
+                          type="text"
+                          icon={
+                            <Text fontSize={11} lineHeight={0} fill="inherit">
+                              <SvgUserField/>
+                            </Text>
+                          }
+                        />
+                      </Box>
+                      <Box width={['100%', '50%']} mb={6}>
+                        <Field
+                          name="patronymic"
+                          component={TextFieldWithIcon}
+                          placeholder="Patronymic"
+                          type="text"
+                          icon={
+                            <Text fontSize={11} lineHeight={0} fill="inherit">
+                              <SvgUserField/>
+                            </Text>
+                          }
+                        />
+                      </Box>
+                    </Flex>
 
-                    {values && values.role === ROLE_CLIENT && (
-                      <Flex
-                        width="100%"
-                        flexWrap="wrap">
-                        <Box width={'100%'} mb={6}>
-                          <Field
-                            name="tin"
-                            component={TextFieldWithIcon}
-                            placeholder="TIN"
-                            type="text"
-                            icon={
-                              <Text fontSize={11} lineHeight={0} fill="inherit">
-                                <SvgUserField/>
-                              </Text>
-                            }
-                          />
-                        </Box>
-                      </Flex>
-                    )}
+
+                    <Flex
+                      width="100%"
+                      flexWrap="wrap">
+                      <Box width={'100%'} mb={6}>
+                        <Field
+                          name="tin"
+                          component={TextFieldWithIcon}
+                          placeholder="TIN"
+                          type="text"
+                          icon={
+                            <Text fontSize={11} lineHeight={0} fill="inherit">
+                              <SvgUserField/>
+                            </Text>
+                          }
+                        />
+                      </Box>
+                    </Flex>
+
 
                     <Flex
                       width="100%"
                       flexWrap="wrap"
-                      flexDirection={
-                        values && values.role === ROLE_CLIENT ? ['column', 'row'] : 'column'
-                      }>
+                      flexDirection={['column', 'row']}>
                       <Box
-                        width={values && values.role === ROLE_CLIENT ? ['100%', '50%'] : '100%'}
+                        width={['100%', '50%']}
                         mb={6}>
                         <Field
                           name="password"
@@ -367,9 +345,9 @@ export class FormUserRegistration extends Component {
                         />
                       </Box>
                       <Box
-                        width={values && values.role === ROLE_CLIENT ? ['100%', '50%'] : '100%'}
+                        width={['100%', '50%'] }
                         mb={6}
-                        pl={values && values.role === ROLE_CLIENT ? [0, '10px'] : 0}>
+                        pl={[0, '10px']}>
                         <Field
                           name="confirmPassword"
                           component={TextFieldWithIcon}
@@ -387,11 +365,9 @@ export class FormUserRegistration extends Component {
                     <Flex
                       width="100%"
                       flexWrap="wrap"
-                      flexDirection={
-                        values && values.role === ROLE_CLIENT ? ['column', 'row'] : 'column'
-                      }>
+                      flexDirection={['column', 'row']}>
                       <Box
-                        width={values && values.role === ROLE_CLIENT ? ['100%', '50%'] : '100%'}
+                        width={['100%', '50%'] }
                         mb={6}>
                         <Field
                           name="masterpassword"
@@ -406,9 +382,9 @@ export class FormUserRegistration extends Component {
                         />
                       </Box>
                       <Box
-                        width={values && values.role === ROLE_CLIENT ? ['100%', '50%'] : '100%'}
+                        width={['100%', '50%']}
                         mb={6}
-                        pl={values && values.role === ROLE_CLIENT ? [0, '10px'] : 0}>
+                        pl={[0, '10px']}>
                         <Field
                           name="retypemasterpassword"
                           component={TextFieldWithIcon}

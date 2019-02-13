@@ -46,6 +46,11 @@ type Query {
 
 type Mutation {
 
+  activatebank(email: String, password: String!, masterpassword: String!, token: String!): User
+
+
+  createbank(email: String!,bankName:String!): User,
+
   createuser(
     bankName: String,
     firstName: String,

@@ -71,4 +71,14 @@ export const routes = [
     load: () => import(/* webpackChunkName: 'userProfile'  */ './view/profile'),
     resolvers: [],
   },
+  {
+    layout: LAYOUT_AUTH,
+    exact: true,
+    name: 'User active',
+    path: '/user-activate/:token',
+    order: 0,
+    hidden: false,
+    load: () => import(/* webpackChunkName: 'activateBank'  */ './view/activateBank'),
+    resolvers: [],
+  },
 ];
