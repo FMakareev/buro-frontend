@@ -209,24 +209,32 @@ export class DocumentsPage extends Component {
               return (
                 <ReactTableStyled
                   SubComponent={({original, ...rest}) => {
-                    console.log(rest);
-                    console.log(original.transactionlist);
-                    if(original.transactionlist){
+
+                    if (original.transactionlist) {
                       return (
-                        <div style={{ padding: "20px" }}>
+                        <div style={{padding: "20px"}}>
                           <Text fontFamily="bold" fontWeight="bold" fontSize={7} lineHeight={7} mb={5}>
                             Transaction list
                           </Text>
                           {
-                            original.transactionlist.map((item, index) => (<Box
-                              mb={3}>
-                              <Text
-                                target={'_blank'}
-                                href={`https://explorer.emercoin.com/nvs//${item.name}`}
-                                as={'a'}>
-                                {index+1}. {item.name}
-                              </Text>
-                            </Box>))
+                            original.transactionlist.map((item, index) => {
+                              let href = null;
+                              try {
+                                href = new URL(item.name, new URL(`https://explorer.emercoin.com/nvs//`)).href;
+                                console.log(href);
+                              } catch (error) {
+                                console.log(error);
+                              }
+                              return (<Box
+                                mb={3}>
+                                <Text
+                                  target={'_blank'}
+                                  href={href}
+                                  as={'a'}>
+                                  {index + 1}. {item.name}
+                                </Text>
+                              </Box>)
+                            })
                           }
                         </div>
                       );
