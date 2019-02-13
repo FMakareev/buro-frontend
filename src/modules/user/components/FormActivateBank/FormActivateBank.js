@@ -91,7 +91,7 @@ export class FormActivateBank extends Component {
       let errorList = {};
       errors.forEach(item => {
         if (item.message.indexOf('bank not found') >= 0) {
-          errorList.bankName = 'Bank with the email not found'
+          errorList.email = 'Bank with the email not found'
         }
       });
       return errorList;
