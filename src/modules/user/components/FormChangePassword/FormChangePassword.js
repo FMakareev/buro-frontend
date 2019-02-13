@@ -164,6 +164,9 @@ export class FormChangePassword extends Component {
 
             {submitFailed && (
               <ButtonWithImageError
+                style={{
+                  width:'auto'
+                }}
                 display="inline-block"
                 type="submit"
                 variant="error"

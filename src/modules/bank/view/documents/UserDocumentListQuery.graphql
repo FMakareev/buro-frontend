@@ -14,5 +14,8 @@ query($bankid: String!){
     }
     date
     status
+    transactionlist{
+      name
+    }
   }
 }

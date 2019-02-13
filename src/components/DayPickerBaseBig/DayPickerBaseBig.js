@@ -82,6 +82,13 @@ const Error = styled.span`
   ${props => color({ ...props, color: 'color9' })};
 `;
 
+const DatePickerStyled = styled(DatePicker)`
+  input {
+    box-shadow: none;
+    border: none;
+  }
+`;
+
 const IconWrapper = styled.div`
   position: absolute;
   top: 10px;
@@ -148,7 +155,7 @@ export class DayPickerBaseBig extends Component {
     return (
       <StyledFlex flexDirection="column" meta={meta}>
         {meta.touched && meta.error && <Error>{meta.error}</Error>}
-        <DatePicker
+        <DatePickerStyled
           autocomplete="off"
           selected={startDate}
           onChange={this.handleChange}
