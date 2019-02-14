@@ -9,7 +9,7 @@ import { AsyncComponentProvider } from 'react-async-component';
 import asyncBootstrapper from 'react-async-bootstrapper';
 import { client } from '../apollo/index.client';
 import { ConfigRouter } from '../routes';
-import { Store } from '../store';
+import { CreateStore } from '../store';
 import { StyledThemeProvider } from '../styles/StyledThemeProvider';
 import { GlobalStyle } from '../styles/GlobalStyle';
 
@@ -18,6 +18,8 @@ import { GlobalStyle } from '../styles/GlobalStyle';
  * */
 const rehydrateState = window.ASYNC_COMPONENTS_STATE;
 
+
+const Store = CreateStore();
 /**
  * {@linkcode https://github.com/ctrlplusb/react-universally/blob/master/client/index.js#L34}
  * {@linkcode https://github.com/ctrlplusb/react-async-component#server-side-rendering}
