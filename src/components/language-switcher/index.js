@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getTranslate, getActiveLanguage, getLanguages } from 'react-localize-redux';
 import { changeTranslate } from '../../store/reducers/localization/actions';
-import { Store } from '../../store';
+import { CreateStore } from '../../store';
 
 class LanguageSwitcher extends Component {
   static propTypes = {
@@ -56,6 +56,7 @@ export default connect(
   }),
   dispatch => ({
     setActiveLanguage: value => {
+      let Store = CreateStore();
       dispatch(changeTranslate(Store.getState(), value));
     },
   }),
