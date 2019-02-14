@@ -15,6 +15,7 @@ const CreateStore = () => {
   if (isBrowser) {
     Store.dispatch(userInit());
   }
+  return Store;
 }
 export { CreateStore };
 

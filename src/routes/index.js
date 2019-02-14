@@ -6,7 +6,7 @@ import LayoutApp from '../components/LayoutApp/LayoutApp';
 import LayoutAuth  from '../components/LayoutAuth/layoutAuth';
 
 import ErrorCatch from '../components/ErrorCatch/ErrorCatch';
-import { Store } from '../store';
+import { CreateStore } from '../store';
 import { GetPageTitle } from '../components/GetPageTitle/GetPageTitle';
 import { LAYOUT_APP, LAYOUT_AUTH } from '../shared/layout';
 import {SpeedingWheel} from "../components/SmallPreloader/SmallPreloader";
@@ -22,6 +22,7 @@ const has = Object.prototype.hasOwnProperty;
  * @description - recursive generator of an array of application routing objects
  * */
 const createRoutes = (modulesRoutes, newRoutes, moduleName) => {
+  const Store = CreateStore();
   const routes = newRoutes;
 
   if (!modulesRoutes) return null;

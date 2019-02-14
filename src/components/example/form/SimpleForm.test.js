@@ -5,8 +5,9 @@ import ReactTestUtils from 'react-dom/test-utils'
 import { Provider as ProviderRedux } from 'react-redux';
 
 import SimpleForm, {RenderField} from './SimpleForm';
-import {Store} from "../../../store";
+import {CreateStore} from "../../../store";
 
+const Store = CreateStore();
 
 test('SimpleForm: просто рендер', () => {
   const output = renderer.create(
