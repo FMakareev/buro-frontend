@@ -15,6 +15,8 @@ import NotificationListQuery from './NotificationListQuery.graphql';
 
 import { getUserFromStore } from '../../../../store/reducers/user/selectors';
 
+import { UpdateNotificationButton } from '../../components/UpdateNotificationButton/UpdateNotificationButton';
+
 const has = Object.prototype.hasOwnProperty;
 
 const columns = () => [
@@ -110,6 +112,61 @@ const columns = () => [
       </select>
     ),
   },
+  {
+    id: 'Readed',
+    Header: 'Readed Status',
+    Cell: props => {
+      if (props.original.readed) {
+        return <Text>Readed</Text>;
+      }
+      return (
+        <UpdateNotificationButton
+          id={props.original ? props.original.id : null}
+          readed={props.original.readed}
+          status={props.original.status}
+        />
+      );
+    },
+    // accessor: props => {
+    //   switch (props.original.readed) {
+    //     case true: {
+    //       return <Text>Readed</Text>;
+    //     }
+    //     case false: {
+    //       return (
+    //         <UpdateNotificationButton
+    //           id={props.original ? props.original.id : null}
+    //           readed={props.original.readed}
+    //           status={props.original.status}
+    //         />
+    //       );
+    //     }
+    //   }
+    // },
+    filterMethod: (filter, row) => {
+      switch (filter.value) {
+        case 'Readed': {
+          return row._original.readed === true;
+        }
+        case 'Unread': {
+          return row._original.readed === false;
+        }
+        case 'all': {
+          return true;
+        }
+      }
+    },
+    Filter: ({ filter, onChange }) => (
+      <select
+        onChange={event => onChange(event.target.value)}
+        style={{ width: '100%' }}
+        value={filter ? filter.value : 'all'}>
+        <option value="all">Show All</option>
+        <option value="Readed">Readed</option>
+        <option value="Unread">Unread</option>
+      </select>
+    ),
+  },
 ];
 
 export class NotificationsPage extends Component {
@@ -139,26 +196,29 @@ export class NotificationsPage extends Component {
             variables={{
               bankid: user.id,
             }}
-           onError={ () => {} }>
-            {({ error, data, loading }) => (
-              <ReactTableStyled
-                defaultFilterMethod={(filter, row) =>
-                  String(row[filter.id]).indexOf(filter.value) >= 0
-                }
-                data={
-                  loading
-                    ? []
-                    : data && has.call(data, 'notificationlist')
-                    ? data.notificationlist
-                    : []
-                }
-                loadingText={loading ? 'Loading...' : error ? 'Error...' : 'Loading...'}
-                loading={loading}
-                error={error}
-                filterable
-                columns={columns()}
-              />
-            )}
+            onError={() => {}}>
+            {({ error, data, loading }) => {
+              console.log('DATA______', data);
+              return (
+                <ReactTableStyled
+                  defaultFilterMethod={(filter, row) =>
+                    String(row[filter.id]).indexOf(filter.value) >= 0
+                  }
+                  data={
+                    loading
+                      ? []
+                      : data && has.call(data, 'notificationlist')
+                      ? data.notificationlist
+                      : []
+                  }
+                  loadingText={loading ? 'Loading...' : error ? 'Error...' : 'Loading...'}
+                  loading={loading}
+                  error={error}
+                  filterable
+                  columns={columns()}
+                />
+              );
+            }}
           </Query>
         </Box>
       </Container>

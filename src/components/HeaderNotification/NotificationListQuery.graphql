@@ -2,6 +2,7 @@ query HeaderNotificationList($clientid: String, $bankid: String, $status:String)
   notificationlist(clientid: $clientid, bankid: $bankid,status:$status){
     id
     status
+    readed
     client {
       id
       email

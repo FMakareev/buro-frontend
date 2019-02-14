@@ -1,0 +1,8 @@
+mutation($id: String!, $readed: Boolean, $status: String!){
+  updatenotification(id: $id, readed: $readed, status: $status) {
+    notification{
+      status
+      readed
+    }
+  }
+}
