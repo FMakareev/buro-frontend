@@ -3,11 +3,11 @@ import dayjs from 'dayjs';
 import {Query} from 'react-apollo';
 import {connect} from 'react-redux';
 
-import {Container} from '@lib/ui/Container/Container';
-import {Text} from '@lib/ui/Text/Text';
-import {ReactTableStyled} from '@lib/ui/ReactTableStyled/ReactTableStyled';
-import {CheckAuthorization} from '@lib/ui/CheckAuthorization/CheckAuthorization';
-import {ROLE_CLIENT} from '@lib/shared/roles';
+import { Container } from '@lib/ui/Container/Container';
+import { Text } from '@lib/ui/Text/Text';
+import { ReactTableStyled } from '@lib/ui/ReactTableStyled/ReactTableStyled';
+import { CheckAuthorization } from '@lib/ui/CheckAuthorization/CheckAuthorization';
+import { ROLE_CLIENT } from '@lib/shared/roles';
 
 import {STATUS_PENDING, STATUS_APPROVAL, STATUS_NOT_APPROVAL} from '@lib/shared/statuses';
 import {Box} from '@lib/ui/Box/Box';

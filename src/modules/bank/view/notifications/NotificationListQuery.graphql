@@ -3,6 +3,7 @@ query($bankid: String){
       id
       status
       date
+      readed
       client{
         id
         firstName

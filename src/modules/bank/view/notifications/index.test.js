@@ -79,15 +79,9 @@ test('NotificationsPage: ошибка во время загрузки поль�
         id: initialValue.user.id,
       },
     },
-    error: new Error(
-      JSON.stringify({
-        error: [
-          {
-            message: 'Error!',
-          },
-        ],
-      }),
-    ),
+    result: {
+      errors: [{ message: 'Error!' }],
+    },
   };
   const output = renderer.create(
     <StyledThemeProvider>
@@ -100,7 +94,7 @@ test('NotificationsPage: ошибка во время загрузки поль�
       </ProviderRedux>
     </StyledThemeProvider>,
   );
-  await wait(0); // небольшая задержка
+  await wait(5); // небольшая задержка
 
   const tree = output.toJSON();
   expect(tree).toMatchSnapshot();

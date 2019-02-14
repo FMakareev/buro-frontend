@@ -81,15 +81,9 @@ test('ClientsPage: ошибка во время загрузки пользов�
         excludeownerrole: initialValue.user.role,
       },
     },
-    error: new Error(
-      JSON.stringify({
-        error: [
-          {
-            message: 'Error!',
-          },
-        ],
-      }),
-    ),
+    result: {
+      errors: [{ message: 'Error!' }],
+    },
   };
   const output = renderer.create(
     <StyledThemeProvider>

@@ -1,0 +1,204 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UpdateNotificationButtons: вызов запроса запрета завершен 1`] = `
+<div
+  className="sc-bxivhb dUiVDW"
+>
+  <div
+    className="sc-1jxwge6-0 sc-18ch56c-0 hxjSXI"
+    color="color1"
+    fontSize={6}
+  >
+    Not approved
+  </div>
+</div>
+`;
+
+exports[`UpdateNotificationButtons: вызов запроса запрета с ошибкой 1`] = `
+<div
+  className="sc-bxivhb dUiVDW"
+>
+  <div
+    className="sc-1jxwge6-0 gHyFgL"
+  >
+    <button
+      className="mxzgdr-0 faeagD"
+      disabled={false}
+      display="inline-block"
+      onClick={[Function]}
+      size="xsmall"
+      type="button"
+    >
+      <div
+        className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+        width="100%"
+      >
+        <div />
+        <div
+          className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        >
+          Approve
+        </div>
+        <div />
+      </div>
+    </button>
+    <button
+      className="mxzgdr-0 cWBUJc"
+      disabled={false}
+      display="inline-block"
+      onClick={[Function]}
+      size="xsmall"
+      type="button"
+    >
+      <div
+        className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+        width="100%"
+      >
+        <div />
+        <div
+          className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        >
+          Not approve
+        </div>
+        <div />
+      </div>
+    </button>
+  </div>
+  <div
+    className="sc-1jxwge6-0 sc-18ch56c-0 gbKleW"
+    color="color9"
+    fontFamily="medium"
+    fontSize="12px"
+  >
+    Repeat the request in 10 minutes, file not has been uploaded to the blockchain.
+  </div>
+</div>
+`;
+
+exports[`UpdateNotificationButtons: вызов запроса подтверждения завершен 1`] = `
+<div
+  className="sc-bxivhb dUiVDW"
+>
+  <div
+    className="sc-1jxwge6-0 sc-18ch56c-0 hxjSXI"
+    color="color1"
+    fontSize={6}
+  >
+    Approved
+  </div>
+</div>
+`;
+
+exports[`UpdateNotificationButtons: вызов запроса подтверждения с ошибкой 1`] = `
+<div
+  className="sc-bxivhb dUiVDW"
+>
+  <div
+    className="sc-1jxwge6-0 gHyFgL"
+  >
+    <button
+      className="mxzgdr-0 cWBUJc"
+      disabled={false}
+      display="inline-block"
+      onClick={[Function]}
+      size="xsmall"
+      type="button"
+    >
+      <div
+        className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+        width="100%"
+      >
+        <div />
+        <div
+          className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        >
+          Approve
+        </div>
+        <div />
+      </div>
+    </button>
+    <button
+      className="mxzgdr-0 faeagD"
+      disabled={false}
+      display="inline-block"
+      onClick={[Function]}
+      size="xsmall"
+      type="button"
+    >
+      <div
+        className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+        width="100%"
+      >
+        <div />
+        <div
+          className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        >
+          Not approve
+        </div>
+        <div />
+      </div>
+    </button>
+  </div>
+  <div
+    className="sc-1jxwge6-0 sc-18ch56c-0 gbKleW"
+    color="color9"
+    fontFamily="medium"
+    fontSize="12px"
+  >
+    Repeat the request in 10 minutes, file not has been uploaded to the blockchain.
+  </div>
+</div>
+`;
+
+exports[`UpdateNotificationButtons: обычное состояние 1`] = `
+<div
+  className="sc-bxivhb dUiVDW"
+>
+  <div
+    className="sc-1jxwge6-0 gHyFgL"
+  >
+    <button
+      className="mxzgdr-0 faeagD"
+      disabled={false}
+      display="inline-block"
+      onClick={[Function]}
+      size="xsmall"
+      type="button"
+    >
+      <div
+        className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+        width="100%"
+      >
+        <div />
+        <div
+          className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        >
+          Approve
+        </div>
+        <div />
+      </div>
+    </button>
+    <button
+      className="mxzgdr-0 faeagD"
+      disabled={false}
+      display="inline-block"
+      onClick={[Function]}
+      size="xsmall"
+      type="button"
+    >
+      <div
+        className="sc-1jxwge6-0 wterhv-0 eZGOHC"
+        width="100%"
+      >
+        <div />
+        <div
+          className="sc-1jxwge6-0 wterhv-0 irkFkV"
+        >
+          Not approve
+        </div>
+        <div />
+      </div>
+    </button>
+  </div>
+</div>
+`;

@@ -212,6 +212,7 @@ export class DocumentsBureauPage extends Component {
             variables={{
               role: ROLE_CLIENT
             }}
+            onError={() => { }}
           >
             {({error, data, loading, refetch, ...rest}) => {
               return (

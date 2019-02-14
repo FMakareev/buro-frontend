@@ -31,12 +31,9 @@ export class HeaderNotification extends Component {
     }
   };
 
-  renderBell = ({ error, loading, data, user }) => {
+  renderBell = ({ error, loading, data }) => {
     if (!loading && !error && has.call(data, 'notificationlist') && data.notificationlist.length) {
-      const numberUnreadNotifications =
-        user.role === ROLE_CLIENT
-          ? this.countClientsNotifications(data.notificationlist)
-          : data.notificationlist.length;
+      const numberUnreadNotifications = this.countClientsNotifications(data.notificationlist);
       return (
         <>
           <CircleCount>{numberUnreadNotifications}</CircleCount>
@@ -51,7 +48,7 @@ export class HeaderNotification extends Component {
     let counter = 0;
 
     for (let i = 0; i < data.length; i += 1) {
-      if (data[i].status === STATUS_PENDING) {
+      if (data[i].status === STATUS_PENDING || !data[i].readed) {
         counter += 1;
       }
     }
@@ -75,7 +72,8 @@ export class HeaderNotification extends Component {
         variables={{
           // status:STATUS_PENDING,
           ...(user.role === ROLE_CLIENT ? { clientid: user.id } : { bankid: user.id }),
-        }}>
+        }}
+        onError={() => {}}>
         {({ error, loading, data }) => (
           <ButtonStyled
             onClick={this.redirectToNotificationList}
