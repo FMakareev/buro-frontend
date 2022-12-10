@@ -13,7 +13,7 @@
     "cors": "^2.8.4",
     "create-index": "^2.3.0",
     "dayjs": "^1.7.7",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "express-request-language": "^1.1.15",
     "faker": "^4.1.0",
     "formidable": "^1.2.1",
